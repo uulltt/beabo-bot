@@ -8,12 +8,13 @@ client.on('ready', () => {
 
 client.on('message', message => {
     if (message.content.substring(0, 5) === '!list') {
-		var args = message.content.substring(5).split('\n');
-		if (args.length == 1){
-			args = message.content.substring(5).split(',');
+		var args = message.content.substring(5).split('\n'); //we split by line breaks
+		if (args.length == 1){ //if there's no line breaks
+			args = message.content.substring(5).split(','); //we split by commas
 		}
-		for(var i = 0; i < args.length; i++){
-             message.channel.send('•' + args[i]);  
+		for(var i = 0; i < args.length; i++){ //go through each of the arguments
+			if (args[i].substring(0,1) != '`' && args[i].length > 0) //if the first character isn't an accent mark and the length of the argument is greater than 0
+             message.channel.send('•' + args[i]); //send the list element
          }
     	
   	}
