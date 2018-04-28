@@ -7,7 +7,7 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-    if (message.content.substring(0, 5) === '!list') {
+    if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
 		var args = message.content.substring(5).split('\n'); //we split by line breaks
 		if (args.length == 1){ //if there's no line breaks
 			args = message.content.substring(5).split(','); //we split by commas
