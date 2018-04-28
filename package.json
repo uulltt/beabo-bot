@@ -1,11 +1,13 @@
 {
-  "name": "greeter-bot",
+  "name": "listbot",
+  "description": "A Heroku-based discord bot that makes lists out of single messages",
   "version": "1.0.0",
-  "description": "My own Discord bot",
   "main": "bot.js",
-  "author": "ULT",
+  "scripts": {
+    "start": "node bot.js"
+  },
   "dependencies": {
-    "discord.io": "github:woor/discord.io#gateway_v6",
-    "winston": "^2.4.2"
+    "discord.js": "11.1.0",
+    "request": "2.81.0"
   }
 }
