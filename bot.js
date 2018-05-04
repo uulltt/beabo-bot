@@ -19,7 +19,24 @@ client.on('message', message => {
     	
   	}
 	if (message.content.includes('@y\'all')){
-		message.channel.send('y\'all\'d\'ve');
+		var people = [];
+		var len = 10;
+		var count = 0;
+		var msgstr = '';
+		message.channel.search({}).then(res => {
+		for(var i = 0; i < res.messages.length; i++){
+		var theuser = '@' + res.messages[i].author.username + '#' + res.messages[i].author.discriminator;
+		if (!msgstr.includes(theuser)){
+			msgstr += theuser + ' ';
+			count++;
+		}
+		if (count >= len)
+			break;
+		}
+		}).catch(console.error);
+		message.channel.send(msgstr);		
+			
+		
 	}
 });
 
