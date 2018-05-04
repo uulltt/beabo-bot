@@ -25,7 +25,7 @@ client.on('message', message => {
 		var msgstr = '';
 		//message.channel.send(message.channel.name);
 		message.channel.fetchMessages({ limit: 10 })
-  .then(messages => for(var i = 0; i < messages.size; i++){
+  .then(messages => {for(var i = 0; i < messages.size; i++){
 		var theuser = '@' + res.messages[i].author.username + '#' + res.messages[i].author.discriminator;
 		if (!msgstr.includes(theuser)){
 			msgstr += theuser + ' ';
@@ -35,10 +35,8 @@ client.on('message', message => {
 			break;
 		}
 		message.channel.send(msgstr);
-		}).catch(console.error);
-			
-			
-		
+		}
+		).catch(console.error);	
 	}
 });
 
