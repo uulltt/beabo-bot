@@ -45,7 +45,7 @@ client.on('message', message => {
 			break;
 		}
 		message.channel.send(msgstr);*/
-		}).catch(console.error);
+		//}).catch(console.error);
 			
 			
 		
