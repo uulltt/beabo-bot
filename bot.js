@@ -19,14 +19,13 @@ client.on('message', message => {
     	
   	}
 	if (message.content.includes('@y\'all')){
-		var people = [];
 		var len = 10;
 		var count = 0;
 		var msgstr = '';
 		var messages;
 		//message.channel.send(message.channel.name);
 		messages = message.channel.fetchMessages()
-  .then(function(msgs) => { return msgs;})	
+  .then(function(msgs) { return msgs;})	
 		
 		for(var i = 0; i < messages.size; i++){
 	  var theuser = '@' + messages[i].author.username + '#' + messages[i].author.discriminator;
