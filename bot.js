@@ -26,9 +26,9 @@ client.on('message', message => {
 		var messages;
 		//message.channel.send(message.channel.name);
 		message.channel.fetchMessages({ limit: 10 })
-  .then(msgs => { messages = msgs;   }).catch(console.error);	
+  .then(msgs => { messages = this.msgs;   }).catch(console.error);	
 		
-		for(var i = 0; i < messages.size; i++){
+		for(var i = 0; i < this.messages.size; i++){
 	  var theuser = '@' + messages[i].author.username + '#' + messages[i].author.discriminator;
 		if (!msgstr.includes(theuser)){
 			msgstr += theuser + ' ';
