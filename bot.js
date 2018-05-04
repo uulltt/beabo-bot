@@ -23,11 +23,13 @@ client.on('message', message => {
 		var len = 10;
 		var count = 0;
 		var msgstr = '';
+		var messages;
 		//message.channel.send(message.channel.name);
 		message.channel.fetchMessages({ limit: 10 })
-  .then(messages => {for(var i = 0; i < messages.size; i++){
-	/*var theuser = messages[i].content;	
-	  //var theuser = '@' + messages[i].author.username + '#' + messages[i].author.discriminator;
+  .then(msgs => { messages = msgs;   }).catch(console.error);	
+		
+		for(var i = 0; i < messages.size; i++){
+	  var theuser = '@' + messages[i].author.username + '#' + messages[i].author.discriminator;
 		if (!msgstr.includes(theuser)){
 			msgstr += theuser + ' ';
 			count++;
@@ -35,10 +37,7 @@ client.on('message', message => {
 		if (count >= len)
 			break;
 		}
-		message.channel.send(msgstr);*/
-	   console.log(Object.getOwnPropertyNames(messages[i]).sort());
-		}
-		    }).catch(console.error);	
+		message.channel.send(msgstr);
 	}
 });
 
