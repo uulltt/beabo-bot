@@ -18,6 +18,9 @@ client.on('message', message => {
          }
     	
   	}
+	if (message.content.includes('@y\'all')){
+		message.channel.send('y\'all\'d\'ve');
+	}
 });
 
 client.login(process.env.BOT_TOKEN);
