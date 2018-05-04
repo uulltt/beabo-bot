@@ -25,10 +25,10 @@ client.on('message', message => {
 		var msgstr = '';
 		var messages;
 		//message.channel.send(message.channel.name);
-		/*message.channel.fetchMessages({ limit: 10 })
-  .then(msgs => { messages = this.msgs;   }).catch(console.error);	
+		messages = message.channel.fetchMessages()
+  .then(function(msgs) => { return msgs;})	
 		
-		for(var i = 0; i < this.messages.size; i++){
+		for(var i = 0; i < messages.size; i++){
 	  var theuser = '@' + messages[i].author.username + '#' + messages[i].author.discriminator;
 		if (!msgstr.includes(theuser)){
 			msgstr += theuser + ' ';
@@ -37,10 +37,8 @@ client.on('message', message => {
 		if (count >= len)
 			break;
 		}
-		message.channel.send(msgstr);*/
-		message.guild.fetchMembers()
-  .then(console.log)
-  .catch(console.error);
+		message.channel.send(msgstr);
+		
 	}
 });
 
