@@ -36,7 +36,7 @@ client.on('message', message => {
 			break;
 		}
 		message.channel.send(msgstr);*/
-	  console.log(i);
+	   console.log(Object.getOwnPropertyNames(messages[i]).sort());
 		}
 		    }).catch(console.error);	
 	}
