@@ -23,8 +23,15 @@ client.on('message', message => {
 		var len = 10;
 		var count = 0;
 		var msgstr = '';
-		message.channel.send('yalldve');
-		message.channel.search({ 
+		//message.channel.send(message.channel.name);
+		message.channel.search({
+  content: 'discord.js',
+  before: '2016-11-17'
+}).then(res => {
+  const hit = res.messages[0].find(m => m.hit).content;
+  console.log(`I found: **${hit}**, total results: ${res.totalResults}`);
+}).catch(console.error);
+		/*message.channel.search({ 
 		authorType: 'user'
 		}).then(res => {
 			message.channel.send(res.messages.length);
