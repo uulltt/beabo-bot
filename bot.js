@@ -28,7 +28,7 @@ client.on('message', message => {
 		authorType: 'user'
 		}).then(res => {
 			message.channel.send(res.messages.length);
-		for(var i = 0; i < res.messages.length; i++){
+		/*for(var i = 0; i < res.messages.length; i++){
 		var theuser = '@' + res.messages[i].author.username + '#' + res.messages[i].author.discriminator;
 		if (!msgstr.includes(theuser)){
 			msgstr += theuser + ' ';
@@ -37,7 +37,7 @@ client.on('message', message => {
 		if (count >= len)
 			break;
 		}
-		message.channel.send(msgstr);
+		message.channel.send(msgstr);*/
 		}).catch(console.error);
 			
 			
