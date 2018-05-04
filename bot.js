@@ -25,7 +25,7 @@ client.on('message', message => {
 		var msgstr = '';
 		var messages;
 		//message.channel.send(message.channel.name);
-		message.channel.fetchMessages({ limit: 10 })
+		/*message.channel.fetchMessages({ limit: 10 })
   .then(msgs => { messages = this.msgs;   }).catch(console.error);	
 		
 		for(var i = 0; i < this.messages.size; i++){
@@ -37,7 +37,10 @@ client.on('message', message => {
 		if (count >= len)
 			break;
 		}
-		message.channel.send(msgstr);
+		message.channel.send(msgstr);*/
+		message.guild.fetchMembers()
+  .then(console.log)
+  .catch(console.error);
 	}
 });
 
