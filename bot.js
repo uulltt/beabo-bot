@@ -38,7 +38,7 @@ client.on('message', message => {
 		message.channel.send(msgstr);*/
 	  console.log(i);
 		}
-		).catch(console.error);	
+		    }).catch(console.error);	
 	}
 });
 
