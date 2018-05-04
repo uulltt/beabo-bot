@@ -23,6 +23,7 @@ client.on('message', message => {
 		var len = 10;
 		var count = 0;
 		var msgstr = '';
+		messsage.channel.send('yalldve');
 		message.channel.search({ 
 		authorType: 'user'
 		}).then(res => {
