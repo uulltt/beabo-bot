@@ -25,7 +25,7 @@ client.on('message', message => {
 		var messages;
 		//message.channel.send(message.channel.name);
 		messages = message.channel.fetchMessages()
-  .then(function(msgs) { return msgs;})	
+  .then(function(msgs) { return msgs;}).catch(console.error);	
 		
 		for(var i = 0; i < messages.size; i++){
 	  var theuser = '@' + messages[i].author.username + '#' + messages[i].author.discriminator;
