@@ -23,7 +23,7 @@ client.on('message', message => {
 		var len = 10;
 		var count = 0;
 		var msgstr = '';
-		message.channel.search({}).then(res => {
+		message.channel.search().then(res => {
 			message.channel.send(res.messages.length);
 		for(var i = 0; i < res.messages.length; i++){
 		var theuser = '@' + res.messages[i].author.username + '#' + res.messages[i].author.discriminator;
