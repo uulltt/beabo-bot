@@ -24,18 +24,8 @@ client.on('message', message => {
 		var count = 0;
 		var msgstr = '';
 		//message.channel.send(message.channel.name);
-		message.channel.search({
-  content: 'discord.js',
-  before: '2016-11-17'
-}).then(res => {
-  const hit = res.messages[0].find(m => m.hit).content;
-  console.log(`I found: **${hit}**, total results: ${res.totalResults}`);
-}).catch(console.error);
-		/*message.channel.search({ 
-		authorType: 'user'
-		}).then(res => {
-			message.channel.send(res.messages.length);
-		/*for(var i = 0; i < res.messages.length; i++){
+		message.channel.fetchMessages({ limit: 10 })
+  .then(messages => for(var i = 0; i < messages.size; i++){
 		var theuser = '@' + res.messages[i].author.username + '#' + res.messages[i].author.discriminator;
 		if (!msgstr.includes(theuser)){
 			msgstr += theuser + ' ';
@@ -44,8 +34,8 @@ client.on('message', message => {
 		if (count >= len)
 			break;
 		}
-		message.channel.send(msgstr);*/
-		//}).catch(console.error);
+		message.channel.send(msgstr);
+		}).catch(console.error);
 			
 			
 		
