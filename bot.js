@@ -24,9 +24,9 @@ client.on('message', message => {
 		var msgstr = '';
 		var messages;
 		//message.channel.send(message.channel.name);
-		messages = message.channel.fetchMessages()
+		messages = message.channel.fetchMessages({ limit: 10})
   .then(function(msgs) { return msgs;}).catch(console.error);	
-		
+		if (messages.size > 0){
 		for(var i = 0; i < messages.size; i++){
 	  var theuser = '@' + messages[i].author.username + '#' + messages[i].author.discriminator;
 		if (!msgstr.includes(theuser)){
@@ -37,6 +37,7 @@ client.on('message', message => {
 			break;
 		}
 		message.channel.send(msgstr);
+		}
 		
 	}
 });
