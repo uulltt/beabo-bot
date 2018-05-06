@@ -69,6 +69,7 @@ client.on('message', message => {
   .then(console.log)
   .catch(console.error);
 	}
+	//message.delete();
 }
 	if (new RegExp(/!simp[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
 		var arg = message.content.substring(8) + '\u200B';
@@ -362,7 +363,149 @@ if (new RegExp(/!namco2[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
 	}
 }
 
+if (new RegExp(/!kof2k1\W/gm).test(message.content.substring(0,8))){
+		var arg = message.content.substring(8) + '\u200B';
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+			if (args[i].length > 0)
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-KoF2k1/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+	}
+}
 
+if (new RegExp(/!kof2k1[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
+		var arg = message.content.substring(10) + '\u200B';
+		var style = message.content.charAt(7);
+		var size = message.content.charAt(8);
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+		if (args[i].length > 0)	
+			message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-KoF2k1/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+	}
+}
+
+if (new RegExp(/!kof2k2\W/gm).test(message.content.substring(0,8))){
+		var arg = message.content.substring(8) + '\u200B';
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+			if (args[i].length > 0)
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-KoF2k2/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+	}
+}
+
+if (new RegExp(/!kof2k2[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
+		var arg = message.content.substring(10) + '\u200B';
+		var style = message.content.charAt(7);
+		var size = message.content.charAt(8);
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+		if (args[i].length > 0)	
+			message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-KoF2k2/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+	}
+}
+
+if (new RegExp(/!kof2k3\W/gm).test(message.content.substring(0,8))){
+		var arg = message.content.substring(8) + '\u200B';
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+			if (args[i].length > 0)
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-KoF2k3/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+	}
+}
+
+if (new RegExp(/!kof2k3[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
+		var arg = message.content.substring(10) + '\u200B';
+		var style = message.content.charAt(7);
+		var size = message.content.charAt(8);
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+		if (args[i].length > 0)	
+			message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-KoF2k3/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+	}
+}
+
+if (new RegExp(/!arcade\W/gm).test(message.content.substring(0,8))){
+		var arg = message.content.substring(8) + '\u200B';
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+			if (args[i].length > 0)
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-arcade/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+	}
+}
+
+if (new RegExp(/!arcade[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
+		var arg = message.content.substring(10) + '\u200B';
+		var style = message.content.charAt(7);
+		var size = message.content.charAt(8);
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+		if (args[i].length > 0)	
+			message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-arcade/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+	}
+}
 
 if (new RegExp(/!fz\W/gm).test(message.content.substring(0,4))){
 		var arg = message.content.substring(4) + '\u200B';
@@ -448,7 +591,7 @@ if (new RegExp(/!sf2[0-9][0-9]\W/gm).test(message.content.substring(0,7))){
 
 if (message.content.substring(0, 5) === '!help' || message.content.substring(0, 9) === '!commands'){
 		message.channel.send('font commands\n!any game name followed by two digits - that game with the first digit determining font style and second digit determining font size\n'+
-		'!fz - fantasy zone font\n!kof97 - king of fighters 97 font\n!kof2k - king of fighters 2000 font\n!namco2 - namco classic gradient\n!njgd - ninja gaiden\n'+
+		'!arcade - classic arcade font\n!fz - fantasy zone font\n!kof97 - king of fighters 97 font\n!kof2k - king of fighters 2000 font\n!kof2k1 - king of fighters 2001 font\n!kof2k2 - king of fighters 2002 font\n!kof2k3 - king of fighters 2003 font\n!namco2 - namco classic gradient\n!njgd - ninja gaiden\n'+
 		'!pubu - puzzle bobble font\n!sf2 - street fighter 2 font\n!ssf2 - super street fighter 2 font\n!sfz3 or !sfa3 - street fighter zero\alpha 3 font\n!simp - the simpsons font\n'+
 		'\nother commands\n!list or !todo - splits discord message into a to-do list');
 }	
