@@ -20,7 +20,7 @@ client.on('message', message => {
   	}
 	if (message.content.substring(0, 5) === '!simp'){
 		var arg = message.content.substring(6);
-		message.channel.channel.send({
+		message.channel.send({
   files: ['https://nfggames.com/system/arcade/arcade.php/y-simp/z-0/dbl-2/x-' + arg]
 })
   .then(console.log)
