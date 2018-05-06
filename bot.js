@@ -97,12 +97,14 @@ if (message.content.substring(0, 3) === '!fz'){
   .then(console.log)
   .catch(console.error);
 	}
-}	
+}
+	
+if (message.content.substring(0, 5) === '!help' || message.content.substring(0, 9) === '!commands'){
+	message.channel.send('font commands\n!fz - fantasy zone font\n!kof97 - king of fighters 97 font\n!kof2k - king of fighters 2000 font\n!pubu - puzzle bobble font\n!simp - the simpsons font\nother commands\n!list or !todo - splits discord message into a to-do list');
+}
 
 });
 
-if (message.content.substring(0, 5) === '!help' || message.content.substring(0, 9) === '!commands'){
-		message.channel.send('font commands\n!fz - fantasy zone font\n!kof97 - king of fighters 97 font\n!kof2k - king of fighters 2000 font\n!pubu - puzzle bobble font\n!simp - the simpsons font\nother commands\n!list or !todo - splits discord message into a to-do list');
-}
+
 
 client.login(process.env.BOT_TOKEN);
