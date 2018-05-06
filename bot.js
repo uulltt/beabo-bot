@@ -52,10 +52,10 @@ client.on('message', message => {
     	
   	}
 	if (message.content.substring(0, 5) === '!simp'){
-		var arg = wordWrap(message.content.substring(6),25);
+		var arg = message.content.substring(6);
 		var args = arg.split('\n');
-		if (args.length < 2)
-			args = arg.match(/.{1,25}/g);
+	//	if (args.length < 2)
+		//	args = arg.match(/.{1,25}/g);
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
 		message.channel.send({
@@ -71,10 +71,10 @@ client.on('message', message => {
 	}
 }
 if (message.content.substring(0, 6) === '!kof2k'){
-		var arg = wordWrap(message.content.substring(7), 25);
+		var arg = message.content.substring(7);
 		var args = arg.split('\n');
-		if (args.length < 2)
-			args = arg.match(/.{1,24}/g);
+		//if (args.length < 2)
+		//	args = arg.match(/.{1,24}/g);
 		for(var i = 0; i < args.length; i++){
 		if (args[i].length > 0)	
 			message.channel.send({
@@ -90,10 +90,10 @@ if (message.content.substring(0, 6) === '!kof2k'){
 }
 
 if (message.content.substring(0, 6) === '!kof97'){
-		var arg = wordWrap(message.content.substring(7), 25);
+		var arg = message.content.substring(7);
 		var args = arg.split('\n');
-		if (args.length < 2)
-			args = arg.match(/.{1,24}/g);
+		//if (args.length < 2)
+			//args = arg.match(/.{1,24}/g);
 		for(var i = 0; i < args.length; i++){
 			if (args[i].length > 0)
 		message.channel.send({
@@ -109,10 +109,10 @@ if (message.content.substring(0, 6) === '!kof97'){
 }
 
 if (message.content.substring(0, 5) === '!pubu'){
-		var arg = wordWrap(message.content.substring(6), 34);
+		var arg = message.content.substring(6);
 		var args = arg.split('\n');
-		if (args.length < 2)
-			args = arg.match(/.{1,34}/g);
+		//if (args.length < 2)
+			//args = arg.match(/.{1,34}/g);
 		for(var i = 0; i < args.length; i++){
 		if (args[i].length > 0)	
 		message.channel.send({
@@ -130,8 +130,8 @@ if (message.content.substring(0, 5) === '!pubu'){
 if (message.content.substring(0, 3) === '!fz'){
 		var arg = message.content.substring(4);
 		var args = arg.split('\n');
-		if (args.length < 2)
-			args = arg.match(/.{1,25}\W/gm);
+		//if (args.length < 2)
+			//args = arg.match(/.{1,25}\W/gm);
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
 		message.channel.send({
