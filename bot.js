@@ -18,27 +18,13 @@ client.on('message', message => {
          }
     	
   	}
-	if (message.content.includes('@y\'all')){
-		var len = 10;
-		var count = 0;
-		var msgstr = '';
-		var messages;
-		//message.channel.send(message.channel.name);
-		messages = message.channel.fetchMessages({ limit: 10})
-  .then(function(msgs) { return msgs;}).catch(console.error);	
-		if (messages.size > 0){
-		for(var i = 0; i < messages.size; i++){
-	  var theuser = '@' + messages[i].author.username + '#' + messages[i].author.discriminator;
-		if (!msgstr.includes(theuser)){
-			msgstr += theuser + ' ';
-			count++;
-		}
-		if (count >= len)
-			break;
-		}
-		message.channel.send(msgstr);
-		}
-		
+	if (message.content.substring(0, 5) === '!simp'){
+		var arg = message.content.substring(6);
+		message.channel.channel.send({
+  files: ['https://nfggames.com/system/arcade/arcade.php/y-simp/z-0/dbl-2/x-' + arg]
+})
+  .then(console.log)
+  .catch(console.error);
 	}
 });
 
