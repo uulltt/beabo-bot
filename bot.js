@@ -72,6 +72,7 @@ client.on('message', message => {
 }
 	if (new RegExp(/!simp[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
 		var arg = message.content.substring(8) + '\u200B';
+		console.log(arg);
 		var style = message.content.charAt(5);
 		var size = message.content.charAt(6);
 		//var args = arg.split('\n');
@@ -87,8 +88,6 @@ client.on('message', message => {
    }
 		
 })
-  .then(console.log)
-  .catch(console.error);
 	}
 }
 
