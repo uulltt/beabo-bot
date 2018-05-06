@@ -78,6 +78,8 @@ client.on('message', message => {
 		//var args = arg.split('\n');
 		//if (args.length < 2)
 			var args = arg.match(/.{1,24}\W/gm);
+		console.log(args[0]);
+		console.log(encodeURI(args[0]  + '\u200B'));
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
 		message.channel.send({
