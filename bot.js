@@ -70,7 +70,7 @@ client.on('message', message => {
   .catch(console.error);
 	}
 }
-	if ((/!simp[0-9][0-9]/gm).test(message.content.substring(0,7)){
+	if (new RegExp(/!simp[0-9][0-9]/gm).test(message.content.substring(0,7))){
 		var arg = message.content.substring(8) + '\u200B';
 		var style = message.content.substring(6);
 		var size = message.content.substring(7);
