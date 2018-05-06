@@ -7,6 +7,38 @@ client.on('ready', () => {
 	 client.user.setUsername("NagaevskyTron 60");
 });
 
+
+function wordWrap(str, maxWidth) {
+    var newLineStr = "\n"; done = false; res = '';
+    do {                    
+        found = false;
+        // Inserts new line at first whitespace of the line
+        for (i = maxWidth - 1; i >= 0; i--) {
+            if (testWhite(str.charAt(i))) {
+                res = res + [str.slice(0, i), newLineStr].join('');
+                str = str.slice(i + 1);
+                found = true;
+                break;
+            }
+        }
+        // Inserts new line at maxWidth position, the word is too long to wrap
+        if (!found) {
+            res += [str.slice(0, maxWidth), newLineStr].join('');
+            str = str.slice(maxWidth);
+        }
+
+        if (str.length < maxWidth)
+            done = true;
+    } while (!done);
+
+    return res + str;
+}
+
+function testWhite(x) {
+    var white = new RegExp(/^\s$/);
+    return white.test(x.charAt(0));
+}
+ 
 client.on('message', message => {
     if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
 		var args = message.content.substring(5).split('\n'); //we split by line breaks
@@ -20,7 +52,7 @@ client.on('message', message => {
     	
   	}
 	if (message.content.substring(0, 5) === '!simp'){
-		var arg = message.content.substring(6);
+		var arg = wordWrap(message.content.substring(6),25);
 		var args = arg.split('\n');
 		if (args.length < 2)
 			args = arg.match(/.{1,25}/g);
@@ -38,7 +70,7 @@ client.on('message', message => {
 	}
 }
 if (message.content.substring(0, 6) === '!kof2k'){
-		var arg = message.content.substring(7);
+		var arg = wordWrap(message.content.substring(7), 25);
 		var args = arg.split('\n');
 		if (args.length < 2)
 			args = arg.match(/.{1,24}/g);
@@ -56,7 +88,7 @@ if (message.content.substring(0, 6) === '!kof2k'){
 }
 
 if (message.content.substring(0, 6) === '!kof97'){
-		var arg = message.content.substring(7);
+		var arg = wordWrap(message.content.substring(7), 25);
 		var args = arg.split('\n');
 		if (args.length < 2)
 			args = arg.match(/.{1,24}/g);
@@ -74,7 +106,7 @@ if (message.content.substring(0, 6) === '!kof97'){
 }
 
 if (message.content.substring(0, 5) === '!pubu'){
-		var arg = message.content.substring(6);
+		var arg = wordWrap(message.content.substring(6), 34);
 		var args = arg.split('\n');
 		if (args.length < 2)
 			args = arg.match(/.{1,34}/g);
@@ -92,7 +124,7 @@ if (message.content.substring(0, 5) === '!pubu'){
 }
 
 if (message.content.substring(0, 3) === '!fz'){
-		var arg = message.content.substring(4);
+		var arg = wordWrap(message.content.substring(4), 25);
 		var args = arg.split('\n');
 		if (args.length < 2)
 			args = arg.match(/.{1,24}/g);
@@ -114,6 +146,7 @@ if (message.content.substring(0, 5) === '!help' || message.content.substring(0, 
 }	
 
 });
+
 
 
 
