@@ -43,7 +43,7 @@ if (message.content.substring(0, 6) === '!kof2k'){
   .catch(console.error);
 	}
 if (message.content.substring(0, 5) === '!pubu'){
-		var arg = message.content.substring(7);
+		var arg = message.content.substring(6);
 		message.channel.send({
 			embed: {
     image: {
