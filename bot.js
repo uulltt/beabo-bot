@@ -52,7 +52,7 @@ client.on('message', message => {
     	
   	}
 	if (message.content.substring(0, 5) === '!simp'){
-		var arg = message.content.substring(6) + ' ';
+		var arg = message.content.substring(6) + '\u200B';
 		//var args = arg.split('\n');
 		//if (args.length < 2)
 			var args = arg.match(/.{1,25}\W/gm);
@@ -71,7 +71,7 @@ client.on('message', message => {
 	}
 }
 if (message.content.substring(0, 6) === '!kof2k'){
-		var arg = message.content.substring(7) + ' ';
+		var arg = message.content.substring(7) + '\u200B';
 		//var args = arg.split('\n');
 		//if (args.length < 2)
 			var args = arg.match(/.{1,25}\W/gm);
@@ -90,7 +90,7 @@ if (message.content.substring(0, 6) === '!kof2k'){
 }
 
 if (message.content.substring(0, 6) === '!kof97'){
-		var arg = message.content.substring(7) + ' ';
+		var arg = message.content.substring(7) + '\u200B';
 		//var args = arg.split('\n');
 		//if (args.length < 2)
 			var args = arg.match(/.{1,25}\W/gm);
@@ -109,7 +109,7 @@ if (message.content.substring(0, 6) === '!kof97'){
 }
 
 if (message.content.substring(0, 5) === '!pubu'){
-		var arg = message.content.substring(6) + ' ';
+		var arg = message.content.substring(6) + '\u200B';
 		//var args = arg.split('\n');
 		//if (args.length < 2)
 			var args = arg.match(/.{1,25}\W/gm);
@@ -128,7 +128,7 @@ if (message.content.substring(0, 5) === '!pubu'){
 }
 
 if (message.content.substring(0, 3) === '!fz'){
-		var arg = message.content.substring(4) + ' ';
+		var arg = message.content.substring(4) + '\u200B';
 		//var args = arg.split('\n');
 		//if (args.length < 2)
 			var args = arg.match(/.{1,25}\W/gm);
