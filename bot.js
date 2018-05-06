@@ -70,6 +70,27 @@ client.on('message', message => {
   .catch(console.error);
 	}
 }
+	if ((/!simp[0-9][0-9]/gm).test(message.content.substring(0,7)){
+		var arg = message.content.substring(8) + '\u200B';
+		var style = message.content.substring(6);
+		var size = message.content.substring(7);
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+	if (args[i].length > 0)		
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-simp/z-' + style + '/dbl-' + size + 'x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+		
+})
+  .then(console.log)
+  .catch(console.error);
+	}
+}
 if (message.content.substring(0, 6) === '!kof2k'){
 		var arg = message.content.substring(7) + '\u200B';
 		//var args = arg.split('\n');
