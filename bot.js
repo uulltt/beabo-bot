@@ -131,7 +131,7 @@ if (message.content.substring(0, 3) === '!fz'){
 		var arg = message.content.substring(4);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
-			args = arg.match(/.{1,25}\W/gm);
+			var args = arg.match(/.{1,25}\W/gm);
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
 		message.channel.send({
