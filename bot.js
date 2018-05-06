@@ -22,6 +22,8 @@ client.on('message', message => {
 	if (message.content.substring(0, 5) === '!simp'){
 		var arg = message.content.substring(6);
 		var args = arg.split('\n');
+		if (args.length < 2)
+			args = arg.match(/.{1,24}/g);
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
@@ -38,6 +40,8 @@ client.on('message', message => {
 if (message.content.substring(0, 6) === '!kof2k'){
 		var arg = message.content.substring(7);
 		var args = arg.split('\n');
+		if (args.length < 2)
+			args = arg.match(/.{1,24}/g);
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
@@ -54,6 +58,8 @@ if (message.content.substring(0, 6) === '!kof2k'){
 if (message.content.substring(0, 6) === '!kof97'){
 		var arg = message.content.substring(7);
 		var args = arg.split('\n');
+		if (args.length < 2)
+			args = arg.match(/.{1,24}/g);
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
@@ -70,6 +76,8 @@ if (message.content.substring(0, 6) === '!kof97'){
 if (message.content.substring(0, 5) === '!pubu'){
 		var arg = message.content.substring(6);
 		var args = arg.split('\n');
+		if (args.length < 2)
+			args = arg.match(/.{1,24}/g);
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
@@ -86,6 +94,8 @@ if (message.content.substring(0, 5) === '!pubu'){
 if (message.content.substring(0, 3) === '!fz'){
 		var arg = message.content.substring(4);
 		var args = arg.split('\n');
+		if (args.length < 2)
+			args = arg.match(/.{1,24}/g);
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
@@ -100,7 +110,7 @@ if (message.content.substring(0, 3) === '!fz'){
 }
 
 if (message.content.substring(0, 5) === '!help' || message.content.substring(0, 9) === '!commands'){
-		message.channel.send('font commands\n!fz - fantasy zone font\n!kof97 - king of fighters 97 font\n!kof2k - king of fighters 2000 font\n!pubu - puzzle bobble font\n!simp - the simpsons font\nother commands\n!list or !todo - splits discord message into a to-do list');
+		message.channel.send('font commands\n!fz - fantasy zone font\n!kof97 - king of fighters 97 font\n!kof2k - king of fighters 2000 font\n!pubu - puzzle bobble font\n!simp - the simpsons font\n\nother commands\n!list or !todo - splits discord message into a to-do list');
 }	
 
 });
