@@ -145,8 +145,6 @@ if (new RegExp(/!njgd\W/gm).test(message.content.substring(0,6))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
 	}
 }
 
@@ -167,8 +165,80 @@ if (new RegExp(/!njgd[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
    }
 		
 })
-  .then(console.log)
-  .catch(console.error);
+	}
+}
+
+if (new RegExp(/!ssf2\W/gm).test(message.content.substring(0,6))){
+		var arg = message.content.substring(6) + '\u200B';
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,34}\W/gm);
+		for(var i = 0; i < args.length; i++){
+		if (args[i].length > 0)	
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-ssf2/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+	}
+}
+
+if (new RegExp(/!ssf2[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
+		var arg = message.content.substring(8) + '\u200B';
+		var style = message.content.charAt(5);
+		var size = message.content.charAt(6);
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+	if (args[i].length > 0)		
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-ssf2/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+		
+})
+	}
+}
+
+if (new RegExp(/!sfz3\W/gm).test(message.content.substring(0,6)) || new RegExp(/!sfa3\W/gm).test(message.content.substring(0,6))){
+		var arg = message.content.substring(6) + '\u200B';
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,34}\W/gm);
+		for(var i = 0; i < args.length; i++){
+		if (args[i].length > 0)	
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-sfz3/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+	}
+}
+
+if (new RegExp(/!sfz3[0-9][0-9]\W/gm).test(message.content.substring(0,8)) || new RegExp(/!sfa3[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
+		var arg = message.content.substring(8) + '\u200B';
+		var style = message.content.charAt(5);
+		var size = message.content.charAt(6);
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+	if (args[i].length > 0)		
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-sfz3/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+		
+})
 	}
 }
 
@@ -334,10 +404,53 @@ if (new RegExp(/!fz[0-9][0-9]\W/gm).test(message.content.substring(0,6))){
 	}
 }
 
+if (new RegExp(/!sf2\W/gm).test(message.content.substring(0,5))){
+		var arg = message.content.substring(5) + '\u200B';
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+	if (args[i].length > 0)		
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-sf2/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+  .then(console.log)
+  .catch(console.error);
+	}
+}
+
+if (new RegExp(/!sf2[0-9][0-9]\W/gm).test(message.content.substring(0,7))){
+		var arg = message.content.substring(7) + '\u200B';
+		var style = message.content.charAt(4);
+		var size = message.content.charAt(5);
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+	if (args[i].length > 0)		
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-sf2/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+  .then(console.log)
+  .catch(console.error);
+	}
+}
+
 
 
 if (message.content.substring(0, 5) === '!help' || message.content.substring(0, 9) === '!commands'){
-		message.channel.send('font commands\n!any game name followed by two digits - that game with the first digit determining font style and second digit determining font size\n!fz - fantasy zone font\n!kof97 - king of fighters 97 font\n!kof2k - king of fighters 2000 font\n!namco2 - namco classic gradient\n!njgd - ninja gaiden\n!pubu - puzzle bobble font\n!simp - the simpsons font\n\nother commands\n!list or !todo - splits discord message into a to-do list');
+		message.channel.send('font commands\n!any game name followed by two digits - that game with the first digit determining font style and second digit determining font size\n'+
+		'!fz - fantasy zone font\n!kof97 - king of fighters 97 font\n!kof2k - king of fighters 2000 font\n!namco2 - namco classic gradient\n!njgd - ninja gaiden\n'+
+		'!pubu - puzzle bobble font\n!sf2 - street fighter 2 font\n!ssf2 - super street fighter 2 font\n!sfz3 or !sfa3 - street fighter zero\alpha 3 font\n!simp - the simpsons font\n'+
+		'\nother commands\n!list or !todo - splits discord message into a to-do list');
 }	
 
 });
