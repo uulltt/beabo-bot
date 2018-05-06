@@ -21,7 +21,16 @@ client.on('message', message => {
 	if (message.content.substring(0, 5) === '!simp'){
 		var arg = message.content.substring(6);
 		message.channel.send({
-  files: ['https://nfggames.com/system/arcade/arcade.php/y-simp/z-0/dbl-2/x-' + arg]
+  files: ['https://nfggames.com/system/arcade/arcade.php/y-simp/z-0/dbl-2/x-' + arg + '.png?size=2048']
+})
+  .then(console.log)
+  .catch(console.error);
+	}
+	
+	if (message.content.substring(0, 5) === '!test'){
+		//var arg = message.content.substring(6);
+		message.channel.send({
+  files: ['https://cdn.discordapp.com/icons/222078108977594368/6e1019b3179d71046e463a75915e7244.png?size=2048']
 })
   .then(console.log)
   .catch(console.error);
