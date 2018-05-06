@@ -21,7 +21,7 @@ client.on('message', message => {
   	}
 	if (message.content.substring(0, 5) === '!simp'){
 		var arg = message.content.substring(6);
-		var args = message.content.substring.split('\n');
+		var args = arg.split('\n');
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
@@ -37,7 +37,7 @@ client.on('message', message => {
 }
 if (message.content.substring(0, 6) === '!kof2k'){
 		var arg = message.content.substring(7);
-		var args = message.content.substring.split('\n');
+		var args = arg.split('\n');
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
@@ -53,7 +53,7 @@ if (message.content.substring(0, 6) === '!kof2k'){
 
 if (message.content.substring(0, 6) === '!kof97'){
 		var arg = message.content.substring(7);
-		var args = message.content.substring.split('\n');
+		var args = arg.split('\n');
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
@@ -69,7 +69,7 @@ if (message.content.substring(0, 6) === '!kof97'){
 
 if (message.content.substring(0, 5) === '!pubu'){
 		var arg = message.content.substring(6);
-		var args = message.content.substring.split('\n');
+		var args = arg.split('\n');
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
@@ -85,7 +85,7 @@ if (message.content.substring(0, 5) === '!pubu'){
 
 if (message.content.substring(0, 3) === '!fz'){
 		var arg = message.content.substring(4);
-		var args = message.content.substring.split('\n');
+		var args = arg.split('\n');
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
