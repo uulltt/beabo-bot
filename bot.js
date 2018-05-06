@@ -22,8 +22,8 @@ client.on('message', message => {
 		var arg = message.content.substring(6);
 		message.channel.send({
 			embed: {
-    thumbnail: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-simp/z-0/dbl-2/x-' + encodeURI(arg) + '.png?size=2048'
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-simp/z-0/dbl-2/x-' + encodeURI(arg)
       }
    }
 })
