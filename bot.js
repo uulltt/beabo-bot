@@ -58,7 +58,7 @@ if (message.content.substring(0, 6) === '!kof97'){
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-kof97/z-6/dbl-2/x-' + encodeURI(args[i])
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-kof97/z-0/dbl-2/x-' + encodeURI(args[i])
       }
    }
 })
