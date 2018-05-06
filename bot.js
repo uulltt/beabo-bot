@@ -57,6 +57,7 @@ client.on('message', message => {
 		if (args.length < 2)
 			args = arg.match(/.{1,25}/g);
 		for(var i = 0; i < args.length; i++){
+	if (args[i].length > 0)		
 		message.channel.send({
 			embed: {
     image: {
@@ -75,7 +76,8 @@ if (message.content.substring(0, 6) === '!kof2k'){
 		if (args.length < 2)
 			args = arg.match(/.{1,24}/g);
 		for(var i = 0; i < args.length; i++){
-		message.channel.send({
+		if (args[i].length > 0)	
+			message.channel.send({
 			embed: {
     image: {
          url: 'https://nfggames.com/system/arcade/arcade.php/y-KoF2k/z-6/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
@@ -93,6 +95,7 @@ if (message.content.substring(0, 6) === '!kof97'){
 		if (args.length < 2)
 			args = arg.match(/.{1,24}/g);
 		for(var i = 0; i < args.length; i++){
+			if (args[i].length > 0)
 		message.channel.send({
 			embed: {
     image: {
@@ -111,6 +114,7 @@ if (message.content.substring(0, 5) === '!pubu'){
 		if (args.length < 2)
 			args = arg.match(/.{1,34}/g);
 		for(var i = 0; i < args.length; i++){
+		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
@@ -129,6 +133,7 @@ if (message.content.substring(0, 3) === '!fz'){
 		if (args.length < 2)
 			args = arg.match(/.{1,24}/g);
 		for(var i = 0; i < args.length; i++){
+	if (args[i].length > 0)		
 		message.channel.send({
 			embed: {
     image: {
