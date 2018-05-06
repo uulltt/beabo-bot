@@ -30,15 +30,31 @@ client.on('message', message => {
   .then(console.log)
   .catch(console.error);
 	}
-	
-	if (message.content.substring(0, 5) === '!test'){
-		//var arg = message.content.substring(6);
+if (message.content.substring(0, 6) === '!kof2k'){
+		var arg = message.content.substring(7);
 		message.channel.send({
-  files: ['https://cdn.discordapp.com/icons/222078108977594368/6e1019b3179d71046e463a75915e7244.png?size=2048']
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-KoF2k/z-6/dbl-2/x-' + encodeURI(arg)
+      }
+   }
 })
   .then(console.log)
   .catch(console.error);
 	}
+if (message.content.substring(0, 5) === '!pubu'){
+		var arg = message.content.substring(7);
+		message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-pubu/z-0/dbl-2/x-' + encodeURI(arg)
+      }
+   }
+})
+  .then(console.log)
+  .catch(console.error);
+	}		
+
 });
 
 client.login(process.env.BOT_TOKEN);
