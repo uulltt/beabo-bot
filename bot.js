@@ -55,7 +55,7 @@ client.on('message', message => {
 		var arg = message.content.substring(6) + '\u200B';
 		//var args = arg.split('\n');
 		//if (args.length < 2)
-			var args = arg.match(/.{1,25}\W/gm);
+			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
 		message.channel.send({
@@ -74,7 +74,7 @@ if (message.content.substring(0, 6) === '!kof2k'){
 		var arg = message.content.substring(7) + '\u200B';
 		//var args = arg.split('\n');
 		//if (args.length < 2)
-			var args = arg.match(/.{1,25}\W/gm);
+			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < args.length; i++){
 		if (args[i].length > 0)	
 			message.channel.send({
@@ -93,7 +93,7 @@ if (message.content.substring(0, 6) === '!kof97'){
 		var arg = message.content.substring(7) + '\u200B';
 		//var args = arg.split('\n');
 		//if (args.length < 2)
-			var args = arg.match(/.{1,25}\W/gm);
+			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < args.length; i++){
 			if (args[i].length > 0)
 		message.channel.send({
@@ -112,7 +112,7 @@ if (message.content.substring(0, 5) === '!pubu'){
 		var arg = message.content.substring(6) + '\u200B';
 		//var args = arg.split('\n');
 		//if (args.length < 2)
-			var args = arg.match(/.{1,25}\W/gm);
+			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < args.length; i++){
 		if (args[i].length > 0)	
 		message.channel.send({
@@ -131,7 +131,7 @@ if (message.content.substring(0, 3) === '!fz'){
 		var arg = message.content.substring(4) + '\u200B';
 		//var args = arg.split('\n');
 		//if (args.length < 2)
-			var args = arg.match(/.{1,25}\W/gm);
+			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
 		message.channel.send({
