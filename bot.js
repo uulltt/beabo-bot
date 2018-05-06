@@ -23,7 +23,7 @@ client.on('message', message => {
 		var arg = message.content.substring(6);
 		var args = arg.split('\n');
 		if (args.length < 2)
-			args = arg.match(/.{1,24}/g);
+			args = arg.match(/.{1,25}/g);
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
@@ -77,7 +77,7 @@ if (message.content.substring(0, 5) === '!pubu'){
 		var arg = message.content.substring(6);
 		var args = arg.split('\n');
 		if (args.length < 2)
-			args = arg.match(/.{1,24}/g);
+			args = arg.match(/.{1,33}/g);
 		for(var i = 0; i < args.length; i++){
 		message.channel.send({
 			embed: {
