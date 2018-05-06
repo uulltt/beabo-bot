@@ -66,10 +66,8 @@ client.on('message', message => {
    }
 		
 })
-  .then(console.log)
-  .catch(console.error);
 	}
-	//message.delete();
+	message.delete();
 }
 	if (new RegExp(/!simp[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
 		var arg = message.content.substring(8) + '\u200B';
@@ -89,6 +87,7 @@ client.on('message', message => {
 		
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!pubu\W/gm).test(message.content.substring(0,6))){
@@ -105,9 +104,9 @@ if (new RegExp(/!pubu\W/gm).test(message.content.substring(0,6))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
+  
 	}
+	message.delete();
 }
 
 if (new RegExp(/!pubu[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
@@ -127,9 +126,9 @@ if (new RegExp(/!pubu[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
    }
 		
 })
-  .then(console.log)
-  .catch(console.error);
+ 
 	}
+	message.delete();
 }
 
 if (new RegExp(/!njgd\W/gm).test(message.content.substring(0,6))){
@@ -147,6 +146,7 @@ if (new RegExp(/!njgd\W/gm).test(message.content.substring(0,6))){
    }
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!njgd[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
@@ -167,6 +167,7 @@ if (new RegExp(/!njgd[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
 		
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!ssf2\W/gm).test(message.content.substring(0,6))){
@@ -184,6 +185,7 @@ if (new RegExp(/!ssf2\W/gm).test(message.content.substring(0,6))){
    }
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!ssf2[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
@@ -204,6 +206,7 @@ if (new RegExp(/!ssf2[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
 		
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!sfz3\W/gm).test(message.content.substring(0,6)) || new RegExp(/!sfa3\W/gm).test(message.content.substring(0,6))){
@@ -221,6 +224,7 @@ if (new RegExp(/!sfz3\W/gm).test(message.content.substring(0,6)) || new RegExp(/
    }
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!sfz3[0-9][0-9]\W/gm).test(message.content.substring(0,8)) || new RegExp(/!sfa3[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
@@ -241,6 +245,7 @@ if (new RegExp(/!sfz3[0-9][0-9]\W/gm).test(message.content.substring(0,8)) || ne
 		
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!kof2k\W/gm).test(message.content.substring(0,7))){
@@ -257,9 +262,8 @@ if (new RegExp(/!kof2k\W/gm).test(message.content.substring(0,7))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
 	}
+	message.delete();
 }
 
 if (new RegExp(/!kof2k[0-9][0-9]\W/gm).test(message.content.substring(0,9))){
@@ -278,9 +282,8 @@ if (new RegExp(/!kof2k[0-9][0-9]\W/gm).test(message.content.substring(0,9))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
 	}
+	message.delete();
 }
 
 if (new RegExp(/!kof97\W/gm).test(message.content.substring(0,7))){
@@ -297,9 +300,8 @@ if (new RegExp(/!kof97\W/gm).test(message.content.substring(0,7))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
 	}
+	message.delete();
 }
 
 if (new RegExp(/!kof97[0-9][0-9]\W/gm).test(message.content.substring(0,9))){
@@ -318,9 +320,8 @@ if (new RegExp(/!kof97[0-9][0-9]\W/gm).test(message.content.substring(0,9))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
 	}
+	message.delete();
 }
 
 if (new RegExp(/!namco2\W/gm).test(message.content.substring(0,8))){
@@ -337,9 +338,8 @@ if (new RegExp(/!namco2\W/gm).test(message.content.substring(0,8))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
 	}
+	message.delete();
 }
 
 if (new RegExp(/!namco2[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
@@ -358,9 +358,8 @@ if (new RegExp(/!namco2[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
 	}
+	message.delete();
 }
 
 if (new RegExp(/!kof2k1\W/gm).test(message.content.substring(0,8))){
@@ -378,6 +377,7 @@ if (new RegExp(/!kof2k1\W/gm).test(message.content.substring(0,8))){
    }
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!kof2k1[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
@@ -397,6 +397,7 @@ if (new RegExp(/!kof2k1[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
    }
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!kof2k2\W/gm).test(message.content.substring(0,8))){
@@ -414,6 +415,7 @@ if (new RegExp(/!kof2k2\W/gm).test(message.content.substring(0,8))){
    }
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!kof2k2[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
@@ -433,6 +435,7 @@ if (new RegExp(/!kof2k2[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
    }
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!kof2k3\W/gm).test(message.content.substring(0,8))){
@@ -450,6 +453,7 @@ if (new RegExp(/!kof2k3\W/gm).test(message.content.substring(0,8))){
    }
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!kof2k3[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
@@ -469,6 +473,7 @@ if (new RegExp(/!kof2k3[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
    }
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!arcade\W/gm).test(message.content.substring(0,8))){
@@ -486,6 +491,7 @@ if (new RegExp(/!arcade\W/gm).test(message.content.substring(0,8))){
    }
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!arcade[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
@@ -505,6 +511,7 @@ if (new RegExp(/!arcade[0-9][0-9]\W/gm).test(message.content.substring(0,10))){
    }
 })
 	}
+	message.delete();
 }
 
 if (new RegExp(/!fz\W/gm).test(message.content.substring(0,4))){
@@ -521,9 +528,8 @@ if (new RegExp(/!fz\W/gm).test(message.content.substring(0,4))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
 	}
+	message.delete();
 }
 
 if (new RegExp(/!fz[0-9][0-9]\W/gm).test(message.content.substring(0,6))){
@@ -542,9 +548,8 @@ if (new RegExp(/!fz[0-9][0-9]\W/gm).test(message.content.substring(0,6))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
 	}
+	message.delete();
 }
 
 if (new RegExp(/!sf2\W/gm).test(message.content.substring(0,5))){
@@ -561,9 +566,8 @@ if (new RegExp(/!sf2\W/gm).test(message.content.substring(0,5))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
 	}
+	message.delete();
 }
 
 if (new RegExp(/!sf2[0-9][0-9]\W/gm).test(message.content.substring(0,7))){
@@ -582,9 +586,8 @@ if (new RegExp(/!sf2[0-9][0-9]\W/gm).test(message.content.substring(0,7))){
       }
    }
 })
-  .then(console.log)
-  .catch(console.error);
 	}
+	message.delete();
 }
 
 
