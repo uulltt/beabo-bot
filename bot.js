@@ -72,20 +72,17 @@ client.on('message', message => {
 }
 	if (new RegExp(/!simp[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
 		var arg = message.content.substring(8) + '\u200B';
-		console.log(arg);
 		var style = message.content.charAt(5);
 		var size = message.content.charAt(6);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
 			var args = arg.match(/.{1,24}\W/gm);
-		console.log(args[0]);
-		console.log(encodeURI(args[0]  + '\u200B'));
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-simp/z-' + style + '/dbl-' + size + 'x-' + encodeURI(args[i]  + '\u200B')
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-simp/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
       }
    }
 		
@@ -105,7 +102,7 @@ if (new RegExp(/!pubu[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-pubu/z-' + style + '/dbl-' + size + 'x-' + encodeURI(args[i]  + '\u200B')
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-pubu/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
       }
    }
 		
