@@ -56,25 +56,6 @@ client.on('message', message => {
 
 
 
-if (new RegExp(/!gain\W/gm).test(message.content.substring(0,6))){
-		var arg = message.content.substring(6) + '\u200B';
-		//var args = arg.split('\n');
-		//if (args.length < 2)
-			var args = arg.match(/.{1,24}\W/gm);
-		for(var i = 0; i < args.length; i++){
-	if (args[i].length > 0)		
-		message.channel.send({
-			embed: {
-    image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-gain/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
-      }
-   }
-		
-})
-	}
-	message.delete();
-}
-
 
 if (new RegExp(/![a-z0-9]{4}\W/gm).test(message.content.substring(0,6))){
 		var arg = message.content.substring(6) + '\u200B';
