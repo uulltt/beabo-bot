@@ -73,7 +73,7 @@ if (new RegExp(/![a-z0-9]{2}\W/gm).test(message.content.substring(0,4))){
 	message.delete();
 }
 
-if (new RegExp(/![a-z0-9]{2}\W/gm).test(message.content.substring(0,6))){
+if (new RegExp(/![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0,6))){
 		var arg = message.content.substring(6) + '\u200B';
 		var style = message.content.charAt(3);
 		var size = message.content.charAt(4);
@@ -97,7 +97,7 @@ if (new RegExp(/![a-z0-9]{2}\W/gm).test(message.content.substring(0,6))){
 }
 
 
-if (new RegExp(/![a-z0-9]{3}\W/gm).test(message.content.substring(0,5))){
+if (new RegExp(/![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0,5))){
 		var arg = message.content.substring(5) + '\u200B';
 		var game = message.content.substring(1,4);
 		//var args = arg.split('\n');
@@ -117,7 +117,7 @@ if (new RegExp(/![a-z0-9]{3}\W/gm).test(message.content.substring(0,5))){
 	message.delete();
 }
 
-if (new RegExp(/![a-z0-9]{3}\W/gm).test(message.content.substring(0,7))){
+if (new RegExp(/![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0,7))){
 		var arg = message.content.substring(7) + '\u200B';
 		var style = message.content.charAt(4);
 		var size = message.content.charAt(5);
@@ -162,7 +162,7 @@ if (new RegExp(/![a-z0-9]{4}\W/gm).test(message.content.substring(0,6))){
 	message.delete();
 }
 
-if (new RegExp(/![a-z0-9]{4}\W/gm).test(message.content.substring(0,8))){
+if (new RegExp(/![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0,8))){
 		var arg = message.content.substring(8) + '\u200B';
 		var style = message.content.charAt(5);
 		var size = message.content.charAt(6);
@@ -205,7 +205,7 @@ if (new RegExp(/![a-z0-9]{5}\W/gm).test(message.content.substring(0,7))){
 	message.delete();
 }
 
-if (new RegExp(/![A-Za-z0-9]{5}\W/gm).test(message.content.substring(0,9))){
+if (new RegExp(/![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0,9))){
 		var arg = message.content.substring(9) + '\u200B';
 		var style = message.content.charAt(6);
 		var size = message.content.charAt(7);
@@ -249,7 +249,7 @@ if (new RegExp(/![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0,8))){
 	message.delete();
 }
 
-if (new RegExp(/![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0,10))){
+if (new RegExp(/![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0,10))){
 		var arg = message.content.substring(10) + '\u200B';
 		var style = message.content.charAt(7);
 		var size = message.content.charAt(8);
