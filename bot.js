@@ -33,9 +33,7 @@ else if (new RegExp(/font![a-z0-9]{2}\W/gm).test(message.content.substring(0,4+4
 		//if (Math.min(args.length, 6) < 2)
 			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+			
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
@@ -58,9 +56,7 @@ else if (new RegExp(/font![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substri
 		//if (Math.min(args.length, 6) < 2)
 			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+			
 	if (args[i].length > 0)		
 		message.channel.send({
 			embed: {
@@ -83,9 +79,7 @@ else if (new RegExp(/font![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0,
 			game = 'DDR';
 		var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+		
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
@@ -113,9 +107,7 @@ else if (new RegExp(/font![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.subs
 		} else {
 			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+		
 	if (args[i].length > 0)		
 		message.channel.send({
 			embed: {
@@ -147,9 +139,7 @@ else if (new RegExp(/font![a-z0-9]{4}\W/gm).test(message.content.substring(0,6+4
 			if (game === 'sfz3' || game === 'vict' || game === 'moma')
 				args = arg.match(/.{1,23}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+		
 		if (args[i].length > 0)			
 		message.channel.send({
 			embed: {
@@ -175,14 +165,12 @@ else if (new RegExp(/font![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substri
 			if (game === 'sfz3' || game === 'vict' || game === 'moma')
 				args = arg.match(/.{1,23}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+			
 	if (args[i].length > 0)		
 		message.channel.send({
 			embed: {
     image: {
-         url: .gameSSText(game, style, size, args[i])
+         url: nfgUrl.gameSSText(game, style, size, args[i])
       }
    }
 		
