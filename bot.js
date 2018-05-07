@@ -53,7 +53,7 @@ client.on('message', message => {
   	}
 
 
-if (new RegExp(/![a-z0-9]{2}\W/gm).test(message.content.substring(0,4))){
+else if (new RegExp(/![a-z0-9]{2}\W/gm).test(message.content.substring(0,4))){
 		var arg = message.content.substring(4) + '\u200B';
 		var game = message.content.substring(1,3);
 		//var args = arg.split('\n');
@@ -73,7 +73,7 @@ if (new RegExp(/![a-z0-9]{2}\W/gm).test(message.content.substring(0,4))){
 	message.delete();
 }
 
-if (new RegExp(/![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0,6))){
+else if (new RegExp(/![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0,6))){
 		var arg = message.content.substring(6) + '\u200B';
 		var style = message.content.charAt(3);
 		var size = message.content.charAt(4);
@@ -97,15 +97,12 @@ if (new RegExp(/![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0,6)))
 }
 
 
-if (new RegExp(/![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0,5))){
+else if (new RegExp(/![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0,5))){
 		var arg = message.content.substring(5) + '\u200B';
 		var game = message.content.substring(1,4);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
-		if (game === 'kof'){
-			
-		} else {
-			var args = arg.match(/.{1,34}\W/gm);
+		var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < args.length; i++){
 		if (args[i].length > 0)	
 		message.channel.send({
@@ -121,7 +118,7 @@ if (new RegExp(/![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0,5))){
 		}
 }
 
-if (new RegExp(/![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0,7))){
+else if (new RegExp(/![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0,7))){
 		var arg = message.content.substring(7) + '\u200B';
 		var style = message.content.charAt(4);
 		var size = message.content.charAt(5);
@@ -150,11 +147,13 @@ if (new RegExp(/![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0,7
 
 
 
-if (new RegExp(/![a-z0-9]{4}\W/gm).test(message.content.substring(0,6))){
+else if (new RegExp(/![a-z0-9]{4}\W/gm).test(message.content.substring(0,6))){
 		var arg = message.content.substring(6) + '\u200B';
 		var game = message.content.substring(1,5);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
+		if (game !== 'njgd' && game !== 'sfa3'){
+			
 			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < args.length; i++){
 		if (args[i].length > 0)	
@@ -168,15 +167,17 @@ if (new RegExp(/![a-z0-9]{4}\W/gm).test(message.content.substring(0,6))){
   
 	}
 	message.delete();
+		}
 }
 
-if (new RegExp(/![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0,8))){
+else if (new RegExp(/![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0,8))){
 		var arg = message.content.substring(8) + '\u200B';
 		var style = message.content.charAt(5);
 		var size = message.content.charAt(6);
 		var game = message.content.substring(1,5);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
+			if (game !== 'njgd' && game !== 'sfa3'){
 			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
@@ -191,13 +192,15 @@ if (new RegExp(/![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0,8)))
  
 	}
 	message.delete();
+			}
 }
 
-if (new RegExp(/![a-z0-9]{5}\W/gm).test(message.content.substring(0,7))){
+else if (new RegExp(/![a-z0-9]{5}\W/gm).test(message.content.substring(0,7))){
 		var arg = message.content.substring(7) + '\u200B';
 		var game = message.content.substring(1,6);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
+		if (game !== 'kof2k'){
 			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < args.length; i++){
 		if (args[i].length > 0)	
@@ -211,15 +214,17 @@ if (new RegExp(/![a-z0-9]{5}\W/gm).test(message.content.substring(0,7))){
   
 	}
 	message.delete();
+		}
 }
 
-if (new RegExp(/![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0,9))){
+else if (new RegExp(/![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0,9))){
 		var arg = message.content.substring(9) + '\u200B';
 		var style = message.content.charAt(6);
 		var size = message.content.charAt(7);
 		var game = message.content.substring(1,6);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
+			if (game !== 'kof2k'){
 			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
@@ -234,14 +239,16 @@ if (new RegExp(/![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0,9
  
 	}
 	message.delete();
+			}
 }
 
 
-if (new RegExp(/![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0,8))){
+else if (new RegExp(/![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0,8))){
 		var arg = message.content.substring(8) + '\u200B';
 		var game = message.content.substring(1,7);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
+		if (game !== 'kof2k1' && game !== 'kof2k2' && game !== 'kof2k3'){
 			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < args.length; i++){
 		if (args[i].length > 0)	
@@ -255,15 +262,17 @@ if (new RegExp(/![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0,8))){
   
 	}
 	message.delete();
+		}
 }
 
-if (new RegExp(/![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0,10))){
+else if (new RegExp(/![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0,10))){
 		var arg = message.content.substring(10) + '\u200B';
 		var style = message.content.charAt(7);
 		var size = message.content.charAt(8);
 		var game = message.content.substring(1,7);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
+			if (game !== 'kof2k1' && game !== 'kof2k2' && game !== 'kof2k3'){
 			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
@@ -278,9 +287,10 @@ if (new RegExp(/![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0,1
  
 	}
 	message.delete();
+			}
 }
 
-if (new RegExp(/![A-Za-z0-9]{7}\W/gm).test(message.content.substring(0,9))){
+else if (new RegExp(/![A-Za-z0-9]{7}\W/gm).test(message.content.substring(0,9))){
 		var arg = message.content.substring(9) + '\u200B';
 		var game = message.content.substring(1,8);
 		//var args = arg.split('\n');
@@ -300,7 +310,7 @@ if (new RegExp(/![A-Za-z0-9]{7}\W/gm).test(message.content.substring(0,9))){
 	message.delete();
 }
 
-if (new RegExp(/![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0,11))){
+else if (new RegExp(/![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0,11))){
 		var arg = message.content.substring(11) + '\u200B';
 		var style = message.content.charAt(8);
 		var game = message.content.substring(1,8);
@@ -401,6 +411,44 @@ if (new RegExp(/!sfa3[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
       }
    }
 		
+})
+	}
+	message.delete();
+}
+
+if (new RegExp(/!kof97\W/gm).test(message.content.substring(0,7))){
+		var arg = message.content.substring(7) + '\u200B';
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+		if (args[i].length > 0)	
+			message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-kof97/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
+})
+	}
+	message.delete();
+}
+
+if (new RegExp(/!kof97[0-9][0-9]\W/gm).test(message.content.substring(0,9))){
+		var arg = message.content.substring(9) + '\u200B';
+		var style = message.content.charAt(6);
+		var size = message.content.charAt(7);
+		//var args = arg.split('\n');
+		//if (args.length < 2)
+			var args = arg.match(/.{1,24}\W/gm);
+		for(var i = 0; i < args.length; i++){
+		if (args[i].length > 0)	
+			message.channel.send({
+			embed: {
+    image: {
+         url: 'https://nfggames.com/system/arcade/arcade.php/y-kof97/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+      }
+   }
 })
 	}
 	message.delete();
