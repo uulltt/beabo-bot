@@ -184,15 +184,12 @@ else if (new RegExp(/font![a-z0-9]{5}\W/gm).test(message.content.substring(0,7+4
 		if (game === 'kof2k')
 			game = 'KoF2k';
 			var args = arg.match(/.{1,34}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+		for(var i = 0; i < Math.min(args.length, 6); i++){	
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.gameText(game, args[i])
       }
    }
 })
@@ -208,14 +205,11 @@ else if (new RegExp(/font![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.subs
 			game = 'KoF2k';
 			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
 	if (args[i].length > 0)		
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-' + game +  '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.gameSSText(game, style, size, args[i])
       }
    }
 		
@@ -233,15 +227,12 @@ else if (new RegExp(/font![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0,
 		if (game === 'ketsui')
 			game = 'KETSUI';
 			var args = arg.match(/.{1,34}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+		for(var i = 0; i < Math.min(args.length, 6); i++){	
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.gameText(game, args[i])
       }
    }
 })
@@ -258,15 +249,12 @@ else if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.subs
 		if (game === 'ketsui')
 			game = 'KETSUI';
 			var args = arg.match(/.{1,24}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+			for(var i = 0; i < Math.min(args.length, 6); i++){
 	if (args[i].length > 0)		
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-' + game +  '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.gameSSText(game, style, size, args[i])
       }
    }
 		
@@ -280,15 +268,12 @@ else if (new RegExp(/font![A-Za-z0-9]{7}\W/gm).test(message.content.substring(0,
 		//var args = arg.split('\n');
 		//if (Math.min(args.length, 6) < 2)
 			var args = arg.match(/.{1,34}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+		for(var i = 0; i < Math.min(args.length, 6); i++){	
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.gameText(game, args[i])
       }
    }
 }).then(console.log).catch(console.error);
@@ -306,15 +291,12 @@ else if (new RegExp(/font![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.subs
 		//var args = arg.split('\n');
 		//if (Math.min(args.length, 6) < 2)
 			var args = arg.match(/.{1,24}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+			for(var i = 0; i < Math.min(args.length, 6); i++){
 	if (args[i].length > 0)		
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-' + game +  '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.gameSSText(game, style, size, args[i])
       }
    }
 		
@@ -331,14 +313,11 @@ else if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{2}\W/gm).test(message.content.subs
 		//if (Math.min(args.length, 6) < 2)
 			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.bubble(game, dir, pos, text)
       }
    }
 }).then(console.log).catch(console.error);
@@ -357,14 +336,11 @@ else if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{2}[0-9]{2}\W/gm).test(message.cont
 		//if (Math.min(args.length, 6) < 2)
 			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
-	if (args[i].length > 0)		
+		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game +  '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.SSbubble(game, dir, pos, style, size, text)
       }
    }
 		
@@ -382,15 +358,12 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{3}\W/gm).test(message.content.s
 		if (game === 'ddr')
 			game = 'DDR';
 		var args = arg.match(/.{1,24}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
+	for(var i = 0; i < Math.min(args.length, 6); i++){
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.bubble(game, dir, pos, text)
       }
    }
 }).then(console.log).catch(console.error);
@@ -411,15 +384,12 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.c
 			
 		} else {
 			var args = arg.match(/.{1,24}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
-	if (args[i].length > 0)		
+			for(var i = 0; i < Math.min(args.length, 6); i++){
+		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game +  '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.SSbubble(game, dir, pos, style, size, text)
       }
    }
 		
@@ -449,14 +419,11 @@ else if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{4}\W/gm).test(message.content.subs
 			if (game === 'sfz3' || game === 'vict' || game === 'moma')
 				args = arg.match(/.{1,23}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.bubble(game, dir, pos, text)
       }
    }
 }).then(console.log).catch(console.error);
@@ -480,15 +447,12 @@ else if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{4}[0-9]{2}\W/gm).test(message.cont
 				args = arg.match(/.{1,34}\W/gm);
 			if (game === 'sfz3' || game === 'vict' || game === 'moma')
 				args = arg.match(/.{1,23}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
-	if (args[i].length > 0)		
+			for(var i = 0; i < Math.min(args.length, 6); i++){
+		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game +  '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.SSbubble(game, dir, pos, style, size, text)
       }
    }
 		
@@ -504,14 +468,11 @@ else if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{5}\W/gm).test(message.content.subs
 			game = 'KoF2k';
 			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.bubble(game, dir, pos, text)
       }
    }
 })
@@ -530,15 +491,12 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.c
 			game = 'KoF2k';
 			
 			var args = arg.match(/.{1,24}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
-	if (args[i].length > 0)		
+			for(var i = 0; i < Math.min(args.length, 6); i++){
+		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game +  '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.SSbubble(game, dir, pos, style, size, text)
       }
    }
 		
@@ -557,14 +515,11 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{6}\W/gm).test(message.content.s
 			game = 'KETSUI';
 			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.bubble(game, dir, pos, text)
       }
    }
 })
@@ -582,15 +537,12 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.c
 		if (game === 'ketsui')
 			game = 'KETSUI';
 			var args = arg.match(/.{1,24}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
-	if (args[i].length > 0)		
+			for(var i = 0; i < Math.min(args.length, 6); i++){
+		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game +  '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.SSbubble(game, dir, pos, style, size, text)
       }
    }
 		
@@ -606,14 +558,11 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{7}\W/gm).test(message.content.s
 		//if (Math.min(args.length, 6) < 2)
 			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.bubble(game, dir, pos, text)
       }
    }
 }).then(console.log).catch(console.error);
@@ -631,15 +580,12 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.c
 		//var args = arg.split('\n');
 		//if (Math.min(args.length, 6) < 2)
 			var args = arg.match(/.{1,24}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			if (args[i].charAt(args[i].length - 1) === '\n'){
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
-	if (args[i].length > 0)		
+			for(var i = 0; i < Math.min(args.length, 6); i++){
+		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game +  '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.SSbubble(game, dir, pos, style, size, text)
       }
    }
 		
@@ -657,6 +603,9 @@ if (new RegExp(/font!kof97\W/gm).test(message.content.substring(0,7+4))){
 		//if (Math.min(args.length, 6) < 2)
 			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
+			if (args[i].charAt(args[i].length - 1) === '\n'){
+				args[i] = args[i].substring(0, args[i].length - 1);
+			}
 		if (args[i].length > 0)	
 			message.channel.send({
 			embed: {
