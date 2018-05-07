@@ -908,7 +908,7 @@ if (new RegExp(/font!kof2k3[0-9][0-9]\W/gm).test(message.content.substring(0,10+
 
 if (message.content.substring(0, 5) === '!help' || message.content.substring(0, 9) === '!commands'){
 		message.channel.send('font commands\nThis list is incomplete. To find a font not listed, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.\n'+
-		'font!any game name followed by two digits - that game with the first digit determining font style and second digit determining font size\n'+
+		'\nreplace font with b(u or d)(two digits) to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!any game name followed by two digits - that game with the first digit determining font style and second digit determining font size\n'+
 		'font!arcade - classic arcade\nfont!bios - BioShipPaladin\nfont!chiki - chiki chiki boys\nfont!ddcrew - DDCrew\nfont!DDR - Dance Dance Revolution\nfont!ddux - dynamite dux\nfont!fz - fantasy zone\nfont!gain - gain ground\nfont!garou - fatal fury\n'+
 		'font!gradius - shoot the core\nfont!guar - guardians\nfont!kais - kaiser knuckle\nfont!kiki - kiki kaikai\nfont!kof97 - king of fighters 97\nfont!kof2k - king of fighters 2000\nfont!kof2k1 - king of fighters 2001\n'+
 		'font!kof2k2 - king of fighters 2002\nfont!kof2k3 - king of fighters 2003\nfont!mt - major title\nfont!moma = monster maulers\nfont!namco2 - namco classic gradient\nfont!njgd - ninja gaiden\nfont!pabom - panic bomber\nfont!paro - parodius da\n'+
