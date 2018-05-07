@@ -102,6 +102,9 @@ if (new RegExp(/![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0,5))){
 		var game = message.content.substring(1,4);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
+		if (game === 'kof'){
+			
+		} else {
 			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < args.length; i++){
 		if (args[i].length > 0)	
@@ -115,6 +118,7 @@ if (new RegExp(/![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0,5))){
   
 	}
 	message.delete();
+		}
 }
 
 if (new RegExp(/![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0,7))){
@@ -124,6 +128,9 @@ if (new RegExp(/![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0,7
 		var game = message.content.substring(1,4);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
+			if (game === 'kof'){
+			
+		} else {
 			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
@@ -138,6 +145,7 @@ if (new RegExp(/![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0,7
  
 	}
 	message.delete();
+		}
 }
 
 
