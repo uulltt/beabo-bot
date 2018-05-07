@@ -116,7 +116,6 @@ else if (new RegExp(/![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0,5)))
 	}
 	message.delete();
 		}
-}
 
 else if (new RegExp(/![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0,7))){
 		var arg = message.content.substring(7) + '\u200B';
