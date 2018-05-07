@@ -8,36 +8,6 @@ client.on('ready', () => {
 });
 
 
-function wordWrap(str, maxWidth) {
-    var newLineStr = "\n"; done = false; res = '';
-    do {                    
-        found = false;
-        // Inserts new line at first whitespace of the line
-        for (i = maxWidth - 1; i >= 0; i--) {
-            if (testWhite(str.charAt(i))) {
-                res = res + [str.slice(0, i), newLineStr].join('');
-                str = str.slice(i + 1);
-                found = true;
-                break;
-            }
-        }
-        // Inserts new line at maxWidth position, the word is too long to wrap
-        if (!found) {
-            res += [str.slice(0, maxWidth), newLineStr].join('');
-            str = str.slice(maxWidth);
-        }
-
-        if (str.length < maxWidth)
-            done = true;
-    } while (!done);
-
-    return res + str;
-}
-
-function testWhite(x) {
-    var white = new RegExp(/^\s$/);
-    return white.test(x.charAt(0));
-}
  
 client.on('message', message => {
     if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
@@ -52,7 +22,9 @@ client.on('message', message => {
     	
   	}
 
-
+else if (message.content.substring(0, 8) === '!ZiV-id '){
+	message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id='+message.content.substring(8)+'#summary');
+}
 else if (new RegExp(/font![a-z0-9]{2}\W/gm).test(message.content.substring(0,4+4))){
 		var arg = message.content.substring((4)+4) + '\u200B';
 		var game = message.content.substring(1+4,3+4);
@@ -906,7 +878,7 @@ if (new RegExp(/font!kof2k3[0-9][0-9]\W/gm).test(message.content.substring(0,10+
 
 
 
-if (message.content.substring(0, 5) === '!help' || message.content.substring(0, 9) === '!commands'){
+if (message.content.substring(0, 9) === '!commands'){
 		message.channel.send('font commands\nThis list is incomplete. To find a font not listed, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.\n'+
 		'\nreplace font with b(u or d)(two digits) to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!any game name followed by two digits - that game with the first digit determining font style and second digit determining font size\n'+
 		'font!arcade - classic arcade\nfont!bios - BioShipPaladin\nfont!chiki - chiki chiki boys\nfont!ddcrew - DDCrew\nfont!DDR - Dance Dance Revolution\nfont!ddux - dynamite dux\nfont!fz - fantasy zone\nfont!gain - gain ground\nfont!garou - fatal fury\n'+
