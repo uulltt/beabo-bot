@@ -154,6 +154,8 @@ else if (new RegExp(/![a-z0-9]{4}\W/gm).test(message.content.substring(0,6))){
 		if (game !== 'njgd' && game !== 'sfa3'){
 			
 			var args = arg.match(/.{1,34}\W/gm);
+			if (game === 'sfz3')
+				args = arg.match(/.{1,23}\W/gm);
 		for(var i = 0; i < args.length; i++){
 		if (args[i].length > 0)	
 		message.channel.send({
@@ -178,6 +180,8 @@ else if (new RegExp(/![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0
 		//if (args.length < 2)
 			if (game !== 'njgd' && game !== 'sfa3'){
 			var args = arg.match(/.{1,24}\W/gm);
+			if (game === 'sfz3')
+				args = arg.match(/.{1,23}\W/gm);
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
 		message.channel.send({
@@ -380,7 +384,7 @@ if (new RegExp(/!sfa3\W/gm).test(message.content.substring(0,6))){
 		var arg = message.content.substring(6) + '\u200B';
 		//var args = arg.split('\n');
 		//if (args.length < 2)
-			var args = arg.match(/.{1,34}\W/gm);
+			var args = arg.match(/.{1,23}\W/gm);
 		for(var i = 0; i < args.length; i++){
 		if (args[i].length > 0)	
 		message.channel.send({
@@ -400,7 +404,7 @@ if (new RegExp(/!sfa3[0-9][0-9]\W/gm).test(message.content.substring(0,8))){
 		var size = message.content.charAt(6);
 		//var args = arg.split('\n');
 		//if (args.length < 2)
-			var args = arg.match(/.{1,24}\W/gm);
+			var args = arg.match(/.{1,23}\W/gm);
 		for(var i = 0; i < args.length; i++){
 	if (args[i].length > 0)		
 		message.channel.send({
