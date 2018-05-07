@@ -129,6 +129,7 @@ else if (new RegExp(/font![a-z0-9]{4}\W/gm).test(message.content.substring(0,6+4
 			if (game === 'sfz3' || game === 'vict' || game === 'moma')
 				args = arg.match(/.{1,23}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
+			console.log(args[i]);
 		if (args[i].length > 0)	
 		message.channel.send({
 			embed: {
@@ -136,7 +137,7 @@ else if (new RegExp(/font![a-z0-9]{4}\W/gm).test(message.content.substring(0,6+4
          url: 'https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
       }
    }
-}).then(console.log).catch(console.error);
+})
   
 	}
 	//message.delete();
@@ -163,7 +164,7 @@ else if (new RegExp(/font![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substri
       }
    }
 		
-}).then(console.log).catch(console.error);
+})
  
 	}
 	//message.delete();
