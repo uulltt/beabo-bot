@@ -1,6 +1,7 @@
 
 const Discord = require('discord.js');
 const nfgUrl = require('./nfgUrl.js');
+const Twitter = require('twitter');
 const client = new Discord.Client();
 
 client.on('ready', () => {
@@ -235,7 +236,6 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 		var game = message.content.substring(5, 8);
 		var pos = message.content.substring(2, 4);
 		var dir = message.content.charAt(1);
-		
 		if (game === 'ddr')
 			game = 'DDR';
 		if (game === 'kof') {}
@@ -348,8 +348,6 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 			style = message.content.charAt(12);
 		    size = message.content.charAt(13);
 		}
-		//var args = arg.split('\n');
-		//if (Math.min(args.length, 6) < 2)
 		var args = arg.match(/.{1,24}\W/gm);
 		for (var i = 0; i < Math.min(args.length, 6); i++) {
 			if (args[i].length > 0)
@@ -365,8 +363,6 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 
 	if (new RegExp(/font!kof97\W/gm).test(message.content.substring(0, 11))) {
 		var arg = message.content.substring(11) + '\u200B';
-		//var args = arg.split('\n');
-		//if (Math.min(args.length, 6) < 2)
 		var args = arg.match(/.{1,24}\W/gm);
 		for (var i = 0; i < Math.min(args.length, 6); i++) {
 			if (args[i].charAt(args[i].length - 1) === '\n') {
