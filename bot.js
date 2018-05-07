@@ -78,8 +78,8 @@ else if (new RegExp(/font![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substri
 else if (new RegExp(/font![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0,5+4))){
 		var arg = message.content.substring((5)+4) + '\u200B';
 		var game = message.content.substring(1+4,4+4);
-		//var args = arg.split('\n');
-		//if (Math.min(args.length, 6) < 2)
+		if (game === 'ddr')
+			game = 'DDR';
 		var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
 			if (args[i].charAt(args[i].length - 1) === '\n'){
@@ -105,6 +105,8 @@ else if (new RegExp(/font![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.subs
 		var game = message.content.substring(1+4,4+4);
 		//var args = arg.split('\n');
 		//if (Math.min(args.length, 6) < 2)
+			if (game === 'ddr')
+			game = 'DDR';
 			if (game === 'kof'){
 			
 		} else {
@@ -239,7 +241,8 @@ else if (new RegExp(/font![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0,
 		
 		if (game.substring(0,5) === 'kof2k')
 			game = 'KoF2k' + game.charAt(5);
-		
+		if (game === 'ketsui')
+			game = 'KETSUI';
 			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
 			if (args[i].charAt(args[i].length - 1) === '\n'){
@@ -263,6 +266,8 @@ else if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.subs
 		var game = message.content.substring(1+4,7+4);
 		if (game.substring(0,5) === 'kof2k')
 			game = 'KoF2k' + game.charAt(5);
+		if (game === 'ketsui')
+			game = 'KETSUI';
 			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
 			if (args[i].charAt(args[i].length - 1) === '\n'){
@@ -385,8 +390,8 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{3}\W/gm).test(message.content.s
 		var arg = message.content.substring((5)+4) + '\u200B';
 		var game = message.content.substring(1+4,4+4);
 		var pos = message.content.substring(2,4); var dir = message.content.charAt(1);
-		//var args = arg.split('\n');
-		//if (Math.min(args.length, 6) < 2)
+		if (game === 'ddr')
+			game = 'DDR';
 		var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
 			if (args[i].charAt(args[i].length - 1) === '\n'){
@@ -411,8 +416,8 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.c
 		var size = message.content.charAt((5)+4);
 		var game = message.content.substring(1+4,4+4);
 		var pos = message.content.substring(2,4); var dir = message.content.charAt(1);
-		//var args = arg.split('\n');
-		//if (Math.min(args.length, 6) < 2)
+		if (game === 'ddr')
+			game = 'DDR';
 			if (game === 'kof'){
 			
 		} else {
@@ -559,6 +564,8 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{6}\W/gm).test(message.content.s
 		var pos = message.content.substring(2,4); var dir = message.content.charAt(1);
 		if (game.substring(0,5) === 'kof2k')
 			game = 'KoF2k' + game.charAt(5);
+		if (game === 'ketsui')
+			game = 'KETSUI';
 			var args = arg.match(/.{1,34}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
 			if (args[i].charAt(args[i].length - 1) === '\n'){
@@ -583,6 +590,8 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.c
 		var pos = message.content.substring(2,4); var dir = message.content.charAt(1);
 		if (game.substring(0,5) === 'kof2k')
 			game = 'KoF2k' + game.charAt(5);
+		if (game === 'ketsui')
+			game = 'KETSUI';
 			var args = arg.match(/.{1,24}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
 			if (args[i].charAt(args[i].length - 1) === '\n'){
@@ -685,10 +694,5 @@ if (message.content.substring(0, 9) === '!commands'){
 
 });
 
-/* to-do list
-add custom commands for ketsui (KETSUI)
-make speech bubbles work for custom games
-maybe merge custom games into the regex statements???
-*/
 
 client.login(process.env.BOT_TOKEN);
