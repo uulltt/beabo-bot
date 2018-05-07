@@ -125,12 +125,14 @@ else if (new RegExp(/font![a-z0-9]{4}\W/gm).test(message.content.substring(0,6+4
 		//if (Math.min(args.length, 6) < 2)
 		if (game !== 'njgd' && game !== 'sfa3'){
 			
-			var args = arg.match(/.{1,34}\W/gm);
+			var args = arg.match(/.{1,24}\W/gm);
+			if (game === 'pubu')
+				args = arg.match(/.{1,34}\W/gm);
 			if (game === 'sfz3' || game === 'vict' || game === 'moma')
 				args = arg.match(/.{1,23}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
-			console.log(args[i]);
-		if (args[i].length > 0)	
+			console.log(args[i] + ',' + i + ',' + args.length);
+		if (args[i].length > 0)			
 		message.channel.send({
 			embed: {
     image: {
