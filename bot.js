@@ -1,6 +1,6 @@
 
 const Discord = require('discord.js');
-const hello = require("./nfgUrl.js");
+const nfgUrl = require('./nfgUrl.js');
 const client = new Discord.Client();
 
 client.on('ready', () => {
@@ -120,7 +120,7 @@ else if (new RegExp(/font![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.subs
 		message.channel.send({
 			embed: {
     image: {
-         url:nfgUrl.gameSSText(game, style, size, args[i])
+         url: nfgUrl.gameSSText(game, style, size, args[i])
       }
    }
 		
@@ -154,7 +154,7 @@ else if (new RegExp(/font![a-z0-9]{4}\W/gm).test(message.content.substring(0,6+4
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.gameText(game, args[i])
       }
    }
 })
@@ -182,7 +182,7 @@ else if (new RegExp(/font![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substri
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-' + game +  '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+         url: .gameSSText(game, style, size, args[i])
       }
    }
 		
