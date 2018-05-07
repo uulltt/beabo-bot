@@ -154,7 +154,7 @@ else if (new RegExp(/font![a-z0-9]{4}\W/gm).test(message.content.substring(0,6+4
 		if (game !== 'njgd' && game !== 'sfa3'){
 			
 			var args = arg.match(/.{1,34}\W/gm);
-			if (game === 'sfz3' || game === 'vict')
+			if (game === 'sfz3' || game === 'vict' || game === 'moma')
 				args = arg.match(/.{1,23}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
 		if (args[i].length > 0)	
@@ -180,7 +180,7 @@ else if (new RegExp(/font![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substri
 		//if (Math.min(args.length, 6) < 2)
 			if (game !== 'njgd' && game !== 'sfa3'){
 			var args = arg.match(/.{1,24}\W/gm);
-			if (game === 'sfz3' || game === 'vict')
+			if (game === 'sfz3' || game === 'vict' || game === 'moma')
 				args = arg.match(/.{1,23}\W/gm);
 		for(var i = 0; i < Math.min(args.length, 6); i++){
 	if (args[i].length > 0)		
@@ -616,9 +616,9 @@ if (message.content.substring(0, 5) === '!help' || message.content.substring(0, 
 		'font!any game name followed by two digits - that game with the first digit determining font style and second digit determining font size\n'+
 		'font!arcade - classic arcade\nfont!bios - BioShipPaladin\nfont!chiki - chiki chiki boys\nfont!ddcrew - DDCrew\nfont!DDR - Dance Dance Revolution\nfont!ddux - dynamite dux\nfont!fz - fantasy zone\nfont!gain - gain ground\n'+
 		'font!gradius - shoot the core\nfont!guar - guardians\nfont!kais - kaiser knuckle\nfont!kiki - kiki kaikai\nfont!kof97 - king of fighters 97\nfont!kof2k - king of fighters 2000\nfont!kof2k1 - king of fighters 2001\n'+
-		'font!kof2k2 - king of fighters 2002\nfont!kof2k3 - king of fighters 2003\nfont!mt - major title\nfont!namco2 - namco classic gradient\nfont!njgd - ninja gaiden\nfont!pabom - panic bomber\nfont!paro - parodius da\n'+
-		'font!pubu - puzzle bobble\nfont!quake - quack\nfont!raph - rapid hero\nfont!sexy - parodius\nfont!sf2 - street fighter 2\nfont!ssf2 - super street fighter 2\nfont!sfz3 or !sfa3 - street fighter zero\alpha 3\nfont!simp - the simpsons\n'+
-		'font!sold - soldam\nfont!vict - victory road\n\nother commands\n!list or !todo - splits discord message into a to-do list');
+		'font!kof2k2 - king of fighters 2002\nfont!kof2k3 - king of fighters 2003\nfont!mt - major title\nfont!moma = monster maulers\nfont!namco2 - namco classic gradient\nfont!njgd - ninja gaiden\nfont!pabom - panic bomber\nfont!paro - parodius da\n'+
+		'font!pubu - puzzle bobble\nfont!quake - quack\nfont!raph - rapid hero\nfont!robo - robotron\nfont!rtl - rtype leo\n\nfont!sexy - parodius\nfont!sf2 - street fighter 2\nfont!ssf2 - super street fighter 2\nfont!sfz3 or !sfa3 - street fighter zero\alpha 3\nfont!simp - the simpsons\n'+
+		'font!sold - soldam\nfont!tetris - tetris (sega)\nfont!vict - victory road\n\nother commands\n!list or !todo - splits discord message into a to-do list');
 }	
 
 });
