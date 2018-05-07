@@ -437,10 +437,11 @@ if (new RegExp(/font!kof97\W/gm).test(message.content.substring(0,7+4))){
 	//message.delete();
 }
 
-if (new RegExp(/font!kof97[0-9][0-9]\W/gm).test(message.content.substring(0,9+4))){
+/*if (new RegExp(/font!kof97[0-9][0-9]\W/gm).test(message.content.substring(0,9+4))){
 		var arg = message.content.substring((9)+4) + '\u200B';
 		var style = message.content.charAt((6)+4);
 		var size = message.content.charAt((7)+4);
+		
 		//var args = arg.split('\n');
 		//if (Math.min(args.length, 6) < 2)+4)
 			var args = arg.match(/.{1,24}\W/gm);
@@ -455,7 +456,7 @@ if (new RegExp(/font!kof97[0-9][0-9]\W/gm).test(message.content.substring(0,9+4)
 })
 	}
 	//message.delete();
-}
+}*/
 
 if (new RegExp(/font!kof2k\W/gm).test(message.content.substring(0,7+4))){
 		var arg = message.content.substring(7+4) + '\u200B';
@@ -614,7 +615,7 @@ if (new RegExp(/font!kof2k3[0-9][0-9]\W/gm).test(message.content.substring(0,10+
 if (message.content.substring(0, 5) === '!help' || message.content.substring(0, 9) === '!commands'){
 		message.channel.send('font commands\nThis list is incomplete. To find a font not listed, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.\n'+
 		'font!any game name followed by two digits - that game with the first digit determining font style and second digit determining font size\n'+
-		'font!arcade - classic arcade\nfont!bios - BioShipPaladin\nfont!chiki - chiki chiki boys\nfont!ddcrew - DDCrew\nfont!DDR - Dance Dance Revolution\nfont!ddux - dynamite dux\nfont!fz - fantasy zone\nfont!gain - gain ground\n'+
+		'font!arcade - classic arcade\nfont!bios - BioShipPaladin\nfont!chiki - chiki chiki boys\nfont!ddcrew - DDCrew\nfont!DDR - Dance Dance Revolution\nfont!ddux - dynamite dux\nfont!fz - fantasy zone\nfont!gain - gain ground\nfont!garou - fatal fury\n'+
 		'font!gradius - shoot the core\nfont!guar - guardians\nfont!kais - kaiser knuckle\nfont!kiki - kiki kaikai\nfont!kof97 - king of fighters 97\nfont!kof2k - king of fighters 2000\nfont!kof2k1 - king of fighters 2001\n'+
 		'font!kof2k2 - king of fighters 2002\nfont!kof2k3 - king of fighters 2003\nfont!mt - major title\nfont!moma = monster maulers\nfont!namco2 - namco classic gradient\nfont!njgd - ninja gaiden\nfont!pabom - panic bomber\nfont!paro - parodius da\n'+
 		'font!pubu - puzzle bobble\nfont!quake - quack\nfont!raph - rapid hero\nfont!robot - robotron\nfont!rtl - rtype leo\nfont!sexy - parodius\nfont!sf2 - street fighter 2\nfont!ssf2 - super street fighter 2\nfont!sfz3 or !sfa3 - street fighter zero\alpha 3\nfont!simp - the simpsons\n'+
