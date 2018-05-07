@@ -40,7 +40,7 @@ else if (new RegExp(/font![a-z0-9]{2}\W/gm).test(message.content.substring(0,4+4
 		message.channel.send({
 			embed: {
     image: {
-         url: nfgUrl.gameText(game, args[i]);
+         url: nfgUrl.gameText(game, args[i])
       }
    }
 }).then(console.log).catch(console.error);
@@ -65,7 +65,7 @@ else if (new RegExp(/font![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substri
 		message.channel.send({
 			embed: {
     image: {
-         url: nfgUrl.gameSSText(game, style, size, args[i]);
+         url: nfgUrl.gameSSText(game, style, size, args[i])
       }
    }
 		
@@ -90,7 +90,7 @@ else if (new RegExp(/font![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0,
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
+         url: nfgUrl.gameText(game, args[i])
       }
    }
 }).then(console.log).catch(console.error);
@@ -120,7 +120,7 @@ else if (new RegExp(/font![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.subs
 		message.channel.send({
 			embed: {
     image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-' + game +  '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
+         url:nfgUrl.gameSSText(game, style, size, args[i])
       }
    }
 		
