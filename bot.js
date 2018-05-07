@@ -1,8 +1,15 @@
 
 const Discord = require('discord.js');
 const nfgUrl = require('./nfgUrl.js');
-const Twitter = require('twitter');
+var Twitter = require('twitter');
 const client = new Discord.Client();
+
+var tweeter = new Twitter({
+  consumer_key: process.env.TWITTER_CONSUMER_KEY,
+  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+});
 
 client.on('ready', () => {
 	console.log('I am ready!');
