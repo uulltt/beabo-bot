@@ -70,7 +70,7 @@ else if (new RegExp(/font![a-z0-9]{2}\W/gm).test(message.content.substring(0,4+4
 }).then(console.log).catch(console.error);
   
 	}
-	message.delete();
+	//message.delete();
 }
 
 else if (new RegExp(/font![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0,6+4))){
@@ -93,7 +93,7 @@ else if (new RegExp(/font![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substri
 }).then(console.log).catch(console.error);
  
 	}
-	message.delete();
+	//message.delete();
 }
 
 
@@ -114,7 +114,7 @@ else if (new RegExp(/font![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0,
 }).then(console.log).catch(console.error);
   
 	}
-	message.delete();
+	//message.delete();
 		}
 
 else if (new RegExp(/font![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0,7+4))){
@@ -140,7 +140,7 @@ else if (new RegExp(/font![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.subs
 }).then(console.log).catch(console.error);
  
 	}
-	message.delete();
+	//message.delete();
 		}
 }
 
@@ -167,7 +167,7 @@ else if (new RegExp(/font![a-z0-9]{4}\W/gm).test(message.content.substring(0,6+4
 }).then(console.log).catch(console.error);
   
 	}
-	message.delete();
+	//message.delete();
 		}
 }
 
@@ -194,7 +194,7 @@ else if (new RegExp(/font![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substri
 }).then(console.log).catch(console.error);
  
 	}
-	message.delete();
+	//message.delete();
 			}
 }
 
@@ -216,7 +216,7 @@ else if (new RegExp(/font![a-z0-9]{5}\W/gm).test(message.content.substring(0,7+4
 }).then(console.log).catch(console.error);
   
 	}
-	message.delete();
+	//message.delete();
 		}
 }
 
@@ -241,7 +241,7 @@ else if (new RegExp(/font![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.subs
 }).then(console.log).catch(console.error);
  
 	}
-	message.delete();
+	//message.delete();
 			}
 }
 
@@ -264,7 +264,7 @@ else if (new RegExp(/font![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0,
 }).then(console.log).catch(console.error);
   
 	}
-	message.delete();
+	//message.delete();
 		}
 }
 
@@ -289,7 +289,7 @@ else if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.subs
 }).then(console.log).catch(console.error);
  
 	}
-	message.delete();
+	//message.delete();
 			}
 }
 
@@ -310,7 +310,7 @@ else if (new RegExp(/font![A-Za-z0-9]{7}\W/gm).test(message.content.substring(0,
 }).then(console.log).catch(console.error);
   
 	}
-	message.delete();
+	//message.delete();
 }
 
 else if (new RegExp(/font![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0,11+4))){
@@ -334,7 +334,7 @@ else if (new RegExp(/font![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.subs
 }).then(console.log).catch(console.error);
  
 	}
-	message.delete();
+	//message.delete();
 }
 
 
@@ -354,7 +354,7 @@ if (new RegExp(/font!njgd\W/gm).test(message.content.substring(0,6+4))){
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!njgd[0-9][0-9]\W/gm).test(message.content.substring(0,8+4))){
@@ -375,7 +375,7 @@ if (new RegExp(/font!njgd[0-9][0-9]\W/gm).test(message.content.substring(0,8+4))
 		
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 
@@ -395,7 +395,7 @@ if (new RegExp(/font!sfa3\W/gm).test(message.content.substring(0,6+4))){
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!sfa3[0-9][0-9]\W/gm).test(message.content.substring(0,8+4))){
@@ -416,7 +416,7 @@ if (new RegExp(/font!sfa3[0-9][0-9]\W/gm).test(message.content.substring(0,8+4))
 		
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!kof97\W/gm).test(message.content.substring(0,7+4))){
@@ -434,7 +434,7 @@ if (new RegExp(/font!kof97\W/gm).test(message.content.substring(0,7+4))){
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!kof97[0-9][0-9]\W/gm).test(message.content.substring(0,9+4))){
@@ -454,7 +454,7 @@ if (new RegExp(/font!kof97[0-9][0-9]\W/gm).test(message.content.substring(0,9+4)
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!kof2k\W/gm).test(message.content.substring(0,7+4))){
@@ -472,7 +472,7 @@ if (new RegExp(/font!kof2k\W/gm).test(message.content.substring(0,7+4))){
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!kof2k[0-9][0-9]\W/gm).test(message.content.substring(0,9+4))){
@@ -492,7 +492,7 @@ if (new RegExp(/font!kof2k[0-9][0-9]\W/gm).test(message.content.substring(0,9+4)
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!kof2k1\W/gm).test(message.content.substring(0,8+4))){
@@ -510,7 +510,7 @@ if (new RegExp(/font!kof2k1\W/gm).test(message.content.substring(0,8+4))){
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!kof2k1[0-9][0-9]\W/gm).test(message.content.substring(0,10+4))){
@@ -530,7 +530,7 @@ if (new RegExp(/font!kof2k1[0-9][0-9]\W/gm).test(message.content.substring(0,10+
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!kof2k2\W/gm).test(message.content.substring(0,8+4))){
@@ -548,7 +548,7 @@ if (new RegExp(/font!kof2k2\W/gm).test(message.content.substring(0,8+4))){
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!kof2k2[0-9][0-9]\W/gm).test(message.content.substring(0,10+4))){
@@ -568,7 +568,7 @@ if (new RegExp(/font!kof2k2[0-9][0-9]\W/gm).test(message.content.substring(0,10+
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!kof2k3\W/gm).test(message.content.substring(0,8+4))){
@@ -586,7 +586,7 @@ if (new RegExp(/font!kof2k3\W/gm).test(message.content.substring(0,8+4))){
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 if (new RegExp(/font!kof2k3[0-9][0-9]\W/gm).test(message.content.substring(0,10+4))){
@@ -606,7 +606,7 @@ if (new RegExp(/font!kof2k3[0-9][0-9]\W/gm).test(message.content.substring(0,10+
    }
 })
 	}
-	message.delete();
+	//message.delete();
 }
 
 
