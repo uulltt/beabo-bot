@@ -653,46 +653,6 @@ else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.c
 
 
 
-if (new RegExp(/font!njgd\W/gm).test(message.content.substring(0,6+4))){
-		var arg = message.content.substring((6)+4) + '\u200B';
-		//var args = arg.split('\n');
-		//if (Math.min(args.length, 6) < 2)
-			var args = arg.match(/.{1,34}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-			
-		if (args[i].length > 0)	
-		message.channel.send({
-			embed: {
-    image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-niga/z-0/dbl-2/x-' + encodeURI(args[i]  + '\u200B')
-      }
-   }
-})
-	}
-	//message.delete();
-}
-
-if (new RegExp(/font!njgd[0-9][0-9]\W/gm).test(message.content.substring(0,8+4))){
-		var arg = message.content.substring((8)+4) + '\u200B';
-		var style = message.content.charAt((5)+4);
-		var size = message.content.charAt((6)+4);
-		//var args = arg.split('\n');
-		//if (Math.min(args.length, 6) < 2)
-			var args = arg.match(/.{1,24}\W/gm);
-		for(var i = 0; i < Math.min(args.length, 6); i++){
-	if (args[i].length > 0)		
-		message.channel.send({
-			embed: {
-    image: {
-         url: 'https://nfggames.com/system/arcade/arcade.php/y-niga/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i]  + '\u200B')
-      }
-   }
-		
-})
-	}
-	//message.delete();
-}
-
 if (new RegExp(/font!kof97\W/gm).test(message.content.substring(0,7+4))){
 		var arg = message.content.substring((7)+4) + '\u200B';
 		//var args = arg.split('\n');
