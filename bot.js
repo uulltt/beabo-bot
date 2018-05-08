@@ -136,7 +136,7 @@ client.on('message', message => {
 		var blogId = hasBlogId[hasBlogId.length - 1];
 		console.log("am i doing this right?");
 		var postId = message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0];
-		$.getJSON("api.tumblr.com/v2/blog/" + blogId + ".tumblr.com/posts/photo?id=" + postId + "&api_key={" + process.env.TUMBLR_CONSUMER_KEY + "}", function(data){
+		$.get("api.tumblr.com/v2/blog/" + blogId + ".tumblr.com/posts/photo?id=" + postId + "&api_key={" + process.env.TUMBLR_CONSUMER_KEY + "}", function(data){
 		console.log(data);
 		console.log("am i doing this right also?");
 		}		
