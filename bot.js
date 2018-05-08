@@ -28,10 +28,10 @@ client.on('message', message => {
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
 		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length);
-		tweeter.get('statuses/show/' + tweetId, function (error, tweet, response) {
+		tweeter.get('statuses/show/' + tweetId, {tweet_mode: 'extended'}, function (error, tweet, response) {
 			
 			if (!error) {
-				console.log(tweet.extended_tweet);
+				console.log(tweet);
 				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
 					for (var i = 1; i < tweet.extended_entities.media.length; i++) {
 						message.channel.send({
