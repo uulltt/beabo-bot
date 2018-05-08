@@ -127,12 +127,10 @@ client.on('message', message => {
 			
 	}
 	if (message.content.includes('tumblr.com/post/')) {
-		console.log(message.content.substring(0, message.content.indexOf('.tumblr')));
-		var hasblogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[0-9a-zA-Z\-]+/gm);
-		console.log(hasBlogId);
-		//var blogId = hasBlogId[hasBlogId.length - 1];
+		var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
+		var blogId = hasBlogId[hasBlogId.length - 1];
 		var postId = message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0];
-		//console.log(blogId + ' ' + postId);
+		console.log(blogId + ' ' + postId);
 		/*imgur.getAlbumInfo(theAlbum)
     .then(function(json) {
 		for (var i = 0; i < json.data.images.length; i++) {
