@@ -37,7 +37,8 @@ client.on('message', message => {
 			if (error)
 				throw error;
 			for(var i = 0; i < response.results.length; i++){
-				console.log(response.results[i]);
+				console.log(response.results[i].photos);
+				message.channel.send('**' + response.results[i].name + '**\n`' + response.results[i].formatted_address + '`\n:star: ' + response.results[i].rating);
 			}
 		});
 
