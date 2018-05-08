@@ -34,7 +34,6 @@ client.on('message', message => {
 			query: message.content.substring(8).split('\"')[1]
 		};
 		GPlaces.textSearch(parameters, function (error, response) {
-			var text = '';
 			if (error)
 				throw error;
 			for(var i = 0; i < response.results.length; i++){
@@ -44,9 +43,8 @@ client.on('message', message => {
 				} else {
 					open = ':red_circle: Sorry, closed.';
 				}
-				text = text + '**' + response.results[i].name + '**\n`' + response.results[i].formatted_address + '`\n:star: ' + response.results[i].rating + '\n' + open + '\n\n';
+				message.channel.send('**' + response.results[i].name + '**\n`' + response.results[i].formatted_address + '`\n:star: ' + response.results[i].rating + '\n' + open);
 			}
-			message.channel.send(text);
 		});
 
 	}
