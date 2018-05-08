@@ -126,8 +126,9 @@ client.on('message', message => {
 	if (message.content.includes('tumblr.com/post/')) {
 		var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
 		var blogId = hasBlogId[hasBlogId.length - 1];
+		var postId = message.content.subtring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0];
 		console.log("am i doing this right?");
-		tumblr.get('/info', {hostname: 'arktest.tumblr.com'}, function(err, json){
+		tumblr.get('/posts', {hostname: blogId + '.tumblr.com', id : }, function(err, json){
   console.log(json);
 });
 
