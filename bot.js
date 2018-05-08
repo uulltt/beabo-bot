@@ -27,8 +27,8 @@ client.on('message', message => {
 			}
 		});
 	}
-	if (message.content.substring(0, 5) === '!dir '){
-		var args = message.content.substring(5).split('\"');
+	if (message.content.substring(0, 7) === '!dirkm '){
+		var args = message.content.substring(7).split('\"');
 		for(var i = 0; i < args.length; i++){
 			console.log(args[i]);
 		}
@@ -42,8 +42,11 @@ client.on('message', message => {
 .then(function(result){
 	var dir = "";
 	for(var i = 0; i < result.routes[0].legs.length; i++){
-		console.log(result.routes[0].legs[i]);
+		console.log(result.routes[0].legs[i].distance);
+		console.log(result.routes[0].legs[i].duration);
+		dir = dir + '•' + result.routes[0].legs[i].html_instructions.replace(/<b>/gm, '**').replace(/<\/b>/gm, '**') + '\n';
 	}
+	message.channel.send(dir);
 });
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
