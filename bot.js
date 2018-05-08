@@ -25,6 +25,7 @@ client.on('message', message => {
     console.log(tweet);
   } else {
 	  console.log(error);
+  }
 });
 	}
 	if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
