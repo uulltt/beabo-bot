@@ -16,6 +16,10 @@ client.on('ready', () => {
 	client.user.setUsername("NagaevskyTron 60");
 	console.log(process.env.BOT_TOKEN);
 	console.log(process.env.TWITTER_CONSUMER_KEY);
+	console.log(process.env.TWITTER_CONSUMER_SECRET);
+	console.log(process.env.TWITTER_ACCESS_TOKEN_KEY);
+	console.log(process.env.TWITTER_ACCESS_TOKEN_SECRET);
+	
 });
 
 client.on('message', message => {
