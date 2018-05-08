@@ -5,11 +5,11 @@ var Twitter = require('twitter');
 const client = new Discord.Client();
 
 var tweeter = new Twitter({
-  consumer_key: process.env.TWITTER_CONSUMER_KEY,
-  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-});
+		consumer_key: process.env.TWITTER_CONSUMER_KEY,
+		consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+		access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+		access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+	});
 
 client.on('ready', () => {
 	console.log('I am ready!');
@@ -17,33 +17,35 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))){
-	message.channel.send({embed: {
-		image: {
-			url: 'https://www.colorcombos.com/images/colors/' + message.content.substring(4,10) + '.png'
-		}
+	if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))) {
+		message.channel.send({
+			embed: {
+				image: {
+					url: 'https://www.colorcombos.com/images/colors/' + message.content.substring(4, 10) + '.png'
+				}
+			}
+		});
 	}
-	});
-}
-	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')){
-		var tweetId = message.content.substring(message.content.indexOf('/status/')+('/status/').length);
-		tweeter.get('statuses/show/' + tweetId, function(error, tweet, response) {
-  if (!error) {
-if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')){
-    for(var i = 1; i < tweet.extended_entities.media.length; i++){
-		message.channel.send({embed: {
+	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
+		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length);
+		tweeter.get('statuses/show/' + tweetId, function (error, tweet, response) {
+			if (!error) {
+				console.log(tweet);
+				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
+					for (var i = 1; i < tweet.extended_entities.media.length; i++) {
+						message.channel.send({
+							embed: {
 								image: {
 									url: tweet.extended_entities.media[i].media_url
 								}
+							}
+						});
 					}
-		}
-		);
-	}
-}
-  } else {
-	  console.log(error);
-  }
-})
+				}
+			} else {
+				console.log(error);
+			}
+		})
 	}
 	if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
 		var args = message.content.substring(5).split('\n'); //we split by line breaks
@@ -56,16 +58,16 @@ if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnP
 		}
 	} else if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
-	
+
 	} else if (new RegExp(/font![a-z0-9]{2}\W/gm).test(message.content.substring(0, 8)) || new RegExp(/font![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
 		var arg = message.content.substring(8) + '\u200B';
 		var game = message.content.substring(5, 7);
 		var style = '0';
 		var size = '2';
-		if (new RegExp(/font![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))){
-		arg = arg.substring(2);
-		style = message.content.charAt(7);
-		size = message.content.charAt(8);
+		if (new RegExp(/font![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
+			arg = arg.substring(2);
+			style = message.content.charAt(7);
+			size = message.content.charAt(8);
 		}
 		var args = arg.match(/.{1,24}\W/gm);
 		for (var i = 0; i < Math.min(args.length, 6); i++) {
@@ -77,7 +79,7 @@ if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnP
 							url: nfgUrl.gameText(game, style, size, args[i])
 						}
 					}
-				}).then(console.log).catch(console.error);
+				})
 		}
 	} else if (new RegExp(/font![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0, 9))) {
 		var arg = message.content.substring(9) + '\u200B';
@@ -96,7 +98,7 @@ if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnP
 							url: nfgUrl.gameText(game, style, size, args[i])
 						}
 					}
-				}).then(console.log).catch(console.error);
+				})
 		}
 	} else if (new RegExp(/font![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0, 11))) {
 		var arg = message.content.substring(11) + '\u200B';
@@ -117,7 +119,7 @@ if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnP
 							}
 						}
 
-					}).then(console.log).catch(console.error);
+					})
 			}
 		}
 	} else if (new RegExp(/font![a-z0-9]{4}\W/gm).test(message.content.substring(0, 10)) || new RegExp(/font![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
@@ -125,10 +127,10 @@ if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnP
 		var game = message.content.substring(5, 9);
 		var style = '0';
 		var size = '2';
-		if (new RegExp(/font![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))){
+		if (new RegExp(/font![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(9);
-		 size = message.content.charAt(10);
+			size = message.content.charAt(10);
 		}
 		if (game === 'njgd')
 			game = 'niga'
@@ -156,10 +158,10 @@ if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnP
 		var game = message.content.substring(5, 10);
 		var style = '0';
 		var size = '2';
-		if ( new RegExp(/font![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))){
+		if (new RegExp(/font![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(10);
-		    size = message.content.charAt(11);
+			size = message.content.charAt(11);
 		}
 		if (game === 'kof2k')
 			game = 'KoF2k';
@@ -179,11 +181,11 @@ if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnP
 		var game = message.content.substring(5, 11);
 		var style = '0';
 		var size = '2';
-if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))){
-	arg = arg.substring(2);
-	style = message.content.charAt(11);
-    size = message.content.charAt(12);
-}
+		if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
+			arg = arg.substring(2);
+			style = message.content.charAt(11);
+			size = message.content.charAt(12);
+		}
 		if (game.substring(0, 5) === 'kof2k')
 			game = 'KoF2k' + game.charAt(5);
 		if (game === 'ketsui')
@@ -204,10 +206,10 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 		var game = message.content.substring(5, 12);
 		var style = '0';
 		var size = '2';
-		if (new RegExp(/font![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))){
+		if (new RegExp(/font![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(2);
-    size = message.content.charAt(13);
+			size = message.content.charAt(13);
 		}
 		var args = arg.match(/.{1,24}\W/gm);
 		for (var i = 0; i < Math.min(args.length, 6); i++) {
@@ -218,7 +220,7 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 							url: nfgUrl.gameText(game, style, size, args[i])
 						}
 					}
-				}).then(console.log).catch(console.error);
+				})
 		}
 	} else if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{2}\W/gm).test(message.content.substring(0, 8)) || new RegExp(/b[du][0-9][0-9]![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
 		var arg = message.content.substring(8) + '\u200B';
@@ -227,10 +229,10 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 		var dir = message.content.charAt(1);
 		var style = '0';
 		var size = '2';
-		if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))){
+		if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(7);
-		    size = message.content.charAt(8);
+			size = message.content.charAt(8);
 		}
 		var args = arg.match(/.{1,24}\W/gm);
 		for (var i = 0; i < Math.min(args.length, 6); i++) {
@@ -241,8 +243,7 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 							url: nfgUrl.bubble(game, dir, pos, style, size, args[i])
 						}
 					}
-				}).then(console.log).catch(console.error);
-
+				})
 		}
 	} else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0, 9))) {
 		var arg = message.content.substring(9) + '\u200B';
@@ -294,10 +295,10 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 		var dir = message.content.charAt(1);
 		var style = '0';
 		var size = '2';
-		if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))){
+		if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(9);
-		    size = message.content.charAt(10);
+			size = message.content.charAt(10);
 		}
 		if (game === 'njgd')
 			game = 'niga'
@@ -326,10 +327,10 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 		var dir = message.content.charAt(1);
 		var style = '0';
 		var size = '2';
-		if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))){
+		if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(10);
-		    size = message.content.charAt(11);
+			size = message.content.charAt(11);
 		}
 		if (game === 'kof2k')
 			game = 'KoF2k';
@@ -351,10 +352,10 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 		var dir = message.content.charAt(1);
 		var style = '0';
 		var size = '2';
-		if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))){
+		if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(11);
-		    size = message.content.charAt(12);
+			size = message.content.charAt(12);
 		}
 		if (game.substring(0, 5) === 'kof2k')
 			game = 'KoF2k' + game.charAt(5);
@@ -378,10 +379,10 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 		var dir = message.content.charAt(1);
 		var style = '0';
 		var size = '2';
-		if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))){
+		if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(12);
-		    size = message.content.charAt(13);
+			size = message.content.charAt(13);
 		}
 		var args = arg.match(/.{1,24}\W/gm);
 		for (var i = 0; i < Math.min(args.length, 6); i++) {
@@ -421,7 +422,8 @@ if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring
 			'font!gradius - shoot the core\nfont!guar - guardians\nfont!kais - kaiser knuckle\nfont!kiki - kiki kaikai\nfont!kof97 - king of fighters 97\nfont!kof2k - king of fighters 2000\nfont!kof2k1 - king of fighters 2001\n' +
 			'font!kof2k2 - king of fighters 2002\nfont!kof2k3 - king of fighters 2003\nfont!mt - major title\nfont!moma = monster maulers\nfont!namco2 - namco classic gradient\nfont!njgd - ninja gaiden\nfont!pabom - panic bomber\nfont!paro - parodius da\n' +
 			'font!pubu - puzzle bobble\nfont!quake - quack\nfont!raph - rapid hero\nfont!robot - robotron\nfont!rtl - rtype leo\nfont!sexy - parodius\nfont!sf2 - street fighter 2\nfont!ssf2 - super street fighter 2\nfont!sfz3 or !sfa3 - street fighter zero\alpha 3\nfont!simp - the simpsons\n' +
-			'font!sold - soldam\nfont!tetris - tetris (sega)\nfont!vict - victory road\n*/'\nother commands\n!list or !todo - splits discord message into a to-do list\n!full or !pics followed by twitter link - displays full photo album of tweet\nhex#hexCode - displays image of a color pertaining to the hex cde\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number');
+			'font!sold - soldam\nfont!tetris - tetris (sega)\nfont!vict - victory road\n*/
+			'\nother commands\n!list or !todo - splits discord message into a to-do list\n!full or !pics followed by twitter link - displays full photo album of tweet\nhex#hexCode - displays image of a color pertaining to the hex cde\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number');
 	}
 
 });
