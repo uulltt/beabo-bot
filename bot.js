@@ -46,7 +46,7 @@ client.on('message', message => {
 		console.log(result.routes[0].legs[i].duration);
 		dir = dir + '•' + result.routes[0].legs[i].html_instructions.replace(/<b>/gm, '**').replace(/<\/b>/gm, '**') + '\n';
 	}
-	message.channel.send(dir);
+	console.log(dir);
 });
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
