@@ -129,7 +129,11 @@ client.on('message', message => {
 		var postId = parseInt(message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0]);
 		console.log("am i doing this right?");
 		tumblr.get('/posts', {hostname: blogId + '.tumblr.com', id : postId }, function(err, json){
-  console.log(json);
+			if (json.total_posts > 0){
+  if (json.posts[0].type === 'photo'){
+	  console.log(json.posts[0].reblog);
+  }
+			}
 });
 
 		/*tumblrClient.blogPosts(blogId, {id : postId}, function(err, resp) {
