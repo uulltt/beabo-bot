@@ -131,7 +131,7 @@ client.on('message', message => {
 		tumblr.get('/posts', {hostname: blogId + '.tumblr.com', id : postId }, function(err, json){
 			if (json.total_posts > 0){
   if (json.posts[0].type === 'photo'){
-	  console.log(json.posts[0].reblog);
+	  console.log(json.posts[0].photos);
   }
 			}
 });
