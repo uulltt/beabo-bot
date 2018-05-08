@@ -28,7 +28,14 @@ client.on('message', message => {
 		var tweetId = message.content.substring(message.content.indexOf('/status/')+('/status/').length);
 		tweeter.get('statuses/show/' + tweetId, function(error, tweet, response) {
   if (!error) {
-    console.log(tweet.entities.media);
+    for(var i = 1; i < tweet.entities.media.length; i++){
+		message.channel.send(embed: {
+								image: {
+									url: tweet.entities.media[i].media_url
+								}
+		}
+		);
+	}
   } else {
 	  console.log(error);
   }
