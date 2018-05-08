@@ -36,7 +36,7 @@ client.on('message', message => {
 		GPlaces.textSearch(parameters, function (error, response) {
 			if (error)
 				throw error;
-			for(int i = 0; i < response.results.length; i++){
+			for(var i = 0; i < response.results.length; i++){
 				console.log(response.results[i]);
 			}
 		});
