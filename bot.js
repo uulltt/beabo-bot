@@ -96,7 +96,7 @@ client.on('message', message => {
 		})
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('imgur.com/') && message.content.includes('/a/')) {
-		var theAlbum = message.content.substring(message.content.indexOf('/a/') + ('/a/').length).match(/[0-9a-ZA-Z]+/gm)[0];
+		var theAlbum = message.content.substring(message.content.indexOf('/a/') + ('/a/').length).match(/[0-9a-zA-Z]+/gm)[0];
 		imgur.getAlbumInfo(theAlbum)
     .then(function(json) {
         console.log(json);
