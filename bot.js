@@ -8,6 +8,14 @@ var googlePlaces = require('googleplaces');
 var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
 var imgur = require('imgur');
 
+var tumblr = require('tumblr.js');
+var tumblrClient = tumblr.createClient({
+  consumer_key: process.env.TUMBLR_CONSUMER_KEY,
+  consumer_secret: process.env.TUMBLR_CONSUMER_SECRET,
+  token: process.env.TUMBLR_TOKEN,
+  token_secret: process.env.TUMBLR_TOKEN_SECRET
+});
+
 var tweeter = new Twitter({
 		consumer_key: process.env.TWITTER_CONSUMER_KEY,
 		consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
@@ -72,7 +80,8 @@ client.on('message', message => {
 				message.channel.send('Too many directions. Just Google it.');
 		}).catch(console.error);
 	}
-	if ((message.content.substring(0, 6) == '!pics ' || message.content.substring(0, 6) == '!full ' || message.content.substring(0, 7) == '!album ') && message.content.includes('twitter.com/') && message.content.includes('/status/')) {
+	if (message.content.substring(0, 6) == '!pics ' || message.content.substring(0, 6) == '!full ' || message.content.substring(0, 7) == '!album '){
+	if(message.content.includes('twitter.com/') && message.content.includes('/status/')) {
 		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
 		tweeter.get('statuses/show/' + tweetId, {
 			tweet_mode: 'extended'
@@ -96,7 +105,7 @@ client.on('message', message => {
 			}
 		})
 	}
-	if ((message.content.substring(0, 6) == '!pics ' || message.content.substring(0, 6) == '!full ' || message.content.substring(0, 7) == '!album ') && message.content.includes('imgur.com/') && message.content.includes('/a/')) {
+	if (message.content.includes('imgur.com/') && message.content.includes('/a/')) {
 		var theAlbum = message.content.substring(message.content.indexOf('/a/') + ('/a/').length).match(/[0-9a-zA-Z]+/gm)[0];
 		imgur.getAlbumInfo(theAlbum)
     .then(function(json) {
@@ -116,6 +125,31 @@ client.on('message', message => {
 		
 					
 			
+	}
+	if (message.content.includes('tumblr.com/post/'))) {
+		var hasblogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[0-9a-zA-Z\-]+/gm);
+		var blogId = hasBlogId[hasBlogId.length - 1];
+		var postId = message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0];
+		console.log(blogId + ' ' + postId);
+		/*imgur.getAlbumInfo(theAlbum)
+    .then(function(json) {
+		for (var i = 0; i < json.data.images.length; i++) {
+						message.channel.send({
+							embed: {
+								image: {
+									url: json.data.images[i].link
+								}
+							}
+						});
+					}
+    })
+    .catch(function (err) {
+        console.error(err.message);
+    });
+		
+					
+	*/		
+	}
 	}
 	if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
 		var args = message.content.substring(5).split('\n'); //we split by line breaks
