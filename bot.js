@@ -100,15 +100,15 @@ client.on('message', message => {
 		imgur.getAlbumInfo(theAlbum)
     .then(function(json) {
         console.log(json.data.images);
-		/*for (var i = 0; i < json.data.images.length; i++) {
+		for (var i = 0; i < json.data.images.length; i++) {
 						message.channel.send({
 							embed: {
 								image: {
-									url: json.data.images
+									url: json.data.images[i].link
 								}
 							}
 						});
-					}*/
+					}
     })
     .catch(function (err) {
         console.error(err.message);
