@@ -29,7 +29,7 @@ if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))){
 		var tweetId = message.content.substring(message.content.indexOf('/status/')+('/status/').length);
 		tweeter.get('statuses/show/' + tweetId, function(error, tweet, response) {
   if (!error) {
-if (tweet.extended_entities.hasOwnProperty('media')){
+if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')){
     for(var i = 1; i < tweet.extended_entities.media.length; i++){
 		message.channel.send({embed: {
 								image: {
