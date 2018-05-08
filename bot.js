@@ -28,8 +28,8 @@ client.on('ready', () => {
         game: {
         name: 'type !commands for help',
         type: 0
-    }, status: 'online'
-	}
+    }
+	};
 	client.user.setPresence(presence);
 });
 
