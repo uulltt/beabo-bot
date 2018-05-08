@@ -17,6 +17,14 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+	if (message.content.includes('https://twitter.com/') && message.content.includes('/status/')){
+		var tweetId = message.content.substring(message.content.indexOf('/status/')+('/status/').length);
+		tweeter.get('statuses/show/' + tweetId, function(error, tweet, response) {
+  if (!error) {
+    console.log(tweet);
+  }
+});
+	}
 	if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
 		var args = message.content.substring(5).split('\n'); //we split by line breaks
 		if (args.length == 1) { //if there's no line breaks
