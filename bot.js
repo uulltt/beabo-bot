@@ -132,6 +132,14 @@ client.on('message', message => {
 			if (json.total_posts > 0){
   if (json.posts[0].type === 'photo'){
 	  console.log(json.posts[0].photos);
+	  for(var i = 1; i < json.posts[0].photos.length; i++){
+		  message.channel.send({embed: {
+			  image: {
+				  url: json.posts[0].photos[i].original_size.url
+			  }
+		  }
+		  });
+	  }
   }
 			}
 });
