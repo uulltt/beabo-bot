@@ -36,6 +36,7 @@ if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))){
 		var tweetId = message.content.substring(message.content.indexOf('/status/')+('/status/').length);
 		tweeter.get('statuses/show/' + tweetId, function(error, tweet, response) {
   if (!error) {
+	  console.log(tweet);
 	  console.log(tweet.entities);
     for(var i = 0; i < tweet.entities.media.length; i++){
 		console.log(tweet.entities.media[i].media_url);
