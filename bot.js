@@ -48,9 +48,10 @@ client.on('message', message => {
 		var request = require('request').defaults({ encoding: null });
 request.get(message.content.substring(6), function (err, res, body) {
       //process exif here
-
+console.log(res);
+console.log(body);
 try {
-    new ExifImage({ image : res }, function (error, exifData) {
+    new ExifImage({ image : body }, function (error, exifData) {
         if (error)
             console.log('Error: '+error.message);
         else
