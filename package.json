@@ -9,6 +9,7 @@
   "dependencies": {
     "discord.js": "11.1.0",
     "request": "2.81.0",
-	"twitter": "1.7.1"
+	"twitter": "1.7.1",
+	"google-maps-direction": "1.0.0"
   }
 }

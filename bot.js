@@ -2,6 +2,7 @@
 const Discord = require('discord.js');
 const nfgUrl = require('./nfgUrl.js');
 var Twitter = require('twitter');
+var direction = require('google-maps-direction');
 const client = new Discord.Client();
 
 var tweeter = new Twitter({
@@ -25,6 +26,18 @@ client.on('message', message => {
 				}
 			}
 		});
+	}
+	if (message.content.substring(0, 5) === '!dir '){
+		var args = message.content.substring(5).split('"');
+		var orig1n = args[0];
+		var destinat1on = args[2];
+		direction({
+  origin: orig1n,
+  destination: destinat1on
+})
+.then(function(result){
+	message.channel.send(result);
+});
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
 		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length);
