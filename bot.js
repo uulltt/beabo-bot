@@ -56,10 +56,11 @@ try {
         else
             console.log(exifData); // Do something with your data!
     });
-});
+
 } catch (error) {
     console.log('Error: ' + error.message);
 }
+});
 	}
 	if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))) {
 		message.channel.send({
