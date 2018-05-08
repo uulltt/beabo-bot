@@ -29,12 +29,8 @@ client.on('message', message => {
 	}
 	if (message.content.substring(0, 5) === '!dir ' || message.content.substring(0, 5) === '!dir '){
 		var args = message.content.substring(5).split('\"');
-		for(var i = 0; i < args.length; i++){
-			console.log(args[i]);
-		}
 		var ori = args[1];
 		var dest = args[3];
-		console.log(ori + ' ' + dest);
 		direction({
   origin: ori,
   destination: dest
@@ -44,7 +40,10 @@ client.on('message', message => {
 	for(var i = 0; i < result.routes[0].legs[0].steps.length; i++){
 		dir = dir + (i+1).toString() + '. ' + result.routes[0].legs[0].steps[i].html_instructions.replace(/<b>/gm, '**').replace(/<\/b>/gm, '**').replace(/<div style="font-size:0.9em">/gm, ' `(').replace(/<\/div>/gm, ')`') + ' (' + result.routes[0].legs[0].steps[i].distance.text + ', ' + result.routes[0].legs[0].steps[i].duration.text + ')\n';
 	}
+	if (dir.length <= 2000)
 	message.channel.send(dir);
+	else
+	message.channel.send('Too many directions. Just Google it.');
 });
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
@@ -445,7 +444,7 @@ client.on('message', message => {
 			'font!kof2k2 - king of fighters 2002\nfont!kof2k3 - king of fighters 2003\nfont!mt - major title\nfont!moma = monster maulers\nfont!namco2 - namco classic gradient\nfont!njgd - ninja gaiden\nfont!pabom - panic bomber\nfont!paro - parodius da\n' +
 			'font!pubu - puzzle bobble\nfont!quake - quack\nfont!raph - rapid hero\nfont!robot - robotron\nfont!rtl - rtype leo\nfont!sexy - parodius\nfont!sf2 - street fighter 2\nfont!ssf2 - super street fighter 2\nfont!sfz3 or !sfa3 - street fighter zero\alpha 3\nfont!simp - the simpsons\n' +
 			'font!sold - soldam\nfont!tetris - tetris (sega)\nfont!vict - victory road\n*/
-			'\nother commands\n!list or !todo - splits discord message into a to-do list\n!full or !pics followed by twitter link - displays full photo album of tweet\nhex#hexCode - displays image of a color pertaining to the hex cde\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number');
+			'\nother commands\n!list or !todo - splits discord message into a to-do list\n!full or !pics followed by twitter link - displays full photo album of tweet\n!dir \"origin\" \"destination\" - prints directions from origin to destination\nhex#hexCode - displays image of a color pertaining to the hex cde\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number');
 	}
 
 });
