@@ -6,6 +6,7 @@ var direction = require('google-maps-direction');
 const client = new Discord.Client();
 var googlePlaces = require('googleplaces');
 var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
+var imgur = require('imgur');
 
 var tweeter = new Twitter({
 		consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -70,7 +71,7 @@ client.on('message', message => {
 				message.channel.send('Too many directions. Just Google it.');
 		}).catch(console.error);
 	}
-	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
+	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('twitter.com/') && message.content.includes('/status/')) {
 		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
 		tweeter.get('statuses/show/' + tweetId, {
 			tweet_mode: 'extended'
@@ -93,6 +94,28 @@ client.on('message', message => {
 				console.log(error);
 			}
 		})
+	}
+	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('imgur.com/') && message.content.includes('/a/')) {
+		var theAlbum = message.content.substring(message.content.indexOf('/a/') + ('/a/').length).match(/[0-9a-ZA-Z]+/gm)[0];
+		imgur.getAlbumInfo(theAlbum)
+    .then(function(json) {
+        console.log(json);
+		/*for (var i = 1; i < tweet.extended_entities.media.length; i++) {
+						message.channel.send({
+							embed: {
+								image: {
+									url: tweet.extended_entities.media[i].media_url
+								}
+							}
+						});
+					}*/
+    })
+    .catch(function (err) {
+        console.error(err.message);
+    });
+		
+					
+			
 	}
 	if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
 		var args = message.content.substring(5).split('\n'); //we split by line breaks
