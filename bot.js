@@ -29,7 +29,7 @@ client.on('message', message => {
 	}
 	if (message.content.substring(0, 5) === '!dir '){
 		var args = message.content.substring(5).split('\"');
-		for(int i = 0; i < args.length; i++){
+		for(var i = 0; i < args.length; i++){
 			console.log(args[i]);
 		}
 		var ori = args[0];
