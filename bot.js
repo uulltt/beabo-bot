@@ -44,7 +44,7 @@ client.on('message', message => {
 				} else {
 					open = ':red_circle: Sorry, closed.';
 				}
-				text = text + '**' + response.results[i].name + '**\n`' + response.results[i].formatted_address + '`\n:star: ' + response.results[i].rating + '\n' + open + '\n';
+				text = text + '**' + response.results[i].name + '**\n`' + response.results[i].formatted_address + '`\n:star: ' + response.results[i].rating + '\n' + open + '\n\n';
 			}
 			message.channel.send(text);
 		});
