@@ -23,12 +23,12 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
-	if (message.content.includes('https://twitter.com/') && message.content.includes('/status/')){
+	if (message.content.substring(0, 5) == '!pics' && message.content.includes('https://twitter.com/') && message.content.includes('/status/')){
 		console.log('fuck');
 		var tweetId = message.content.substring(message.content.indexOf('/status/')+('/status/').length);
 		tweeter.get('statuses/show/' + tweetId, function(error, tweet, response) {
   if (!error) {
-    console.log(tweet);
+    console.log(tweet.entities.media);
   } else {
 	  console.log(error);
   }
