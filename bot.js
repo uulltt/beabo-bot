@@ -23,9 +23,7 @@ var tweeter = new Twitter({
 client.on('ready', () => {
 	console.log('I am ready!');
 	client.user.setUsername("Beabo");
-	client.user.setActivity('type !commands for help', { type: 'WATCHING' })
-  .then(presence => console.log(`Activity set to ${presence.game ? presence.game.name : 'none'}`))
-  .catch(console.error);
+	client.user.setActivity('type !commands for help', { type: 'WATCHING' });
 });
 
 var lines = [" beabo", " bee", " bii", " be"];
