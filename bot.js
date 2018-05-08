@@ -7,7 +7,10 @@ const client = new Discord.Client();
 var googlePlaces = require('googleplaces');
 var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
 var imgur = require('imgur');
-var $ = require('jquery');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const { window } = new JSDOM(`<!DOCTYPE html>`);
+var $ = require('jquery')(window);
 
 var tumblr = require('tumblr.js');
 var tumblrClient = tumblr.createClient({
