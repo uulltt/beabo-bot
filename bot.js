@@ -26,7 +26,12 @@ client.on('ready', () => {
 	client.user.setPresence({ game: { name: 'type !commands for help' }, status: 'online' })
 });
 
+var lines = ["Beabo!", "Bee! Beabo bii!", "BEEEEEEEEEEEEEEEE!", "Bii bii!", "Bee! Be be Beabo bee!"];
+
 client.on('message', message => {
+	if (message.content.includes('@Beabo')){
+		message.channel.send(lines[Math.floor(Math.random() * lines.length)]);
+	}
 	if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))) {
 		message.channel.send({
 			embed: {
