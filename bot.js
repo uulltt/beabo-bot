@@ -30,7 +30,7 @@ client.on('ready', () => {
         type: 0
     }, status: 'online'
 	}
-	client.user.setPresence(presence)
+	client.user.setPresence(presence);
 });
 
 var lines = [" beabo", " bee", " bii", " be"];
