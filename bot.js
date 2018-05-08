@@ -99,12 +99,12 @@ client.on('message', message => {
 		var theAlbum = message.content.substring(message.content.indexOf('/a/') + ('/a/').length).match(/[0-9a-zA-Z]+/gm)[0];
 		imgur.getAlbumInfo(theAlbum)
     .then(function(json) {
-        console.log(json);
-		/*for (var i = 1; i < tweet.extended_entities.media.length; i++) {
+        console.log(json.data.images);
+		/*for (var i = 0; i < json.data.images.length; i++) {
 						message.channel.send({
 							embed: {
 								image: {
-									url: tweet.extended_entities.media[i].media_url
+									url: json.data.images
 								}
 							}
 						});
