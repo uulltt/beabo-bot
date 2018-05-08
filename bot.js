@@ -8,8 +8,8 @@ var googlePlaces = require('googleplaces');
 var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
 var imgur = require('imgur');
 
-var tumblr = require('tumblrwks');
-var tumblrClient = new tumblr({
+var Tumblr = require('tumblrwks');
+var tumblr = new Tumblr({
   consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 });
 
