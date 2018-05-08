@@ -41,8 +41,8 @@ client.on('message', message => {
 })
 .then(function(result){
 	var dir = "";
-	for(var i = 0; i < result.routes.legs.length; i++){
-		console.log(result.routes.legs[i]);
+	for(var i = 0; i < result.routes[0].legs.length; i++){
+		console.log(result.routes[0].legs[i]);
 	}
 });
 	}
