@@ -32,8 +32,8 @@ client.on('message', message => {
 		for(var i = 0; i < args.length; i++){
 			console.log(args[i]);
 		}
-		var ori = args[0];
-		var dest = args[2];
+		var ori = args[1];
+		var dest = args[3];
 		console.log(ori + ' ' + dest);
 		direction({
   origin: ori,
