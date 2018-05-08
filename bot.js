@@ -45,13 +45,18 @@ client.on('message', message => {
 		message.channel.send(sentence);
 	}
 	if (message.content.substring(0, 6) === '!exif '){
+		var request = require('request').defaults({ encoding: null });
+request.get(message.content.substring(6), function (err, res, body) {
+      //process exif here
+
 try {
-    new ExifImage({ image : message.content.substring(6) }, function (error, exifData) {
+    new ExifImage({ image : res }, function (error, exifData) {
         if (error)
             console.log('Error: '+error.message);
         else
             console.log(exifData); // Do something with your data!
     });
+});
 } catch (error) {
     console.log('Error: ' + error.message);
 }
