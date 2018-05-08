@@ -7,6 +7,7 @@ const client = new Discord.Client();
 var googlePlaces = require('googleplaces');
 var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
 var imgur = require('imgur');
+var ExifImage = require('exif').ExifImage;
 
 var Tumblr = require('tumblrwks');
 var tumblr = new Tumblr({
@@ -42,6 +43,18 @@ client.on('message', message => {
 		}
 		sentence += "!";
 		message.channel.send(sentence);
+	}
+	if (message.content.substring(0, 6) === '!exif '){
+try {
+    new ExifImage({ image : message.content.substring(6) }, function (error, exifData) {
+        if (error)
+            console.log('Error: '+error.message);
+        else
+            console.log(exifData); // Do something with your data!
+    });
+} catch (error) {
+    console.log('Error: ' + error.message);
+}
 	}
 	if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))) {
 		message.channel.send({
