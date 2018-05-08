@@ -30,8 +30,6 @@ client.on('ready', () => {
 	client.user.setPresence({ game: { name: 'type !commands for help' }, status: 'online' })
 	console.log(process.env.TUMBLR_CONSUMER_KEY);
 	console.log(process.env.TUMBLR_CONSUMER_SECRET);
-	console.log(process.env.TUMBLR_TOKEN);
-	console.log(process.env.TUMBLR_TOKEN_SECRET);
 });
 
 client.on('message', message => {
