@@ -38,10 +38,12 @@ client.on('message', message => {
 				throw error;
 			for(var i = 0; i < Math.min(response.results.length, 6); i++){
 				var open = '';
+				if (response.results[i].hasOwnProperty('opening_hours') && response.results[i].opening_hours.hasOwnProperty('open_now')){
 				if (response.results[i].opening_hours.open_now){
 					open = ':large_blue_circle: ***OPEN NOW!***';
 				} else {
 					open = ':red_circle: Sorry, closed.';
+				}
 				}
 				message.channel.send('**' + response.results[i].name + '**\n`' + response.results[i].formatted_address + '`\n:star: ' + response.results[i].rating + '\n' + open);
 			}
