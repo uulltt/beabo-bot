@@ -114,7 +114,7 @@ client.on('message', message => {
 		var theAlbum = message.content.substring(message.content.indexOf('/a/') + ('/a/').length).match(/[0-9a-zA-Z]+/gm)[0];
 		imgur.getAlbumInfo(theAlbum)
     .then(function(json) {
-		for (var i = 0; i < json.data.images.length; i++) {
+		for (var i = 0; i < Math.min(json.data.images.length, 10); i++) {
 						message.channel.send({
 							embed: {
 								image: {
@@ -134,9 +134,11 @@ client.on('message', message => {
 	if (message.content.includes('tumblr.com/post/')) {
 		var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
 		var blogId = hasBlogId[hasBlogId.length - 1];
+		console.log("am i doing this right?");
 		var postId = message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0];
 		$.getJSON("api.tumblr.com/v2/blog/" + blogId + ".tumblr.com/posts/photo?id=" + postId + "&api_key={" + process.env.TUMBLR_CONSUMER_KEY + "}", function(data){
 		console.log(data);
+		console.log("am i doing this right also?");
 		}		
 		);
 		/*tumblrClient.blogPosts(blogId, {id : postId}, function(err, resp) {
