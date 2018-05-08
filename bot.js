@@ -29,14 +29,15 @@ client.on('message', message => {
 	}
 	if (message.content.substring(0, 5) === '!dir '){
 		var args = message.content.substring(5).split('"');
-		var orig1n = args[0];
-		var destinat1on = args[2];
+		var ori = args[0];
+		var dest = args[2];
+		console.log(ori + ' ' + dest);
 		direction({
-  origin: orig1n,
-  destination: destinat1on
+  origin: ori,
+  destination: dest
 })
 .then(function(result){
-	message.channel.send(result);
+	console.log(result);
 });
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
