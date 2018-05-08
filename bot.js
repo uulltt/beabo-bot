@@ -12,7 +12,7 @@ const { JSDOM } = jsdom;
 const { window } = new JSDOM(`<!DOCTYPE html>`);
 var $ = require('jquery')(window);
 
-var tumblr = require('tumblrwrks');
+var tumblr = require('tumblrwks');
 var tumblrClient = new tumblr({
   consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 });
@@ -134,15 +134,7 @@ client.on('message', message => {
 		tumblr.get('/info', {hostname: 'arktest.tumblr.com'}, function(err, json){
   console.log(json);
 });
- 
-// Or with Promises
-tumblr.get('/info', {hostname: 'arktest.tumblr.com'})
-    then(function (json) {
-        console.log(json);
-    }, function (error) {
-        console.log(error)
-    });
-});
+
 		/*tumblrClient.blogPosts(blogId, {id : postId}, function(err, resp) {
 			if (!err){
 			resp.posts;
