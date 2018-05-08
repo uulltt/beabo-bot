@@ -28,7 +28,8 @@ client.on('message', message => {
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
 		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length);
-		tweeter.get('statuses/show/' + tweetId, function (error, tweet, response) {
+		tweeter.get('statuses/show/' + tweetId, function (error, tweet, tweet_mode, response) {
+			tweet_mode='extended';
 			if (!error) {
 				console.log(tweet);
 				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
