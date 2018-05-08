@@ -40,11 +40,12 @@ client.on('message', message => {
   destination: dest
 })
 .then(function(result){
-	var dir = "";
+	var dir = '\"' + ori + '\" to \"' + dest + '\"\n';
 	for(var i = 0; i < result.routes[0].legs.length; i++){
-		console.log(result.routes[0].legs[i].distance);
-		console.log(result.routes[0].legs[i].duration);
-		dir = dir + '•' + result.routes[0].legs[i].html_instructions.replace(/<b>/gm, '**').replace(/<\/b>/gm, '**') + '\n';
+		//console.log(result.routes[0].legs[i].distance);
+		//console.log(result.routes[0].legs[i].duration);
+		console.log(result.routes[0].legs[i].html_instructions);
+		//dir = dir + '•' + result.routes[0].legs[i].html_instructions.replace(/<b>/gm, '**').replace(/<\/b>/gm, '**') + '(' + result.routes[0].legs[i].distance.text + ', ' + result.routes[0].legs[i].duration.text + ')\n';
 	}
 	message.channel.send(dir);
 });
