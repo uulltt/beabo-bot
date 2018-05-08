@@ -40,6 +40,7 @@ client.on('message', message => {
 				sentence += "!";
 			}
 		}
+		sentence += "!";
 		message.channel.send(sentence);
 	}
 	if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))) {
