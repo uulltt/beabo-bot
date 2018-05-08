@@ -29,8 +29,6 @@ client.on('ready', () => {
 	console.log('I am ready!');
 	client.user.setUsername("NagaevskyTron");
 	client.user.setPresence({ game: { name: 'type !commands for help' }, status: 'online' })
-	console.log(process.env.TUMBLR_CONSUMER_KEY);
-	console.log(process.env.TUMBLR_CONSUMER_SECRET);
 });
 
 client.on('message', message => {
@@ -133,15 +131,23 @@ client.on('message', message => {
 	if (message.content.includes('tumblr.com/post/')) {
 		var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
 		var blogId = hasBlogId[hasBlogId.length - 1];
-		var postId = parseInt(message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0]);
-		tumblrClient.blogPosts(blogId, {id : postId}, function(err, resp) {
+		var postId = message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0];
+		$.get("api.tumblr.com/v2/blog/" + blogId + ".tumblr.com/posts/photo?id=" + postId + "&api_key={" + process.env.TUMBLR_CONSUMER_KEY + "}", function(err, resp){
+		if (!err){
+resp.posts;
+		} else {
+console.log(err);
+		}		
+		}
+		);
+		/*tumblrClient.blogPosts(blogId, {id : postId}, function(err, resp) {
 			if (!err){
 			resp.posts;
 			} else {
 				console.log(err);
 			}
 		}
-		);
+		);*/
 		/*imgur.getAlbumInfo(theAlbum)
     .then(function(json) {
 		for (var i = 0; i < json.data.images.length; i++) {
