@@ -29,6 +29,7 @@ if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))){
 		var tweetId = message.content.substring(message.content.indexOf('/status/')+('/status/').length);
 		tweeter.get('statuses/show/' + tweetId, function(error, tweet, response) {
   if (!error) {
+if (tweet.extended_entities.hasOwnProperty('media'){
     for(var i = 1; i < tweet.extended_entities.media.length; i++){
 		message.channel.send({embed: {
 								image: {
@@ -38,10 +39,11 @@ if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))){
 		}
 		);
 	}
+}
   } else {
 	  console.log(error);
   }
-}).catch(console.error);
+})
 	}
 	if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
 		var args = message.content.substring(5).split('\n'); //we split by line breaks
