@@ -14,6 +14,8 @@ var tweeter = new Twitter({
 client.on('ready', () => {
 	console.log('I am ready!');
 	client.user.setUsername("NagaevskyTron 60");
+	console.log(process.env.BOT_TOKEN);
+	console.log(process.env.TWITTER_CONSUMER_KEY);
 });
 
 client.on('message', message => {
