@@ -27,7 +27,7 @@ client.on('message', message => {
 			}
 		});
 	}
-	if (message.content.substring(0, 7) === '!dirkm '){
+	if (message.content.substring(0, 7) === '!dirkm ' || message.content.substring(0, 7) === '!dirmi '){
 		var args = message.content.substring(7).split('\"');
 		for(var i = 0; i < args.length; i++){
 			console.log(args[i]);
@@ -46,7 +46,7 @@ client.on('message', message => {
 		console.log(result.routes[0].legs[i].duration);
 		dir = dir + '•' + result.routes[0].legs[i].html_instructions.replace(/<b>/gm, '**').replace(/<\/b>/gm, '**') + '\n';
 	}
-	console.log(dir);
+	message.channel.send(dir);
 });
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
