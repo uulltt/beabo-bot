@@ -71,7 +71,7 @@ client.on('message', message => {
 				message.channel.send('Too many directions. Just Google it.');
 		}).catch(console.error);
 	}
-	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('twitter.com/') && message.content.includes('/status/')) {
+	if ((message.content.substring(0, 6) == '!pics ' || message.content.substring(0, 6) == '!full ' || message.content.substring(0, 7) == '!album ') && message.content.includes('twitter.com/') && message.content.includes('/status/')) {
 		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
 		tweeter.get('statuses/show/' + tweetId, {
 			tweet_mode: 'extended'
@@ -95,11 +95,10 @@ client.on('message', message => {
 			}
 		})
 	}
-	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('imgur.com/') && message.content.includes('/a/')) {
+	if ((message.content.substring(0, 6) == '!pics ' || message.content.substring(0, 6) == '!full ' || message.content.substring(0, 7) == '!album ') && message.content.includes('imgur.com/') && message.content.includes('/a/')) {
 		var theAlbum = message.content.substring(message.content.indexOf('/a/') + ('/a/').length).match(/[0-9a-zA-Z]+/gm)[0];
 		imgur.getAlbumInfo(theAlbum)
     .then(function(json) {
-        console.log(json.data.images);
 		for (var i = 0; i < json.data.images.length; i++) {
 						message.channel.send({
 							embed: {
@@ -493,7 +492,7 @@ client.on('message', message => {
 			'font!kof2k2 - king of fighters 2002\nfont!kof2k3 - king of fighters 2003\nfont!mt - major title\nfont!moma = monster maulers\nfont!namco2 - namco classic gradient\nfont!njgd - ninja gaiden\nfont!pabom - panic bomber\nfont!paro - parodius da\n' +
 			'font!pubu - puzzle bobble\nfont!quake - quack\nfont!raph - rapid hero\nfont!robot - robotron\nfont!rtl - rtype leo\nfont!sexy - parodius\nfont!sf2 - street fighter 2\nfont!ssf2 - super street fighter 2\nfont!sfz3 or !sfa3 - street fighter zero\alpha 3\nfont!simp - the simpsons\n' +
 			'font!sold - soldam\nfont!tetris - tetris (sega)\nfont!vict - victory road\n*/
-			'\nother commands\n!list or !todo - splits discord message into a to-do list\n!full or !pics followed by twitter link - displays full photo album of tweet\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in kendall\")\nhex#hexCode - displays image of a color pertaining to the hex cde\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number');
+			'\nother commands\n!list or !todo - splits discord message into a to-do list\n!full or !pics or !album followed by twitter or imgur link - displays full photo album of tweet\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in kendall\")\nhex#hexCode - displays image of a color pertaining to the hex cde\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number');
 	}
 
 });
