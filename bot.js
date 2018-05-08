@@ -44,7 +44,7 @@ client.on('message', message => {
 	message.channel.send(dir);
 	else
 	message.channel.send('Too many directions. Just Google it.');
-});
+}).catch(console.error);
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
 		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length);
