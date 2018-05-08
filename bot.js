@@ -26,11 +26,20 @@ client.on('ready', () => {
 	client.user.setPresence({ game: { name: 'type !commands for help' }, status: 'online' })
 });
 
-var lines = ["Beabo!", "Bee! Beabo bii!", "BEEEEEEEEEEEEEEEE!", "Bii bii!", "Bee! Be be Beabo bee!"];
+var lines = [" beabo", " bee", " bii", " be"];
 
 client.on('message', message => {
 	if (message.isMentioned(client.user)){
-		message.channel.send(lines[Math.floor(Math.random() * lines.length)]);
+		var len = Math.floor(Math.random() * 6) + 1;
+		var sentence = "";
+		for(var i = 0; i < len; i++){
+			sentence += lines[Math.floor(Math.random() * lines.length)];
+			var ex = Math.floor(Math.random() * 3);
+			if (ex === 0){
+				sentence += "!";
+			}
+		}
+		message.channel.send(sentence);
 	}
 	if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))) {
 		message.channel.send({
