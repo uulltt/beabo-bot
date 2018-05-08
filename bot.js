@@ -129,9 +129,8 @@ client.on('message', message => {
 	if (message.content.includes('tumblr.com/post/')) {
 		var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
 		var blogId = hasBlogId[hasBlogId.length - 1];
-		var postId = message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0];
+		var postId = parseInt(message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0]);
 		tumblrClient.blogPosts(blogId, {id : postId}, function(err, resp) {
-			resp.posts;
 			if (!err){
 			resp.posts;
 			} else {
