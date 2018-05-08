@@ -18,7 +18,7 @@ var tweeter = new Twitter({
 client.on('ready', () => {
 	console.log('I am ready!');
 	client.user.setUsername("NagaevskyTron");
-	client.user.setGame('Type **!commands** for help');
+	client.user.setGame('Type !commands for help');
 });
 
 client.on('message', message => {
