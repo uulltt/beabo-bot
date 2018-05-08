@@ -131,9 +131,11 @@ client.on('message', message => {
 		var blogId = hasBlogId[hasBlogId.length - 1];
 		var postId = message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0];
 		tumblrClient.blogPosts(blogId, {id : postId}, function(err, resp) {
+			if (!err){
 			console.log(resp.posts);
+			}
 		}
-		).catch(console.error);
+		);
 		/*imgur.getAlbumInfo(theAlbum)
     .then(function(json) {
 		for (var i = 0; i < json.data.images.length; i++) {
