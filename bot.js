@@ -36,7 +36,7 @@ client.on('message', message => {
 		GPlaces.textSearch(parameters, function (error, response) {
 			if (error)
 				throw error;
-			for(var i = 0; i < response.results.length; i++){
+			for(var i = 0; i < Math.min(response.results.length, 6); i++){
 				var open = '';
 				if (response.results[i].opening_hours.open_now){
 					open = ':large_blue_circle: ***OPEN NOW!***';
