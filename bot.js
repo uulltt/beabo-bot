@@ -132,7 +132,7 @@ client.on('message', message => {
 		var postId = message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0];
 		tumblrClient.blogPosts(blogId, {id : postId}, function(err, resp) {
 			if (!err){
-			console.log(resp.posts);
+			resp.posts;
 			}
 		}
 		);
