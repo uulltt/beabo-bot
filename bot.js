@@ -13,7 +13,8 @@ var tumblrClient = tumblr.createClient({
   consumer_key: process.env.TUMBLR_CONSUMER_KEY,
   consumer_secret: process.env.TUMBLR_CONSUMER_SECRET,
   token: process.env.TUMBLR_TOKEN,
-  token_secret: process.env.TUMBLR_TOKEN_SECRET
+  token_secret: process.env.TUMBLR_TOKEN_SECRET,
+  api_key: process.env.TUMBLR_CONSUMER_KEY
 });
 
 var tweeter = new Twitter({
@@ -27,6 +28,10 @@ client.on('ready', () => {
 	console.log('I am ready!');
 	client.user.setUsername("NagaevskyTron");
 	client.user.setPresence({ game: { name: 'type !commands for help' }, status: 'online' })
+	console.log(process.env.TUMBLR_CONSUMER_KEY);
+	console.log(process.env.TUMBLR_CONSUMER_SECRET);
+	console.log(process.env.TUMBLR_TOKEN);
+	console.log(process.env.TUMBLR_TOKEN_SECRET);
 });
 
 client.on('message', message => {
