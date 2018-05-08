@@ -4,6 +4,8 @@ const nfgUrl = require('./nfgUrl.js');
 var Twitter = require('twitter');
 var direction = require('google-maps-direction');
 const client = new Discord.Client();
+var googlePlaces = require('googleplaces');
+var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
 
 var tweeter = new Twitter({
 		consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -27,30 +29,43 @@ client.on('message', message => {
 			}
 		});
 	}
-	if (message.content.substring(0, 5) === '!dir ' || message.content.substring(0, 5) === '!dir '){
+	if (message.content.substring(0, 8) === '!places ') {
+		parameters = {
+			query: message.content.substring(8).split('\"')[1]
+		};
+		GPlaces.textSearch(parameters, function (error, response) {
+			if (error)
+				throw error;
+			assert.notEqual(response.results.length, 0, "Text search must not return 0 results");
+		});
+
+	}
+	if (message.content.substring(0, 5) === '!dir ') {
 		var args = message.content.substring(5).split('\"');
 		var ori = args[1];
 		var dest = args[3];
 		direction({
-  origin: ori,
-  destination: dest
-})
-.then(function(result){
-	var dir = ':motorway: **' + ori+ '** to **' + dest + '**\n';
-	for(var i = 0; i < result.routes[0].legs[0].steps.length; i++){
-		dir = dir + (i+1).toString() + '. ' + result.routes[0].legs[0].steps[i].html_instructions.replace(/<\/?b>/gm, '**').replace(/<div style="font-size:0.9em">/gm, ' `(').replace(/<\/div>/gm, ')`') + ' (' + result.routes[0].legs[0].steps[i].distance.text + ', ' + result.routes[0].legs[0].steps[i].duration.text + ')\n';
-	}
-	dir = dir + 'And you\'re there! :smiley:';
-	if (dir.length <= 2000)
-	message.channel.send(dir);
-	else
-	message.channel.send('Too many directions. Just Google it.');
-}).catch(console.error);
+			origin: ori,
+			destination: dest
+		})
+		.then(function (result) {
+			var dir = ':motorway: **' + ori + '** to **' + dest + '**\n';
+			for (var i = 0; i < result.routes[0].legs[0].steps.length; i++) {
+				dir = dir + (i + 1).toString() + '. ' + result.routes[0].legs[0].steps[i].html_instructions.replace(/<\/?b>/gm, '**').replace(/<div style="font-size:0.9em">/gm, ' `(').replace(/<\/div>/gm, ')`') + ' (' + result.routes[0].legs[0].steps[i].distance.text + ', ' + result.routes[0].legs[0].steps[i].duration.text + ')\n';
+			}
+			dir = dir + 'And you\'re there! :smiley:';
+			if (dir.length <= 2000)
+				message.channel.send(dir);
+			else
+				message.channel.send('Too many directions. Just Google it.');
+		}).catch(console.error);
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
 		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
-		tweeter.get('statuses/show/' + tweetId, {tweet_mode: 'extended'}, function (error, tweet, response) {
-			
+		tweeter.get('statuses/show/' + tweetId, {
+			tweet_mode: 'extended'
+		}, function (error, tweet, response) {
+
 			if (!error) {
 				console.log(tweet);
 				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
