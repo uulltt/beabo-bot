@@ -35,7 +35,7 @@ if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))){
 		console.log('fuck');
 		var tweetId = message.content.substring(message.content.indexOf('/status/')+('/status/').length);
 		tweeter.get('statuses/show/' + tweetId, function(error, tweet, response) {
-  if (!error) {
+  if (!error && tweet.entities.media.constructor === Array) {
     for(var i = 1; i < tweet.entities.media.length; i++){
 		message.channel.send({embed: {
 								image: {
@@ -44,6 +44,7 @@ if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))){
 					}
 		}
 		);
+	}
   } else {
 	  console.log(error);
   }
