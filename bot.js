@@ -26,11 +26,10 @@ if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))){
 	});
 }
 	if (message.content.substring(0, 5) == '!pics' && message.content.includes('https://twitter.com/') && message.content.includes('/status/')){
-		console.log('fuck');
 		var tweetId = message.content.substring(message.content.indexOf('/status/')+('/status/').length);
 		tweeter.get('statuses/show/' + tweetId, function(error, tweet, response) {
   if (!error) {
-
+if (typeof tweet.extended_entities.media !== "undefined"){
     for(var i = 1; i < tweet.extended_entities.media.length; i++){
 		message.channel.send({embed: {
 								image: {
@@ -40,6 +39,7 @@ if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))){
 		}
 		);
 	}
+}
   } else {
 	  console.log(error);
   }
