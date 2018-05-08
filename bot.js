@@ -24,13 +24,12 @@ client.on('ready', () => {
 	console.log('I am ready!');
 	client.user.setUsername("Beabo");
 	var presence = {
-        
         game: {
         name: 'type !commands for help',
         type: 0
-    }
-	};
-	client.user.setPresence(presence);
+        }
+}
+client.user.setPresence(presence);
 });
 
 var lines = [" beabo", " bee", " bii", " be"];
