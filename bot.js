@@ -36,7 +36,7 @@ client.on('message', message => {
 		GPlaces.textSearch(parameters, function (error, response) {
 			if (error)
 				throw error;
-			for(var i = 0; i < Math.min(response.results.length, 6); i++){
+			for(var i = 0; i < Math.min(response.results.length, 5); i++){
 				var open = '';
 				if (response.results[i].hasOwnProperty('opening_hours') && response.results[i].opening_hours.hasOwnProperty('open_now')){
 				if (response.results[i].opening_hours.open_now){
@@ -117,7 +117,7 @@ client.on('message', message => {
 			size = message.content.charAt(8);
 		}
 		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 6); i++) {
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
 
 			if (args[i].length > 0)
 				message.channel.send({
@@ -136,7 +136,7 @@ client.on('message', message => {
 		if (game === 'ddr')
 			game = 'DDR';
 		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 6); i++) {
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
 
 			if (args[i].length > 0)
 				message.channel.send({
@@ -156,7 +156,7 @@ client.on('message', message => {
 			game = 'DDR';
 		if (game !== 'kof') {
 			var args = arg.match(/.{1,24}\W/gm);
-			for (var i = 0; i < Math.min(args.length, 6); i++) {
+			for (var i = 0; i < Math.min(args.length, 5); i++) {
 
 				if (args[i].length > 0)
 					message.channel.send({
@@ -189,7 +189,7 @@ client.on('message', message => {
 					args = arg.match(/.{1,34}\W/gm);
 				if (game === 'sfz3' || game === 'vict' || game === 'moma')
 					args = arg.match(/.{1,23}\W/gm);
-				for (var i = 0; i < Math.min(args.length, 6); i++) {
+				for (var i = 0; i < Math.min(args.length, 5); i++) {
 
 					if (args[i].length > 0)
 						message.channel.send({
@@ -213,7 +213,7 @@ client.on('message', message => {
 		if (game === 'kof2k')
 			game = 'KoF2k';
 		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 6); i++) {
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].length > 0)
 				message.channel.send({
 					embed: {
@@ -238,7 +238,7 @@ client.on('message', message => {
 		if (game === 'ketsui')
 			game = 'KETSUI';
 		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 6); i++) {
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].length > 0)
 				message.channel.send({
 					embed: {
@@ -259,7 +259,7 @@ client.on('message', message => {
 			size = message.content.charAt(13);
 		}
 		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 6); i++) {
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].length > 0)
 				message.channel.send({
 					embed: {
@@ -282,7 +282,7 @@ client.on('message', message => {
 			size = message.content.charAt(8);
 		}
 		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 6); i++) {
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].length > 0)
 				message.channel.send({
 					embed: {
@@ -302,7 +302,7 @@ client.on('message', message => {
 		if (game === 'ddr')
 			game = 'DDR';
 		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 6); i++) {
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].length > 0)
 				message.channel.send({
 					embed: {
@@ -324,7 +324,7 @@ client.on('message', message => {
 		if (game === 'kof') {}
 		else {
 			var args = arg.match(/.{1,24}\W/gm);
-			for (var i = 0; i < Math.min(args.length, 6); i++) {
+			for (var i = 0; i < Math.min(args.length, 5); i++) {
 				if (args[i].length > 0)
 					message.channel.send({
 						embed: {
@@ -357,7 +357,7 @@ client.on('message', message => {
 					args = arg.match(/.{1,34}\W/gm);
 				if (game === 'sfz3' || game === 'vict' || game === 'moma')
 					args = arg.match(/.{1,23}\W/gm);
-				for (var i = 0; i < Math.min(args.length, 6); i++) {
+				for (var i = 0; i < Math.min(args.length, 5); i++) {
 					if (args[i].length > 0)
 						message.channel.send({
 							embed: {
@@ -382,7 +382,7 @@ client.on('message', message => {
 		if (game === 'kof2k')
 			game = 'KoF2k';
 		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 6); i++) {
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].length > 0)
 				message.channel.send({
 					embed: {
@@ -409,7 +409,7 @@ client.on('message', message => {
 		if (game === 'ketsui')
 			game = 'KETSUI';
 		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 6); i++) {
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].length > 0)
 				message.channel.send({
 					embed: {
@@ -432,7 +432,7 @@ client.on('message', message => {
 			size = message.content.charAt(13);
 		}
 		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 6); i++) {
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].length > 0)
 				message.channel.send({
 					embed: {
@@ -447,7 +447,7 @@ client.on('message', message => {
 	if (new RegExp(/font!kof97\W/gm).test(message.content.substring(0, 11))) {
 		var arg = message.content.substring(11) + '\u200B';
 		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 6); i++) {
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].charAt(args[i].length - 1) === '\n') {
 				args[i] = args[i].substring(0, args[i].length - 1);
 			}
