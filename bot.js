@@ -130,7 +130,10 @@ client.on('message', message => {
 		var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
 		var blogId = hasBlogId[hasBlogId.length - 1];
 		var postId = message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0];
-		console.log(blogId + ' ' + postId);
+		tumblrClient.blogPosts(blogId, {id : postId}, function(err, resp) {
+			console.log(resp.posts);
+		}
+		).catch(console.error);
 		/*imgur.getAlbumInfo(theAlbum)
     .then(function(json) {
 		for (var i = 0; i < json.data.images.length; i++) {
