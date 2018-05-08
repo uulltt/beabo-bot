@@ -40,7 +40,10 @@ client.on('message', message => {
   destination: dest
 })
 .then(function(result){
-	console.log(result);
+	var dir = "";
+	for(var i = 0; i < result.routes.legs.length; i++){
+		console.log(result.routes.legs[i]);
+	}
 });
 	}
 	if ((message.content.substring(0, 5) == '!pics' || message.content.substring(0, 5) == '!full') && message.content.includes('https://twitter.com/') && message.content.includes('/status/')) {
