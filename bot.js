@@ -23,12 +23,19 @@ var tweeter = new Twitter({
 client.on('ready', () => {
 	console.log('I am ready!');
 	client.user.setUsername("Beabo");
+	var presence = {
+        
+        game: {
+        name: 'type !commands for help',
+        type: 0
+    }
+	client.user.setPresence(presence)
 });
 
 var lines = [" beabo", " bee", " bii", " be"];
 
 client.on('message', message => {
-	client.user.setPresence({ game: { name: 'type !commands for help' }, status: 'online' })
+	
 	if (message.isMentioned(client.user)){
 		var len = Math.floor(Math.random() * 6) + 1;
 		var sentence = "";
