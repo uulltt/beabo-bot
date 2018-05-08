@@ -12,13 +12,9 @@ const { JSDOM } = jsdom;
 const { window } = new JSDOM(`<!DOCTYPE html>`);
 var $ = require('jquery')(window);
 
-var tumblr = require('tumblr.js');
-var tumblrClient = tumblr.createClient({
-  consumer_key: process.env.TUMBLR_CONSUMER_KEY,
-  consumer_secret: process.env.TUMBLR_CONSUMER_SECRET,
-  token: process.env.TUMBLR_TOKEN,
-  token_secret: process.env.TUMBLR_TOKEN_SECRET,
-  api_key: process.env.TUMBLR_CONSUMER_KEY
+var tumblr = require('tumblrwrks');
+var tumblrClient = new tumblr({
+  consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 });
 
 var tweeter = new Twitter({
@@ -135,12 +131,18 @@ client.on('message', message => {
 		var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
 		var blogId = hasBlogId[hasBlogId.length - 1];
 		console.log("am i doing this right?");
-		var postId = message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0];
-		$.get("api.tumblr.com/v2/blog/" + blogId + ".tumblr.com/posts/photo?id=" + postId + "&api_key={" + process.env.TUMBLR_CONSUMER_KEY + "}", function(data){
-		console.log(data);
-		console.log("am i doing this right also?");
-		}		
-		);
+		tumblr.get('/info', {hostname: 'arktest.tumblr.com'}, function(err, json){
+  console.log(json);
+});
+ 
+// Or with Promises
+tumblr.get('/info', {hostname: 'arktest.tumblr.com'})
+    then(function (json) {
+        console.log(json);
+    }, function (error) {
+        console.log(error)
+    });
+});
 		/*tumblrClient.blogPosts(blogId, {id : postId}, function(err, resp) {
 			if (!err){
 			resp.posts;
