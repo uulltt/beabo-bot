@@ -23,19 +23,27 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))){
+	message.channel.send({embed: {
+		image: {
+			url: 'https://www.colorcombos.com/images/colors/' + message.content.substring(4,10) + '.png'
+		}
+	}
+	});
+}
 	if (message.content.substring(0, 5) == '!pics' && message.content.includes('https://twitter.com/') && message.content.includes('/status/')){
 		console.log('fuck');
 		var tweetId = message.content.substring(message.content.indexOf('/status/')+('/status/').length);
 		tweeter.get('statuses/show/' + tweetId, function(error, tweet, response) {
   if (!error) {
     for(var i = 1; i < tweet.entities.media.length; i++){
-		message.channel.send(embed: {
+		message.channel.send({embed: {
 								image: {
 									url: tweet.entities.media[i].media_url
 								}
+					}
 		}
 		);
-	}
   } else {
 	  console.log(error);
   }
