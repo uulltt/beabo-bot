@@ -49,7 +49,7 @@ client.on('message', message => {
 		if (message.content.length > 6)
 		    picURL = message.content.substring(6);
 		if (message.attachments.size > 0)
-			console.log(message.attachments);
+			picURL = message.attachments.url;
 		
 		var request = require('request').defaults({ encoding: null });
 request.get(picURL, function (err, res, body) {
