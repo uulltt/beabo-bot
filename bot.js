@@ -44,15 +44,9 @@ client.on('message', message => {
 		sentence += "!";
 		message.channel.send(sentence);
 	}
-	if (message.content.substring(0, 5) === '!exif'){
-		var picURL = '';
-		if (message.content.length > 6)
-		    picURL = message.content.substring(6);
-		if (message.attachments.size > 0)
-			picURL = ((message.attachments).array())[0].proxyURL;
-		
+	if (message.content.substring(0, 6) === '!exif '){
 		var request = require('request').defaults({ encoding: null });
-request.get(picURL, function (err, res, body) {
+request.get(message.content.substring(6), function (err, res, body) {
       //process exif here
 var exifString = ':frame_photo: EXIF data:\n';
 try {
