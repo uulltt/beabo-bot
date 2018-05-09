@@ -247,124 +247,79 @@ if (exifString.length > 2000){
 		}
 
 	}
-if (new RegExp(/font!/gm).test(message.content.substring(0, 5))){
+if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))){
 	var arg = ' ';
 	var game = ' ';
 	var style = '0';
 	var size = '2';
 	var args = [];
-	if (new RegExp(/font![a-z0-9]{2}\W/gm).test(message.content.substring(0, 8)) || new RegExp(/font![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
+	if (new RegExp(/[Ff]ont![a-z0-9]{2}\W/gm).test(message.content.substring(0, 8)) || new RegExp(/[Ff]ont![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
 		arg = message.content.substring(8) + '\u200B';
 		game = message.content.substring(5, 7);
-		if (new RegExp(/font![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
+		if (new RegExp(/[Ff]ont![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(7);
 			size = message.content.charAt(8);
 		}
-		args = arg.match(/.{1,24}\W/gm);
-	} else if (new RegExp(/font![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0, 9))) {
+	} else if (new RegExp(/[Ff]ont![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0, 9))) {
 		arg = message.content.substring(9) + '\u200B';
 		game = message.content.substring(5, 8);
-		if (game === 'ddr')
-			game = 'DDR';
-		args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 5); i++) {
-
-			if (args[i].length > 0)
-				message.channel.send({
-					embed: {
-						image: {
-							url: nfgUrl.gameText(game, style, size, args[i])
-						}
-					}
-				})
-		}
-	} else if (new RegExp(/font![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0, 11))) {
+	} else if (new RegExp(/[Ff]ont![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0, 11))) {
 		arg = message.content.substring(11) + '\u200B';
 		style = message.content.charAt(8);
 		size = message.content.charAt(9);
 		game = message.content.substring(5, 8);
-		if (game === 'ddr')
-			game = 'DDR';
-		if (game !== 'kof') {
-			args = arg.match(/.{1,24}\W/gm);
-			for (var i = 0; i < Math.min(args.length, 5); i++) {
-
-				if (args[i].length > 0)
-					message.channel.send({
-						embed: {
-							image: {
-								url: nfgUrl.gameText(game, style, size, args[i])
-							}
-						}
-
-					})
-			}
-		}
-	} else if (new RegExp(/font![a-z0-9]{4}\W/gm).test(message.content.substring(0, 10)) || new RegExp(/font![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
+	} else if (new RegExp(/[Ff]ont![a-z0-9]{4}\W/gm).test(message.content.substring(0, 10)) || new RegExp(/[Ff]ont![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
 		arg = message.content.substring(10) + '\u200B';
 		game = message.content.substring(5, 9);
-		if (new RegExp(/font![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
+		if (new RegExp(/[Ff]ont![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(9);
 			size = message.content.charAt(10);
-		}
-		if (game === 'njgd')
-			game = 'niga'
-				if (game === 'sfa3')
-					game = 'sfz3'
-
-						args = arg.match(/.{1,24}\W/gm);
-				if (game === 'pubu')
-					args = arg.match(/.{1,34}\W/gm);
-				if (game === 'sfz3' || game === 'vict' || game === 'moma')
-					args = arg.match(/.{1,23}\W/gm);
-				for (var i = 0; i < Math.min(args.length, 5); i++) {
-
-					if (args[i].length > 0)
-						message.channel.send({
-							embed: {
-								image: {
-									url: nfgUrl.gameText(game, style, size, args[i])
-								}
-							}
-						})
-				}
-	} else if (new RegExp(/font![a-z0-9]{5}\W/gm).test(message.content.substring(0, 11)) || new RegExp(/font![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
+		}	
+	} else if (new RegExp(/[Ff]ont![a-z0-9]{5}\W/gm).test(message.content.substring(0, 11)) || new RegExp(/[Ff]ont![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
 		arg = message.content.substring(11) + '\u200B';
 		game = message.content.substring(5, 10);
-		if (new RegExp(/font![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
+		if (new RegExp(/[Ff]ont![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(10);
 			size = message.content.charAt(11);
 		}
-		if (game === 'kof2k')
-			game = 'KoF2k';
-		args = arg.match(/.{1,24}\W/gm);
-	} else if (new RegExp(/font![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0, 12)) || new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
+	} else if (new RegExp(/[Ff]ont![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0, 12)) || new RegExp(/[Ff]ont![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
 		arg = message.content.substring(12) + '\u200B';
 		game = message.content.substring(5, 11);
-		if (new RegExp(/font![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
+		if (new RegExp(/[Ff]ont![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(11);
 			size = message.content.charAt(12);
 		}
-		if (game.substring(0, 5) === 'kof2k')
-			game = 'KoF2k' + game.charAt(5);
-		if (game === 'ketsui')
-			game = 'KETSUI';
-		args = arg.match(/.{1,24}\W/gm);
-	} else if (new RegExp(/font![A-Za-z0-9]{7}\W/gm).test(message.content.substring(0, 13)) || new RegExp(/font![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
+	} else if (new RegExp(/[Ff]ont![A-Za-z0-9]{7}\W/gm).test(message.content.substring(0, 13)) || new RegExp(/[Ff]ont![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
 		arg = message.content.substring(13) + '\u200B';
 		game = message.content.substring(5, 12);
-		if (new RegExp(/font![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
+		if (new RegExp(/[Ff]ont![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(2);
 			size = message.content.charAt(13);
 		}
-		args = arg.match(/.{1,24}\W/gm);
-		
 	}
+	if (game.substring(0, 5) === 'kof2k')
+			game = 'KoF2k' + game.charAt(5);
+	if (game === 'kof2k')
+			game = 'KoF2k';
+	if (game === 'ketsui')
+			game = 'KETSUI';
+	if (game === 'ddr')
+			game = 'DDR';
+	if (game === 'njgd')
+			game = 'niga'
+	if (game === 'sfa3')
+			game = 'sfz3'
+
+	args = arg.match(/.{1,24}\W/gm);
+	if (game === 'pubu')
+			args = arg.match(/.{1,34}\W/gm);
+	if (game === 'sfz3' || game === 'vict' || game === 'moma')
+			args = arg.match(/.{1,23}\W/gm);
 	if (game !== 'kof' && new RegExp(/[a-zA-Z0-9]+/gm).test(game)){
 	for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].length > 0)
@@ -378,170 +333,82 @@ if (new RegExp(/font!/gm).test(message.content.substring(0, 5))){
 		}
 	}
 }
-	if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{2}\W/gm).test(message.content.substring(0, 8)) || new RegExp(/b[du][0-9][0-9]![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
-		var arg = message.content.substring(8) + '\u200B';
-		var game = message.content.substring(5, 7);
-		var pos = message.content.substring(2, 4);
-		var dir = message.content.charAt(1);
-		var style = '0';
-		var size = '2';
-		if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
+if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
+	var arg = ' ';
+	var game = ' ';
+	var style = '0';
+	var size = '2';
+	var args = [];
+	var pos = message.content.substring(2, 4);
+	var dir = message.content.charAt(1);
+	if (new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{2}\W/gm).test(message.content.substring(0, 8)) || new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
+		arg = message.content.substring(8) + '\u200B';
+		game = message.content.substring(5, 7);
+		if (new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(7);
 			size = message.content.charAt(8);
 		}
-		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 5); i++) {
-			if (args[i].length > 0)
-				message.channel.send({
-					embed: {
-						image: {
-							url: nfgUrl.bubble(game, dir, pos, style, size, args[i])
-						}
-					}
-				})
-		}
-	} else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0, 9))) {
-		var arg = message.content.substring(9) + '\u200B';
-		var game = message.content.substring(5, 8);
-		var pos = message.content.substring(2, 4);
-		var dir = message.content.charAt(1);
-		var style = '0';
-		var size = '2';
-		if (game === 'ddr')
-			game = 'DDR';
-		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 5); i++) {
-			if (args[i].length > 0)
-				message.channel.send({
-					embed: {
-						image: {
-							url: nfgUrl.bubble(game, dir, pos, style, size, args[i])
-						}
-					}
-				}).then(console.log).catch(console.error);
-		}
-	} else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0, 11))) {
-		var arg = message.content.substring(11) + '\u200B';
-		var style = message.content.charAt(8);
-		var size = message.content.charAt(9);
-		var game = message.content.substring(5, 8);
-		var pos = message.content.substring(2, 4);
-		var dir = message.content.charAt(1);
-		if (game === 'ddr')
-			game = 'DDR';
-		if (game === 'kof') {}
-		else {
-			var args = arg.match(/.{1,24}\W/gm);
-			for (var i = 0; i < Math.min(args.length, 5); i++) {
-				if (args[i].length > 0)
-					message.channel.send({
-						embed: {
-							image: {
-								url: nfgUrl.bubble(game, dir, pos, style, size, args[i])
-							}
-						}
-					}).then(console.log).catch(console.error);
-			}
-		}
-	} else if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{4}\W/gm).test(message.content.substring(0, 10)) || new RegExp(/b[du][0-9][0-9]![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
-		var arg = message.content.substring(10) + '\u200B';
-		var game = message.content.substring(5, 9);
-		var pos = message.content.substring(2, 4);
-		var dir = message.content.charAt(1);
-		var style = '0';
-		var size = '2';
-		if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
+	} else if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0, 9))) {
+		arg = message.content.substring(9) + '\u200B';
+		game = message.content.substring(5, 8);
+	} else if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0, 11))) {
+		arg = message.content.substring(11) + '\u200B';
+		style = message.content.charAt(8);
+		size = message.content.charAt(9);
+		game = message.content.substring(5, 8);
+	} else if (new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{4}\W/gm).test(message.content.substring(0, 10)) || new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
+		arg = message.content.substring(10) + '\u200B';
+		game = message.content.substring(5, 9);
+		if (new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(9);
 			size = message.content.charAt(10);
-		}
-		if (game === 'njgd')
-			game = 'niga'
-				if (game === 'sfa3')
-					game = 'sfz3'
-
-						var args = arg.match(/.{1,24}\W/gm);
-				if (game === 'pubu')
-					args = arg.match(/.{1,34}\W/gm);
-				if (game === 'sfz3' || game === 'vict' || game === 'moma')
-					args = arg.match(/.{1,23}\W/gm);
-				for (var i = 0; i < Math.min(args.length, 5); i++) {
-					if (args[i].length > 0)
-						message.channel.send({
-							embed: {
-								image: {
-									url: nfgUrl.bubble(game, dir, pos, style, size, args[i])
-								}
-							}
-						}).then(console.log).catch(console.error);
-				}
-	} else if (new RegExp(/b[du][0-9][0-9]![a-z0-9]{5}\W/gm).test(message.content.substring(0, 11)) || new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
-		var arg = message.content.substring(11) + '\u200B';
-		var game = message.content.substring(5, 10);
-		var pos = message.content.substring(2, 4);
-		var dir = message.content.charAt(1);
-		var style = '0';
-		var size = '2';
-		if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
+		}		
+	} else if (new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{5}\W/gm).test(message.content.substring(0, 11)) || new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
+		arg = message.content.substring(11) + '\u200B';
+		game = message.content.substring(5, 10);
+		if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(10);
 			size = message.content.charAt(11);
 		}
-		if (game === 'kof2k')
-			game = 'KoF2k';
-		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 5); i++) {
-			if (args[i].length > 0)
-				message.channel.send({
-					embed: {
-						image: {
-							url: nfgUrl.bubble(game, dir, pos, style, size, args[i])
-						}
-					}
-				})
-		}
-	} else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0, 12)) || new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
-		var arg = message.content.substring(12) + '\u200B';
-		var game = message.content.substring(5, 11);
-		var pos = message.content.substring(2, 4);
-		var dir = message.content.charAt(1);
-		var style = '0';
-		var size = '2';
-		if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
+	} else if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0, 12)) || new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
+		arg = message.content.substring(12) + '\u200B';
+		game = message.content.substring(5, 11);
+		if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(11);
 			size = message.content.charAt(12);
 		}
-		if (game.substring(0, 5) === 'kof2k')
-			game = 'KoF2k' + game.charAt(5);
-		if (game === 'ketsui')
-			game = 'KETSUI';
-		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 5); i++) {
-			if (args[i].length > 0)
-				message.channel.send({
-					embed: {
-						image: {
-							url: nfgUrl.bubble(game, dir, pos, style, size, args[i])
-						}
-					}
-				})
-		}
-	} else if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{7}\W/gm).test(message.content.substring(0, 13)) || new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
-		var arg = message.content.substring(13) + '\u200B';
-		var game = message.content.substring(5, 12);
-		var pos = message.content.substring(2, 4);
-		var dir = message.content.charAt(1);
-		var style = '0';
-		var size = '2';
-		if (new RegExp(/b[du][0-9][0-9]![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
+	} else if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{7}\W/gm).test(message.content.substring(0, 13)) || new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
+		arg = message.content.substring(13) + '\u200B';
+		game = message.content.substring(5, 12);
+		if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(12);
 			size = message.content.charAt(13);
 		}
-		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 5); i++) {
+	}
+	if (game === 'ddr')
+		game = 'DDR';
+	if (game === 'kof2k')
+		game = 'KoF2k';
+	if (game.substring(0, 5) === 'kof2k')
+		game = 'KoF2k' + game.charAt(5);
+	if (game === 'ketsui')
+		game = 'KETSUI';
+	if (game === 'njgd')
+		game = 'niga'
+	if (game === 'sfa3')
+		game = 'sfz3'
+	args = arg.match(/.{1,24}\W/gm);
+	if (game === 'pubu')
+		args = arg.match(/.{1,34}\W/gm);
+	if (game === 'sfz3' || game === 'vict' || game === 'moma')
+		args = arg.match(/.{1,23}\W/gm);
+	if (game !== 'kof' && new RegExp(/[a-zA-Z0-9]+/gm).test(game)){
+	for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].length > 0)
 				message.channel.send({
 					embed: {
@@ -552,8 +419,9 @@ if (new RegExp(/font!/gm).test(message.content.substring(0, 5))){
 				}).then(console.log).catch(console.error);
 		}
 	}
+}
 
-	if (new RegExp(/font!kof97\W/gm).test(message.content.substring(0, 11))) {
+	if (new RegExp(/[Ff]ont!kof97\W/gm).test(message.content.substring(0, 11))) {
 		var arg = message.content.substring(11) + '\u200B';
 		var args = arg.match(/.{1,24}\W/gm);
 		for (var i = 0; i < Math.min(args.length, 5); i++) {
@@ -565,6 +433,25 @@ if (new RegExp(/font!/gm).test(message.content.substring(0, 5))){
 					embed: {
 						image: {
 							url: 'https://nfggames.com/system/arcade/arcade.php/y-kof97/z-0/dbl-2/x-' + encodeURI(args[i] + '\u200B')
+						}
+					}
+				})
+		}
+	}
+	if (new RegExp(/[Bb][ud][0-9][0-9]!kof97\W/gm).test(message.content.substring(0, 11))) {
+		var arg = message.content.substring(11) + '\u200B';
+		var dir = message.content.charAt(1);
+		var pos = message.content.substring(2, 4);
+		var args = arg.match(/.{1,24}\W/gm);
+		for (var i = 0; i < Math.min(args.length, 5); i++) {
+			if (args[i].charAt(args[i].length - 1) === '\n') {
+				args[i] = args[i].substring(0, args[i].length - 1);
+			}
+			if (args[i].length > 0)
+				message.channel.send({
+					embed: {
+						image: {
+							url: 'https://nfggames.com/system/arcade/arcade.php/b-'+dir+'/bp-'+pos+'y-kof97/z-0/dbl-2/x-' + encodeURI(args[i] + '\u200B')
 						}
 					}
 				})
@@ -615,11 +502,11 @@ if (new RegExp(/font!/gm).test(message.content.substring(0, 5))){
 	if (message.content.substring(0, 9) === '!commands') {
 		message.channel.send('font commands\nTo find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
 			'\nfont!gamename your text here - creates image of your text in the game\'s font\nb(u/d)(two digits)!game your text here to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size. also works for speech bubbles.\n' +
-			/*'font!arcade - classic arcade\nfont!bios - BioShipPaladin\nfont!chiki - chiki chiki boys\nfont!ddcrew - DDCrew\nfont!DDR - Dance Dance Revolution\nfont!ddux - dynamite dux\nfont!fz - fantasy zone\nfont!gain - gain ground\nfont!garou - fatal fury\n' +
-			'font!gradius - shoot the core\nfont!guar - guardians\nfont!kais - kaiser knuckle\nfont!kiki - kiki kaikai\nfont!kof97 - king of fighters 97\nfont!kof2k - king of fighters 2000\nfont!kof2k1 - king of fighters 2001\n' +
-			'font!kof2k2 - king of fighters 2002\nfont!kof2k3 - king of fighters 2003\nfont!mt - major title\nfont!moma = monster maulers\nfont!namco2 - namco classic gradient\nfont!njgd - ninja gaiden\nfont!pabom - panic bomber\nfont!paro - parodius da\n' +
-			'font!pubu - puzzle bobble\nfont!quake - quack\nfont!raph - rapid hero\nfont!robot - robotron\nfont!rtl - rtype leo\nfont!sexy - parodius\nfont!sf2 - street fighter 2\nfont!ssf2 - super street fighter 2\nfont!sfz3 or !sfa3 - street fighter zero\alpha 3\nfont!simp - the simpsons\n' +
-			'font!sold - soldam\nfont!tetris - tetris (sega)\nfont!vict - victory road\n*/
+			/*'[Ff]ont!arcade - classic arcade\n[Ff]ont!bios - BioShipPaladin\n[Ff]ont!chiki - chiki chiki boys\n[Ff]ont!ddcrew - DDCrew\n[Ff]ont!DDR - Dance Dance Revolution\n[Ff]ont!ddux - dynamite dux\n[Ff]ont!fz - fantasy zone\n[Ff]ont!gain - gain ground\n[Ff]ont!garou - fatal fury\n' +
+			'[Ff]ont!gradius - shoot the core\n[Ff]ont!guar - guardians\n[Ff]ont!kais - kaiser knuckle\n[Ff]ont!kiki - kiki kaikai\n[Ff]ont!kof97 - king of fighters 97\n[Ff]ont!kof2k - king of fighters 2000\n[Ff]ont!kof2k1 - king of fighters 2001\n' +
+			'[Ff]ont!kof2k2 - king of fighters 2002\n[Ff]ont!kof2k3 - king of fighters 2003\n[Ff]ont!mt - major title\n[Ff]ont!moma = monster maulers\n[Ff]ont!namco2 - namco classic gradient\n[Ff]ont!njgd - ninja gaiden\n[Ff]ont!pabom - panic bomber\n[Ff]ont!paro - parodius da\n' +
+			'[Ff]ont!pubu - puzzle bobble\n[Ff]ont!quake - quack\n[Ff]ont!raph - rapid hero\n[Ff]ont!robot - robotron\n[Ff]ont!rtl - rtype leo\n[Ff]ont!sexy - parodius\n[Ff]ont!sf2 - street fighter 2\n[Ff]ont!ssf2 - super street fighter 2\n[Ff]ont!sfz3 or !sfa3 - street fighter zero\alpha 3\n[Ff]ont!simp - the simpsons\n' +
+			'[Ff]ont!sold - soldam\n[Ff]ont!tetris - tetris (sega)\n[Ff]ont!vict - victory road\n*/
 			'\ngoogle maps commands\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n!time cityname - gets local time of that city\n'+
 			'\nother commands\n!full or !pics or !album followed by twitter/imgur/tumblr link - displays full photo album of tweet or imgur/tumblr post\n'+
 			'hex#hexCode - displays image of a color pertaining to the hex cde\n!exif followed by link to jpg image - prints out exif data of image\n'+
