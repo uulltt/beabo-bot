@@ -591,10 +591,11 @@ if (exifString.length > 2000){
 	}
 	if (message.content.substring(0, 6) === '!time '){
 		var city = message.content.substring(6);
-		var citydata = cityTimezones.lookupViaCity(city);
+		console.log(city);
+		const citydata = cityTimezones.lookupViaCity(city);
 		console.log(citydata);
-		//console.log(citydata.timezone);
-		console.log(citydata.array()[0].timezone);
+		console.log(citydata.timezone);
+		console.log(citydata[0].timezone);
 		var propValue;
             for(var propName in citydata) {
     propValue = citydata[propName];
