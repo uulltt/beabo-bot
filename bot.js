@@ -593,7 +593,7 @@ if (exifString.length > 2000){
 		var city = message.content.substring(6);
 		const citydata = cityTimezones.lookupViaCity(city);
 		var tzname = citydata[0].timezone;
-		var ct = require('current-timezone')(tzname);
+		const ct = require('current-timezone')(tzname);
 		message.channel.send(ct.toLocaleString());
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
