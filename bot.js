@@ -8,7 +8,7 @@ var googlePlaces = require('googleplaces');
 var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
 var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
-
+var cityTimezones = require('city-timezones');
 var Tumblr = require('tumblrwks');
 var tumblr = new Tumblr({
   consumerKey: process.env.TUMBLR_CONSUMER_KEY,
@@ -589,7 +589,12 @@ if (exifString.length > 2000){
 				})
 		}
 	}
-	
+	if (message.content.substring(0, 6) === '!time '){
+		var city = message.content.substring(6);
+		var tzname = cityTimezones.lookupViaCity(city).timezone;
+		var ct = require('current-timezone')(tzname);
+		message.channel.send(ct.toLocaleString());
+	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
 	}
