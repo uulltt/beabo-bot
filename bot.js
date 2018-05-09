@@ -178,8 +178,9 @@ if (exifString.length > 2000){
 				console.log(error);
 			}
 		})*/
-		var tweets = xtra.twitterAlbum(tweetId);
-		console.log(tweets);
+		const tweets = xtra.twitterAlbum(tweetId);
+		console.log(tweets.length);
+		console.log(xtra.twitterAlbum(tweetId));
 		for(var i = 0; i < tweets.length; i++){
 			message.channel.send({
 							embed: {
