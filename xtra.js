@@ -61,9 +61,13 @@ module.exports.twitterAlbum = (tweetId) => {
 						if (i >= 2)
 						console.log(tweets[i-2]);
 							}
+					console.log(tweets);
+					return tweets;
 				}
+				return tweets;
 			} else {
 				console.log(error);
+				return tweets;
 			}
 		});
 		console.log(tweets[0]);
