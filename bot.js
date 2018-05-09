@@ -24,7 +24,7 @@ function zone(currentZone){
 	if( zonesList.includes( currentZone )) {
 		console.log(currentZone);
 		moment.tz.setDefault(currentZone);
-		return new Date(moment.utc(new Data()).tz(moment().tz()).format());
+		return new Date(moment.utc(new Date()).tz(moment().tz()).format());
 		//return new Date(moment(new Date()).tz( currentZone ).local().format());
 	} else {
 		return 'This zone is not present. Please visit https://www.npmjs.com/package/current-timezone';
