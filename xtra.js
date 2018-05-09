@@ -199,5 +199,4 @@ module.exports.bubble = (message) => {
 		}
 	}
 	return urls;
-	
 }
