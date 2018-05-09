@@ -611,7 +611,7 @@ if (exifString.length > 2000){
  
   var d = new Date(tz.local_timestamp * 1000);
  
-  console.log(d.toDateString() + ' - ' + d.getHours() + ':' + d.getMinutes() + ":" d.getSeconds());
+  console.log(d.toDateString() + ' - ' + d.getHours() + ':' + d.getMinutes() + ':' d.getSeconds());
   // => Thu Jun 12 2014 - 20:15
  } else {
 	 console.log(err);
