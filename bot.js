@@ -44,11 +44,12 @@ client.on('message', message => {
 		sentence += "!";
 		message.channel.send(sentence);
 	}
-	if (message.content.substring(0, 6) === '!exif '){
-		var picURL = message.content.substring(6);
-		if (message.attachments.size > 0){
+	if (message.content.substring(0, 5) === '!exif'){
+		var picURL = '';
+		if (message.content.length > 6)
+		    picURL = message.content.substring(6);
+		if (message.attachments.size > 0)
 			picURL = message.attachments[0].url;
-		}
 		var request = require('request').defaults({ encoding: null });
 request.get(picURL, function (err, res, body) {
       //process exif here
@@ -205,10 +206,7 @@ if (exifString.length > 2000){
     })
     .catch(function (err) {
         console.error(err.message);
-    });
-		
-					
-			
+    });		
 	}
 	if (message.content.includes('tumblr.com/post/')) {
 		var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
@@ -228,32 +226,7 @@ if (exifString.length > 2000){
 	  }
   }
 			}
-});
-
-		/*tumblrClient.blogPosts(blogId, {id : postId}, function(err, resp) {
-			if (!err){
-			resp.posts;
-			} else {
-				console.log(err);
-			}
-		}
-		);*/
-		/*imgur.getAlbumInfo(theAlbum)
-    .then(function(json) {
-		for (var i = 0; i < json.data.images.length; i++) {
-						message.channel.send({
-							embed: {
-								image: {
-									url: json.data.images[i].link
-								}
-							}
-						});
-					}
-    })
-    .catch(function (err) {
-        console.error(err.message);
-    });				
-	*/		
+});		
 	}
 	}
 	if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
