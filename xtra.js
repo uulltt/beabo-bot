@@ -54,8 +54,11 @@ module.exports.twitterAlbum = (tweetId) => {
 			if (!error) {
 				console.log(tweet);
 				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
+					console.log(tweet.extended_entities.media);
 					for (var i = 1; i < tweet.extended_entities.media.length; i++) {
+						console.log(tweet.extended_entities.media[i].media_url);
 						tweets[i-1] = tweet.extended_entities.media[i].media_url;
+						console.log(tweets[i-1]);
 							}
 				}
 			} else {
