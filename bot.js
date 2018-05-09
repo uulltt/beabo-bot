@@ -599,6 +599,7 @@ if (exifString.length > 2000){
 		//timezone.key(process.env.PLACES_KEY);
 		var city = message.content.substring(6);
 		const citydata = cityTimezones.lookupViaCity(city);
+		try{
 		var lati = citydata[0].lat;
 		var lngi = citydata[0].lng;
 		console.log(lati + ' ' + lngi);
@@ -624,6 +625,9 @@ if (exifString.length > 2000){
  }
  
 });
+		} catch (error) {
+   message.channel.send('Error: ' + error.message);
+		}
 		//message.channel.send(zone(tzname).toLocaleString());
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
