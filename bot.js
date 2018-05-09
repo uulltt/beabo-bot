@@ -48,12 +48,8 @@ client.on('message', message => {
 		var picURL = '';
 		if (message.content.length > 6)
 		    picURL = message.content.substring(6);
-		if (message.embeds.length > 0){
-			console.log("it's here");
-			picURL = message.embeds[0].image.url;
-		}
 		if (message.attachments.size > 0)
-			picURL = message.attachments[0].proxyURL;
+			console.log(message.attachments);
 		
 		var request = require('request').defaults({ encoding: null });
 request.get(picURL, function (err, res, body) {
