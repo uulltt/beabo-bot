@@ -48,8 +48,7 @@ client.on('message', message => {
 		var request = require('request').defaults({ encoding: null });
 request.get(message.content.substring(6), function (err, res, body) {
       //process exif here
-console.log(res);
-console.log(body);
+var exifString = ''
 try {
     new ExifImage({ image : body }, function (error, exifData) {
         if (error)
@@ -60,42 +59,45 @@ try {
     propValue = exifData.image[propName];
 	if (typeof propValue !== "undefined"){
 var field = propName.toString() + ": " + propValue.toString() + "\n";
-if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"));
-    console.log(field);
+if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
+    exifString += field;
 }
 			}
  for(var propName in exifData.thumbnail) {
     propValue = exifData.image[propName];
 	if (typeof propValue !== "undefined"){
 var field = propName.toString() + ": " + propValue.toString() + "\n";
-if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
-    console.log(field);
+if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
+    exifString += field;
 }
  }
 for(var propName in exifData.exif) {
     propValue = exifData.exif[propName];
 	if (typeof propValue !== "undefined"){
 var field = propName.toString() + ": " + propValue.toString() + "\n";
-if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
-    console.log(field);
+if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
+    exifString += field;
+}
+}
+for(var propName in exifData.gps) {
+    propValue = exifData.gps[propName];
+	if (typeof propValue !== "undefined"){
+var field = propName.toString() + ": " + propValue.toString() + "\n";
+
+if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
+   exifString += field;
 }
 }
 for(var propName in exifData.interoperability) {
     propValue = exifData.interoperability[propName];
 	if (typeof propValue !== "undefined"){
 var field = propName.toString() + ": " + propValue.toString() + "\n";
-if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
-    console.log(field);
+
+if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
+   exifString += field;
 }
 }
-for(var propName in exifData.makernote) {
-    propValue = exifData.makernote[propName];
-	if (typeof propValue !== "undefined"){
-var field = propName.toString() + ": " + propValue.toString() + "\n";
-if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
-    console.log(field);
-}
-}
+console.log(exifString);
 		}
     });
 
