@@ -179,6 +179,7 @@ if (exifString.length > 2000){
 			}
 		})*/
 		var tweets = xtra.twitterAlbum(tweetId);
+		console.log(tweets);
 		for(var i = 0; i < tweets.length; i++){
 			message.channel.send({
 							embed: {
