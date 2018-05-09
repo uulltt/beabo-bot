@@ -166,10 +166,7 @@ if (exifString.length > 2000){
 				dir = dir + (i + 1).toString() + '. ' + result.routes[0].legs[0].steps[i].html_instructions.replace(/<\/?b>/gm, '**').replace(/<div style="font-size:0.9em">/gm, ' `(').replace(/<\/div>/gm, ')`') + ' (' + result.routes[0].legs[0].steps[i].distance.text + ', ' + result.routes[0].legs[0].steps[i].duration.text + ')\n';
 			}
 			dir = dir + 'And you\'re there! :smiley:';
-			if (dir.length <= 2000)
-				message.channel.send(dir);
-			else
-				message.channel.send('Too many directions. Just Google it.');
+			message.channel.send(dir.length <= 2000 ? dir : 'Too many directions. Just Google it.');
 		}).catch(console.error);
 	}
 	if (message.content.substring(0, 6) == '!pics ' || message.content.substring(0, 6) == '!full ' || message.content.substring(0, 7) == '!album '){
