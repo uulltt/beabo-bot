@@ -27,7 +27,7 @@ client.on('ready', () => {
 	client.user.setActivity('type !commands for help', { type: 'WATCHING' });
 });
 
-var lines = [" beabo", " bee", " bii", " be"];
+var lines = [" beabo", " bee", " bii", " be", " beeb"];
 
 client.on('message', message => {
 	
@@ -45,8 +45,12 @@ client.on('message', message => {
 		message.channel.send(sentence);
 	}
 	if (message.content.substring(0, 6) === '!exif '){
+		var picURL = message.content.substring(6);
+		if (message.attachments.size > 0){
+			picURL = message.attachments[0].url;
+		}
 		var request = require('request').defaults({ encoding: null });
-request.get(message.content.substring(6), function (err, res, body) {
+request.get(picURL, function (err, res, body) {
       //process exif here
 var exifString = ':frame_photo: EXIF data:\n';
 try {
@@ -630,7 +634,7 @@ if (exifString.length > 2000){
 			'font!sold - soldam\nfont!tetris - tetris (sega)\nfont!vict - victory road\n*/
 			'\ngoogle maps commands\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in kendall\")\n'+
 			'\nother commands\n!full or !pics or !album followed by twitter/imgur/tumblr link - displays full photo album of tweet or imgur/tumblr post\n'+
-			'\nhex#hexCode - displays image of a color pertaining to the hex cde\n!exif followed by link to jpg image - prints out exif data of image\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number'+
+			'\nhex#hexCode - displays image of a color pertaining to the hex cde\n!exif followed by link to jpg image or an attachment - prints out exif data of image\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number'+
 			'\n!list or !todo - splits discord message into a to-do list');
 	}
 
