@@ -36,37 +36,3 @@ module.exports.beeb = () => {
 		return sentence + "!";
 	
 }
-
-const Discord = require('discord.js');
-var Twitter = require('twitter');
-var tweeter = new Twitter({
-		consumer_key: process.env.TWITTER_CONSUMER_KEY,
-		consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-		access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-		access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-	});
-module.exports.twitterAlbum = (tweetId) => {
-	var tweets = [];
-	tweeter.get('statuses/show/' + tweetId, {
-			tweet_mode: 'extended'
-		}, function (error, tweet, response) {
-
-			if (!error) {
-				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
-					for (var i = 1; i < tweet.extended_entities.media.length; i++) {
-						//console.log(tweet.extended_entities.media[i].media_url);
-						tweets[i-1] = tweet.extended_entities.media[i].media_url;
-							}
-					console.log(tweets);
-					return ['a', 'b'];
-				}
-				return tweets;
-			} else {
-				console.log(error);
-				return tweets;
-			}
-		});
-		console.log(tweets[0]);
-		return tweets;
-	
-}
