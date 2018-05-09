@@ -13,3 +13,10 @@ module.exports.bubble = (game, dir, pos, style, size, text) => {
 			}
 return 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-'+ style +'/dbl-'+ size +'/x-' + encodeURI(text  + '\u200B');
 }
+
+module.exports.pad(n) { 
+if ( n < 10) 
+	return "0" + n.toString();
+else
+	return n.toString();
+}

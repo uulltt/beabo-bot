@@ -1,6 +1,6 @@
 
 const Discord = require('discord.js');
-const nfgUrl = require('./nfgUrl.js');
+const xtra = require('./xtra.js');
 var Twitter = require('twitter');
 var direction = require('google-maps-direction');
 const client = new Discord.Client();
@@ -13,12 +13,7 @@ var Tumblr = require('tumblrwks');
 var tumblr = new Tumblr({
   consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 });
-function pad(n) { 
-if ( n < 10) 
-	return "0" + n.toString();
-else
-	return n.toString();
-}
+
 var timezone = require('node-google-timezone');
 var tweeter = new Twitter({
 		consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -323,7 +318,7 @@ if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))){
 				message.channel.send({
 					embed: {
 						image: {
-							url: nfgUrl.gameText(game, style, size, args[i])
+							url: xtra.gameText(game, style, size, args[i])
 						}
 					}
 				})
@@ -410,7 +405,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 				message.channel.send({
 					embed: {
 						image: {
-							url: nfgUrl.bubble(game, dir, pos, style, size, args[i])
+							url: xtra.bubble(game, dir, pos, style, size, args[i])
 						}
 					}
 				}).then(console.log).catch(console.error);
@@ -465,20 +460,8 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		var timestamp = Date.now()/1000;
 		timezone.data(lati, lngi, timestamp, function (err, tz) {
  if (!err){
-  console.log(tz.raw_response);
-  //=> { dstOffset: 3600,
-  //     rawOffset: -18000,
-  //     status: 'OK',
-  //     timeZoneId: 'America/New_York',
-  //     timeZoneName: 'Eastern Daylight Time' }
- 
-  console.log(tz.local_timestamp);
-  // => 1402614905
- 
   var d = new Date(tz.local_timestamp * 1000);
- 
-  message.channel.send(d.toDateString() + ' - ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()));
-  // => Thu Jun 12 2014 - 20:15
+  message.channel.send(d.toDateString() + ' - ' + xtra.pad(d.getHours()) + ':' + xtra.pad(d.getMinutes()) + ':' + xtra.pad(d.getSeconds()));
  } else {
 	 console.log(err);
  }
@@ -487,7 +470,6 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		} catch (error) {
    message.channel.send('Error: ' + error.message);
 		}
-		//message.channel.send(zone(tzname).toLocaleString());
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
