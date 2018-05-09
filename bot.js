@@ -13,7 +13,12 @@ var Tumblr = require('tumblrwks');
 var tumblr = new Tumblr({
   consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 });
-
+function pad(n) { 
+if ( n < 10) 
+	return "0" + n.toString();
+else
+	return n.toString();
+}
 var timezone = require('node-google-timezone');
 var tweeter = new Twitter({
 		consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -591,7 +596,7 @@ if (exifString.length > 2000){
 		}
 	}
 	if (message.content.substring(0, 6) === '!time '){
-		timezone.key(process.env.PLACES_KEY);
+		//timezone.key(process.env.PLACES_KEY);
 		var city = message.content.substring(6);
 		const citydata = cityTimezones.lookupViaCity(city);
 		var lati = citydata[0].lat;
@@ -612,7 +617,7 @@ if (exifString.length > 2000){
  
   var d = new Date(tz.local_timestamp * 1000);
  
-  console.log(d.toDateString() + ' - ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());
+  message.channel.send(d.toDateString() + ' - ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()));
   // => Thu Jun 12 2014 - 20:15
  } else {
 	 console.log(err);
