@@ -198,5 +198,6 @@ module.exports.bubble = (message) => {
 			urls[i] = bubbleText(game, dir, pos, style, size, args[i]);
 		}
 	}
+	return urls;
 	
 }

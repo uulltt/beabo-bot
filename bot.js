@@ -241,7 +241,6 @@ if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))){
 					}
 				})
 		}
-	}
 }
 if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	var urls = xtra.bubble(message.content);
