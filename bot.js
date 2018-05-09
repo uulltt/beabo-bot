@@ -58,39 +58,43 @@ try {
 			var propValue;
             for(var propName in exifData.image) {
     propValue = exifData.image[propName];
+	if (typeof propValue !== "undefined"){
 var field = propName.toString() + ": " + propValue.toString() + "\n";
 if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"));
     console.log(field);
 }
+			}
  for(var propName in exifData.thumbnail) {
     propValue = exifData.image[propName];
+	if (typeof propValue !== "undefined"){
 var field = propName.toString() + ": " + propValue.toString() + "\n";
 if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
     console.log(field);
 }
- for(var propName in exifData.thumbnail) {
-    propValue = exifData.thumbnail[propName];
-var field = propName.toString() + ": " + propValue.toString() + "\n";
-if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
-    console.log(field);
-}
+ }
 for(var propName in exifData.exif) {
     propValue = exifData.exif[propName];
+	if (typeof propValue !== "undefined"){
 var field = propName.toString() + ": " + propValue.toString() + "\n";
 if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
     console.log(field);
+}
 }
 for(var propName in exifData.interoperability) {
     propValue = exifData.interoperability[propName];
+	if (typeof propValue !== "undefined"){
 var field = propName.toString() + ": " + propValue.toString() + "\n";
 if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
     console.log(field);
 }
+}
 for(var propName in exifData.makernote) {
     propValue = exifData.makernote[propName];
+	if (typeof propValue !== "undefined"){
 var field = propName.toString() + ": " + propValue.toString() + "\n";
 if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
     console.log(field);
+}
 }
 		}
     });
