@@ -64,8 +64,8 @@ module.exports.twitterAlbum = (tweetId) => {
 			} else {
 				console.log(error);
 			}
-		})
-		console.log(tweets);
+		});
+		console.log(tweets[0]);
 		return tweets;
 	
 }
