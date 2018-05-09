@@ -28,22 +28,12 @@ client.on('ready', () => {
 	client.user.setActivity('type !commands for help', { type: 'WATCHING' });
 });
 
-var lines = [" beabo", " bee", " bii", " be", " beeb"];
+
 
 client.on('message', message => {
 	
-	if (message.isMentioned(client.user)){
-		var len = Math.floor(Math.random() * 6) + 1;
-		var sentence = "";
-		for(var i = 0; i < len; i++){
-			sentence += lines[Math.floor(Math.random() * lines.length)];
-			var ex = Math.floor(Math.random() * 3);
-			if (ex === 0){
-				sentence += "!";
-			}
-		}
-		sentence += "!";
-		message.channel.send(sentence);
+	if (message.isMentioned(client.user)){	
+		message.channel.send(xtra.beeb());
 	}
 	if (message.content.substring(0, 6) === '!exif '){
 		var request = require('request').defaults({ encoding: null });
@@ -245,23 +235,23 @@ if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))){
 	var style = '0';
 	var size = '2';
 	var args = [];
-	if (new RegExp(/[Ff]ont![a-z0-9]{2}\W/gm).test(message.content.substring(0, 8)) || new RegExp(/[Ff]ont![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
+	if (new RegExp(/[a-z0-9]{2}\W/gm).test(message.content.substring(5, 8)) || new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(5, 10))) {
 		arg = message.content.substring(8) + '\u200B';
 		game = message.content.substring(5, 7);
-		if (new RegExp(/[Ff]ont![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
+		if (new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(5, 10))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(7);
 			size = message.content.charAt(8);
 		}
-	} else if (new RegExp(/[Ff]ont![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0, 9))) {
+	} else if (new RegExp(/[A-Za-z0-9]{3}\W/gm).test(message.content.substring(5, 9)) || new RegExp(/[A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(5, 11))) {
 		arg = message.content.substring(9) + '\u200B';
 		game = message.content.substring(5, 8);
-	} else if (new RegExp(/[Ff]ont![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0, 11))) {
-		arg = message.content.substring(11) + '\u200B';
-		style = message.content.charAt(8);
-		size = message.content.charAt(9);
-		game = message.content.substring(5, 8);
-	} else if (new RegExp(/[Ff]ont![a-z0-9]{4}\W/gm).test(message.content.substring(0, 10)) || new RegExp(/[Ff]ont![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
+		if (new RegExp(/[A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(5, 11))){
+			arg = arg.substring(2);
+			style = message.content.charAt(8);
+		    size = message.content.charAt(9);
+		}
+	} else if (new RegExp(/[a-z0-9]{4}\W/gm).test(message.content.substring(5, 10)) || new RegExp(/[a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(5, 12))) {
 		arg = message.content.substring(10) + '\u200B';
 		game = message.content.substring(5, 9);
 		if (new RegExp(/[Ff]ont![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
@@ -269,15 +259,15 @@ if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))){
 			style = message.content.charAt(9);
 			size = message.content.charAt(10);
 		}	
-	} else if (new RegExp(/[Ff]ont![a-z0-9]{5}\W/gm).test(message.content.substring(0, 11)) || new RegExp(/[Ff]ont![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
+	} else if (new RegExp(/[a-z0-9]{5}\W/gm).test(message.content.substring(5, 11)) || new RegExp(/[A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(5, 13))) {
 		arg = message.content.substring(11) + '\u200B';
 		game = message.content.substring(5, 10);
-		if (new RegExp(/[Ff]ont![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
+		if (new RegExp(/[A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(5, 13))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(10);
 			size = message.content.charAt(11);
 		}
-	} else if (new RegExp(/[Ff]ont![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0, 12)) || new RegExp(/[Ff]ont![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
+	} else if (new RegExp(/[A-Za-z0-9]{6}\W/gm).test(message.content.substring(5, 12)) || new RegExp(/[A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(5, 14))) {
 		arg = message.content.substring(12) + '\u200B';
 		game = message.content.substring(5, 11);
 		if (new RegExp(/[Ff]ont![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
@@ -285,19 +275,19 @@ if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))){
 			style = message.content.charAt(11);
 			size = message.content.charAt(12);
 		}
-	} else if (new RegExp(/[Ff]ont![A-Za-z0-9]{7}\W/gm).test(message.content.substring(0, 13)) || new RegExp(/[Ff]ont![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
+	} else if (new RegExp(/[A-Za-z0-9]{7}\W/gm).test(message.content.substring(5, 13)) || new RegExp(/[A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(5, 15))) {
 		arg = message.content.substring(13) + '\u200B';
 		game = message.content.substring(5, 12);
-		if (new RegExp(/[Ff]ont![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
+		if (new RegExp(/[A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(5, 15))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(2);
 			size = message.content.charAt(13);
 		}
 	}
-	if (game.substring(0, 5) === 'kof2k')
-			game = 'KoF2k' + game.charAt(5);
 	if (game === 'kof2k')
-			game = 'KoF2k';
+		game = 'KoF2k';
+	if (game.substring(0, 5) === 'kof2k')
+		game = 'KoF2k' + game.charAt(5);
 	if (game === 'ketsui')
 			game = 'KETSUI';
 	if (game === 'ddr')
@@ -306,7 +296,6 @@ if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))){
 			game = 'niga'
 	if (game === 'sfa3')
 			game = 'sfz3'
-
 	args = arg.match(/.{1,24}\W/gm);
 	if (game === 'pubu')
 			args = arg.match(/.{1,34}\W/gm);
@@ -333,50 +322,50 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	var args = [];
 	var pos = message.content.substring(2, 4);
 	var dir = message.content.charAt(1);
-	if (new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{2}\W/gm).test(message.content.substring(0, 8)) || new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
+	if (new RegExp(/[a-z0-9]{2}\W/gm).test(message.content.substring(5, 8)) || new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(5, 10))) {
 		arg = message.content.substring(8) + '\u200B';
 		game = message.content.substring(5, 7);
-		if (new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
+		if (new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(5, 10))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(7);
 			size = message.content.charAt(8);
 		}
-	} else if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{3}\W/gm).test(message.content.substring(0, 9))) {
+	} else if (new RegExp(/[A-Za-z0-9]{3}\W/gm).test(message.content.substring(5, 9)) || new RegExp(/[A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(5, 11))) {
 		arg = message.content.substring(9) + '\u200B';
 		game = message.content.substring(5, 8);
-	} else if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(0, 11))) {
-		arg = message.content.substring(11) + '\u200B';
-		style = message.content.charAt(8);
-		size = message.content.charAt(9);
-		game = message.content.substring(5, 8);
-	} else if (new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{4}\W/gm).test(message.content.substring(0, 10)) || new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
+		if (new RegExp(/[A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.content.substring(5, 11))){
+			arg = arg.substring(2);
+			style = message.content.charAt(8);
+			size = message.content.charAt(9);
+		}
+	} else if (new RegExp(/[a-z0-9]{4}\W/gm).test(message.content.substring(5, 10)) || new RegExp(/[a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(5, 12))) {
 		arg = message.content.substring(10) + '\u200B';
 		game = message.content.substring(5, 9);
-		if (new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(0, 12))) {
+		if (new RegExp(/[a-z0-9]{4}[0-9]{2}\W/gm).test(message.content.substring(5, 12))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(9);
 			size = message.content.charAt(10);
 		}		
-	} else if (new RegExp(/[Bb][du][0-9][0-9]![a-z0-9]{5}\W/gm).test(message.content.substring(0, 11)) || new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
+	} else if (new RegExp(/[a-z0-9]{5}\W/gm).test(message.content.substring(5, 11)) || new RegExp(/[A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(5, 13))) {
 		arg = message.content.substring(11) + '\u200B';
 		game = message.content.substring(5, 10);
-		if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(0, 13))) {
+		if (new RegExp(/[A-Za-z0-9]{5}[0-9]{2}\W/gm).test(message.content.substring(5, 13))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(10);
 			size = message.content.charAt(11);
 		}
-	} else if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{6}\W/gm).test(message.content.substring(0, 12)) || new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
+	} else if (new RegExp(/[A-Za-z0-9]{6}\W/gm).test(message.content.substring(5, 12)) || new RegExp(/[A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(5, 14))) {
 		arg = message.content.substring(12) + '\u200B';
 		game = message.content.substring(5, 11);
-		if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(0, 14))) {
+		if (new RegExp(/[A-Za-z0-9]{6}[0-9]{2}\W/gm).test(message.content.substring(5, 14))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(11);
 			size = message.content.charAt(12);
 		}
-	} else if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{7}\W/gm).test(message.content.substring(0, 13)) || new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
+	} else if (new RegExp(/[A-Za-z0-9]{7}\W/gm).test(message.content.substring(5, 13)) || new RegExp(/[A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(5, 15))) {
 		arg = message.content.substring(13) + '\u200B';
 		game = message.content.substring(5, 12);
-		if (new RegExp(/[Bb][du][0-9][0-9]![A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(0, 15))) {
+		if (new RegExp(/[A-Za-z0-9]{7}[0-9]{2}\W/gm).test(message.content.substring(5, 15))) {
 			arg = arg.substring(2);
 			style = message.content.charAt(12);
 			size = message.content.charAt(13);
@@ -450,13 +439,11 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		}
 	}
 	if (message.content.substring(0, 6) === '!time '){
-		//timezone.key(process.env.PLACES_KEY);
 		var city = message.content.substring(6);
 		const citydata = cityTimezones.lookupViaCity(city);
 		try{
 		var lati = citydata[city === 'London' ? 1 : 0].lat;
 		var lngi = citydata[city === 'London' ? 1 : 0].lng;
-		console.log(lati + ' ' + lngi);
 		var timestamp = Date.now()/1000;
 		timezone.data(lati, lngi, timestamp, function (err, tz) {
  if (!err){
@@ -477,7 +464,6 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	if (message.content.substring(0, 11) === '!ZiV-random') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000)+2).toString() + '#summary');
 	}
-
 	if (message.content.substring(0, 9) === '!commands') {
 		message.channel.send('font commands\nTo find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
 			'\nfont!gamename your text here - creates image of your text in the game\'s font\nb(u/d)(two digits)!game your text here to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size. also works for speech bubbles.\n' +

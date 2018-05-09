@@ -20,3 +20,19 @@ if ( n < 10)
 else
 	return n.toString();
 }
+
+var lines = [" beabo", " bee", " bii", " be", " beeb"];
+
+module.exports.beeb = () => {
+	var len = Math.floor(Math.random() * 6) + 1;
+		var sentence = "";
+		for(var i = 0; i < len; i++){
+			sentence += lines[Math.floor(Math.random() * lines.length)];
+			var ex = Math.floor(Math.random() * 3);
+			if (ex === 0){
+				sentence += "!";
+			}
+		}
+		return sentence + "!";
+	
+}
