@@ -62,7 +62,7 @@ module.exports.twitterAlbum = (tweetId) => {
 						console.log(tweets[i-2]);
 							}
 					console.log(tweets);
-					return tweets;
+					return ['a', 'b'];
 				}
 				return tweets;
 			} else {
