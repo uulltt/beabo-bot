@@ -62,6 +62,7 @@ module.exports.twitterAlbum = (tweetId) => {
 				console.log(error);
 			}
 		})
+		console.log(tweets);
 		return tweets;
 	
 }
