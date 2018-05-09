@@ -595,8 +595,9 @@ if (exifString.length > 2000){
 		const citydata = cityTimezones.lookupViaCity(city);
 		var lati = citydata[0].lat;
 		var lngi = citydata[0].lng;
-		timezone.data(lati, lngi, Date.now(), function (err, tz) {
- 
+		var timestamp = Date.now();
+		timezone.data(lati, lngi, timestamp, function (err, tz) {
+ if (!err){
   console.log(tz.raw_response);
   //=> { dstOffset: 3600,
   //     rawOffset: -18000,
@@ -611,9 +612,12 @@ if (exifString.length > 2000){
  
   console.log(d.toDateString() + ' - ' + d.getHours() + ':' + d.getMinutes());
   // => Thu Jun 12 2014 - 20:15
+ } else {
+	 console.log(err);
+ }
  
 });
-		message.channel.send(zone(tzname).toLocaleString());
+		//message.channel.send(zone(tzname).toLocaleString());
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
