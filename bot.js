@@ -592,6 +592,7 @@ if (exifString.length > 2000){
 	if (message.content.substring(0, 6) === '!time '){
 		var city = message.content.substring(6);
 		var tzname = cityTimezones.lookupViaCity(city).timezone;
+		console.log(tzname);
 		var ct = require('current-timezone')(tzname);
 		message.channel.send(ct.toLocaleString());
 	}
