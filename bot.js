@@ -233,8 +233,6 @@ if (exifString.length > 2000){
 			if (args[i].length > 0 && (args[i].length < 3 || args[i].substring(0, 3) != '```')) //if the first character isn't an accent mark and the length of the argument is greater than 0
 				message.channel.send('•' + args[i]); //send the list element
 		}
-	} else if (message.content.substring(0, 8) === '!ZiV-id ') {
-		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
 
 	} else if (new RegExp(/font![a-z0-9]{2}\W/gm).test(message.content.substring(0, 8)) || new RegExp(/font![a-z0-9]{2}[0-9]{2}\W/gm).test(message.content.substring(0, 10))) {
 		var arg = message.content.substring(8) + '\u200B';
@@ -591,6 +589,13 @@ if (exifString.length > 2000){
 				})
 		}
 	}
+	
+	if (message.content.substring(0, 8) === '!ZiV-id ') {
+		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
+	}
+	if (message.content.substring(0, 11) === '!ZiV-random') {
+		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000)+2).toString() + '#summary');
+	}
 
 	if (message.content.substring(0, 9) === '!commands') {
 		message.channel.send('font commands\nTo find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.\n' +
@@ -602,8 +607,8 @@ if (exifString.length > 2000){
 			'font!sold - soldam\nfont!tetris - tetris (sega)\nfont!vict - victory road\n*/
 			'\ngoogle maps commands\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in kendall\")\n'+
 			'\nother commands\n!full or !pics or !album followed by twitter/imgur/tumblr link - displays full photo album of tweet or imgur/tumblr post\n'+
-			'\nhex#hexCode - displays image of a color pertaining to the hex cde\n!exif followed by link to jpg image or an attachment - prints out exif data of image\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number'+
-			'\n!list or !todo - splits discord message into a to-do list');
+			'\nhex#hexCode - displays image of a color pertaining to the hex cde\n!exif followed by link to jpg image or an attachment - prints out exif data of image\n'+
+			'\n!list or !todo - splits discord message into a to-do list\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number\n!ZiV-random - gets a random arcade on Zenius-i-Vanisher');
 	}
 
 });
