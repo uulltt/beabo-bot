@@ -169,7 +169,7 @@ if (exifString.length > 2000){
 		}, function (error, tweet, response) {
 
 			if (!error) {
-				console.log(tweet);
+				//console.log(tweet);
 				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
 					for (var i = 1; i < tweet.extended_entities.media.length; i++) {
 						message.channel.send({
@@ -208,7 +208,7 @@ if (exifString.length > 2000){
 		var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
 		var blogId = hasBlogId[hasBlogId.length - 1];
 		var postId = parseInt(message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0]);
-		console.log("am i doing this right?");
+		//console.log("am i doing this right?");
 		tumblr.get('/posts', {hostname: blogId + '.tumblr.com', id : postId }, function(err, json){
 			if (json.total_posts > 0){
   if (json.posts[0].type === 'photo'){
@@ -591,6 +591,7 @@ if (exifString.length > 2000){
 		}
 	}
 	if (message.content.substring(0, 6) === '!time '){
+		timezone.key(process.env.PLACES_KEY);
 		var city = message.content.substring(6);
 		const citydata = cityTimezones.lookupViaCity(city);
 		var lati = citydata[0].lat;
@@ -610,7 +611,7 @@ if (exifString.length > 2000){
  
   var d = new Date(tz.local_timestamp * 1000);
  
-  console.log(d.toDateString() + ' - ' + d.getHours() + ':' + d.getMinutes());
+  console.log(d.toDateString() + ' - ' + d.getHours() + ':' + d.getMinutes() + ":" d.getSeconds());
   // => Thu Jun 12 2014 - 20:15
  } else {
 	 console.log(err);
