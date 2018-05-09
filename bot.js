@@ -53,9 +53,16 @@ console.log(body);
 try {
     new ExifImage({ image : body }, function (error, exifData) {
         if (error)
-            console.log('Error: '+error.message);
-        else
-            console.log(exifData); // Do something with your data!
+            console.log('Error: '+ error.message);
+        else{
+			var propValue;
+            for(var propName in exifData) {
+    propValue = exifData[propName];
+var field = propName.toString() + ": " + propValue.toString();
+if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"));
+    console.log(field);
+}
+		}
     });
 
 } catch (error) {
