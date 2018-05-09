@@ -201,7 +201,6 @@ if (exifString.length > 2000){
 		var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
 		var blogId = hasBlogId[hasBlogId.length - 1];
 		var postId = parseInt(message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0]);
-		//console.log("am i doing this right?");
 		tumblr.get('/posts', {hostname: blogId + '.tumblr.com', id : postId }, function(err, json){
 			if (json.total_posts > 0){
   if (json.posts[0].type === 'photo'){
@@ -239,7 +238,7 @@ if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))){
 							url: urls[i]
 						}
 					}
-				})
+				});
 		}
 }
 if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
@@ -252,7 +251,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 							url: urls[i]
 						}
 					}
-				}).then(console.log).catch(console.error);
+				});
 	}
 }
 
