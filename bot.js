@@ -97,7 +97,11 @@ if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer")
    exifString += field;
 }
 }
-console.log(exifString);
+if (exifString.length > 2000){
+	message.channel.send(exifString.substring(0, 2000));
+} else {
+	message.channel.send(exifString);
+}
 		}
     });
 
@@ -626,7 +630,7 @@ console.log(exifString);
 			'font!sold - soldam\nfont!tetris - tetris (sega)\nfont!vict - victory road\n*/
 			'\ngoogle maps commands\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in kendall\")\n'+
 			'\nother commands\n!full or !pics or !album followed by twitter/imgur/tumblr link - displays full photo album of tweet or imgur/tumblr post\n'+
-			'\nhex#hexCode - displays image of a color pertaining to the hex cde\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number'+
+			'\nhex#hexCode - displays image of a color pertaining to the hex cde\n!exif followed by link to jpg image - prints out exif data of image\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number'+
 			'\n!list or !todo - splits discord message into a to-do list');
 	}
 
