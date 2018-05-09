@@ -595,7 +595,7 @@ if (exifString.length > 2000){
 		const citydata = cityTimezones.lookupViaCity(city);
 		var lati = citydata[0].lat;
 		var lngi = citydata[0].lng;
-		timezone.data(lati, lngi, function (err, tz) {
+		timezone.data(lati, lngi, Date.now(), function (err, tz) {
  
   console.log(tz.raw_response);
   //=> { dstOffset: 3600,
@@ -607,7 +607,7 @@ if (exifString.length > 2000){
   console.log(tz.local_timestamp);
   // => 1402614905
  
-  var d = Date.now();
+  var d = new Date(tz.local_timestamp * 1000);
  
   console.log(d.toDateString() + ' - ' + d.getHours() + ':' + d.getMinutes());
   // => Thu Jun 12 2014 - 20:15
