@@ -596,7 +596,8 @@ if (exifString.length > 2000){
 		const citydata = cityTimezones.lookupViaCity(city);
 		var lati = citydata[0].lat;
 		var lngi = citydata[0].lng;
-		var timestamp = Date.now();
+		console.log(lati + ' ' + lngi);
+		var timestamp = Date.now()/1000;
 		timezone.data(lati, lngi, timestamp, function (err, tz) {
  if (!err){
   console.log(tz.raw_response);
