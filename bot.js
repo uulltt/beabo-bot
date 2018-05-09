@@ -229,7 +229,9 @@ if (exifString.length > 2000){
 
 	}
 if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))){
+	console.log(xtra.font(message.content));
 	var urls = xtra.font(message.content);
+	console.log(urls);
 	for (var i = 0; i < Math.min(args.length, 5); i++) {
 			if (args[i].length > 0)
 				message.channel.send({
