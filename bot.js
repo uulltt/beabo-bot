@@ -157,7 +157,7 @@ if (exifString.length > 2000){
 	if (message.content.substring(0, 6) == '!pics ' || message.content.substring(0, 6) == '!full ' || message.content.substring(0, 7) == '!album '){
 	if(message.content.includes('twitter.com/') && message.content.includes('/status/')) {
 		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
-		tweeter.get('statuses/show/' + tweetId, {
+		/*tweeter.get('statuses/show/' + tweetId, {
 			tweet_mode: 'extended'
 		}, function (error, tweet, response) {
 
@@ -177,7 +177,17 @@ if (exifString.length > 2000){
 			} else {
 				console.log(error);
 			}
-		})
+		})*/
+		var tweets = xtra.twitterAlbum(tweetId);
+		for(var i = 0; i < tweets.length; i++){
+			message.channel.send({
+							embed: {
+								image: {
+									url: tweets[i]
+								}
+							}
+						});
+		}
 	}
 	if (message.content.includes('imgur.com/') && message.content.includes('/a/')) {
 		var theAlbum = message.content.substring(message.content.indexOf('/a/') + ('/a/').length).match(/[0-9a-zA-Z]+/gm)[0];
