@@ -591,10 +591,16 @@ if (exifString.length > 2000){
 	}
 	if (message.content.substring(0, 6) === '!time '){
 		var city = message.content.substring(6);
-		var tzname = cityTimezones.lookupViaCity(city)[0].timezone;
-		console.log(tzname);
-		var ct = require('current-timezone')(tzname);
-		message.channel.send(ct.toLocaleString());
+		var citydata = cityTimezones.lookupViaCity(city);
+		var propValue;
+            for(var propName in citydata) {
+    propValue = citydata[propName];
+	console.log(propname,propvalue);
+			}
+		//var tzname = cityTimezones.lookupViaCity(city).timezone;
+		//console.log(tzname);
+		//var ct = require('current-timezone')(tzname);
+		//message.channel.send(ct.toLocaleString());
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
