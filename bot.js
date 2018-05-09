@@ -56,10 +56,40 @@ try {
             console.log('Error: '+ error.message);
         else{
 			var propValue;
-            for(var propName in exifData) {
-    propValue = exifData[propName];
-var field = propName.toString() + ": " + propValue.toString();
+            for(var propName in exifData.image) {
+    propValue = exifData.image[propName];
+var field = propName.toString() + ": " + propValue.toString() + "\n";
 if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"));
+    console.log(field);
+}
+ for(var propName in exifData.thumbnail) {
+    propValue = exifData.image[propName];
+var field = propName.toString() + ": " + propValue.toString() + "\n";
+if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
+    console.log(field);
+}
+ for(var propName in exifData.thumbnail) {
+    propValue = exifData.thumbnail[propName];
+var field = propName.toString() + ": " + propValue.toString() + "\n";
+if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
+    console.log(field);
+}
+for(var propName in exifData.exif) {
+    propValue = exifData.exif[propName];
+var field = propName.toString() + ": " + propValue.toString() + "\n";
+if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
+    console.log(field);
+}
+for(var propName in exifData.interoperability) {
+    propValue = exifData.interoperability[propName];
+var field = propName.toString() + ": " + propValue.toString() + "\n";
+if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
+    console.log(field);
+}
+for(var propName in exifData.makernote) {
+    propValue = exifData.makernote[propName];
+var field = propName.toString() + ": " + propValue.toString() + "\n";
+if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer"))
     console.log(field);
 }
 		}
