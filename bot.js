@@ -111,7 +111,7 @@ function bubble (message) {
 	return urls;
 }
 
-function font (message) => {
+function font (message) {
 	var arg = ' ';
 	var game = ' ';
 	var style = '0';
