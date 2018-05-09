@@ -48,11 +48,11 @@ client.on('message', message => {
 		var request = require('request').defaults({ encoding: null });
 request.get(message.content.substring(6), function (err, res, body) {
       //process exif here
-var exifString = ''
+var exifString = ':frame_photo: EXIF data:\n';
 try {
     new ExifImage({ image : body }, function (error, exifData) {
         if (error)
-            console.log('Error: '+ error.message);
+            message.channel.send('Error: '+ error.message);
         else{
 			var propValue;
             for(var propName in exifData.image) {
@@ -106,7 +106,7 @@ if (exifString.length > 2000){
     });
 
 } catch (error) {
-    console.log('Error: ' + error.message);
+   message.channel.send('Error: ' + error.message);
 }
 });
 	}
