@@ -13,6 +13,7 @@ var Tumblr = require('tumblrwks');
 var tumblr = new Tumblr({
   consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 });
+var jpeg = require('jpeg-js');
 var timezone = require('node-google-timezone');
 var tweeter = new Twitter({
 		consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -306,6 +307,25 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		} catch (error) {
    message.channel.send('Error: ' + error.message);
 		}
+	}
+	if (message.content.substring(0, 5) === '!jpeg'){
+		var width = 320, height = 180;
+var frameData = new Buffer(width * height * 4);
+var i = 0;
+while (i < frameData.length) {
+  frameData[i++] = 0xFF; // red
+  frameData[i++] = 0x00; // green
+  frameData[i++] = 0x00; // blue
+  frameData[i++] = 0xFF; // alpha - ignored in JPEGs
+}
+var rawImageData = {
+  data: frameData,
+  width: width,
+  height: height
+};
+var jpegImageData = jpeg.encode(rawImageData, 50);
+const attachment = new MessageAttachment(jpegImageData, 'colors.jpg');
+message.channel.send(`${message.author}, here are your memes!`, attachment);
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
