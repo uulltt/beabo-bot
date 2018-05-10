@@ -317,9 +317,9 @@ gb.games.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.games.get(id, function (err2, res2, json2) {
-	var embedTitle = json2.results.name + ' ';
+	var embedTitle = title + ' ';
 	var embedString = '';
-	var embedImage = json2.results.image.original_url;
+	//var embedImage = json2.results.image.original_url;
   if (query === 'characters'){
 		embedTitle += 'Characters';
 		for(var i = 0; i < json2.results.characters.length; i++){
@@ -369,10 +369,10 @@ gb.games.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717, 
-				thumbnail: {
+				color: 0xa81717//, 
+				/*thumbnail: {
 					url : embedImage
-				}
+				}*/
 			}
 		});
 });
@@ -388,9 +388,9 @@ gb.concepts.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.concepts.get(id, function (err2, res2, json2) {
-	var embedTitle = json2.results.name + ' ';
+	var embedTitle = title + ' ';
 	var embedString = '';
-	var embedImage = json2.results.image.original_url;
+	//var embedImage = json2.results.image.original_url;
 	if (query === 'locations'){
 		embedTitle += 'Locations';
 		for(var i = 0; i < json2.results.locations.length; i++){
@@ -463,10 +463,10 @@ gb.concepts.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717, 
-				thumbnail: {
+				color: 0xa81717//, 
+				/*thumbnail: {
 					url : embedImage
-				}
+				}*/
 			}
 		});
 });
