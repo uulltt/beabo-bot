@@ -597,6 +597,79 @@ gb.characters.get(id, function (err2, res2, json2) {
 });
 	}
 	
+	if (message.content.substring(0, 11) === '!gb person ' || message.content.substring(0, 11) === '!gb person '){
+		var typequery = message.content.substring(11)
+		var query = typequery.substring(0, typequery.indexOf(' '));
+		var title = typequery.substring(typequery.indexOf(' ')+1);
+gb.people.search(title, {limit : 1}, (err, res, json) => {
+	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
+	var id = json.results[0].id;
+gb.people.get(id, function (err2, res2, json2) {
+	console.log(json2.results);
+	var embedTitle = title + ' ';
+	var embedString = '';
+	//var embedImage = json2.results.image.original_url;
+	embedString += xtra.gbwiki(json2, query);
+	if (query === 'locations'){
+		embedTitle += 'Locations';
+	}
+	if (query === 'objects'){
+		embedTitle += 'Objects';
+	}
+	if (query === 'info'){
+		
+			if (json2.results.first_credited_game !== null){
+		embedString += '**•First Credited Game: [' + json2.results.first_credited_game.name + '](' + json2.results.first_credited_game.site_detail_url + ')**\n';
+		}
+		var genders = ['0', 'Male', 'Female', '3'];
+		embedString += '**•Gender: ' + genders[json2.results.gender] + '**\n';
+		if (json2.results.birth_date !== null){
+		embedString += '**•Birthday: ' + json2.results.birth_date + '**\n';
+		}
+	}
+  if (query === 'franchises'){
+		embedTitle += 'Franchises';
+		for(var i = 0; i < json2.results.franchises.length; i++){
+			if ((embedString + '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'games'){
+		embedTitle += 'Games';
+		for(var i = 0; i < json2.results.games.length; i++){
+			if ((embedString + '**•[' + json2.results.games[i].name + '](' + json2.results.games[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.games[i].name + '](' + json2.results.games[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'characters'){
+		embedTitle += 'Characters';
+		for(var i = 0; i < json2.results.characters.length; i++){
+			if ((embedString + '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'concepts'){
+		embedTitle += 'Concepts';
+	}
+	
+	if (embedString.length > 2048){
+		embedString = embedString.substring(0, 2048);
+	}
+	message.channel.send({
+			embed: {
+				title: embedTitle,
+				description: embedString,
+				color: 0xa81717//, 
+				/*thumbnail: {
+					url : embedImage
+				}*/
+			}
+		});
+});
+}
+});
+	}
+	
 	if (message.content.substring(0, 14) === '!gb franchise ' || message.content.substring(0, 14) === '!gb franchise '){
 		var typequery = message.content.substring(14)
 		var query = typequery.substring(0, typequery.indexOf(' '));
