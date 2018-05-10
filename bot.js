@@ -321,7 +321,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 };
 
 gb.games.list(config, (err, res, body) => {
-  console.log(body.results);
+  console.log(body.results[0]);
 });
 	}
 	if (typequery.startsWith('people ')){
