@@ -375,7 +375,6 @@ gb.games.get(json.results[0].id, function (err2, res2, json2) {
 		console.log(err2);
 	}
 });
-}
 });
 
 	}
