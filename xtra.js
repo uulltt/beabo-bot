@@ -224,16 +224,16 @@ module.exports.gbwiki = (json, query) => {
 	}
 	if (query === 'concepts'){
 		//embedTitle += 'Concepts';
-		for(var i = 0; i < json2.results.concepts.length; i++){
-			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
+		for(var i = 0; i < json.results.concepts.length; i++){
+			if ((embedString + '**•[' + json.results.concepts[i].name + '](' + json.results.concepts[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json.results.concepts[i].name + '](' + json.results.concepts[i].site_detail_url + ')**\n';
 		}
 	}
 	if (query === 'people'){
 		//embedTitle += 'Concepts';
-		for(var i = 0; i < json2.results.people.length; i++){
-			if ((embedString + '**•[' + json2.results.people[i].name + '](' + json2.results.people[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.people[i].name + '](' + json2.results.people[i].site_detail_url + ')**\n';
+		for(var i = 0; i < json.results.people.length; i++){
+			if ((embedString + '**•[' + json.results.people[i].name + '](' + json.results.people[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json.results.people[i].name + '](' + json.results.people[i].site_detail_url + ')**\n';
 		}
 	}
 	return embedString;
