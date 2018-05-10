@@ -319,7 +319,7 @@ gb.games.search(title, {limit : 1}, (err, res, json) => {
 gb.games.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
-	var embedImage = json2.image.original_url;
+	//var embedImage = json2.image.original_url;
   if (query === 'characters'){
 		embedTitle += 'Characters';
 		for(var i = 0; i < json2.results.characters.length; i++){
@@ -369,10 +369,10 @@ gb.games.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717, 
-				thumbnail: {
+				color: 0xa81717//, 
+				/*thumbnail: {
 					url : embedImage
-				}
+				}*/
 			}
 		});
 });
@@ -390,7 +390,7 @@ gb.concepts.search(title, {limit : 1}, (err, res, json) => {
 gb.concepts.get(id, function (err2, res2, json2) {
 	var embedTitle = json2.name + ' ';
 	var embedString = '';
-	var embedImage = json2.image.original_url;
+	//var embedImage = json2.image.original_url;
 	if (query === 'locations'){
 		embedTitle += 'Locations';
 		for(var i = 0; i < json2.results.locations.length; i++){
@@ -464,10 +464,10 @@ gb.concepts.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717, 
-				thumbnail: {
+				color: 0xa81717//, 
+				/*thumbnail: {
 					url : embedImage
-				}
+				}*/
 			}
 		});
 });
