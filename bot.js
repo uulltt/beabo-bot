@@ -320,13 +320,16 @@ gb.games.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
 	//var embedImage = json2.results.image.original_url;
-	if (query === 'info'){
-		embedString += '**Description: ' + json2.results.deck + '**\n';
+	embedString += xtra.gbwiki(json2, query);
+	if (query === 'locations'){
+		embedTitle += 'Locations';
+	}
+	if (query === 'objects'){
+		embedTitle += 'Objects';
+	}
+	if (query === 'info'){ //might add more stuff here
+		//embedString += '**Description: ' + json2.results.deck + '**\n';
 		//embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
-		/*for(var i = 0; i < json2.results.objects.length; i++){
-			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
-		}*/
 	}
   if (query === 'characters'){
 		embedTitle += 'Characters';
@@ -337,24 +340,6 @@ gb.games.get(id, function (err2, res2, json2) {
 	}
 	 if (query === 'concepts'){
 		embedTitle += 'Concepts';
-		for(var i = 0; i < json2.results.concepts.length; i++){
-			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
-		}
-	}
-	if (query === 'locations'){
-		embedTitle += 'Locations';
-		for(var i = 0; i < json2.results.locations.length; i++){
-			if ((embedString + '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n';
-		}
-	}
-	if (query === 'objects'){
-		embedTitle += 'Objects';
-		for(var i = 0; i < json2.results.objects.length; i++){
-			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
-		}
 	}
 	if (query === 'similar'){
 		embedTitle += 'Similar Games';
@@ -399,22 +384,14 @@ gb.concepts.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
 	//var embedImage = json2.results.image.original_url;
+	embedString += xtra.gbwiki(json2, query);
 	if (query === 'locations'){
 		embedTitle += 'Locations';
-		for(var i = 0; i < json2.results.locations.length; i++){
-			if ((embedString + '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n';
-		}
 	}
 	if (query === 'objects'){
 		embedTitle += 'Objects';
-		for(var i = 0; i < json2.results.objects.length; i++){
-			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
-		}
 	}
 	if (query === 'info'){
-		embedString += '**Description: ' + json2.results.deck + '**\n';
 		embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
 		/*for(var i = 0; i < json2.results.objects.length; i++){
 			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
@@ -444,10 +421,6 @@ gb.concepts.get(id, function (err2, res2, json2) {
 	}
 	 if (query === 'concepts'){
 		embedTitle += 'Concepts';
-		for(var i = 0; i < json2.results.concepts.length; i++){
-			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
-		}
 	}
 	
 	/*
@@ -487,22 +460,15 @@ gb.companies.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
 	//var embedImage = json2.results.image.original_url;
+	embedString += xtra.gbwiki(json2, query);
 	if (query === 'locations'){
 		embedTitle += 'Locations';
-		for(var i = 0; i < json2.results.locations.length; i++){
-			if ((embedString + '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n';
-		}
 	}
 	if (query === 'objects'){
 		embedTitle += 'Objects';
-		for(var i = 0; i < json2.results.objects.length; i++){
-			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
-		}
 	}
-	if (query === 'info'){
-		embedString += '**Description: ' + json2.results.deck + '**\n';
+	if (query === 'info'){ //gotta add more company info
+		//embedString += '**Description: ' + json2.results.deck + '**\n';
 		//embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
 		/*for(var i = 0; i < json2.results.objects.length; i++){
 			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
@@ -532,11 +498,8 @@ gb.companies.get(id, function (err2, res2, json2) {
 	}
 	 if (query === 'concepts'){
 		embedTitle += 'Concepts';
-		for(var i = 0; i < json2.results.concepts.length; i++){
-			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
-		}
 	}
+	
 	if (embedString.length > 2048){
 		embedString = embedString.substring(0, 2048);
 	}
@@ -567,22 +530,14 @@ gb.characters.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
 	//var embedImage = json2.results.image.original_url;
+	embedString += xtra.gbwiki(json2, query);
 	if (query === 'locations'){
 		embedTitle += 'Locations';
-		for(var i = 0; i < json2.results.locations.length; i++){
-			if ((embedString + '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n';
-		}
 	}
 	if (query === 'objects'){
 		embedTitle += 'Objects';
-		for(var i = 0; i < json2.results.objects.length; i++){
-			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
-		}
 	}
 	if (query === 'info'){
-		embedString += '**Description: ' + json2.results.deck + '**\n';
 		
 			if (json2.results.first_appeared_in_game !== null){
 		embedString += '**•First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**\n';
@@ -622,11 +577,8 @@ gb.characters.get(id, function (err2, res2, json2) {
 	}
 	 if (query === 'concepts'){
 		embedTitle += 'Concepts';
-		for(var i = 0; i < json2.results.concepts.length; i++){
-			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
-		}
 	}
+	
 	if (embedString.length > 2048){
 		embedString = embedString.substring(0, 2048);
 	}
