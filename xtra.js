@@ -202,3 +202,33 @@ module.exports.bubble = (message) => {
 	return urls;
 	
 }
+
+module.exports.gbwiki = (json, query) => {
+	var embedString = '';
+	if (query === 'locations'){
+		embedTitle += 'Locations';
+		for(var i = 0; i < json.results.locations.length; i++){
+			if ((embedString + '**•[' + json.results.locations[i].name + '](' + json.results.locations[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json.results.locations[i].name + '](' + json.results.locations[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'objects'){
+		embedTitle += 'Objects';
+		for(var i = 0; i < json.results.objects.length; i++){
+			if ((embedString + '**•[' + json.results.objects[i].name + '](' + json.results.objects[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json.results.objects[i].name + '](' + json.results.objects[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'info'){
+		embedString += '**Description: ' + json.results.deck + '**\n';
+	}
+	if (query === 'concepts'){
+		embedTitle += 'Concepts';
+		for(var i = 0; i < json2.results.concepts.length; i++){
+			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
+		}
+	}
+	return embedString;
+	
+}

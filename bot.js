@@ -678,35 +678,6 @@ gb.franchises.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
 	//var embedImage = json2.results.image.original_url;
-	if (query === 'locations'){
-		embedTitle += 'Locations';
-		for(var i = 0; i < json2.results.locations.length; i++){
-			if ((embedString + '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n';
-		}
-	}
-	if (query === 'objects'){
-		embedTitle += 'Objects';
-		for(var i = 0; i < json2.results.objects.length; i++){
-			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
-		}
-	}
-	if (query === 'info'){
-		embedString += '**Description: ' + json2.results.deck + '**\n';
-		//embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
-		/*for(var i = 0; i < json2.results.objects.length; i++){
-			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
-		}*/
-	}
-  /*if (query === 'franchises'){
-		embedTitle += 'Franchises';
-		for(var i = 0; i < json2.results.franchises.length; i++){
-			if ((embedString + '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n';
-		}
-	}*/
 	 if (query === 'games'){
 		embedTitle += 'Games';
 		for(var i = 0; i < json2.results.games.length; i++){
@@ -721,22 +692,7 @@ gb.franchises.get(id, function (err2, res2, json2) {
 			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
 		}
 	}
-	 if (query === 'concepts'){
-		embedTitle += 'Concepts';
-		for(var i = 0; i < json2.results.concepts.length; i++){
-			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
-		}
-	}
-	
-	/*
-	if (query === 'themes'){
-		embedTitle += 'Themes';
-		for(var i = 0; i < json2.results.themes.length; i++){
-			if ((embedString + '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n';
-		}
-	}*/
+	embedString += xtra.gbwiki(json2, query);
 	if (embedString.length > 2048){
 		embedString = embedString.substring(0, 2048);
 	}
