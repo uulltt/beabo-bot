@@ -175,7 +175,7 @@ if (exifString.length > 2000){
 					}
 				}
 			} else {
-				console.log(error);
+				message.channel.send (error);
 			}
 		})
 	}
@@ -194,7 +194,7 @@ if (exifString.length > 2000){
 					}
     })
     .catch(function (err) {
-        console.error(err.message);
+        message.channel.send(err.message);
     });		
 	}
 	if (message.content.includes('tumblr.com/post/')) {
@@ -202,8 +202,8 @@ if (exifString.length > 2000){
 		var blogId = hasBlogId[hasBlogId.length - 1];
 		var postId = parseInt(message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0]);
 		tumblr.get('/posts', {hostname: blogId + '.tumblr.com', id : postId }, function(err, json){
-			if (json.total_posts > 0){
-  if (json.posts[0].type === 'photo'){
+			if (!err){
+			if (json.total_posts > 0 && json.posts[0].type === 'photo'){
 	  for(var i = 1; i < json.posts[0].photos.length; i++){
 		  message.channel.send({embed: {
 			  image: {
@@ -212,7 +212,9 @@ if (exifString.length > 2000){
 		  }
 		  });
 	  }
-  }
+			}
+			} else {
+				message.channel.send(err);
 			}
 });		
 	}
