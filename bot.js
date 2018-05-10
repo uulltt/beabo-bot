@@ -146,11 +146,7 @@ if (exifString.length > 2000){
 			destination: dest
 		})
 		.then(function (result) {
-			var dir = ':motorway: **' + ori + '** to **' + dest + '**\n';
-			for (var i = 0; i < result.routes[0].legs[0].steps.length; i++) {
-				dir = dir + (i + 1).toString() + '. ' + result.routes[0].legs[0].steps[i].html_instructions.replace(/<\/?b>/gm, '**').replace(/<div style="font-size:0.9em">/gm, ' `(').replace(/<\/div>/gm, ')`') + ' (' + result.routes[0].legs[0].steps[i].distance.text + ', ' + result.routes[0].legs[0].steps[i].duration.text + ')\n';
-			}
-			dir = dir + 'And you\'re there! :smiley:';
+			var dir = ':motorway: **' + ori + '** to **' + dest + '**\n' + xtra.getDirections(result);
 			message.channel.send(dir.length <= 2000 ? dir : 'Too many directions. Just Google it.');
 		}).catch(console.error);
 	}
