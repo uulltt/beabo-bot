@@ -323,7 +323,7 @@ gb.games.get(id, (err2, res2, json2) => {
 	var embedString = '';
 	
 	
-  console.log(json2.results.characters);
+  console.log(json2.results.characters[0].name);
   if (query === 'cha'){
 		embedTitle += 'Characters';
 		var characters = json2.results.characters;
