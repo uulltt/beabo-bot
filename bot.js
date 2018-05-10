@@ -320,12 +320,8 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
   ]
 };
 
-gb.games.list(config, (err, res, body) => {
-  var url = body.results[0].api_detail_url;
-  var request = require('request').defaults({ json: true });
-request.get(url + '?api_key=' + process.env.GIANT_BOMB, function (err, res, json) {
-	console.log(json);
-});
+gb.games.get(16909, (err, res, json) => {
+  console.log(json.results);
 });
 	}
 	if (typequery.startsWith('people ')){
