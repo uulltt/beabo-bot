@@ -309,15 +309,14 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
    message.channel.send('Error: ' + error.message);
 		}
 	}
-	if (message.content.substring(0, 9) === '!gb game ' || message.content.substring(0, 9) === '!gb game '){
-		var typequery = message.content.substring(9)
+	if (message.content.substring(0, 10) === '!gb games ' || message.content.substring(0, 10) === '!gb games '){
+		var typequery = message.content.substring(10)
 		var query = typequery.substring(0, typequery.indexOf(' '));
 		var title = typequery.substring(typequery.indexOf(' ')+1);
-		console.log(query);
-		console.log(title);
 gb.games.search(title, {limit : 1}, (err, res, json) => {
-gb.games.get(json.results[0].id, function (err2, res2, json2) {
-	if (!err2){
+	if (json.hasOwnProperty('results')){
+	var id = json.results[0].id;
+gb.games.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
   if (query === 'characters'){
@@ -371,12 +370,9 @@ gb.games.get(json.results[0].id, function (err2, res2, json2) {
 				description: embedString
 			}
 		});
-	} else {
-		console.log(err2);
-	}
 });
+}
 });
-
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
