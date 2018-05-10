@@ -315,19 +315,19 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 			var query = typequery.substring(6);
 			console.log(query);
 		gb.games.search(query, (err, res, json) => {
-  console.log(json);
+  console.log(json.results[0]);
 });
 	}
 	if (typequery.startsWith('people ')){
 			var query = typequery.substring(7);
 		gb.people.search(query, (err, res, json) => {
-  console.log(json);
+  console.log(json.results[0]);
 });
 	}
 	if (typequery.startsWith('companies ')){
 			var query = typequery.substring(9);
 		gb.companies.search(query, (err, res, json) => {
-  console.log(json);
+  console.log(json.results[0]);
 });
 	}
 	}
