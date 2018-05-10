@@ -323,7 +323,7 @@ var dimensions = require('image-size')(body);
 var rawImageData = jpeg.decode(body);
 console.log(rawImageData);
 console.log(body);
-console.log(body.array().length + ' ' + rawImageData.array().length);
+console.log(body.length + ' ' + rawImageData.length);
 var rawdata = {
 	data: body,
 	width: dimensions.width,
