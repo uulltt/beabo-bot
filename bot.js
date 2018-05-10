@@ -333,52 +333,63 @@ gb.games.get(id, function (err2, res2, json2) {
 		var publishers = ''
 		var dlcs = ''
 		for(var i = 0; i < json2.results.developers.length; i++){
-			if (i > 0){
+			
+			if ((developers + ', [' + json2.results.developers[i].name + '](' + json2.results.developers[i].site_detail_url + ')').length < 2048){
+				if (i > 0){
 				developers += ', ';
 			}
-			if ((developers + '[' + json2.results.developers[i].name + '](' + json2.results.developers[i].site_detail_url + ')').length < 2048)
 			developers += '[' + json2.results.developers[i].name + '](' + json2.results.developers[i].site_detail_url + ')';
+			}
 		}
 		for(var i = 0; i < json2.results.publishers.length; i++){
-			if (i > 0){
+			if ((publishers + ', [' + json2.results.publishers[i].name + '](' + json2.results.publishers[i].site_detail_url + ')').length < 2048){
+				if (i > 0){
 				publishers += ', ';
 			}
-			if ((publishers + '[' + json2.results.publishers[i].name + '](' + json2.results.publishers[i].site_detail_url + ')').length < 2048)
 			publishers += '[' + json2.results.publishers[i].name + '](' + json2.results.publishers[i].site_detail_url + ')';
+			}
 		}
 		for(var i = 0; i < json2.results.dlcs.length; i++){
-			if (i > 0){
+			
+			if ((dlcs + ', [' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')').length < 2048 && !dlcs.includes('[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')')){
+				if (i > 0){
 				dlcs += ', ';
 			}
-			if ((dlcs + '[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')').length < 2048 && !dlcs.includes('[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')'))
 			dlcs += '[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')';
+			}
 		}
 		for(var i = 0; i < json2.results.platforms.length; i++){
-			if (i > 0){
+			
+			if ((platforms + ', [' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')').length < 2048){
+				if (i > 0){
 				platforms += ', ';
 			}
-			if ((platforms + '[' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')').length < 2048)
 			platforms += '[' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')';
+			}
 		}
 		
 		for(var i = 0; i < json2.results.genres.length; i++){
-			if (i > 0){
+			
+			if ((genres + ', [' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')').length < 2048){
+				if (i > 0){
 				genres += ', ';
 			}
-			if ((genres + '[' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')').length < 2048)
 			genres += '[' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')';
+			}
 		}
 		for(var i = 0; i < json2.results.themes.length; i++){
-			if (i > 0){
+			
+			if ((themes + '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')').length < 2048){
+				if (i > 0){
 				themes += ', ';
 			}
-			if ((themes + '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')').length < 2048)
 			themes += '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')';
+			}
 		}
 		message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString, url: json2.results.site_detail_url,
+				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
 				color: 0xa81717, thumbnail: { url: imageURL },
 				fields: [{
 					name: "Original Release Date",
@@ -458,7 +469,7 @@ gb.games.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString, url: json2.results.site_detail_url,
+				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
 				color: 0xa81717, thumbnail: { url: imageURL }, 
 				/*thumbnail: {
 					url : embedImage
@@ -541,7 +552,7 @@ gb.concepts.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString, url: json2.results.site_detail_url,
+				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
 				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
@@ -616,7 +627,7 @@ gb.companies.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString, url: json2.results.site_detail_url,
+				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
 				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
@@ -700,7 +711,7 @@ gb.characters.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString, url: json2.results.site_detail_url,
+				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
 				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
@@ -779,7 +790,7 @@ gb.people.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString, url: json2.results.site_detail_url,
+				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
 				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
@@ -840,7 +851,7 @@ gb.franchises.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString, url: json2.results.site_detail_url,
+				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
 				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
