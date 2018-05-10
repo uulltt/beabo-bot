@@ -324,7 +324,7 @@ var rawImageData = {
   height: height
 };
 var jpegImageData = jpeg.encode(rawImageData, 50);
-const attachment = new Discord.Attachment(jpegImageData, 'colors.jpg');
+const attachment = new Discord.Attachment(jpegImageData.data, 'colors.jpg');
 message.channel.send(`${message.author}, here are your memes!`, attachment);
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
