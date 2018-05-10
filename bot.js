@@ -350,7 +350,7 @@ gb.games.get(id, function (err2, res2, json2) {
 			if (i > 0){
 				dlcs += ', ';
 			}
-			if ((dlcs + '[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')').length < 2048)
+			if ((dlcs + '[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')').length < 2048 && !dlcs.includes('[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')'))
 			dlcs += '[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')';
 		}
 		for(var i = 0; i < json2.results.platforms.length; i++){
