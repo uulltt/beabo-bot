@@ -323,16 +323,17 @@ var dimensions = require('image-size')(body);
 var rawImageData = jpeg.decode(body);
 console.log(rawImageData);
 console.log(body);
+console.log(body.array().length + ' ' + rawImageData.array().length);
 var rawdata = {
 	data: body,
 	width: dimensions.width,
-	height: dimensions.height
+	height: dimensions.height,
 }
 console.log(rawdata);
-var jpegImageData = jpeg.encode(rawdata, quality);
+/*var jpegImageData = jpeg.encode(rawdata, quality);
 console.log(jpegImageData);
 const attachment = new Discord.Attachment(jpegImageData.data, 'jpeg.jpg');
-message.channel.send(`${message.author}, here are your memes!`, attachment);
+message.channel.send(`${message.author}, here are your memes!`, attachment);*/
 });
 	}
 	}
