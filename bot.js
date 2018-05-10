@@ -319,14 +319,9 @@ gb.games.search(title, {limit : 1}, (err, res, json) => {
 gb.games.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
-	var chars = json2.results.characters;
-	console.log(chars[0].name);
-	console.log(json2.results.characters[0].name);
-	console.log(chars[0].name);
   if (query === 'cha'){
 		embedTitle += 'Characters';
-		var characters = json2.results.characters;
-		for(var c in characters){
+		for(var c in json2.results.characters){
 			embedString += '•[' + c.name + '](' + c.site_detail_url + ')\n';
 		}
 	}
