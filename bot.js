@@ -10,6 +10,8 @@ var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
 var cityTimezones = require('city-timezones');
 var Tumblr = require('tumblrwks');
+const giantbomb = require('giantbomb');
+const gb = giantbomb('process.env.GIANT_BOMB');
 var tumblr = new Tumblr({
   consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 });
@@ -306,6 +308,12 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		} catch (error) {
    message.channel.send('Error: ' + error.message);
 		}
+	}
+	if (message.content.substring(0, 4) === '!gb '){
+		var title = message.content.substring(4);
+		gb.games.search(title, (err, res, json) => {
+  console.log(json);
+});
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
