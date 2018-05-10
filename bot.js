@@ -231,7 +231,7 @@ if (exifString.length > 2000){
 if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))){
 	var urls = xtra.font(message.content);
 	for (var i = 0; i < Math.min(urls.length, 5); i++) {
-			if (args[i].length > 0)
+			if (urls[i].length > 0)
 				message.channel.send({
 					embed: {
 						image: {
@@ -244,7 +244,7 @@ if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))){
 if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	var urls = xtra.bubble(message.content);
 	for (var i = 0; i < Math.min(urls.length, 5); i++) {
-			if (args[i].length > 0)
+			if (urls[i].length > 0)
 				message.channel.send({
 					embed: {
 						image: {
