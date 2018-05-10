@@ -322,7 +322,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 
 gb.games.list(config, (err, res, body) => {
   var url = body.results[0].api_detail_url;
-  var request = require('request').defaults({ encoding: 'json' });
+  var request = require('request').defaults({ encoding: null });
 request.get(url + '?api_key=' + process.env.GIANT_BOMB, function (err, res, json) {
 	console.log(json);
 });
