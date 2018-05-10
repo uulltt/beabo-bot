@@ -385,6 +385,7 @@ gb.games.get(id, function (err2, res2, json2) {
 			genres += '[' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')';
 			}
 		}
+		if (json2.results.themes !== undefined && json2.results.themes !== null && typeof json2.results.themes !== undefined && typeof json2.results.themes !== null){
 		for(var i = 0; i < json2.results.themes.length; i++){
 			
 			if ((themes + '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')').length < 2048){
@@ -393,6 +394,7 @@ gb.games.get(id, function (err2, res2, json2) {
 			}
 			themes += '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')';
 			}
+		}
 		}
 		if (dlcs !== 'None'){
 		message.channel.send({
