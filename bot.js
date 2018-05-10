@@ -355,10 +355,7 @@ gb.games.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717,
-				thumbnail: {
-					url: imageURL
-				},
+				color: 0xa81717, thumbnail: { url: imageURL },
 				fields: [{
 					name: "Original Release Date",
 					value: json2.results.original_release_date.substring(0, json2.results.original_release_date.indexOf(' '))
