@@ -361,6 +361,9 @@ gb.games.get(id, function (err2, res2, json2) {
 			embedString += '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n';
 		}
 	}
+	if (embedString.length > 5900){
+		embedString = embedString.substring(0, 5900);
+	}
 	message.channel.send({
 			embed: {
 				title: embedTitle,
