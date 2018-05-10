@@ -537,15 +537,6 @@ gb.companies.get(id, function (err2, res2, json2) {
 			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
 		}
 	}
-	
-	/*
-	if (query === 'themes'){
-		embedTitle += 'Themes';
-		for(var i = 0; i < json2.results.themes.length; i++){
-			if ((embedString + '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n';
-		}
-	}*/
 	if (embedString.length > 2048){
 		embedString = embedString.substring(0, 2048);
 	}
@@ -599,10 +590,6 @@ gb.characters.get(id, function (err2, res2, json2) {
 		var genders = ['0', 'Male', 'Female', '3'];
 		embedString += '**•Gender: ' + genders[json2.results.gender] + '**\n';
 		embedString += '**•Birthday: ' + json2.results.birthday + '**\n';
-		/*for(var i = 0; i < json2.results.objects.length; i++){
-			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
-		}*/
 	}
   if (query === 'franchises'){
 		embedTitle += 'Franchises';
@@ -640,15 +627,6 @@ gb.characters.get(id, function (err2, res2, json2) {
 			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
 		}
 	}
-	
-	/*
-	if (query === 'themes'){
-		embedTitle += 'Themes';
-		for(var i = 0; i < json2.results.themes.length; i++){
-			if ((embedString + '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n';
-		}
-	}*/
 	if (embedString.length > 2048){
 		embedString = embedString.substring(0, 2048);
 	}
@@ -691,6 +669,15 @@ gb.franchises.get(id, function (err2, res2, json2) {
 			if ((embedString + '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n').length < 2048)
 			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
 		}
+	}
+	if (query === 'locations'){
+		embedTitle += 'Locations';
+	}
+	if (query === 'concepts'){
+		embedTitle += 'Concepts';
+	}
+	if (query === 'objects'){
+		embedTitle += 'Objects';
 	}
 	embedString += xtra.gbwiki(json2, query);
 	if (embedString.length > 2048){
