@@ -501,6 +501,7 @@ gb.characters.get(id, function (err2, res2, json2) {
 	}
 	if (query === 'info'){
 		embedString += '**Description: ' + json2.results.deck + '**\n';
+		if (json2.results.hasOwnProperty('first_appeared_in_game'));
 		embedString += '**•First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**\n';
 		var genders = ['0', 'Male', 'Female', '3'];
 		embedString += '**•Gender: ' + genders[json2.results.gender] + '**\n';
