@@ -320,7 +320,6 @@ gb.games.get(id, (err2, res2, json2) => {
 });
 });
 }
-	}
 	if (typequery.startsWith('people ')){
 			var query = typequery.substring(7);
 		gb.people.search(query, {limit : 1}, (err, res, json) => {
