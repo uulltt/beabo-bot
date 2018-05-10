@@ -476,6 +476,7 @@ gb.characters.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.characters.get(id, function (err2, res2, json2) {
+	console.log(json2.results);
 	var embedTitle = title + ' ';
 	var embedString = '';
 	//var embedImage = json2.results.image.original_url;
@@ -495,7 +496,7 @@ gb.characters.get(id, function (err2, res2, json2) {
 	}
 	if (query === 'info'){
 		embedString += '**Description: ' + json2.results.deck + '**\n';
-		if (json2.results.hasOwnProperty('first_appeared_in_game'))
+		if (json2.results.hasOwnProperty('first_appeared_in_game') && json2.results.first_appeared_in_game.hasOwnProperty('name'))
 		embedString += '**•First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**\n';
 		var genders = ['0', 'Male', 'Female', '3'];
 		embedString += '**•Gender: ' + genders[json2.results.gender] + '**\n';
