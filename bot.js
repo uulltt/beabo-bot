@@ -346,6 +346,7 @@ gb.games.get(id, function (err2, res2, json2) {
 			publishers += '[' + json2.results.publishers[i].name + '](' + json2.results.publishers[i].site_detail_url + ')';
 			}
 		}
+		if (json2.results.dlcs !== null){
 		for(var i = 0; i < json2.results.dlcs.length; i++){
 			
 			if ((dlcs + ', [' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')').length < 2048 && !dlcs.includes('[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')')){
@@ -354,6 +355,7 @@ gb.games.get(id, function (err2, res2, json2) {
 			}
 			dlcs += '[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')';
 			}
+		}
 		}
 		for(var i = 0; i < json2.results.platforms.length; i++){
 			
