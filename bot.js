@@ -323,7 +323,6 @@ gb.games.get(id, function (err2, res2, json2) {
 	//var embedImage = json2.results.image.original_url;
 	if (query === 'info'){
 		//console.log(json2.results.original_release_date);
-		var ORD = '**•Original Release Date:** ' + json2.results.original_release_date.substring(0, json2.results.original_release_date.indexOf(' ');
 		
 		
 		var platforms = '';
@@ -358,7 +357,7 @@ gb.games.get(id, function (err2, res2, json2) {
 				color: 0xa81717,
 				fields: [{
 					name: "Original Release Date",
-					value: ORD
+					value: json2.results.original_release_date.substring(0, json2.results.original_release_date.indexOf(' '))
 				},
 				{
 					name: "Platforms",
