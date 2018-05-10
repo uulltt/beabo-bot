@@ -315,7 +315,11 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	if (message.content.substring(0, 11) === '!ZiV-random') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000)+2).toString() + '#summary');
 	}
-	if (message.content.includes('strawpoll.me/')){
+	if (message.content.includes('strawpoll.me')){
+		var strawpoll = message.content.match(/strawpoll\.me\/[0-9]+/gm);
+		console.log(message.content.match(/strawpoll\.me\/[0-9]+/gm));
+		console.log(strawpoll);
+	if (strawpoll.length > 0){
 		var id = parseInt(message.content.substring(message.content.indexOf('strawpoll.me/')).match(/[0-9]+/gm)[0]);
 		var stream = strawpoll.get(id)
   .pipe(concat(function(poll) {
@@ -325,7 +329,8 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		results += '**' + poll.options[i] + '**: ' + poll.votes[i].toString() + '\n';
 	}
 	message.channel.send(results);
-  }))
+  }));
+	}
 	}
 	if (message.content.substring(0, 9) === '!commands') {
 		message.channel.send('font commands\nTo find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
