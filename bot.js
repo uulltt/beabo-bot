@@ -322,6 +322,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	if (strawpoll.length > 0){
 		var id = parseInt(message.content.substring(message.content.indexOf('strawpoll.me/')).match(/[0-9]+/gm)[0]);
 		console.log(id);
+		console.log(strawpoll);
 		/*var stream = strawpoll.get(id)
   .pipe(concat(function(poll) {
     poll = JSON.parse(poll);
