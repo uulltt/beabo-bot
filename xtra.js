@@ -229,6 +229,13 @@ module.exports.gbwiki = (json, query) => {
 			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
 		}
 	}
+	if (query === 'people'){
+		//embedTitle += 'Concepts';
+		for(var i = 0; i < json2.results.people.length; i++){
+			if ((embedString + '**•[' + json2.results.people[i].name + '](' + json2.results.people[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.people[i].name + '](' + json2.results.people[i].site_detail_url + ')**\n';
+		}
+	}
 	return embedString;
 	
 }

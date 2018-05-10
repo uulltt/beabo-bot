@@ -321,15 +321,17 @@ gb.games.get(id, function (err2, res2, json2) {
 	var embedString = '';
 	//var embedImage = json2.results.image.original_url;
 	embedString += xtra.gbwiki(json2, query);
+	if (query === 'concepts'){
+		embedTitle += 'Concepts';
+	}
+	 if (query === 'people'){
+		embedTitle += 'People';
+	}
 	if (query === 'locations'){
 		embedTitle += 'Locations';
 	}
 	if (query === 'objects'){
 		embedTitle += 'Objects';
-	}
-	if (query === 'info'){ //might add more stuff here
-		//embedString += '**Description: ' + json2.results.deck + '**\n';
-		//embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
 	}
   if (query === 'characters'){
 		embedTitle += 'Characters';
@@ -337,9 +339,6 @@ gb.games.get(id, function (err2, res2, json2) {
 			if ((embedString + '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n').length < 2048)
 			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
 		}
-	}
-	 if (query === 'concepts'){
-		embedTitle += 'Concepts';
 	}
 	if (query === 'similar'){
 		embedTitle += 'Similar Games';
@@ -385,6 +384,12 @@ gb.concepts.get(id, function (err2, res2, json2) {
 	var embedString = '';
 	//var embedImage = json2.results.image.original_url;
 	embedString += xtra.gbwiki(json2, query);
+	if (query === 'concepts'){
+		embedTitle += 'Concepts';
+	}
+	 if (query === 'people'){
+		embedTitle += 'People';
+	}
 	if (query === 'locations'){
 		embedTitle += 'Locations';
 	}
@@ -418,9 +423,6 @@ gb.concepts.get(id, function (err2, res2, json2) {
 			if ((embedString + '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n').length < 2048)
 			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
 		}
-	}
-	 if (query === 'concepts'){
-		embedTitle += 'Concepts';
 	}
 	
 	/*
@@ -461,6 +463,12 @@ gb.companies.get(id, function (err2, res2, json2) {
 	var embedString = '';
 	//var embedImage = json2.results.image.original_url;
 	embedString += xtra.gbwiki(json2, query);
+	if (query === 'concepts'){
+		embedTitle += 'Concepts';
+	}
+	 if (query === 'people'){
+		embedTitle += 'People';
+	}
 	if (query === 'locations'){
 		embedTitle += 'Locations';
 	}
@@ -495,9 +503,6 @@ gb.companies.get(id, function (err2, res2, json2) {
 			if ((embedString + '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n').length < 2048)
 			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
 		}
-	}
-	 if (query === 'concepts'){
-		embedTitle += 'Concepts';
 	}
 	
 	if (embedString.length > 2048){
@@ -537,6 +542,12 @@ gb.characters.get(id, function (err2, res2, json2) {
 	if (query === 'objects'){
 		embedTitle += 'Objects';
 	}
+	if (query === 'concepts'){
+		embedTitle += 'Concepts';
+	}
+	 if (query === 'people'){
+		embedTitle += 'People';
+	}
 	if (query === 'info'){
 		
 			if (json2.results.first_appeared_in_game !== null){
@@ -574,9 +585,6 @@ gb.characters.get(id, function (err2, res2, json2) {
 			if ((embedString + '**•[' + json2.results.enemies[i].name + '](' + json2.results.enemies[i].site_detail_url + ')**\n').length < 2048)
 			embedString += '**•[' + json2.results.enemies[i].name + '](' + json2.results.enemies[i].site_detail_url + ')**\n';
 		}
-	}
-	 if (query === 'concepts'){
-		embedTitle += 'Concepts';
 	}
 	
 	if (embedString.length > 2048){
@@ -616,6 +624,12 @@ gb.people.get(id, function (err2, res2, json2) {
 	if (query === 'objects'){
 		embedTitle += 'Objects';
 	}
+	 if (query === 'concepts'){
+		embedTitle += 'Concepts';
+	}
+	 if (query === 'people'){
+		embedTitle += 'People';
+	}
 	if (query === 'info'){
 		
 			if (json2.results.first_credited_game !== null){
@@ -648,9 +662,7 @@ gb.people.get(id, function (err2, res2, json2) {
 			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
 		}
 	}
-	 if (query === 'concepts'){
-		embedTitle += 'Concepts';
-	}
+	
 	
 	if (embedString.length > 2048){
 		embedString = embedString.substring(0, 2048);
@@ -680,6 +692,19 @@ gb.franchises.search(title, {limit : 1}, (err, res, json) => {
 gb.franchises.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
+	embedString += xtra.gbwiki(json2, query);
+	if (query === 'concepts'){
+		embedTitle += 'Concepts';
+	}
+	 if (query === 'people'){
+		embedTitle += 'People';
+	}
+	if (query === 'locations'){
+		embedTitle += 'Locations';
+	}
+	if (query === 'objects'){
+		embedTitle += 'Objects';
+	}
 	//var embedImage = json2.results.image.original_url;
 	 if (query === 'games'){
 		embedTitle += 'Games';
@@ -695,16 +720,8 @@ gb.franchises.get(id, function (err2, res2, json2) {
 			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
 		}
 	}
-	if (query === 'locations'){
-		embedTitle += 'Locations';
-	}
-	if (query === 'concepts'){
-		embedTitle += 'Concepts';
-	}
-	if (query === 'objects'){
-		embedTitle += 'Objects';
-	}
-	embedString += xtra.gbwiki(json2, query);
+	
+	
 	if (embedString.length > 2048){
 		embedString = embedString.substring(0, 2048);
 	}
@@ -737,9 +754,9 @@ gb.franchises.get(id, function (err2, res2, json2) {
 			'[Ff]ont!pubu - puzzle bobble\n[Ff]ont!quake - quack\n[Ff]ont!raph - rapid hero\n[Ff]ont!robot - robotron\n[Ff]ont!rtl - rtype leo\n[Ff]ont!sexy - parodius\n[Ff]ont!sf2 - street fighter 2\n[Ff]ont!ssf2 - super street fighter 2\n[Ff]ont!sfz3 or !sfa3 - street fighter zero\alpha 3\n[Ff]ont!simp - the simpsons\n' +
 			'[Ff]ont!sold - soldam\n[Ff]ont!tetris - tetris (sega)\n[Ff]ont!vict - victory road\n*/
 			'\n**Google Maps Commands**\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n!time cityname - gets local time of that city\n'+
-			'\n**Giant Bomb Wiki Commands**\n!gb game info/characters/concepts/locations/objects/similar/themes gamename - returns the info/characters/etc. of that game from the Giant Bomb wiki\n'+
-			'!gb company info/characters/concepts/locations/objects/developed/published companyname - returns the info/characterc/concepts/etc. from a given company\n!gb concept/franchise info/characters/concepts/locations/objects/games/franchises(concept only) name - returns that info but for a concept or franchise\n'+
-			'!gb character info/concepts/locations/objects/franchises/games/friends/enemies - returns the given parameter for a video game character\n'+ 
+			'\n**Giant Bomb Wiki Commands**\n!gb game info/characters/concepts/locations/objects/people/similar/themes gamename - returns the info/characters/etc. of that game from the Giant Bomb wiki\n'+
+			'!gb company info/characters/concepts/locations/objects/people/developed/published companyname - returns the info/characterc/concepts/etc. from a given company\n!gb concept/franchise info/characters/concepts/locations/objects/people/games/franchises(concept only) name - returns that info but for a concept or franchise\n'+
+			'!gb character info/concepts/locations/objects/people/franchises/games/friends/enemies - returns the given parameter for a video game character\n'+ 
 			'\n**Other Commands**\n!full or !pics or !album followed by twitter/imgur/tumblr link - displays full photo album of tweet or imgur/tumblr post\n'+
 			'!hex#hexCode - displays image of a color pertaining to the hex cde\n!exif followed by link to jpg image - prints out exif data of image\n'+
 			'!list or !todo - splits discord message into a to-do list\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number\n!ZiV-random - gets a random arcade on Zenius-i-Vanisher');
