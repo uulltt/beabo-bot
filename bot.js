@@ -314,7 +314,9 @@ gb.games.search(title, {limit : 1}, (err, res, json) => {
 	var id = json.results[0].id;
 gb.games.get(id, function (err2, res2, json2) {
 	var queries = query.split(',');
-	console.log(queries);
+	console.log(json2.results);
+	console.log(json2.results.name);
+	console.log(json2.results.image);
 	for(var q = 0; q < queries.length; q++){
 		console.log(queries[q]);
 	var embedTitle = title + ' ';
