@@ -322,8 +322,43 @@ gb.games.get(id, function (err2, res2, json2) {
   if (query === 'cha'){
 		embedTitle += 'Characters';
 		for(var i = 0; i < json2.results.characters.length; i++){
-			console.log('•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')\n');
-			embedString += '•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')\n';
+			console.log('**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n');
+			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'con'){
+		embedTitle += 'Concepts';
+		for(var i = 0; i < json2.results.concepts.length; i++){
+			console.log('•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')\n');
+			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'loc'){
+		embedTitle += 'Locations';
+		for(var i = 0; i < json2.results.locations.length; i++){
+			console.log('•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')\n');
+			embedString += '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'obj'){
+		embedTitle += 'Objects';
+		for(var i = 0; i < json2.results.objects.length; i++){
+			console.log('•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')\n');
+			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'sim'){
+		embedTitle += 'Similar Games';
+		for(var i = 0; i < json2.results.similar_games.length; i++){
+			console.log('•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')\n');
+			embedString += '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'thm'){
+		embedTitle += 'Themes';
+		for(var i = 0; i < json2.results.themes.length; i++){
+			console.log('•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')\n');
+			embedString += '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n';
 		}
 	}
 	message.channel.send({
