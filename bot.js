@@ -318,7 +318,9 @@ gb.games.search(title, {limit : 1}, (err, res, json) => {
 	var id = json.results[0].id;
 gb.games.get(id, function (err2, res2, json2) {
 	var queries = query.split(',');
+	console.log(queries);
 	for(var i = 0; i < queries.length; i++){
+		console.log(queries[i]);
 	var embedTitle = title + ' ';
 	var embedString = '';
 	embedString += xtra.gbwiki(json2, queries[i]);
