@@ -1,6 +1,6 @@
 {
-  "name": "listbot",
-  "description": "A Heroku-based discord bot that makes lists out of single messages",
+  "name": "beabo",
+  "description": "the cutest discord bot!",
   "version": "1.0.0",
   "main": "bot.js",
   "scripts": {
