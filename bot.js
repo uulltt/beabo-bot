@@ -468,6 +468,94 @@ gb.concepts.get(id, function (err2, res2, json2) {
 });
 	}
 	
+	if (message.content.substring(0, 12) === '!gb company ' || message.content.substring(0, 12) === '!gb company '){
+		var typequery = message.content.substring(12)
+		var query = typequery.substring(0, typequery.indexOf(' '));
+		var title = typequery.substring(typequery.indexOf(' ')+1);
+gb.companies.search(title, {limit : 1}, (err, res, json) => {
+	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
+	var id = json.results[0].id;
+gb.companies.get(id, function (err2, res2, json2) {
+	var embedTitle = title + ' ';
+	var embedString = '';
+	//var embedImage = json2.results.image.original_url;
+	if (query === 'locations'){
+		embedTitle += 'Locations';
+		for(var i = 0; i < json2.results.locations.length; i++){
+			if ((embedString + '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'objects'){
+		embedTitle += 'Objects';
+		for(var i = 0; i < json2.results.objects.length; i++){
+			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'info'){
+		embedString += '**Description: ' + json2.results.deck + '**\n';
+		//embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
+		/*for(var i = 0; i < json2.results.objects.length; i++){
+			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
+		}*/
+	}
+  if (query === 'developed'){
+		embedTitle += 'Developed Games';
+		for(var i = 0; i < json2.results.developed_games.length; i++){
+			if ((embedString + '**•[' + json2.results.developed_games[i].name + '](' + json2.results.developed_games[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.developed_games[i].name + '](' + json2.results.developed_games[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'published'){
+		embedTitle += 'Published Games';
+		for(var i = 0; i < json2.results.published_games.length; i++){
+			if ((embedString + '**•[' + json2.results.published_games[i].name + '](' + json2.results.published_games[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.published_games[i].name + '](' + json2.results.published_games[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'characters'){
+		embedTitle += 'Characters';
+		for(var i = 0; i < json2.results.characters.length; i++){
+			if ((embedString + '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'concepts'){
+		embedTitle += 'Concepts';
+		for(var i = 0; i < json2.results.concepts.length; i++){
+			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
+		}
+	}
+	
+	/*
+	if (query === 'themes'){
+		embedTitle += 'Themes';
+		for(var i = 0; i < json2.results.themes.length; i++){
+			if ((embedString + '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n';
+		}
+	}*/
+	if (embedString.length > 2048){
+		embedString = embedString.substring(0, 2048);
+	}
+	message.channel.send({
+			embed: {
+				title: embedTitle,
+				description: embedString,
+				color: 0xa81717//, 
+				/*thumbnail: {
+					url : embedImage
+				}*/
+			}
+		});
+});
+}
+});
+	}
+	
 	if (message.content.substring(0, 14) === '!gb character ' || message.content.substring(0, 14) === '!gb character '){
 		var typequery = message.content.substring(14)
 		var query = typequery.substring(0, typequery.indexOf(' '));
@@ -572,7 +660,6 @@ gb.characters.get(id, function (err2, res2, json2) {
 	}
 	
 	if (message.content.substring(0, 14) === '!gb franchise ' || message.content.substring(0, 14) === '!gb franchise '){
-		console.log("is it going through?");
 		var typequery = message.content.substring(14)
 		var query = typequery.substring(0, typequery.indexOf(' '));
 		var title = typequery.substring(typequery.indexOf(' ')+1);
