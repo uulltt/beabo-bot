@@ -316,10 +316,12 @@ gb.games.get(id, function (err2, res2, json2) {
 	var queries = query.split(',');
 	console.log(json2.results);
 	console.log(json2.results.name);
+	var name = json2.results.name;
+	var imageURL = json2.results.image.original_url;
 	console.log(json2.results.image);
 	for(var q = 0; q < queries.length; q++){
 		console.log(queries[q]);
-	var embedTitle = title + ' ';
+	var embedTitle = name + ' ';
 	var embedString = '';
 	embedString += xtra.gbwiki(json2, queries[q]);
 	//var embedImage = json2.results.image.original_url;
