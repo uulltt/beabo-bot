@@ -321,12 +321,14 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		var id = parseInt(message.content.substring(message.content.indexOf('strawpoll.me/')).match(/[0-9]+/gm)[0]);
 		var stream = strawpoll.get(id)
   .pipe(concat(function(poll) {
-    poll = JSON.parse(poll);
-    var results = '__**' + poll.title + '**__\n';
-	for(var i = 0; i < poll.options.length; i++){
+    console.log(poll);
+	poll = JSON.parse(poll);
+	console.log(poll);
+    //var results = '__**' + poll.title + '**__\n';
+	/*for(var i = 0; i < poll.options.length; i++){
 		results += '**' + poll.options[i] + '**: ' + poll.votes[i].toString() + '\n';
-	}
-	message.channel.send(results);
+	}*/
+	//message.channel.send(results);
   }));
 	}
 	}
