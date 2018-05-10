@@ -348,10 +348,42 @@ gb.games.get(id, function (err2, res2, json2) {
 		}
 	}
 	if (query === 'themes'){
-		embedTitle += 'Themes';
+		
+	}
+	 if (query === 'franchises'){
+		embedTitle += 'Franchises';
+		for(var i = 0; i < json2.results.franchises.length; i++){
+			if ((embedString + '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'info'){
+		console.log(json2.results.original_release_date);
+		embedString += '**•Original Release Date:** ' + json2.results.original_release_date;
+		
+		embedString += '\n**•Platforms:** ';
+		for(var i = 0; i < json2.results.platforms.length; i++){
+			if (i > 0){
+				embedString += ', ';
+			}
+			if ((embedString + '[' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')').length < 2048)
+			embedString += '[' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')';
+		}
+		embedString += '\n**•Genres:** ';
+		for(var i = 0; i < json2.results.genres.length; i++){
+			if (i > 0){
+				embedString += ', ';
+			}
+			if ((embedString + '[' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')').length < 2048)
+			embedString += '[' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')';
+		}
+		embedTitle += '\n**•Themes: **';
 		for(var i = 0; i < json2.results.themes.length; i++){
-			if ((embedString + '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n';
+			if (i > 0){
+				embedString += ', ';
+			}
+			if ((embedString + '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')').length < 2048)
+			embedString += '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')';
 		}
 	}
 	if (embedString.length > 2048){
@@ -531,7 +563,6 @@ gb.characters.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.characters.get(id, function (err2, res2, json2) {
-	console.log(json2.results);
 	var embedTitle = title + ' ';
 	var embedString = '';
 	//var embedImage = json2.results.image.original_url;
@@ -613,7 +644,6 @@ gb.people.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.people.get(id, function (err2, res2, json2) {
-	console.log(json2.results);
 	var embedTitle = title + ' ';
 	var embedString = '';
 	//var embedImage = json2.results.image.original_url;
@@ -754,7 +784,7 @@ gb.franchises.get(id, function (err2, res2, json2) {
 			'[Ff]ont!pubu - puzzle bobble\n[Ff]ont!quake - quack\n[Ff]ont!raph - rapid hero\n[Ff]ont!robot - robotron\n[Ff]ont!rtl - rtype leo\n[Ff]ont!sexy - parodius\n[Ff]ont!sf2 - street fighter 2\n[Ff]ont!ssf2 - super street fighter 2\n[Ff]ont!sfz3 or !sfa3 - street fighter zero\alpha 3\n[Ff]ont!simp - the simpsons\n' +
 			'[Ff]ont!sold - soldam\n[Ff]ont!tetris - tetris (sega)\n[Ff]ont!vict - victory road\n*/
 			'\n**Google Maps Commands**\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n!time cityname - gets local time of that city\n'+
-			'\n**Giant Bomb Wiki Commands**\n!gb game info/characters/concepts/locations/objects/people/similar/themes gamename - returns the info/characters/etc. of that game from the Giant Bomb wiki\n'+
+			'\n**Giant Bomb Wiki Commands**\n!gb game info/characters/concepts/franchises/locations/objects/people/similar gamename - returns the info/characters/etc. of that game from the Giant Bomb wiki\n'+
 			'!gb company info/characters/concepts/locations/objects/people/developed/published companyname - returns the info/characterc/concepts/etc. from a given company\n!gb concept/franchise info/characters/concepts/locations/objects/people/games/franchises(concept only) name - returns that info but for a concept or franchise\n'+
 			'!gb character info/concepts/locations/objects/people/franchises/games/friends/enemies - returns the given parameter for a video game character\n'+ 
 			'\n**Other Commands**\n!full or !pics or !album followed by twitter/imgur/tumblr link - displays full photo album of tweet or imgur/tumblr post\n'+
