@@ -314,7 +314,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		if (typequery.startsWith('games ')){
 			var query = typequery.substring(6);
 gb.games.search(query, {limit : 1}, (err, res, json) => {
-	var id = parseInt(json.results[0].id;)
+	var id = json.results[0].id;
 gb.games.get(id, (err2, res2, json2) => {
   console.log(json2.results);
 });
