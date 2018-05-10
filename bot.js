@@ -312,7 +312,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	if (new RegExp(/[Gg]b!/gm).test(message.content.substring(0, 3))){
 		var typequery = message.content.substring(3);
 		if (typequery.startsWith('games.')){
-			var query = games.substring(6, 9);
+			var query = typequery.substring(6, 9);
 			var title = typequery.substring(10);
 gb.games.search(title, {limit : 1}, (err, res, json) => {
 	var id = json.results[0].id;
