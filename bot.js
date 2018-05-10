@@ -375,7 +375,6 @@ gb.games.get(id, function (err2, res2, json2) {
 });
 
 	}
-	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
 	}
