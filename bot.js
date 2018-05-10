@@ -356,6 +356,8 @@ gb.games.get(id, function (err2, res2, json2) {
 			dlcs += '[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')';
 			}
 		}
+		} else {
+			dlcs = 'None';
 		}
 		for(var i = 0; i < json2.results.platforms.length; i++){
 			
@@ -385,6 +387,7 @@ gb.games.get(id, function (err2, res2, json2) {
 			themes += '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')';
 			}
 		}
+		if (dlcs !== 'None'){
 		message.channel.send({
 			embed: {
 				title: embedTitle,
@@ -423,6 +426,43 @@ gb.games.get(id, function (err2, res2, json2) {
 				]
 			}
 		});
+		} else {
+			message.channel.send({
+			embed: {
+				title: embedTitle,
+				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
+				color: 0xa81717, thumbnail: { url: imageURL },
+				fields: [{
+					name: "Original Release Date",
+					value: json2.results.original_release_date.substring(0, json2.results.original_release_date.indexOf(' '))
+				},
+				{
+					name: "Platforms",
+					value: platforms
+				},
+				{
+					name: "Developers",
+					value: developers,
+					inline: true
+				},
+				{
+					name: "Publishers",
+					value: publishers,
+					inline: true
+				},
+				{
+					name: "Genres",
+					value: genres
+				},
+				{
+					name: "Themes",
+					value: themes
+				}
+				]
+			}
+		});
+			
+		}
 	} else {
 	
 	if (queries[q] === 'concepts'){
