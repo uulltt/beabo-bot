@@ -319,6 +319,7 @@ gb.games.search(title, {limit : 1}, (err, res, json) => {
 gb.games.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
+	var embedImage = json2.image.original_url;
   if (query === 'characters'){
 		embedTitle += 'Characters';
 		for(var i = 0; i < json2.results.characters.length; i++){
@@ -368,7 +369,10 @@ gb.games.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717
+				color: 0xa81717, 
+				thumbnail: {
+					url : embedImage
+				}
 			}
 		});
 });
@@ -384,22 +388,9 @@ gb.concepts.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.concepts.get(id, function (err2, res2, json2) {
-	var embedTitle = title + ' ';
+	var embedTitle = json2.name + ' ';
 	var embedString = '';
-  /*if (query === 'characters'){
-		embedTitle += 'Characters';
-		for(var i = 0; i < json2.results.characters.length; i++){
-			if ((embedString + '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
-		}
-	}
-	 if (query === 'concepts'){
-		embedTitle += 'Concepts';
-		for(var i = 0; i < json2.results.concepts.length; i++){
-			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
-		}
-	}
+	var embedImage = json2.image.original_url;
 	if (query === 'locations'){
 		embedTitle += 'Locations';
 		for(var i = 0; i < json2.results.locations.length; i++){
@@ -414,7 +405,44 @@ gb.concepts.get(id, function (err2, res2, json2) {
 			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
 		}
 	}
-	if (query === 'similar'){
+	if (query === 'info'){
+		embedString += '**Description: ' + json2.results.deck + '**\n';
+		embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
+		/*for(var i = 0; i < json2.results.objects.length; i++){
+			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
+		}*/
+	}
+  if (query === 'franchises'){
+		embedTitle += 'Franchises';
+		for(var i = 0; i < json2.results.franchises.length; i++){
+			if ((embedString + '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'games'){
+		embedTitle += 'Games';
+		for(var i = 0; i < json2.results.games.length; i++){
+			if ((embedString + '**•[' + json2.results.games[i].name + '](' + json2.results.games[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.games[i].name + '](' + json2.results.games[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'characters'){
+		embedTitle += 'Characters';
+		for(var i = 0; i < json2.results.characters.length; i++){
+			if ((embedString + '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'concepts'){
+		embedTitle += 'Concepts';
+		for(var i = 0; i < json2.results.concepts.length; i++){
+			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
+		}
+	}
+	
+	/*if (query === 'similar'){
 		embedTitle += 'Similar Games';
 		for(var i = 0; i < json2.results.similar_games.length; i++){
 			if ((embedString + '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n').length < 2048)
@@ -436,7 +464,10 @@ gb.concepts.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717
+				color: 0xa81717, 
+				thumbnail: {
+					url : embedImage
+				}
 			}
 		});
 });
