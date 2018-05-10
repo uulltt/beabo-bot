@@ -319,6 +319,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	}
 	var request = require('request').defaults({ encoding: null });
 request.get(url, function (err, res, body) {
+console.log(res);
 console.log(quality);
 var jpegImageData = jpeg.encode(body, quality);
 console.log(jpegImageData);
