@@ -315,10 +315,10 @@ gb.games.search(title, {limit : 1}, (err, res, json) => {
 		for(var i = 0; i < json.results.length; i++){
 			gamelist += (i+1).toString() + '. ' + json.results[i].name + '\n';
 		}
-		message.channel.send('Which game did you mean? Please Reply with a number.\n' + gamelist);
+		message.channel.send('Which did you mean? Please Reply with a number.\n' + gamelist);
 		client.on('message', message2 => {
-	if (message2.user === message.user && message2.channel === message.channel && parseInt(message.content)){
-	var id = json.results[parseInt(message.content) - 1].id;
+	if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)){
+	var id = json.results[parseInt(message2.content) - 1].id;
 gb.games.get(id, function (err2, res2, json2) {
 	var queries = query.split(','); var Name = json2.results.name; var imageURL = json2.results.image.original_url;
 	for(var q = 0; q < queries.length; q++){
