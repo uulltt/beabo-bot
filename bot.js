@@ -501,9 +501,10 @@ gb.characters.get(id, function (err2, res2, json2) {
 	}
 	if (query === 'info'){
 		embedString += '**Description: ' + json2.results.deck + '**\n';
-		embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
-		embedString += '**Gender: ' + json2.results.gender + '**';
-		embedString += '**Birthday: ' + json2.results.birthday + '**';
+		embedString += '**•First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**\n';
+		var genders = ['0', 'Male', 'Female', '3'];
+		embedString += '**•Gender: ' + genders[json2.results.gender] + '**\n';
+		embedString += '**•Birthday: ' + json2.results.birthday + '**\n';
 		/*for(var i = 0; i < json2.results.objects.length; i++){
 			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
 			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
