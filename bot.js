@@ -354,7 +354,7 @@ gb.games.get(id, function (err2, res2, json2) {
 		message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString,
+				description: embedString, url: json2.results.site_detail_url,
 				color: 0xa81717, thumbnail: { url: imageURL },
 				fields: [{
 					name: "Original Release Date",
@@ -420,7 +420,7 @@ gb.games.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString,
+				description: embedString, url: json2.results.site_detail_url,
 				color: 0xa81717, thumbnail: { url: imageURL }, 
 				/*thumbnail: {
 					url : embedImage
@@ -503,7 +503,7 @@ gb.concepts.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString,
+				description: embedString, url: json2.results.site_detail_url,
 				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
@@ -578,7 +578,7 @@ gb.companies.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString,
+				description: embedString, url: json2.results.site_detail_url,
 				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
@@ -662,7 +662,7 @@ gb.characters.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString,
+				description: embedString, url: json2.results.site_detail_url,
 				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
@@ -741,7 +741,7 @@ gb.people.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString,
+				description: embedString, url: json2.results.site_detail_url,
 				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
@@ -802,7 +802,7 @@ gb.franchises.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString,
+				description: embedString, url: json2.results.site_detail_url,
 				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
