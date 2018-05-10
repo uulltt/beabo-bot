@@ -570,6 +570,94 @@ gb.characters.get(id, function (err2, res2, json2) {
 }
 });
 	}
+	
+	if (message.content.substring(0, 14) === '!gb franchise ' || message.content.substring(0, 14) === '!gb franchise '){
+		var typequery = message.content.substring(14)
+		var query = typequery.substring(0, typequery.indexOf(' '));
+		var title = typequery.substring(typequery.indexOf(' ')+1);
+gb.franchises.search(title, {limit : 1}, (err, res, json) => {
+	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
+	var id = json.results[0].id;
+gb.franchises.get(id, function (err2, res2, json2) {
+	var embedTitle = title + ' ';
+	var embedString = '';
+	//var embedImage = json2.results.image.original_url;
+	if (query === 'locations'){
+		embedTitle += 'Locations';
+		for(var i = 0; i < json2.results.locations.length; i++){
+			if ((embedString + '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'objects'){
+		embedTitle += 'Objects';
+		for(var i = 0; i < json2.results.objects.length; i++){
+			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'info'){
+		embedString += '**Description: ' + json2.results.deck + '**\n';
+		//embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
+		/*for(var i = 0; i < json2.results.objects.length; i++){
+			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
+		}*/
+	}
+  /*if (query === 'franchises'){
+		embedTitle += 'Franchises';
+		for(var i = 0; i < json2.results.franchises.length; i++){
+			if ((embedString + '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n';
+		}
+	}*/
+	 if (query === 'games'){
+		embedTitle += 'Games';
+		for(var i = 0; i < json2.results.games.length; i++){
+			if ((embedString + '**•[' + json2.results.games[i].name + '](' + json2.results.games[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.games[i].name + '](' + json2.results.games[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'characters'){
+		embedTitle += 'Characters';
+		for(var i = 0; i < json2.results.characters.length; i++){
+			if ((embedString + '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'concepts'){
+		embedTitle += 'Concepts';
+		for(var i = 0; i < json2.results.concepts.length; i++){
+			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
+		}
+	}
+	
+	/*
+	if (query === 'themes'){
+		embedTitle += 'Themes';
+		for(var i = 0; i < json2.results.themes.length; i++){
+			if ((embedString + '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n';
+		}
+	}*/
+	if (embedString.length > 2048){
+		embedString = embedString.substring(0, 2048);
+	}
+	message.channel.send({
+			embed: {
+				title: embedTitle,
+				description: embedString,
+				color: 0xa81717//, 
+				/*thumbnail: {
+					url : embedImage
+				}*/
+			}
+		});
+});
+}
+});
+	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
 	}
