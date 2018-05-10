@@ -44,17 +44,15 @@ module.exports.font = (message) => {
 	var size = '2';
 	var args = [];
 	var urls = [];
-	for(var i = 2; i < 8; i++){
-	if (new RegExp("[A-Za-z0-9]{" + i.toString() + "}\W", "gm").test(message.substring(5, 6+i)) || new RegExp("[A-Za-z0-9]{"+ i.toString() +"}[0-9]{2}\W","gm").test(message.substring(5, 8+i))) {
-		arg = message.substring(6+i) + '\u200B';
-		game = message.substring(5, 5+i);
-		if (new RegExp("[A-Za-z0-9]{" + i.toString() + "}[0-9]{2}\W", "gm").test(message.substring(5, 8+i))) {
+	if (new RegExp(/[a-z0-9]{2}\W/gm).test(message.substring(5, 8)) || new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.substring(5, 10))) {
+		arg = message.substring(8) + '\u200B';
+		game = message.substring(5, 7);
+		if (new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.substring(5, 10))) {
 			arg = arg.substring(2);
-			style = message.charAt(5+i);
-			size = message.charAt(6+i);
+			style = message.charAt(7);
+			size = message.charAt(8);
 		}
-		break;
-	} /*else if (new RegExp(/[A-Za-z0-9]{3}\W/gm).test(message.substring(5, 9)) || new RegExp(/[A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.substring(5, 11))) {
+	} else if (new RegExp(/[A-Za-z0-9]{3}\W/gm).test(message.substring(5, 9)) || new RegExp(/[A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.substring(5, 11))) {
 		arg = message.substring(9) + '\u200B';
 		game = message.substring(5, 8);
 		if (new RegExp(/[A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.substring(5, 11))){
@@ -94,7 +92,6 @@ module.exports.font = (message) => {
 			style = message.charAt(2);
 			size = message.charAt(13);
 		}
-	}*/
 	}
 	if (game === 'kof2k')
 		game = 'KoF2k';
