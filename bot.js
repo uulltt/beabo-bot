@@ -311,11 +311,28 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	}
 	if (new RegExp(/[Gg]b!/gm).test(message.content.substring(0, 3))){
 		var typequery = message.content.substring(3);
-		if (typequery.startsWith('games ')){
-			var query = typequery.substring(6);
-gb.games.search(query, {limit : 1}, (err, res, json) => {
+		if (typequery.startsWith('games.')){
+			var query = games.substring(6, 9);
+			var title = typequery.substring(10);
+gb.games.search(title, {limit : 1}, (err, res, json) => {
 	var id = json.results[0].id;
 gb.games.get(id, (err2, res2, json2) => {
+	var embedTitle = title + ' ';
+	var embedString = ' ';
+	if (query === 'cha'){
+		embedTitle += 'Characters';
+		var characters = json2.results.characters;
+		for(var c in characters){
+			embedString += '•[' + c.name + '](' + c.site_detail_url + ')\n';
+		}
+	}
+	message.channel.send({
+			embed: {
+				title: embedTitle,
+				description: embedString
+			}
+		});
+	
   console.log(json2.results);
 });
 });
