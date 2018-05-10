@@ -311,6 +311,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	}
 	if (message.content.substring(0, 10) === 'gb!games \"' || message.content.substring(0, 10) === 'Gb!games \"'){
 		var typequery = message.content.substring(10).split('\"');
+		console.log(typequery);
 		if (typequery.length > 2){
 		var title = typequery[1];
 		var query = typequery[2].substring(1);
