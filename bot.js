@@ -367,7 +367,8 @@ gb.games.get(id, function (err2, res2, json2) {
 	message.channel.send({
 			embed: {
 				title: embedTitle,
-				description: embedString
+				description: embedString,
+				color: 0xa81717
 			}
 		});
 });
