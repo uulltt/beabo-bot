@@ -314,7 +314,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		var query = typequery.substring(0, typequery.indexOf(' '));
 		var title = typequery.substring(typequery.indexOf(' ')+1);
 gb.games.search(title, {limit : 1}, (err, res, json) => {
-	if (json.hasOwnProperty('results') && json.results.prop && json.results.prop.constructor === Array){
+	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.games.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
