@@ -314,9 +314,6 @@ gb.games.search(title, {limit : 1}, (err, res, json) => {
 	var id = json.results[0].id;
 gb.games.get(id, function (err2, res2, json2) {
 	var queries = query.split(','); var Name = json2.results.name; var imageURL = json2.results.image.original_url;
-	
-	console.log(json2.results.image);
-	console.log(imageURL);
 	for(var q = 0; q < queries.length; q++){
 	var embedTitle = Name + ' ';
 	var embedString = '';
@@ -471,9 +468,6 @@ gb.games.get(id, function (err2, res2, json2) {
 				title: embedTitle,
 				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
 				color: 0xa81717, thumbnail: { url: imageURL }, 
-				/*thumbnail: {
-					url : embedImage
-				}*/
 			}
 		});
 	}
@@ -495,7 +489,6 @@ gb.concepts.get(id, function (err2, res2, json2) {
 	for(var q = 0; q < queries.length; q++){
 	var embedTitle = Name + ' ';
 	var embedString = '';
-	//var embedImage = json2.results.image.original_url;
 	embedString += xtra.gbwiki(json2, queries[q]);
 	if (queries[q] === 'concepts'){
 		embedTitle += 'Concepts';
@@ -511,10 +504,7 @@ gb.concepts.get(id, function (err2, res2, json2) {
 	}
 	if (queries[q] === 'info'){
 		embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
-		/*for(var i = 0; i < json2.results.objects.length; i++){
-			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
-		}*/
+		
 	}
   if (queries[q] === 'franchises'){
 		embedTitle += 'Franchises';
@@ -537,15 +527,6 @@ gb.concepts.get(id, function (err2, res2, json2) {
 			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
 		}
 	}
-	
-	/*
-	if (queries[q] === 'themes'){
-		embedTitle += 'Themes';
-		for(var i = 0; i < json2.results.themes.length; i++){
-			if ((embedString + '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n';
-		}
-	}*/
 	if (embedString.length > 2048){
 		embedString = embedString.substring(0, 2048);
 	}
@@ -553,10 +534,7 @@ gb.concepts.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
-				color: 0xa81717, thumbnail: { url: imageURL },//, 
-				/*thumbnail: {
-					url : embedImage
-				}*/
+				color: 0xa81717, thumbnail: { url: imageURL },
 			}
 		});
 	}
@@ -577,7 +555,6 @@ gb.companies.get(id, function (err2, res2, json2) {
 	for(var q = 0; q < queries.length; q++){
 	var embedTitle = Name + ' ';
 	var embedString = '';
-	//var embedImage = json2.results.image.original_url;
 	embedString += xtra.gbwiki(json2, queries[q]);
 	if (queries[q] === 'concepts'){
 		embedTitle += 'Concepts';
@@ -592,12 +569,7 @@ gb.companies.get(id, function (err2, res2, json2) {
 		embedTitle += 'Objects';
 	}
 	if (queries[q] === 'info'){ //gotta add more company info
-		//embedString += '**Description: ' + json2.results.deck + '**\n';
-		//embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
-		/*for(var i = 0; i < json2.results.objects.length; i++){
-			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
-		}*/
+		
 	}
   if (queries[q] === 'developed'){
 		embedTitle += 'Developed Games';
@@ -628,10 +600,7 @@ gb.companies.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
-				color: 0xa81717, thumbnail: { url: imageURL },//, 
-				/*thumbnail: {
-					url : embedImage
-				}*/
+				color: 0xa81717, thumbnail: { url: imageURL },
 			}
 		});
 	}
@@ -652,7 +621,6 @@ gb.characters.get(id, function (err2, res2, json2) {
 	for(var q = 0; q < queries.length; q++){
 	var embedTitle = Name + ' ';
 	var embedString = '';
-	//var embedImage = json2.results.image.original_url;
 	embedString += xtra.gbwiki(json2, queries[q]);
 	if (queries[q] === 'locations'){
 		embedTitle += 'Locations';
@@ -712,10 +680,7 @@ gb.characters.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
-				color: 0xa81717, thumbnail: { url: imageURL },//, 
-				/*thumbnail: {
-					url : embedImage
-				}*/
+				color: 0xa81717, thumbnail: { url: imageURL },
 			}
 		});
 	}
@@ -736,7 +701,6 @@ gb.people.get(id, function (err2, res2, json2) {
 	for(var q = 0; q < queries.length; q++){
 	var embedTitle = Name + ' ';
 	var embedString = '';
-	//var embedImage = json2.results.image.original_url;
 	embedString += xtra.gbwiki(json2, queries[q]);
 	if (queries[q] === 'locations'){
 		embedTitle += 'Locations';
@@ -791,10 +755,7 @@ gb.people.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
-				color: 0xa81717, thumbnail: { url: imageURL },//, 
-				/*thumbnail: {
-					url : embedImage
-				}*/
+				color: 0xa81717, thumbnail: { url: imageURL },
 			}
 		});
 	}
@@ -828,7 +789,6 @@ gb.franchises.get(id, function (err2, res2, json2) {
 	if (queries[q] === 'objects'){
 		embedTitle += 'Objects';
 	}
-	//var embedImage = json2.results.image.original_url;
 	 if (queries[q] === 'games'){
 		embedTitle += 'Games';
 		for(var i = 0; i < json2.results.games.length; i++){
@@ -852,10 +812,7 @@ gb.franchises.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString, url: json2.results.site_detail_url, footer: { text: 'From Giant Bomb Wiki' },
-				color: 0xa81717, thumbnail: { url: imageURL },//, 
-				/*thumbnail: {
-					url : embedImage
-				}*/
+				color: 0xa81717, thumbnail: { url: imageURL },
 			}
 		});
 	}
@@ -872,11 +829,6 @@ gb.franchises.get(id, function (err2, res2, json2) {
 	if (message.content.substring(0, 9) === '!commands') {
 		message.channel.send('**Font Commands**\nTo find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
 			'\nfont!gamename your text here - creates image of your text in the game\'s font\nb(u/d)(two digits)!game your text here to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size. also works for speech bubbles.\n' +
-			/*'[Ff]ont!arcade - classic arcade\n[Ff]ont!bios - BioShipPaladin\n[Ff]ont!chiki - chiki chiki boys\n[Ff]ont!ddcrew - DDCrew\n[Ff]ont!DDR - Dance Dance Revolution\n[Ff]ont!ddux - dynamite dux\n[Ff]ont!fz - fantasy zone\n[Ff]ont!gain - gain ground\n[Ff]ont!garou - fatal fury\n' +
-			'[Ff]ont!gradius - shoot the core\n[Ff]ont!guar - guardians\n[Ff]ont!kais - kaiser knuckle\n[Ff]ont!kiki - kiki kaikai\n[Ff]ont!kof97 - king of fighters 97\n[Ff]ont!kof2k - king of fighters 2000\n[Ff]ont!kof2k1 - king of fighters 2001\n' +
-			'[Ff]ont!kof2k2 - king of fighters 2002\n[Ff]ont!kof2k3 - king of fighters 2003\n[Ff]ont!mt - major title\n[Ff]ont!moma = monster maulers\n[Ff]ont!namco2 - namco classic gradient\n[Ff]ont!njgd - ninja gaiden\n[Ff]ont!pabom - panic bomber\n[Ff]ont!paro - parodius da\n' +
-			'[Ff]ont!pubu - puzzle bobble\n[Ff]ont!quake - quack\n[Ff]ont!raph - rapid hero\n[Ff]ont!robot - robotron\n[Ff]ont!rtl - rtype leo\n[Ff]ont!sexy - parodius\n[Ff]ont!sf2 - street fighter 2\n[Ff]ont!ssf2 - super street fighter 2\n[Ff]ont!sfz3 or !sfa3 - street fighter zero\alpha 3\n[Ff]ont!simp - the simpsons\n' +
-			'[Ff]ont!sold - soldam\n[Ff]ont!tetris - tetris (sega)\n[Ff]ont!vict - victory road\n*/
 			'\n**Google Maps Commands**\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n!time cityname - gets local time of that city\n'+
 			'\n**Giant Bomb Wiki Commands**\n!gb game info/characters/concepts/franchises/locations/objects/people/similar gamename - returns the info/characters/etc. of that game from the Giant Bomb wiki\n'+
 			'!gb company info/characters/concepts/locations/objects/people/developed/published companyname - returns the info/characterc/concepts/etc. from a given company\n!gb concept/person/franchise info/characters/concepts/locations/objects/people/games/franchises(concept/person only) name - returns that info but for a concept, person, or franchise\n'+
