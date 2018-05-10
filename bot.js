@@ -321,8 +321,9 @@ gb.games.get(id, function (err2, res2, json2) {
 	var embedString = '';
   if (query === 'cha'){
 		embedTitle += 'Characters';
-		for(var c in json2.results.characters){
-			embedString += '•[' + c.name + '](' + c.site_detail_url + ')\n';
+		for(var i = 0; i < json2.results.characters.length; i++){
+			console.log('•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')\n');
+			embedString += '•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')\n';
 		}
 	}
 	message.channel.send({
