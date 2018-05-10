@@ -17,6 +17,8 @@
 	"exif": "0.6.0",
 	"request": "2.85.0",
 	"city-timezones": "1.0.3",
-	"node-google-timezone": "0.1.1"
+	"node-google-timezone": "0.1.1",
+	"concat-stream" : "1.6.2",
+	"strawpoll" : "1.1.0"
   }
 }

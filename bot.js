@@ -13,7 +13,8 @@ var Tumblr = require('tumblrwks');
 var tumblr = new Tumblr({
   consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 });
-
+var concat = require('concat-stream');
+var strawpoll = require('strawpoll');
 var timezone = require('node-google-timezone');
 var tweeter = new Twitter({
 		consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -38,7 +39,6 @@ client.on('message', message => {
 	if (message.content.substring(0, 6) === '!exif '){
 		var request = require('request').defaults({ encoding: null });
 request.get(message.content.substring(6), function (err, res, body) {
-      //process exif here
 var exifString = ':frame_photo: EXIF data:\n';
 try {
     new ExifImage({ image : body }, function (error, exifData) {
@@ -314,6 +314,18 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	}
 	if (message.content.substring(0, 11) === '!ZiV-random') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000)+2).toString() + '#summary');
+	}
+	if (message.content.match(/strawpoll\.me\/[0-9]+/gm).length > 0){
+		var id = parseInt(message.content.substring(message.content.indexOf('strawpoll.me/')).match(/[0-9]+/gm)[0]);
+		var stream = strawpoll.get(id)
+  .pipe(concat(function(poll) {
+    poll = JSON.parse(poll);
+    var results = '__**' + poll.title + '**__\n';
+	for(var i = 0; i < poll.options.length; i++){
+		results += '**' + poll.options[i] + '**: ' + poll.votes[i].toString() + '\n';
+	}
+	message.channel.send(results);
+  }));
 	}
 	if (message.content.substring(0, 9) === '!commands') {
 		message.channel.send('font commands\nTo find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
