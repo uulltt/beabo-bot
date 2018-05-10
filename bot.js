@@ -321,7 +321,8 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		console.log(strawpoll);
 	if (strawpoll.length > 0){
 		var id = parseInt(message.content.substring(message.content.indexOf('strawpoll.me/')).match(/[0-9]+/gm)[0]);
-		var stream = strawpoll.get(id)
+		console.log(id);
+		/*var stream = strawpoll.get(id)
   .pipe(concat(function(poll) {
     poll = JSON.parse(poll);
     var results = '__**' + poll.title + '**__\n';
@@ -329,7 +330,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		results += '**' + poll.options[i] + '**: ' + poll.votes[i].toString() + '\n';
 	}
 	message.channel.send(results);
-  }));
+  }));*/
 	}
 	}
 	if (message.content.substring(0, 9) === '!commands') {
