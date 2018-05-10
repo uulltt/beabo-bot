@@ -11,7 +11,7 @@ var ExifImage = require('exif').ExifImage;
 var cityTimezones = require('city-timezones');
 var Tumblr = require('tumblrwks');
 const giantbomb = require('giantbomb');
-const gb = giantbomb('process.env.GIANT_BOMB');
+const gb = giantbomb(process.env.GIANT_BOMB);
 var tumblr = new Tumblr({
   consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 });
@@ -309,11 +309,26 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
    message.channel.send('Error: ' + error.message);
 		}
 	}
-	if (message.content.substring(0, 4) === '!gb '){
-		var title = message.content.substring(4);
-		gb.games.search(title, (err, res, json) => {
+	if (new RegExp(/[Gg]b!/gm).test(message.content.substring(0, 3))){
+		var typequery = message.content.substring(3);
+		if (typequery.startsWith('games ')){
+			var query = typequery.substring(6);
+		gb.games.search(query, (err, res, json) => {
   console.log(json);
 });
+	}
+	if (typequery.startsWith('people ')){
+			var query = typequery.substring(7);
+		gb.people.search(query, (err, res, json) => {
+  console.log(json);
+});
+	}
+	if (typequery.startsWith('companies ')){
+			var query = typequery.substring(9);
+		gb.companies.search(query, (err, res, json) => {
+  console.log(json);
+});
+	}
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
