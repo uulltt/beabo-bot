@@ -497,8 +497,11 @@ gb.characters.get(id, function (err2, res2, json2) {
 	if (query === 'info'){
 		embedString += '**Description: ' + json2.results.deck + '**\n';
 		if (json2.results.first_appeared_in_game !== undefined){
+			console.log('1');
 			if (json2.results.first_appeared_in_game !== null){
+				console.log('2');
 if (typeof json2.results.first_appeared_in_game !== undefined){
+	console.log('3');
 	if (typeof json2.results.first_appeared_in_game !== null){
 			console.log('aaaaaaaa');
 		embedString += '**•First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**\n';
