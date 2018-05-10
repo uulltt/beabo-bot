@@ -309,12 +309,12 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
    message.channel.send('Error: ' + error.message);
 		}
 	}
-	if (message.content.substring(0, 10) === 'gb!games \"' || message.content.substring(0, 10) === 'Gb!games \"'){
+	if (message.content.substring(0, 10) === '!gb game \"' || message.content.substring(0, 10) === '!gb game \"'){
 		var typequery = message.content.substring(10).split('\"');
 		console.log(typequery);
-		if (typequery.length > 2){
-		var title = typequery[1];
-		var query = typequery[2].substring(2);
+		if (typequery.length > 1){
+		var title = typequery[0];
+		var query = typequery[1].substring(1);
 gb.games.search(title, {limit : 1}, (err, res, json) => {
 	var id = json.results[0].id;
 gb.games.get(id, function (err2, res2, json2) {
