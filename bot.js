@@ -322,6 +322,7 @@ request.get(url, function (err, res, body) {
 var dimensions = require('image-size')(body);
 var rawImageData = jpeg.decode(body);
 console.log(rawImageData);
+console.log(body);
 var rawdata = {
 	data: body,
 	width: dimensions.width,
