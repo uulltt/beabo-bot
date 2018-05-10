@@ -319,8 +319,64 @@ gb.games.search(title, {limit : 1}, (err, res, json) => {
 gb.games.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
-	//var embedImage = json2.results.image.original_url;
 	embedString += xtra.gbwiki(json2, query);
+	//var embedImage = json2.results.image.original_url;
+	if (query === 'info'){
+		//console.log(json2.results.original_release_date);
+		var ORD = '**•Original Release Date:** ' + json2.results.original_release_date.toDateString();
+		
+		
+		var platforms = '';
+		var genres = '';
+		var themes = '';
+		for(var i = 0; i < json2.results.platforms.length; i++){
+			if (i > 0){
+				platforms += ', ';
+			}
+			if ((platforms + '[' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')').length < 2048)
+			platforms += '[' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')';
+		}
+		
+		for(var i = 0; i < json2.results.genres.length; i++){
+			if (i > 0){
+				genres += ', ';
+			}
+			if ((genres + '[' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')').length < 2048)
+			genres += '[' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')';
+		}
+		for(var i = 0; i < json2.results.themes.length; i++){
+			if (i > 0){
+				themes += ', ';
+			}
+			if ((themes + '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')').length < 2048)
+			themes += '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')';
+		}
+		message.channel.send({
+			embed: {
+				title: embedTitle,
+				description: embedString,
+				color: 0xa81717,
+				fields: [{
+					name: "Original Release Date",
+					value: ORD
+				},
+				{
+					name: "Platforms",
+					value: platforms
+				},
+				{
+					name: "Genres",
+					value: genres
+				},
+				{
+					name: "Themes",
+					value: themes
+				},
+				]
+			}
+		});
+	} else {
+	
 	if (query === 'concepts'){
 		embedTitle += 'Concepts';
 	}
@@ -357,35 +413,7 @@ gb.games.get(id, function (err2, res2, json2) {
 			embedString += '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n';
 		}
 	}
-	 if (query === 'info'){
-		console.log(json2.results.original_release_date);
-		embedString += '**•Original Release Date:** ' + json2.results.original_release_date;
-		
-		embedString += '\n**•Platforms:** ';
-		for(var i = 0; i < json2.results.platforms.length; i++){
-			if (i > 0){
-				embedString += ', ';
-			}
-			if ((embedString + '[' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')').length < 2048)
-			embedString += '[' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')';
-		}
-		embedString += '\n**•Genres:** ';
-		for(var i = 0; i < json2.results.genres.length; i++){
-			if (i > 0){
-				embedString += ', ';
-			}
-			if ((embedString + '[' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')').length < 2048)
-			embedString += '[' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')';
-		}
-		embedTitle += '\n**•Themes: **';
-		for(var i = 0; i < json2.results.themes.length; i++){
-			if (i > 0){
-				embedString += ', ';
-			}
-			if ((embedString + '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')').length < 2048)
-			embedString += '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')';
-		}
-	}
+	 
 	if (embedString.length > 2048){
 		embedString = embedString.substring(0, 2048);
 	}
@@ -399,6 +427,7 @@ gb.games.get(id, function (err2, res2, json2) {
 				}*/
 			}
 		});
+	}
 });
 }
 });
