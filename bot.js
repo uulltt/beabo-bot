@@ -319,9 +319,14 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	}
 	var request = require('request').defaults({ encoding: null });
 request.get(url, function (err, res, body) {
-console.log(res);
-console.log(quality);
-var jpegImageData = jpeg.encode(body, quality);
+var dimensions = require('image-size')(body);
+var rawdata = {
+	data: body,
+	width: dimensions.width,
+	height: dimensions.height
+}
+console.log(rawdata);
+var jpegImageData = jpeg.encode(rawdata, quality);
 console.log(jpegImageData);
 const attachment = new Discord.Attachment(jpegImageData.data, 'jpeg.jpg');
 message.channel.send(`${message.author}, here are your memes!`, attachment);
