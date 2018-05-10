@@ -305,13 +305,20 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
    message.channel.send('Error: ' + error.message);
 		}
 	}
-	if (message.content.substring(0, 9) === '!gb game ' || message.content.substring(0, 9) === '!gb game '){
+	if (message.content.substring(0, 9) === '!gb game '){
 		var typequery = message.content.substring(9)
 		var query = typequery.substring(0, typequery.indexOf(' '));
 		var title = typequery.substring(typequery.indexOf(' ')+1);
 gb.games.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
-	var id = json.results[0].id;
+		var gamelist = ''
+		for(var i = 0; i < json.results.length; i++){
+			gamelist += (i+1).toString() + '. ' + json.results[i].name + '\n';
+		}
+		message.channel.send('Which game did you mean? Please Reply with a number.\n' + gamelist);
+		client.on('message', message2 => {
+	if (message2.user === message.user && message2.channel === message.channel && parseInt(message.content)){
+	var id = json.results[parseInt(message.content) - 1].id;
 gb.games.get(id, function (err2, res2, json2) {
 	var queries = query.split(','); var Name = json2.results.name; var imageURL = json2.results.image.original_url;
 	for(var q = 0; q < queries.length; q++){
@@ -515,6 +522,8 @@ gb.games.get(id, function (err2, res2, json2) {
 	}
 	}
 });
+	}
+		});
 }
 });
 	}
