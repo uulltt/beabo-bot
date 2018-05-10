@@ -309,52 +309,52 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
    message.channel.send('Error: ' + error.message);
 		}
 	}
-	if (new RegExp(/[Gg]b!/gm).test(message.content.substring(0, 3))){
-		var typequery = message.content.substring(3);
-		if (typequery.startsWith('games.')){
-			var query = typequery.substring(6, 9);
-			var title = typequery.substring(10);
+	if (message.content.substring(0, 10) === 'gb!games \"' || message.content.substring(0, 10) === 'Gb!games \"'){
+		var typequery = message.content.substring(10).split('\"');
+		if (typequery.length > 2){
+		var title = typequery[1];
+		var query = typequery[2].substring(1);
 gb.games.search(title, {limit : 1}, (err, res, json) => {
 	var id = json.results[0].id;
 gb.games.get(id, function (err2, res2, json2) {
 	var embedTitle = title + ' ';
 	var embedString = '';
-  if (query === 'cha'){
+  if (query === 'characters'){
 		embedTitle += 'Characters';
 		for(var i = 0; i < json2.results.characters.length; i++){
 			if ((embedString + '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n').length < 2048)
 			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
 		}
 	}
-	 if (query === 'con'){
+	 if (query === 'concepts'){
 		embedTitle += 'Concepts';
 		for(var i = 0; i < json2.results.concepts.length; i++){
 			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
 			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
 		}
 	}
-	if (query === 'loc'){
+	if (query === 'locations'){
 		embedTitle += 'Locations';
 		for(var i = 0; i < json2.results.locations.length; i++){
 			if ((embedString + '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n').length < 2048)
 			embedString += '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n';
 		}
 	}
-	if (query === 'obj'){
+	if (query === 'objects'){
 		embedTitle += 'Objects';
 		for(var i = 0; i < json2.results.objects.length; i++){
 			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
 			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
 		}
 	}
-	if (query === 'sim'){
+	if (query === 'similar'){
 		embedTitle += 'Similar Games';
 		for(var i = 0; i < json2.results.similar_games.length; i++){
 			if ((embedString + '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n').length < 2048)
 			embedString += '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n';
 		}
 	}
-	if (query === 'thm'){
+	if (query === 'themes'){
 		embedTitle += 'Themes';
 		for(var i = 0; i < json2.results.themes.length; i++){
 			if ((embedString + '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n').length < 2048)
@@ -372,18 +372,7 @@ gb.games.get(id, function (err2, res2, json2) {
 		});
 });
 });
-}
-	if (typequery.startsWith('people ')){
-			var query = typequery.substring(7);
-		gb.people.search(query, {limit : 1}, (err, res, json) => {
-  console.log(json.results);
-});
-	}
-	if (typequery.startsWith('companies ')){
-			var query = typequery.substring(9);
-		gb.companies.search(query, {limit : 1}, (err, res, json) => {
-  console.log(json.results);
-});
+
 	}
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
