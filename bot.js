@@ -318,11 +318,12 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 			console.log(title);
 gb.games.search(title, {limit : 1}, (err, res, json) => {
 	var id = json.results[0].id;
-gb.games.get(id).then(function(json2)  {
+gb.games.get(id, (err2, res2, json2) => {
 	var embedTitle = title + ' ';
-	var embedString = ' ';
+	var embedString = '';
 	
 	
+  console.log(json2.results.characters);
   if (query === 'cha'){
 		embedTitle += 'Characters';
 		var characters = json2.results.characters;
