@@ -375,6 +375,74 @@ gb.games.get(id, function (err2, res2, json2) {
 }
 });
 	}
+	
+		if (message.content.substring(0, 13) === '!gb concepts ' || message.content.substring(0, 13) === '!gb concepts '){
+		var typequery = message.content.substring(13)
+		var query = typequery.substring(0, typequery.indexOf(' '));
+		var title = typequery.substring(typequery.indexOf(' ')+1);
+gb.concepts.search(title, {limit : 1}, (err, res, json) => {
+	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
+	var id = json.results[0].id;
+gb.concepts.get(id, function (err2, res2, json2) {
+	var embedTitle = title + ' ';
+	var embedString = '';
+  /*if (query === 'characters'){
+		embedTitle += 'Characters';
+		for(var i = 0; i < json2.results.characters.length; i++){
+			if ((embedString + '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.characters[i].name + '](' + json2.results.characters[i].site_detail_url + ')**\n';
+		}
+	}
+	 if (query === 'concepts'){
+		embedTitle += 'Concepts';
+		for(var i = 0; i < json2.results.concepts.length; i++){
+			if ((embedString + '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.concepts[i].name + '](' + json2.results.concepts[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'locations'){
+		embedTitle += 'Locations';
+		for(var i = 0; i < json2.results.locations.length; i++){
+			if ((embedString + '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.locations[i].name + '](' + json2.results.locations[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'objects'){
+		embedTitle += 'Objects';
+		for(var i = 0; i < json2.results.objects.length; i++){
+			if ((embedString + '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.objects[i].name + '](' + json2.results.objects[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'similar'){
+		embedTitle += 'Similar Games';
+		for(var i = 0; i < json2.results.similar_games.length; i++){
+			if ((embedString + '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n';
+		}
+	}
+	if (query === 'themes'){
+		embedTitle += 'Themes';
+		for(var i = 0; i < json2.results.themes.length; i++){
+			if ((embedString + '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n').length < 2048)
+			embedString += '**•[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')**\n';
+		}
+	}*/
+	console.log(json2);
+	if (embedString.length > 2048){
+		embedString = embedString.substring(0, 2048);
+	}
+	message.channel.send({
+			embed: {
+				title: embedTitle,
+				description: embedString,
+				color: 0xa81717
+			}
+		});
+});
+}
+});
+	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
 	}
