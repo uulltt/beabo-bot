@@ -320,6 +320,8 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 	var request = require('request').defaults({ encoding: null });
 request.get(url, function (err, res, body) {
 var dimensions = require('image-size')(body);
+var rawImageData = jpeg.decode(body);
+console.log(rawImageData);
 var rawdata = {
 	data: body,
 	width: dimensions.width,
