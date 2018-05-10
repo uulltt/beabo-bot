@@ -107,11 +107,11 @@ if (exifString.length > 2000){
 }
 });
 	}
-	if (new RegExp(/hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 10))) {
+	if (new RegExp(/!hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 11))) {
 		message.channel.send({
 			embed: {
 				image: {
-					url: 'https://www.colorcombos.com/images/colors/' + message.content.substring(4, 10) + '.png'
+					url: 'https://www.colorcombos.com/images/colors/' + message.content.substring(5, 11) + '.png'
 				}
 			}
 		});
@@ -572,6 +572,7 @@ gb.characters.get(id, function (err2, res2, json2) {
 	}
 	
 	if (message.content.substring(0, 14) === '!gb franchise ' || message.content.substring(0, 14) === '!gb franchise '){
+		console.log("is it going through?");
 		var typequery = message.content.substring(14)
 		var query = typequery.substring(0, typequery.indexOf(' '));
 		var title = typequery.substring(typequery.indexOf(' ')+1);
@@ -674,7 +675,7 @@ gb.franchises.get(id, function (err2, res2, json2) {
 			'[Ff]ont!sold - soldam\n[Ff]ont!tetris - tetris (sega)\n[Ff]ont!vict - victory road\n*/
 			'\ngoogle maps commands\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n!time cityname - gets local time of that city\n'+
 			'\nother commands\n!full or !pics or !album followed by twitter/imgur/tumblr link - displays full photo album of tweet or imgur/tumblr post\n'+
-			'hex#hexCode - displays image of a color pertaining to the hex cde\n!exif followed by link to jpg image - prints out exif data of image\n'+
+			'!hex#hexCode - displays image of a color pertaining to the hex cde\n!exif followed by link to jpg image - prints out exif data of image\n'+
 			'!list or !todo - splits discord message into a to-do list\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number\n!ZiV-random - gets a random arcade on Zenius-i-Vanisher');
 	}
 
