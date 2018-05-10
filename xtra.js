@@ -220,7 +220,7 @@ module.exports.gbwiki = (json, query) => {
 		}
 	}
 	if (query === 'info'){
-		embedString += json.results.deck;
+		embedString += json.results.deck + '\n';
 	}
 	if (query === 'concepts'){
 		//embedTitle += 'Concepts';

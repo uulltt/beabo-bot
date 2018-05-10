@@ -313,7 +313,7 @@ gb.games.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.games.get(id, function (err2, res2, json2) {
-	var queries = query.split(','); var Name = json2.results.name; var imageURL = json2.results.image.original_url;
+	var queries = query.split(','); var Name = '[' + json2.results.name + '](' + json2.results.site_detail_url + ')'; var imageURL = json2.results.image.original_url;
 	
 	console.log(json2.results.image);
 	console.log(imageURL);
@@ -421,7 +421,7 @@ gb.games.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717//, 
+				color: 0xa81717, thumbnail: { url: imageURL }, 
 				/*thumbnail: {
 					url : embedImage
 				}*/
@@ -442,7 +442,7 @@ gb.concepts.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.concepts.get(id, function (err2, res2, json2) {
-	var queries = query.split(','); var Name = json2.results.name; var imageURL = json2.results.image.original_url;
+	var queries = query.split(','); var Name = '[' + json2.results.name + '](' + json2.results.site_detail_url + ')'; var imageURL = json2.results.image.original_url;
 	for(var q = 0; q < queries.length; q++){
 	var embedTitle = Name + ' ';
 	var embedString = '';
@@ -504,7 +504,7 @@ gb.concepts.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717//, 
+				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
 				}*/
@@ -524,7 +524,7 @@ gb.companies.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.companies.get(id, function (err2, res2, json2) {
-	var queries = query.split(','); var Name = json2.results.name; var imageURL = json2.results.image.original_url;
+	var queries = query.split(','); var Name = '[' + json2.results.name + '](' + json2.results.site_detail_url + ')'; var imageURL = json2.results.image.original_url;
 	for(var q = 0; q < queries.length; q++){
 	var embedTitle = Name + ' ';
 	var embedString = '';
@@ -579,7 +579,7 @@ gb.companies.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717//, 
+				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
 				}*/
@@ -599,7 +599,7 @@ gb.characters.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.characters.get(id, function (err2, res2, json2) {
-	var queries = query.split(','); var Name = json2.results.name; var imageURL = json2.results.image.original_url;
+	var queries = query.split(','); var Name = '[' + json2.results.name + '](' + json2.results.site_detail_url + ')'; var imageURL = json2.results.image.original_url;
 	for(var q = 0; q < queries.length; q++){
 	var embedTitle = Name + ' ';
 	var embedString = '';
@@ -663,7 +663,7 @@ gb.characters.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717//, 
+				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
 				}*/
@@ -683,7 +683,7 @@ gb.people.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.people.get(id, function (err2, res2, json2) {
-	var queries = query.split(','); var Name = json2.results.name; var imageURL = json2.results.image.original_url;
+	var queries = query.split(','); var Name = '[' + json2.results.name + '](' + json2.results.site_detail_url + ')'; var imageURL = json2.results.image.original_url;
 	for(var q = 0; q < queries.length; q++){
 	var embedTitle = Name + ' ';
 	var embedString = '';
@@ -742,7 +742,7 @@ gb.people.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717//, 
+				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
 				}*/
@@ -762,7 +762,7 @@ gb.franchises.search(title, {limit : 1}, (err, res, json) => {
 	if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0){
 	var id = json.results[0].id;
 gb.franchises.get(id, function (err2, res2, json2) {
-	var queries = query.split(','); var Name = json2.results.name; var imageURL = json2.results.image.original_url;
+	var queries = query.split(','); var Name = '[' + json2.results.name + '](' + json2.results.site_detail_url + ')'; var imageURL = json2.results.image.original_url;
 	for(var q = 0; q < queries.length; q++){
 	var embedTitle = Name + ' ';
 	var embedString = '';
@@ -803,7 +803,7 @@ gb.franchises.get(id, function (err2, res2, json2) {
 			embed: {
 				title: embedTitle,
 				description: embedString,
-				color: 0xa81717//, 
+				color: 0xa81717, thumbnail: { url: imageURL },//, 
 				/*thumbnail: {
 					url : embedImage
 				}*/
