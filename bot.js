@@ -309,7 +309,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
    message.channel.send('Error: ' + error.message);
 		}
 	}
-	if (message.content.substring(0, 10) === '!gb game ' || message.content.substring(0, 10) === '!gb game '){
+	if (message.content.substring(0, 9) === '!gb game ' || message.content.substring(0, 9) === '!gb game '){
 		var typequery = message.content.substring(9)
 		var query = typequery.substring(0, typequery.indexOf(' '));
 		var title = typequery.substring(typequery.indexOf(' ')+1);
