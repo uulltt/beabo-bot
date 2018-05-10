@@ -814,7 +814,7 @@ gb.franchises.get(id, function (err2, res2, json2) {
 			'\n**Google Maps Commands**\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n!time cityname - gets local time of that city\n'+
 			'\n**Giant Bomb Wiki Commands**\n!gb game info/characters/concepts/franchises/locations/objects/people/similar gamename - returns the info/characters/etc. of that game from the Giant Bomb wiki\n'+
 			'!gb company info/characters/concepts/locations/objects/people/developed/published companyname - returns the info/characterc/concepts/etc. from a given company\n!gb concept/person/franchise info/characters/concepts/locations/objects/people/games/franchises(concept/person only) name - returns that info but for a concept, person, or franchise\n'+
-			'!gb character info/concepts/locations/objects/people/franchises/games/friends/enemies - returns the given parameter for a video game character\n'+ 
+			'!gb character info/concepts/locations/objects/people/franchises/games/friends/enemies charactername - returns the given parameter for a video game character\n'+ 
 			'\n**Other Commands**\n!full or !pics or !album followed by twitter/imgur/tumblr link - displays full photo album of tweet or imgur/tumblr post\n'+
 			'!hex#hexCode - displays image of a color pertaining to the hex cde\n!exif followed by link to jpg image - prints out exif data of image\n'+
 			'!list or !todo - splits discord message into a to-do list\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number\n!ZiV-random - gets a random arcade on Zenius-i-Vanisher');
