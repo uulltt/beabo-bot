@@ -316,14 +316,10 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000)+2).toString() + '#summary');
 	}
 	if (message.content.includes('strawpoll.me')){
-		var strawpoll = message.content.match(/strawpoll\.me\/[0-9]+/gm);
-		console.log(message.content.match(/strawpoll\.me\/[0-9]+/gm));
-		console.log(strawpoll);
-	if (strawpoll.length > 0){
+		var sp = message.content.match(/strawpoll\.me\/[0-9]+/gm);
+	if (sp.length > 0){
 		var id = parseInt(message.content.substring(message.content.indexOf('strawpoll.me/')).match(/[0-9]+/gm)[0]);
-		console.log(id);
-		console.log(strawpoll);
-		/*var stream = strawpoll.get(id)
+		var stream = strawpoll.get(id)
   .pipe(concat(function(poll) {
     poll = JSON.parse(poll);
     var results = '__**' + poll.title + '**__\n';
@@ -331,7 +327,7 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		results += '**' + poll.options[i] + '**: ' + poll.votes[i].toString() + '\n';
 	}
 	message.channel.send(results);
-  }));*/
+  }));
 	}
 	}
 	if (message.content.substring(0, 9) === '!commands') {
