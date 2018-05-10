@@ -329,6 +329,30 @@ gb.games.get(id, function (err2, res2, json2) {
 		var platforms = '';
 		var genres = '';
 		var themes = '';
+		var developers = '';
+		var publishers = ''
+		var dlcs = ''
+		for(var i = 0; i < json2.results.developers.length; i++){
+			if (i > 0){
+				developers += ', ';
+			}
+			if ((developers + '[' + json2.results.developers[i].name + '](' + json2.results.developers[i].site_detail_url + ')').length < 2048)
+			developers += '[' + json2.results.developers[i].name + '](' + json2.results.developers[i].site_detail_url + ')';
+		}
+		for(var i = 0; i < json2.results.publishers.length; i++){
+			if (i > 0){
+				publishers += ', ';
+			}
+			if ((publishers + '[' + json2.results.publishers[i].name + '](' + json2.results.publishers[i].site_detail_url + ')').length < 2048)
+			publishers += '[' + json2.results.publishers[i].name + '](' + json2.results.publishers[i].site_detail_url + ')';
+		}
+		for(var i = 0; i < json2.results.dlcs.length; i++){
+			if (i > 0){
+				dlcs += ', ';
+			}
+			if ((dlcs + '[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')').length < 2048)
+			dlcs += '[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')';
+		}
 		for(var i = 0; i < json2.results.platforms.length; i++){
 			if (i > 0){
 				platforms += ', ';
@@ -365,12 +389,26 @@ gb.games.get(id, function (err2, res2, json2) {
 					value: platforms
 				},
 				{
+					name: "Developers",
+					value: developers,
+					inline: true
+				},
+				{
+					name: "Publishers",
+					value: publishers,
+					inline: true
+				},
+				{
 					name: "Genres",
 					value: genres
 				},
 				{
 					name: "Themes",
 					value: themes
+				},
+				{
+					name: "DLCs",
+					value: dlcs
 				},
 				]
 			}
