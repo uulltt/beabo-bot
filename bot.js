@@ -335,7 +335,7 @@ gb.games.get(id, (err2, res2, json2) => {
 			}
 		});
 	
-  console.log(json2.results);
+  console.log(json2.results.characters);
 });
 });
 }
