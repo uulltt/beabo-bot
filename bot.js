@@ -442,13 +442,7 @@ gb.concepts.get(id, function (err2, res2, json2) {
 		}
 	}
 	
-	/*if (query === 'similar'){
-		embedTitle += 'Similar Games';
-		for(var i = 0; i < json2.results.similar_games.length; i++){
-			if ((embedString + '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n';
-		}
-	}
+	/*
 	if (query === 'themes'){
 		embedTitle += 'Themes';
 		for(var i = 0; i < json2.results.themes.length; i++){
@@ -501,7 +495,7 @@ gb.characters.get(id, function (err2, res2, json2) {
 	}
 	if (query === 'info'){
 		embedString += '**Description: ' + json2.results.deck + '**\n';
-		if (json2.results.hasOwnProperty('first_appeared_in_game'));
+		if (json2.results.hasOwnProperty('first_appeared_in_game'))
 		embedString += '**•First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**\n';
 		var genders = ['0', 'Male', 'Female', '3'];
 		embedString += '**•Gender: ' + genders[json2.results.gender] + '**\n';
@@ -548,13 +542,7 @@ gb.characters.get(id, function (err2, res2, json2) {
 		}
 	}
 	
-	/*if (query === 'similar'){
-		embedTitle += 'Similar Games';
-		for(var i = 0; i < json2.results.similar_games.length; i++){
-			if ((embedString + '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n').length < 2048)
-			embedString += '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n';
-		}
-	}
+	/*
 	if (query === 'themes'){
 		embedTitle += 'Themes';
 		for(var i = 0; i < json2.results.themes.length; i++){
