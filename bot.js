@@ -13,7 +13,6 @@ var Tumblr = require('tumblrwks');
 var tumblr = new Tumblr({
   consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 });
-var jpeg = require('jpeg-js');
 var timezone = require('node-google-timezone');
 var tweeter = new Twitter({
 		consumer_key: process.env.TWITTER_CONSUMER_KEY,
@@ -307,35 +306,6 @@ if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))){
 		} catch (error) {
    message.channel.send('Error: ' + error.message);
 		}
-	}
-	if (new RegExp(/!jpeg[0-9]{2}/gm).test(message.content.substring(0, 7))){
-	var url = '';
-	var quality = parseInt(message.content.substring(5, 7));
-	if (message.attachments.array().length > 0 || message.content.length > 8){
-	if (message.attachments.array().length > 0){
-		url = message.attachments.array()[0].url;
-	} else if (message.content.length > 8){
-		url = message.content.substring(8);
-	}
-	var request = require('request').defaults({ encoding: null });
-request.get(url, function (err, res, body) {
-var dimensions = require('image-size')(body);
-var rawImageData = jpeg.decode(body);
-console.log(rawImageData);
-console.log(body);
-console.log(body.length + ' ' + rawImageData.length);
-var rawdata = {
-	data: body,
-	width: dimensions.width,
-	height: dimensions.height,
-}
-console.log(rawdata);
-/*var jpegImageData = jpeg.encode(rawdata, quality);
-console.log(jpegImageData);
-const attachment = new Discord.Attachment(jpegImageData.data, 'jpeg.jpg');
-message.channel.send(`${message.author}, here are your memes!`, attachment);*/
-});
-	}
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
