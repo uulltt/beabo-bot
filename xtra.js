@@ -476,6 +476,20 @@ module.exports.gbWiki = (json2, query, message, g) => {
 													embedString += '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n';
 											}
 										}
+										if (queries[q] === 'developed' && g === 4) {
+											embedTitle += 'Developed Games';
+											for (var i = 0; i < json2.results.developed_games.length; i++) {
+												if ((embedString + '**•[' + json2.results.developed_games[i].name + '](' + json2.results.developed_games[i].site_detail_url + ')**\n').length < 2048)
+													embedString += '**•[' + json2.results.developed_games[i].name + '](' + json2.results.developed_games[i].site_detail_url + ')**\n';
+											}
+										}
+										if (queries[q] === 'published' && g === 4) {
+											embedTitle += 'Published Games';
+											for (var i = 0; i < json2.results.published_games.length; i++) {
+												if ((embedString + '**•[' + json2.results.published_games[i].name + '](' + json2.results.published_games[i].site_detail_url + ')**\n').length < 2048)
+													embedString += '**•[' + json2.results.published_games[i].name + '](' + json2.results.published_games[i].site_detail_url + ')**\n';
+											}
+										}
 										if (queries[q] === 'franchises' && g !== 3) {
 											embedTitle += 'Franchises';
 											for (var i = 0; i < json2.results.franchises.length; i++) {
