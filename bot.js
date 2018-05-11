@@ -298,9 +298,12 @@ client.on('message', message => {
 	if (message.content.substring(0, 6) === '!time ') {
 		xtra.cityTime(message);
 	}
-	
-	for (var g = 0; g < 6; ) {
-		if (message.content.substring(0, 4 + gbStrings[g].length) === '!gb ' + gbStrings[g]) {
+	if (message.content.substring(0, 4) === '!gb '){
+		console.log('giant bomb');
+	for (var g = 0; g < 6; g++) {
+		console.log(g);
+		if (message.content.substring(4, 4 + gbStrings[g].length) === gbStrings[g]) {
+			console.log(gbStrings[g]);
 			var typequery = message.content.substring(4 + gbStrings[g].length)
 				var query = typequery.substring(0, typequery.indexOf(' '));
 			var title = typequery.substring(typequery.indexOf(' ') + 1);
@@ -363,9 +366,8 @@ client.on('message', message => {
 				}
 			});
 
-		} else {
-			g++;
-		}
+		} 
+	}
 	}
 
 	/*if (message.content.substring(0, 12) === '!gb concept ' || message.content.substring(0, 12) === '!gb concept ') {
