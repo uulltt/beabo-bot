@@ -10,7 +10,7 @@ var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 var fs = require('fs');
-console.log(fs);
+//console.log(fs);
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
 const gbSearchGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people, gb.objects];
@@ -40,8 +40,8 @@ const steamgames = ['514340', '658150', '522490', '598640'];
 client.on('message', message => {
 
 	if (message.isMentioned(client.user)) {
-		if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vidya)?( )?((ga([me]{2}))|vidya)(\?)?/gm).length > 0){
-			message.channel.send('https://store.steampowered.com/app/' + steamgames[(Math.floor(Math.random() * 4))]) + '/';
+		if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vidya)?( )?((ga([me]{2}))|vidya)(\?)?/gm)){
+			message.channel.send('https://store.steampowered.com/app/' + steamgames[(Math.floor(Math.random() * 4))] + '/');
 		} else {
 		message.channel.send(xtra.beeb());
 		}
