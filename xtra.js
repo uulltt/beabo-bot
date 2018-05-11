@@ -54,14 +54,14 @@ module.exports.cityTime = (message) => {
 			timezone.data(lati, lngi, timestamp, function (err, tz) {
 				if (!err) {
 					var d = new Date(tz.local_timestamp * 1000);
-					return d.toDateString() + ' - ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+					message.channel.send(d.toDateString() + ' - ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()));
 				} else {
-					return err;
+					message.channel.send(err);
 				}
 
 			});
 		} catch (error) {
-			return 'Error: ' + error.message;
+			message.channel.send('Error: ' + error.message);
 		}
 	
 	

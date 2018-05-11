@@ -295,7 +295,7 @@ client.on('message', message => {
 		}
 	}
 	if (message.content.substring(0, 6) === '!time ') {
-		message.channel.send(xtra.cityTime(message));
+		xtra.cityTime(message);
 	}
 	if (message.content.substring(0, 9) === '!gb game ') {
 		var typequery = message.content.substring(9)
