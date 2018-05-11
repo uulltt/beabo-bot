@@ -464,10 +464,12 @@ client.on('message', message => {
 													},
 													fields: [{
 															name: "Original Release Date",
-															value: json2.results.original_release_date.substring(0, json2.results.original_release_date.indexOf(' '))
+															value: json2.results.original_release_date.substring(0, json2.results.original_release_date.indexOf(' ')),
+															inline: true
 														}, {
 															name: "Platforms",
-															value: platforms
+															value: platforms,
+															inline: true
 														}, {
 															name: "Developers",
 															value: developers,
@@ -478,10 +480,12 @@ client.on('message', message => {
 															inline: true
 														}, {
 															name: "Genres",
-															value: genres
+															value: genres,
+															inline: true
 														}, {
 															name: "Themes",
-															value: themes
+															value: themes,
+															inline: true
 														}
 													]
 												}
