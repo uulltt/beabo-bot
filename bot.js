@@ -543,10 +543,14 @@ client.on('message', message => {
 								}
 							}
 						});
+					message2.delete();
+					message.delete();
 					}
+					
 				});
 			}
 		});
+		
 	}
 
 	if (message.content.substring(0, 12) === '!gb concept ' || message.content.substring(0, 12) === '!gb concept ') {
@@ -629,10 +633,14 @@ client.on('message', message => {
 								});
 							}
 						});
+					
+					message2.delete();
+					message.delete();
 					}
 				});
 			}
 		});
+		
 	}
 
 	if (message.content.substring(0, 12) === '!gb company ' || message.content.substring(0, 12) === '!gb company ') {
@@ -715,10 +723,14 @@ client.on('message', message => {
 								});
 							}
 						});
+					
+					message2.delete();
+					message.delete();
 					}
 				});
 			}
 		});
+		
 	}
 
 	if (message.content.substring(0, 14) === '!gb character ' || message.content.substring(0, 14) === '!gb character ') {
@@ -815,10 +827,14 @@ client.on('message', message => {
 								});
 							}
 						});
+					
+					message2.delete();
+					message.delete();
 					}
 				});
 			}
 		});
+	
 	}
 
 	if (message.content.substring(0, 11) === '!gb person ' || message.content.substring(0, 11) === '!gb person ') {
@@ -909,10 +925,14 @@ client.on('message', message => {
 								});
 							}
 						});
+					
+					message2.delete();
+					message.delete();
 					}
 				});
 			}
 		});
+		
 	}
 
 	if (message.content.substring(0, 14) === '!gb franchise ' || message.content.substring(0, 14) === '!gb franchise ') {
@@ -985,10 +1005,14 @@ client.on('message', message => {
 								});
 							}
 						});
+					
+					message2.delete();
+					message.delete();
 					}
 				});
 			}
 		});
+		
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
