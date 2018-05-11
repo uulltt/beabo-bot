@@ -300,9 +300,11 @@ client.on('message', message => {
 	}
 	if (message.content.substring(0, 4) === '!gb '){
 		console.log('giant bomb');
+		var choice = 0;
 	for (var g = 0; g < 6; g++) {
 		console.log(g);
 		if (message.content.substring(4, 4 + gbStrings[g].length) === gbStrings[g]) {
+			choice = g;
 			console.log(gbStrings[g]);
 			var typequery = message.content.substring(4 + gbStrings[g].length)
 				var query = typequery.substring(0, typequery.indexOf(' '));
@@ -317,7 +319,7 @@ client.on('message', message => {
 						for (var i = 0; i < json.results.length; i++) {
 							gamelist += (i + 1).toString() + '. ' + json.results[i].name + '\n';
 						}
-						console.log(json);
+						//console.log(json);
 						message.channel.send('Which did you mean? Please Reply with a number.\n' + gamelist);
 					const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, {
 							time: 10000
@@ -326,7 +328,7 @@ client.on('message', message => {
 						if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)) {
 							var id = json.results[parseInt(message2.content) - 1].id;
 							console.log(g);
-							switch(g){
+							switch(choice){
 								case 0:
 							gb.games.get(id, function (err2, res2, json2) {
 							xtra.gbWiki(json2, query, message, 0);	
