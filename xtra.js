@@ -360,7 +360,11 @@ module.exports.gbWiki = (json2, query, message, g) => {
 											} else {
 												themes = 'None';
 											}
-
+var ord = 'Coming Soon'; 
+if (json2.results.original_release_date !== undefined && json2.results.original_release_date !== null && typeof json2.results.original_release_date !== undefined && typeof json2.results.original_release_date !== null)
+ord = json2.results.original_release_date.substring(0, json2.results.original_release_date.indexOf(' '));
+										
+										
 											message.channel.send({
 												embed: {
 													title: embedTitle,
@@ -375,7 +379,7 @@ module.exports.gbWiki = (json2, query, message, g) => {
 													},
 													fields: [{
 															name: "Original Release Date",
-															value: json2.results.original_release_date.substring(0, json2.results.original_release_date.indexOf(' ')),
+															value: ord,
 															inline: true
 														}, {
 															name: "Platforms",
