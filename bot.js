@@ -326,6 +326,9 @@ client.on('message', message => {
 					collector.on('collect', message2 => {
 						if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)) {
 							var id = json.results[parseInt(message2.content) - 1].id;
+							if (query === '*' || query === 'all'){
+								query = 'info,characters,friends,enemies,concepts,franchises,games,locations,objects,similar';
+							}
 							console.log(g);
 							switch(choice){
 								case 0:
