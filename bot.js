@@ -23,7 +23,7 @@ var tweeter = new Twitter({
 		access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 	});
 
-client.on('ready', () => {
+client.once('ready', () => {
 	console.log('I am ready!');
 	client.user.setUsername("Beabo");
 	client.user.setActivity('type !commands for help', {
@@ -326,7 +326,7 @@ client.on('message', message => {
 						gamelist += (i + 1).toString() + '. ' + json.results[i].name + '\n';
 					}
 					message.channel.send('Which did you mean? Please Reply with a number.\n' + gamelist);
-				client.once('message', message2 => {
+				client.on('message', message2 => {
 					if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)) {
 						var id = json.results[parseInt(message2.content) - 1].id;
 						gb.games.get(id, function (err2, res2, json2) {
