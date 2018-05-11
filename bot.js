@@ -11,6 +11,8 @@ var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
+var gbSearchGet = [gb.games, gb.characters, gb.companies, gb.concepts, gb.franchises, gb.people];
+var gbStrings = ['game ', 'character ', 'company ', 'concept ', 'franchise ', 'people '];
 var tumblr = new Tumblr({
 		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 	});
@@ -293,7 +295,7 @@ client.on('message', message => {
 		}
 	}
 	if (message.content.substring(0, 6) === '!time ') {
-		message.channel.send(xtra.cityTime(message));
+		xtra.cityTime(message);
 	}
 	if (message.content.substring(0, 9) === '!gb game ') {
 		var typequery = message.content.substring(9)
