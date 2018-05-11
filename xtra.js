@@ -423,7 +423,7 @@ ord = json2.results.original_release_date.substring(0, json2.results.original_re
 											embedString += '**•Gender: ' + genders[json2.results.gender] + '**\n';
 											embedString += '**•Birthday: ' + json2.results.birthday + '**\n';
 										}
-										if (queries[q] === 'info' && g === 2) {
+										if (queries[q] === 'info' && (g === 2 || g === 6)) {
 											embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
 
 										}
@@ -482,6 +482,13 @@ ord = json2.results.original_release_date.substring(0, json2.results.original_re
 											for (var i = 0; i < json2.results.similar_games.length; i++) {
 												if ((embedString + '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n').length < 2048)
 													embedString += '**•[' + json2.results.similar_games[i].name + '](' + json2.results.similar_games[i].site_detail_url + ')**\n';
+											}
+										}
+										if (queries[q] === 'companies' && g === 6) {
+											embedTitle += 'Companies';
+											for (var i = 0; i < json2.results.companies.length; i++) {
+												if ((embedString + '**•[' + json2.results.companies[i].name + '](' + json2.results.companies[i].site_detail_url + ')**\n').length < 2048)
+													embedString += '**•[' + json2.results.companies[i].name + '](' + json2.results.companies[i].site_detail_url + ')**\n';
 											}
 										}
 										if (queries[q] === 'developed' && g === 4) {

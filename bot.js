@@ -11,9 +11,9 @@ var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
-const gbSearchGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people];
-const gbGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people];
-const gbStrings = ['game ', 'character ', 'concept ', 'franchise ', 'company ', 'person '];
+const gbSearchGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people, gb.objects];
+const gbGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people, gb.objects];
+const gbStrings = ['game ', 'character ', 'concept ', 'franchise ', 'company ', 'person ', 'object '];
 var tumblr = new Tumblr({
 		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 	});
@@ -301,7 +301,7 @@ client.on('message', message => {
 	if (message.content.substring(0, 4) === '!gb '){
 		console.log('giant bomb');
 		var choice = 0;
-	for (var g = 0; g < 6; g++) {
+	for (var g = 0; g < 7; g++) {
 		console.log(g);
 		if (message.content.substring(4, 4 + gbStrings[g].length) === gbStrings[g]) {
 			choice = g;
@@ -359,6 +359,11 @@ client.on('message', message => {
 							case 5:
 							gb.people.get(id, function (err2, res2, json2) {
 							xtra.gbWiki(json2, query, message, 5);	
+							});
+							break;
+							case 6:
+							gb.objects.get(id, function (err2, res2, json2) {
+							xtra.gbWiki(json2, query, message, 6);	
 							});
 							break;
 							}
