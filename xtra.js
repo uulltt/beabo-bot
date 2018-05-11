@@ -43,7 +43,7 @@ module.exports.beeb = () => {
 }
 
 var cityTimezones = require('city-timezones');
-
+var timezone = require('node-google-timezone');
 module.exports.cityTime = (message) => {
 	var city = message.content.substring(6);
 		const citydata = cityTimezones.lookupViaCity(city);
@@ -54,14 +54,14 @@ module.exports.cityTime = (message) => {
 			timezone.data(lati, lngi, timestamp, function (err, tz) {
 				if (!err) {
 					var d = new Date(tz.local_timestamp * 1000);
-					message.channel.send(d.toDateString() + ' - ' + xtra.pad(d.getHours()) + ':' + xtra.pad(d.getMinutes()) + ':' + xtra.pad(d.getSeconds()));
+					return d.toDateString() + ' - ' + xtra.pad(d.getHours()) + ':' + xtra.pad(d.getMinutes()) + ':' + xtra.pad(d.getSeconds()));
 				} else {
-					message.channel.send(err);
+					return err;
 				}
 
 			});
 		} catch (error) {
-			message.channel.send('Error: ' + error.message);
+			return 'Error: ' + error.message;
 		}
 	
 	

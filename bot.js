@@ -16,7 +16,7 @@ var gbStrings = ['game ', 'character ', 'company ', 'concept ', 'franchise ', 'p
 var tumblr = new Tumblr({
 		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 	});
-var timezone = require('node-google-timezone');
+
 var tweeter = new Twitter({
 		consumer_key: process.env.TWITTER_CONSUMER_KEY,
 		consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
@@ -295,7 +295,7 @@ client.on('message', message => {
 		}
 	}
 	if (message.content.substring(0, 6) === '!time ') {
-		xtra.cityTime(message);
+		message.channel.send(xtra.cityTime(message));
 	}
 	if (message.content.substring(0, 9) === '!gb game ') {
 		var typequery = message.content.substring(9)
