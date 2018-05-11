@@ -322,35 +322,36 @@ client.on('message', message => {
 					collector.on('collect', message2 => {
 						if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)) {
 							var id = json.results[parseInt(message2.content) - 1].id;
+							console.log(g);
 							switch(g){
 								case 0:
-							gb.games.get(id, function (err2, res2, json2, 0) {
-							xtra.gbWiki(json2, query, message);	
+							gb.games.get(id, function (err2, res2, json2) {
+							xtra.gbWiki(json2, query, message, 0);	
 							});
 							break;
 							case 1:
-							gb.characters.get(id, function (err2, res2, json2, 1) {
-							xtra.gbWiki(json2, query, message);	
+							gb.characters.get(id, function (err2, res2, json2) {
+							xtra.gbWiki(json2, query, message, 1);	
 							});
 							break;
 							case 2:
-							gb.concepts.get(id, function (err2, res2, json2, 2) {
-							xtra.gbWiki(json2, query, message);	
+							gb.concepts.get(id, function (err2, res2, json2) {
+							xtra.gbWiki(json2, query, message, 2);	
 							});
 							break;
 							case 3:
-							gb.franchises.get(id, function (err2, res2, json2, 3) {
-							xtra.gbWiki(json2, query, message);	
+							gb.franchises.get(id, function (err2, res2, json2) {
+							xtra.gbWiki(json2, query, message, 3);	
 							});
 							break;
 							case 4:
-							gb.companies.get(id, function (err2, res2, json2, 4) {
-							xtra.gbWiki(json2, query, message);	
+							gb.companies.get(id, function (err2, res2, json2) {
+							xtra.gbWiki(json2, query, message, 4);	
 							});
 							break;
 							case 5:
-							gb.people.get(id, function (err2, res2, json2, 5) {
-							xtra.gbWiki(json2, query, message);	
+							gb.people.get(id, function (err2, res2, json2) {
+							xtra.gbWiki(json2, query, message, 5);	
 							});
 							break;
 							}
