@@ -302,15 +302,15 @@ client.on('message', message => {
 		console.log('giant bomb');
 		var choice = 0;
 	for (var g = 0; g < 7; g++) {
-		console.log(g);
+		//console.log(g);
 		if (message.content.substring(4, 4 + gbStrings[g].length) === gbStrings[g]) {
 			choice = g;
 			console.log(gbStrings[g]);
 			var typequery = message.content.substring(4 + gbStrings[g].length)
 				var query = typequery.substring(0, typequery.indexOf(' '));
 			var title = typequery.substring(typequery.indexOf(' ') + 1);
-			console.log(query);
-			console.log(title);
+			//console.log(query);
+			//console.log(title);
 			gbSearchGet[g].search(title, {
 				limit: 1
 			}, (err, res, json) => {
@@ -329,7 +329,7 @@ client.on('message', message => {
 							if (query === '*' || query === 'all'){
 								query = 'info,characters,friends,enemies,concepts,franchises,games,developed,published,locations,objects,people,similar';
 							}
-							console.log(g);
+							//console.log(g);
 							switch(choice){
 								case 0:
 							gb.games.get(id, function (err2, res2, json2) {
