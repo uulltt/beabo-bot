@@ -12,7 +12,7 @@ var Tumblr = require('tumblrwks');
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
 const gbSearchGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people];
-const gbGet = [gb.games.get, gb.characters.get, gb.concepts.get, gb.franchises.get, gb.companies.get, gb.people.get];
+const gbGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people];
 const gbStrings = ['game ', 'character ', 'concept ', 'franchise ', 'company ', 'person '];
 var tumblr = new Tumblr({
 		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
@@ -322,7 +322,7 @@ client.on('message', message => {
 					collector.on('collect', message2 => {
 						if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)) {
 							var id = json.results[parseInt(message2.content) - 1].id;
-							gbGet[g](id, function (err2, res2, json2) {
+							gbGet[g].get(id, function (err2, res2, json2) {
 								var queries = query.split(',');
 								var Name = json2.results.name;
 								var imageURL = json2.results.image.original_url;
