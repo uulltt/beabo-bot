@@ -9,6 +9,8 @@ var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
 var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
+var fs = require('fs');
+console.log(fs);
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
 const gbSearchGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people, gb.objects];
@@ -238,7 +240,7 @@ client.on('message', message => {
 		}
 
 	}
-	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))) {
+	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!kof97\W/gm).test(message.content.substring(0, 11)))) {
 		var urls = xtra.font(message.content);
 		for (var i = 0; i < Math.min(urls.length, 5); i++) {
 			if (urls[i].length > 0)
@@ -251,7 +253,7 @@ client.on('message', message => {
 				});
 		}
 	}
-	if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5))) {
+	if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Bb][du][0-9][0-9]!kof97\W/gm).test(message.content.substring(0, 11)))) {
 		var urls = xtra.bubble(message.content);
 		for (var i = 0; i < Math.min(urls.length, 5); i++) {
 			if (urls[i].length > 0)
