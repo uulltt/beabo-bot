@@ -337,7 +337,8 @@ module.exports.gbWiki = (json2, query, message, g) => {
 													platforms += '[' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')';
 												}
 											}
-
+											
+											if (json2.results.genres !== undefined && json2.results.genres !== null && typeof json2.results.genres !== undefined && typeof json2.results.genres !== null) {
 											for (var i = 0; i < json2.results.genres.length; i++) {
 
 												if ((genres + ', [' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')').length < 2048) {
@@ -346,6 +347,9 @@ module.exports.gbWiki = (json2, query, message, g) => {
 													}
 													genres += '[' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')';
 												}
+											} 
+												} else {
+												genres = 'None';
 											}
 											if (json2.results.themes !== undefined && json2.results.themes !== null && typeof json2.results.themes !== undefined && typeof json2.results.themes !== null) {
 												for (var i = 0; i < json2.results.themes.length; i++) {
