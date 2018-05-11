@@ -42,6 +42,32 @@ module.exports.beeb = () => {
 	
 }
 
+var cityTimezones = require('city-timezones');
+
+module.exports.cityTime = (message) => {
+	var city = message.content.substring(6);
+		const citydata = cityTimezones.lookupViaCity(city);
+		try {
+			var lati = citydata[city === 'London' ? 1 : 0].lat;
+			var lngi = citydata[city === 'London' ? 1 : 0].lng;
+			var timestamp = Date.now() / 1000;
+			timezone.data(lati, lngi, timestamp, function (err, tz) {
+				if (!err) {
+					var d = new Date(tz.local_timestamp * 1000);
+					return (d.toDateString() + ' - ' + xtra.pad(d.getHours()) + ':' + xtra.pad(d.getMinutes()) + ':' + xtra.pad(d.getSeconds()));
+				} else {
+					return err;
+				}
+
+			});
+		} catch (error) {
+			return ('Error: ' + error.message);
+		}
+	
+	
+	
+}
+
 module.exports.font = (message) => {
 	var arg = ' ';
 	var game = ' ';

@@ -8,7 +8,6 @@ var googlePlaces = require('googleplaces');
 var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
 var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
-var cityTimezones = require('city-timezones');
 var Tumblr = require('tumblrwks');
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
@@ -294,24 +293,7 @@ client.on('message', message => {
 		}
 	}
 	if (message.content.substring(0, 6) === '!time ') {
-		var city = message.content.substring(6);
-		const citydata = cityTimezones.lookupViaCity(city);
-		try {
-			var lati = citydata[city === 'London' ? 1 : 0].lat;
-			var lngi = citydata[city === 'London' ? 1 : 0].lng;
-			var timestamp = Date.now() / 1000;
-			timezone.data(lati, lngi, timestamp, function (err, tz) {
-				if (!err) {
-					var d = new Date(tz.local_timestamp * 1000);
-					message.channel.send(d.toDateString() + ' - ' + xtra.pad(d.getHours()) + ':' + xtra.pad(d.getMinutes()) + ':' + xtra.pad(d.getSeconds()));
-				} else {
-					console.log(err);
-				}
-
-			});
-		} catch (error) {
-			message.channel.send('Error: ' + error.message);
-		}
+		message.channel.send(xtra.cityTime(message));
 	}
 	if (message.content.substring(0, 9) === '!gb game ') {
 		var typequery = message.content.substring(9)
