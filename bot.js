@@ -38,7 +38,7 @@ const steamgames = ['514340', '658150', '522490', '598640'];
 client.on('message', message => {
 
 	if (message.isMentioned(client.user)) {
-		if (message.content.toLowerCase().match(/what('?)s (yo)?ur fav(e|orite)(( (steam|pc|computer|video|vidya))?) (game|vidya)(\?)?/gm).length > 0){
+		if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav(e|orite)(( (steam|pc|computer|video|vidya))?) (game|vidya)(\?)?/gm).length > 0){
 			message.channel.send('https://store.steampowered.com/app/' + steamgames[(Math.floor(Math.random() * 4))]) + '/';
 		} else {
 		message.channel.send(xtra.beeb());
