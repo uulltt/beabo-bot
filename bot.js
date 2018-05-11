@@ -304,6 +304,8 @@ client.on('message', message => {
 			var typequery = message.content.substring(4 + gbStrings[g].length)
 				var query = typequery.substring(0, typequery.indexOf(' '));
 			var title = typequery.substring(typequery.indexOf(' ') + 1);
+			console.log(query);
+			console.log(title);
 			gbSearchGet[g].search(title, {
 				limit: 1
 			}, (err, res, json) => {
@@ -312,6 +314,7 @@ client.on('message', message => {
 						for (var i = 0; i < json.results.length; i++) {
 							gamelist += (i + 1).toString() + '. ' + json.results[i].name + '\n';
 						}
+						console.log(json);
 						message.channel.send('Which did you mean? Please Reply with a number.\n' + gamelist);
 					const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, {
 							time: 10000
