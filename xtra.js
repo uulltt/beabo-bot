@@ -14,7 +14,7 @@ function bubbleText (game, dir, pos, style, size, text) {
 return 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-'+ style +'/dbl-'+ size +'/x-' + encodeURI(text  + '\u200B');
 }
 
-module.exports.pad = (n) => { 
+function pad (n) { 
 if ( n < 10) 
 	return "0" + n.toString();
 else
@@ -54,7 +54,7 @@ module.exports.cityTime = (message) => {
 			timezone.data(lati, lngi, timestamp, function (err, tz) {
 				if (!err) {
 					var d = new Date(tz.local_timestamp * 1000);
-					return d.toDateString() + ' - ' + xtra.pad(d.getHours()) + ':' + xtra.pad(d.getMinutes()) + ':' + xtra.pad(d.getSeconds());
+					return d.toDateString() + ' - ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
 				} else {
 					return err;
 				}
