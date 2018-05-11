@@ -326,7 +326,7 @@ client.on('message', message => {
 						gamelist += (i + 1).toString() + '. ' + json.results[i].name + '\n';
 					}
 					message.channel.send('Which did you mean? Please Reply with a number.\n' + gamelist);
-				client.on('message', message2 => {
+				client.once('message', message2 => {
 					if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)) {
 						var id = json.results[parseInt(message2.content) - 1].id;
 						gb.games.get(id, function (err2, res2, json2) {
@@ -543,8 +543,8 @@ client.on('message', message => {
 								}
 							}
 						});
-					message2.delete();
-					message.delete();
+					//message2.delete();
+					//message.delete();
 					}
 					
 				});
@@ -634,8 +634,8 @@ client.on('message', message => {
 							}
 						});
 					
-					message2.delete();
-					message.delete();
+					//message2.delete();
+					//message.delete();
 					}
 				});
 			}
@@ -724,8 +724,8 @@ client.on('message', message => {
 							}
 						});
 					
-					message2.delete();
-					message.delete();
+					//message2.delete();
+					//message.delete();
 					}
 				});
 			}
@@ -828,8 +828,8 @@ client.on('message', message => {
 							}
 						});
 					
-					message2.delete();
-					message.delete();
+					//message2.delete();
+					//message.delete();
 					}
 				});
 			}
@@ -926,8 +926,8 @@ client.on('message', message => {
 							}
 						});
 					
-					message2.delete();
-					message.delete();
+					//message2.delete();
+					//message.delete();
 					}
 				});
 			}
@@ -1006,8 +1006,8 @@ client.on('message', message => {
 							}
 						});
 					
-					message2.delete();
-					message.delete();
+					//message2.delete();
+					//message.delete();
 					}
 				});
 			}
