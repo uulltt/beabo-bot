@@ -33,7 +33,7 @@ module.exports.beeb = () => {
 				sentence += "!";
 			}
 		}
-		var hasEmote = Math.floor(Math.random() * 6) + 1;
+		var hasEmote = Math.floor(Math.random() * 6);
 		if (hasEmote === 0){
 			return sentence + "! ^^";
 		}
