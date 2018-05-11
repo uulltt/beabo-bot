@@ -11,8 +11,9 @@ var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
-var gbSearchGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people];
-var gbStrings = ['game ', 'character ', 'concept ', 'franchise ', 'company ', 'person '];
+const gbSearchGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people];
+const gbGet = [gb.games.get, gb.characters.get, gb.concepts.get, gb.franchises.get, gb.companies.get, gb.people.get];
+const gbStrings = ['game ', 'character ', 'concept ', 'franchise ', 'company ', 'person '];
 var tumblr = new Tumblr({
 		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 	});
@@ -297,7 +298,7 @@ client.on('message', message => {
 	if (message.content.substring(0, 6) === '!time ') {
 		xtra.cityTime(message);
 	}
-	if (message.content.substring(0, 4) === '!gb '){
+	
 	for (var g = 0; g < 6; g++) {
 		if (message.content.substring(0, 4 + gbStrings[g].length) === '!gb ' + gbStrings[g]) {
 			var typequery = message.content.substring(4 + gbStrings[g].length)
@@ -318,7 +319,7 @@ client.on('message', message => {
 					collector.on('collect', message2 => {
 						if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)) {
 							var id = json.results[parseInt(message2.content) - 1].id;
-							gbSearchGet[g].get(id, function (err2, res2, json2) {
+							gbGet[g](id, function (err2, res2, json2) {
 								var queries = query.split(',');
 								var Name = json2.results.name;
 								var imageURL = json2.results.image.original_url;
@@ -552,7 +553,6 @@ client.on('message', message => {
 			});
 
 		}
-	}
 	}
 
 	/*if (message.content.substring(0, 12) === '!gb concept ' || message.content.substring(0, 12) === '!gb concept ') {
