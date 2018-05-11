@@ -299,7 +299,7 @@ client.on('message', message => {
 		xtra.cityTime(message);
 	}
 	
-	for (var g = 0; g < 6; g++) {
+	for (var g = 0; g < 6; ) {
 		if (message.content.substring(0, 4 + gbStrings[g].length) === '!gb ' + gbStrings[g]) {
 			var typequery = message.content.substring(4 + gbStrings[g].length)
 				var query = typequery.substring(0, typequery.indexOf(' '));
@@ -363,6 +363,8 @@ client.on('message', message => {
 				}
 			});
 
+		} else {
+			g++;
 		}
 	}
 
