@@ -297,6 +297,7 @@ client.on('message', message => {
 	if (message.content.substring(0, 6) === '!time ') {
 		xtra.cityTime(message);
 	}
+	if (message.content.substring(0, 4) === '!gb '){
 	for (var g = 0; g < 6; g++) {
 		if (message.content.substring(0, 4 + gbStrings[g].length) === '!gb ' + gbStrings[g]) {
 			var typequery = message.content.substring(4 + gbStrings[g].length)
@@ -551,6 +552,7 @@ client.on('message', message => {
 			});
 
 		}
+	}
 	}
 
 	/*if (message.content.substring(0, 12) === '!gb concept ' || message.content.substring(0, 12) === '!gb concept ') {
