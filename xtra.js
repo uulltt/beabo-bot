@@ -490,14 +490,14 @@ module.exports.gbWiki = (json2, query, message, g) => {
 													embedString += '**•[' + json2.results.published_games[i].name + '](' + json2.results.published_games[i].site_detail_url + ')**\n';
 											}
 										}
-										if (queries[q] === 'franchises' && g !== 3) {
+										if (queries[q] === 'franchises' && g !== 3 && g !== 4) {
 											embedTitle += 'Franchises';
 											for (var i = 0; i < json2.results.franchises.length; i++) {
 												if ((embedString + '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n').length < 2048)
 													embedString += '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n';
 											}
 										}
-										if (queries[q] === 'games' && g !== 0) {
+										if (queries[q] === 'games' && g !== 0 && g !== 4) {
 											embedTitle += 'Games';
 											for (var i = 0; i < json2.results.games.length; i++) {
 												if ((embedString + '**•[' + json2.results.games[i].name + '](' + json2.results.games[i].site_detail_url + ')**\n').length < 2048)
