@@ -41,9 +41,10 @@ client.on('message', message => {
 
 	if (message.isMentioned(client.user)) {
 		if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vidya)?( )?((ga([me]{2}))|vidya)(\?)?/gm).length > 0){
-			message.channel.send('https://store.steampowered.com/app/' + steamgames[(Math.floor(Math.random() * 4))]) + '/');
+			message.channel.send('https://store.steampowered.com/app/' + steamgames[(Math.floor(Math.random() * 4))] + '/');
 		} else {
-		message.channel.send(xtra.beeb());
+			
+		message.channel.send(xtra.beeb());console.log('fuck');
 		}
 	}
 	if (message.content.substring(0, 6) === '!exif ') {
