@@ -386,12 +386,10 @@ if (cursor === texts[t].length){
 			texts[t] = texts[t].replace(/\n/gm, '');
 			var cursor = 0;
 for(;cursor < texts[t].length; cursor++){
-	var textsplit = texts[t].split('');
-	console.log(textsplit);
-	console.log(textsplit[cursor]);
-	console.log(wariowareString.indexOf(textsplit[cursor])+1);
-	console.log((wariowareString.indexOf(textsplit[cursor])+1).toString());
-	paths[cursor] = fs.readFileSync('./warioware/warioware_' + (wariowareString.indexOf(textsplit[cursor])+1).toString() + '.png');
+	console.log(texts[t]);
+	console.log(texts[t].charAt(cursor));
+	console.log(wariowareString.indexOf(texts[t].charAt(cursor)+1))
+	paths[cursor] = fs.readFileSync('./warioware/warioware_' + (wariowareString.indexOf(texts[t].charAt(cursor)+1).toString() + '.png');
 }
 if (cursor === texts[t].length){
 	concat({
