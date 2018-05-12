@@ -145,7 +145,7 @@ for(;cursor < texts[t].length;console.log('./crashfont/crashfont_' + (crashfontS
 if (cursor === texts[t].length){
 	concat({
   images: paths,
-  margin: 1 // optional, in px, defaults to 10px
+  margin: 0 // optional, in px, defaults to 10px
 }, function(err, canvas) {
   // canvas === https://github.com/LearnBoost/node-canvas
 		const attachment = new Discord.Attachment(canvas.toBuffer(), 'crash.png');
