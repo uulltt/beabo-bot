@@ -7,17 +7,17 @@
     "start": "node bot.js"
   },
   "dependencies": {
+    "city-timezones": "1.0.3",
     "discord.js": "11.3.2",
-    "request": "2.81.0",
-	"twitter": "1.7.1",
-	"google-maps-direction": "1.0.0",
-	"googleplaces": "0.6.1",
-	"imgur": "0.2.1",
-	"tumblrwks": "0.3.0",
-	"exif": "0.6.0",
-	"request": "2.85.0",
-	"city-timezones": "1.0.3",
-	"node-google-timezone": "0.1.1",
-	"giantbomb": "2.0.2"
+    "exif": "0.6.0",
+    "giantbomb": "2.0.2",
+    "google-maps-direction": "1.0.0",
+    "googleplaces": "0.6.1",
+    "imgur": "0.2.1",
+    "merge-img": "^2.1.2",
+    "node-google-timezone": "0.1.1",
+    "request": "2.85.0",
+    "tumblrwks": "0.3.0",
+    "twitter": "1.7.1"
   }
 }

@@ -10,6 +10,7 @@ var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 var fs = require('fs');
+var merge = require('merge-img');
 //console.log(fs);
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
@@ -35,7 +36,10 @@ client.on('ready', () => {
 	});
 });
 
+
+
 const steamgames = ['514340', '658150', '522490', '598640'];
+const crashfontString = 'abcdefghijklmnopqrstuvwxyz0123456789.:! '
 
 client.on('message', message => {
 
@@ -129,6 +133,26 @@ client.on('message', message => {
 				}
 			}
 		});
+	}
+	if (new RegExp(/[Ff]ont!crash\W/gm).test(message.content.substring(0, 11) && message.content.substring > 11){
+		var text = message.content.substring(11).toLowerCase().replace(/[^a-z0-9\.!\: ]/gm, '') + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		for(var t = 0; t < texts.length; t++){
+			var paths = [];
+for(var cursor = 0; cursor < texts[t].length;paths[cursor] = './crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png', cursor++);
+merge(paths)
+  .then((img) => {
+    // Save image as file
+    img.write(texts[t] + '.png', () => console.log('done'));
+ const attachment = new MessageAttachment('./'+texts[t]+'.png');
+		// Send the attachment in the message channel with a content
+		message.channel.send(``, attachment);	
+    // Get image as `Buffer`
+    //img.getBuffer(img.getMIME(), (buf) => console.log(buf));
+  });
+		
+		}
+		
 	}
 	if (message.content.substring(0, 8) === '!places ') {
 		parameters = {
@@ -240,7 +264,7 @@ client.on('message', message => {
 		}
 
 	}
-	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!kof97\W/gm).test(message.content.substring(0, 11)))) {
+	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(kof97|crash)\W/gm).test(message.content.substring(0, 11)))) {
 		var urls = xtra.font(message.content);
 		for (var i = 0; i < Math.min(urls.length, 5); i++) {
 			if (urls[i].length > 0)
