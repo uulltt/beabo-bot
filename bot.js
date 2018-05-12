@@ -143,10 +143,11 @@ for(var cursor = 0; cursor < texts[t].length;paths[cursor] = './crashfont/crashf
 merge(paths)
   .then((img) => {
     // Save image as file
-    img.write(texts[t] + '.png', () => 
+    img.write(texts[t] + '.png', function() { 
 	var attachment = new Discord.MessageAttachment('./'+texts[t]+'.png'); //might need to change back to const
 		// Send the attachment in the message channel with a content
-		message.channel.send(``, attachment););
+		message.channel.send(``, attachment);
+	});
  	
     // Get image as `Buffer`
     //img.getBuffer(img.getMIME(), (buf) => console.log(buf));
