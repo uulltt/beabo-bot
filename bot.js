@@ -247,7 +247,7 @@ client.on('message', message => {
 
 	}
 	if (message.content.startsWith('!tomato')){
-		console.log('tomato');
+		console.log(message.content);
 		//var title = message.content.substring(9).replace(/ /gm, '_');
 		
 		console.log(rm);
