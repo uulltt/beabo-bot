@@ -375,7 +375,7 @@ if (cursor === texts[t].length){
 	}
 	
 	if (new RegExp(/[Ff]ont!wario\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-		var text = message.content.substring(11) + ' ';
+		var text = message.content.substring(11).replace(/[^A-Za-z0-9\.!\:\n\?'",\+\-= %&;:\(\)]/gm, '') + ' ';
 		console.log(text);
 		var texts = text.match(/.{1,24}\W/gm);
 		
@@ -386,9 +386,6 @@ if (cursor === texts[t].length){
 			texts[t] = texts[t].replace(/\n/gm, '');
 			var cursor = 0;
 for(;cursor < texts[t].length; cursor++){
-	console.log(texts[t]);
-	console.log(texts[t].charAt(cursor));
-	console.log(wariowareString.indexOf(texts[t].charAt(cursor))+1);
 	paths[cursor] = fs.readFileSync('./warioware/warioware_' + (wariowareString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png');
 }
 if (cursor === texts[t].length){
