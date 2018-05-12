@@ -247,7 +247,7 @@ client.on('message', message => {
 
 	}
 	if (message.content.startsWith('🍅 ') && message.content.length > 2){
-		var url = 'https://www.rottentomatoes.com/m/' + encodeURI(message.content.substring(2).replace(/ /gm, '_'));
+		var url = 'https://www.rottentomatoes.com/m/' + encodeURI(message.content.substring(3).replace(/ /gm, '_'));
 		console.log(url);
 		rm.scores(url, function(err, scores) { console.log(scores) });
 	}
