@@ -135,11 +135,12 @@ client.on('message', message => {
 		});
 	}
 	if (new RegExp(/[Ff]ont!crash\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-		var text = ' ' + message.content.substring(11).toLowerCase().replace(/[^a-z0-9\.!\: ]/gm, '') + ' ';
+		var text = message.content.substring(11).toLowerCase().replace(/[^a-z0-9\.!\: ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		for(var t = 0; t < texts.length; t++){
 			var paths = [];
-			var filename = texts[t] + '.png';
+			
+			texts[t] = ' ' + texts[t];
 			var cursor = 0;
 for(;cursor < texts[t].length;console.log('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), console.log(paths[cursor]), cursor++);
 if (cursor === texts[t].length){
