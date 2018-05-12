@@ -141,7 +141,7 @@ client.on('message', message => {
 			var paths = [];
 			var filename = texts[t] + '.png';
 			var cursor = 0;
-for(;cursor < texts[t].length;console.log('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), console.log(paths[cursor]), cursor++);
+for(;cursor < texts[t].length - 1;console.log('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), console.log(paths[cursor]), cursor++);
 if (cursor === texts[t].length){
 	concat({
   images: paths,
