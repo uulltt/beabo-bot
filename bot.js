@@ -247,7 +247,7 @@ client.on('message', message => {
 
 	}
 	if (message.content.startsWith('🍅 ') && message.content.length > 3){
-		var movieurl = 'https://www.rottentomatoes.com/m/' + encodeURI(message.content.substring(3).replace(/ /gm, '_'));
+		var movieurl = 'https://www.rottentomatoes.com/m/' + encodeURI(message.content.substring(3).toLowerCase().replace(/ /gm, '_').replace(/[^a-z0-9_]/gm, '');
 		rm.info(movieurl, function(err, info) {
 			rm.scores(movieurl, function(err2, scores) {
 			message.channel.send({
