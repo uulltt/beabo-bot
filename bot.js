@@ -42,7 +42,7 @@ const steamgames = ['514340', '658150', '522490', '598640'];
 const crashfontString = 'abcdefghijklmnopqrstuvwxyz0123456789.:! ';
 const metalslugString = ' ?!abcdefghijklmnopqrstuvwxyz0123456789';
 const mario64String = '1234567890abcdefghijklmnopqrstuvwxyz ?\'\".,%&!';
-const wariowareString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ?+-=💥✏🎵🚹🚺%&⭐🅰🅱abcdefghijklmnopqrstuvwxyz,.:;\'\"()!🎶';
+const wariowareString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ?+-=*✏******%&⭐****abcdefghijklmnopqrstuvwxyz,.:;\'\"()!';
 client.on('message', message => {
 
 	if (message.isMentioned(client.user)) {
@@ -375,7 +375,7 @@ if (cursor === texts[t].length){
 	}
 	
 	if (new RegExp(/[Ff]ont!wario\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-		var text = message.content.substring(11).replace(/[^A-Za-z0-9\.!\:\n\?'",\+\-= %&;:\(\)]/gm, '') + ' ';
+		var text = message.content.substring(11).replace(/[^A-Za-z0-9\.!\:\n\?'",\+\-= %&;:\(\)⭐✏]/gm, '') + ' ';
 		console.log(text);
 		var texts = text.match(/.{1,24}\W/gm);
 		
