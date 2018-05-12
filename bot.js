@@ -382,7 +382,7 @@ if (cursor === texts[t].length){
 			texts[t] = ' ' + texts[t];
 			texts[t] = texts[t].replace(/\n/gm, '');
 			var cursor = 0;
-for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./mario64/mario64_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
+for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./mario64/mario64_' + (mario64String.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
 if (cursor === texts[t].length){
 	concat({
   images: paths,
