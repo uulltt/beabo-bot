@@ -42,7 +42,7 @@ const steamgames = ['514340', '658150', '522490', '598640'];
 const crashfontString = 'abcdefghijklmnopqrstuvwxyz0123456789.:! ';
 const metalslugString = ' ?!abcdefghijklmnopqrstuvwxyz0123456789';
 const mario64String = '1234567890abcdefghijklmnopqrstuvwxyz ?\'\".,%&!';
-const wariowareString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ?+-=*✏******%&⭐****abcdefghijklmnopqrstuvwxyz,.:;\'\"()!';
+const wariowareString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ?+-=*✏***%&⭐**abcdefghijklmnopqrstuvwxyz,.:;\'\"()!';
 client.on('message', message => {
 
 	if (message.isMentioned(client.user)) {
