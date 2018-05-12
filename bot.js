@@ -246,6 +246,11 @@ client.on('message', message => {
 		}
 
 	}
+	if (message.content.startsWith(':tomato:')){
+		//var title = message.content.substring(9).replace(/ /gm, '_');
+		var rm = require('rotten-movies');
+		console.log(rm);
+	}
 	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(kof97|crash)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
 		var urls = xtra.font(message.content);
 		for (var i = 0; i < Math.min(urls.length, 5); i++) {
@@ -272,7 +277,7 @@ client.on('message', message => {
 				});
 		}
 	}
-
+	
 	if (new RegExp(/[Ff]ont!kof97\W/gm).test(message.content.substring(0, 11))) {
 		var arg = message.content.substring(11) + '\u200B';
 		var args = arg.match(/.{1,24}\W/gm);
@@ -316,7 +321,7 @@ client.on('message', message => {
 			var paths = [];
 			
 			texts[t] = ' ' + texts[t];
-			texts[t] = texts[t].replace('\n', '');
+			texts[t] = texts[t].replace(/\n/gm, '');
 			var cursor = 0;
 for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
 if (cursor === texts[t].length){
@@ -347,7 +352,7 @@ if (cursor === texts[t].length){
 			var paths = [];
 			
 			texts[t] = ' ' + texts[t];
-			texts[t] = texts[t].replace('\n', '');
+			texts[t] = texts[t].replace(/\n/gm, '');
 			var cursor = 0;
 for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./metalslug/metalslug_' + (metalslugString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
 if (cursor === texts[t].length){
