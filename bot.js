@@ -10,7 +10,6 @@ var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 var fs = require('fs');
-var PNGImage = require('pngjs-image');
 //console.log(fs);
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
@@ -140,7 +139,8 @@ client.on('message', message => {
 		for(var t = 0; t < texts.length; t++){
 			var paths = [];
 			var filename = texts[t] + '.png';
-for(var cursor = 0; cursor < texts[t].length;paths[cursor] = './crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png', cursor++);
+for(var cursor = 0; cursor < texts[t].length;paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), console.log(paths[cursor]), cursor++);
+//var image = PNGImage.createImage(40 * texts[t].length, 36);
 
 		
 		}
