@@ -41,7 +41,7 @@ client.on('ready', () => {
 const steamgames = ['514340', '658150', '522490', '598640'];
 const crashfontString = 'abcdefghijklmnopqrstuvwxyz0123456789.:! ';
 const metalslugString = ' ?!abcdefghijklmnopqrstuvwxyz0123456789';
-
+const mario64String = '1234567890abcdefghijklmnopqrstuvwxyz ?\'\".,%&!';
 client.on('message', message => {
 
 	if (message.isMentioned(client.user)) {
@@ -278,7 +278,7 @@ client.on('message', message => {
 			});
 			});
 	}
-	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(kof97|crash)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
+	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.content.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
 		var urls = xtra.font(message.content);
 		for (var i = 0; i < Math.min(urls.length, 5); i++) {
 			if (urls[i].length > 0)
@@ -363,6 +363,38 @@ if (cursor === texts[t].length){
   files: [{
     attachment: canvas.toBuffer(),
     name: 'crash.png'
+  }]
+});
+});
+	
+}
+
+		
+		}
+	}
+	
+	if (new RegExp(/[Ff]ont!mario64\W/gm).test(message.content.substring(0, 13)) && message.content.length > 11){
+		var text = message.content.substring(13).toLowerCase().replace(/[^a-z0-9\.!\:\n ]/gm, '') + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		for(var t = 0; t < Math.min(texts.length, 5); t++){
+			var paths = [];
+			
+			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace(/\n/gm, '');
+			var cursor = 0;
+for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./mario64/mario64_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
+if (cursor === texts[t].length){
+	concat({
+  images: paths,
+  margin: 0 // optional, in px, defaults to 10px
+}, function(err, canvas) {
+  // canvas === https://github.com/LearnBoost/node-canvas
+		//const attachment = new Discord.Attachment(canvas.toBuffer(), 'mario64.png');
+		//console.log(attachment);
+		message.channel.send({
+  files: [{
+    attachment: canvas.toBuffer(),
+    name: 'mario64.png'
   }]
 });
 });
