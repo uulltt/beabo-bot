@@ -10,6 +10,7 @@ var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 var fs = require('fs');
+var concat = require('concat-image');
 //console.log(fs);
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
@@ -139,8 +140,20 @@ client.on('message', message => {
 		for(var t = 0; t < texts.length; t++){
 			var paths = [];
 			var filename = texts[t] + '.png';
-for(var cursor = 0; cursor < texts[t].length;console.log('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), console.log(paths[cursor]), cursor++);
-//var image = PNGImage.createImage(40 * texts[t].length, 36);
+			var cursor = 0;
+for(;cursor < texts[t].length;console.log('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), console.log(paths[cursor]), cursor++);
+if (cursor === texts[t].length){
+	concat({
+  images: paths,
+  margin: 10 // optional, in px, defaults to 10px
+}, function(err, canvas) {
+  // canvas === https://github.com/LearnBoost/node-canvas
+  const attachment = new MessageAttachment(canvas.toBuffer(), filename);
+		// Send the attachment in the message channel with a content
+		message.channel.send(`${message.author}, here are your memes!`, attachment);
+});
+	
+}
 
 		
 		}
