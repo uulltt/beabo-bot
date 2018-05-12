@@ -387,6 +387,9 @@ if (cursor === texts[t].length){
 			var cursor = 0;
 for(;cursor < texts[t].length; cursor++){
 	var textsplit = texts[t].split('');
+	console.log(textsplit[cursor]);
+	console.log(wariowareString.indexOf(textsplit[cursor])+1);
+	console.log((wariowareString.indexOf(textsplit[cursor])+1).toString());
 	paths[cursor] = fs.readFileSync('./warioware/warioware_' + (wariowareString.indexOf(textsplit[cursor])+1).toString() + '.png');
 }
 if (cursor === texts[t].length){
