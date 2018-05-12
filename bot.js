@@ -246,11 +246,9 @@ client.on('message', message => {
 		}
 
 	}
-	if (message.content.startsWith('!tomato')){
-		console.log(message.content);
-		//var title = message.content.substring(9).replace(/ /gm, '_');
-		
-		console.log(rm);
+	if (message.content.startsWith('🍅 ') && message.content.length > 2){
+		var url = 'https://www.rottentomatoes.com/m/' + encodeURI(message.content.substring(2).replace(/ /gm, '_'));
+		rm.info(url, function(err, info) { console.log(info) });
 	}
 	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(kof97|crash)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
 		var urls = xtra.font(message.content);
