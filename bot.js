@@ -139,12 +139,15 @@ client.on('message', message => {
 		var texts = text.match(/.{1,24}\W/gm);
 		for(var t = 0; t < texts.length; t++){
 			var paths = [];
+			var filename = texts[t] + '.png';
 for(var cursor = 0; cursor < texts[t].length;paths[cursor] = './crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png', cursor++);
 merge(paths)
   .then((img) => {
     // Save image as file
-    img.write(texts[t] + '.png', function() { 
-	var attachment = new Discord.MessageAttachment('./'+texts[t]+'.png'); //might need to change back to const
+    img.write(texts[t] + '.png', function() {
+const buffer = fs.readFileSync('./'+filename);
+		
+	var attachment = new Discord.MessageAttachment(buffer, './'+filename); //might need to change back to const
 		// Send the attachment in the message channel with a content
 		message.channel.send(``, attachment);
 	});
