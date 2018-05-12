@@ -144,7 +144,7 @@ merge(paths)
   .then((img) => {
     // Save image as file
     img.write(texts[t] + '.png', () => console.log('done'));
- const attachment = new MessageAttachment('./'+texts[t]+'.png');
+ var attachment = new Discord.MessageAttachment('./'+texts[t]+'.png'); //might need to change back to const
 		// Send the attachment in the message channel with a content
 		message.channel.send(``, attachment);	
     // Get image as `Buffer`
