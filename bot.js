@@ -387,6 +387,7 @@ if (cursor === texts[t].length){
 			var cursor = 0;
 for(;cursor < texts[t].length; cursor++){
 	var textsplit = texts[t].split('');
+	console.log(textsplit);
 	console.log(textsplit[cursor]);
 	console.log(wariowareString.indexOf(textsplit[cursor])+1);
 	console.log((wariowareString.indexOf(textsplit[cursor])+1).toString());
