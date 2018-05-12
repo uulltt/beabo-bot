@@ -375,7 +375,7 @@ if (cursor === texts[t].length){
 	}
 	
 	if (new RegExp(/[Ff]ont!wario\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-		var text = message.content.substring(11);
+		var text = message.content.substring(11) + '\u200B';
 		var texts = text.match(/.{1,24}\W/gm);
 		for(var t = 0; t < Math.min(texts.length, 5); t++){
 			var paths = [];
