@@ -388,8 +388,8 @@ if (cursor === texts[t].length){
 for(;cursor < texts[t].length; cursor++){
 	console.log(texts[t]);
 	console.log(texts[t].charAt(cursor));
-	console.log(wariowareString.indexOf(texts[t].charAt(cursor)+1))
-	paths[cursor] = fs.readFileSync('./warioware/warioware_' + (wariowareString.indexOf(texts[t].charAt(cursor)+1).toString() + '.png');
+	console.log(wariowareString.indexOf(texts[t].charAt(cursor)+1));
+	paths[cursor] = fs.readFileSync('./warioware/warioware_' + wariowareString.indexOf(texts[t].charAt(cursor)+1).toString() + '.png');
 }
 if (cursor === texts[t].length){
 	concat({
