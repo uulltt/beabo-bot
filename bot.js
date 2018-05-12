@@ -42,7 +42,7 @@ const steamgames = ['514340', '658150', '522490', '598640'];
 const crashfontString = 'abcdefghijklmnopqrstuvwxyz0123456789.:! ';
 const metalslugString = ' ?!abcdefghijklmnopqrstuvwxyz0123456789';
 const mario64String = '1234567890abcdefghijklmnopqrstuvwxyz ?\'\".,%&!';
-const wariowareString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ?+-=💥📝🎵🚹🚺%&⭐🅰🅱abcdefghijklmnopqrstuvwxyz,.:;\'\"()!✏🎶'
+const wariowareString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ?+-=💥✏🎵🚹🚺%&⭐🅰🅱abcdefghijklmnopqrstuvwxyz,.:;\'\"()!🎶';
 client.on('message', message => {
 
 	if (message.isMentioned(client.user)) {
@@ -378,14 +378,17 @@ if (cursor === texts[t].length){
 		var text = message.content.substring(11) + ' ';
 		console.log(text);
 		var texts = text.match(/.{1,24}\W/gm);
-		console.log('\u41\u72');
+		
 		for(var t = 0; t < Math.min(texts.length, 5); t++){
 			var paths = [];
 			
 			texts[t] = ' ' + texts[t];
 			texts[t] = texts[t].replace(/\n/gm, '');
 			var cursor = 0;
-for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./warioware/warioware_' + (wariowareString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
+for(;cursor < texts[t].length; cursor++){
+	var textsplit = texts[t].split('');
+	paths[cursor] = fs.readFileSync('./warioware/warioware_' + (wariowareString.indexOf(textsplit[cursor]))+1).toString() + '.png')
+}
 if (cursor === texts[t].length){
 	concat({
   images: paths,
