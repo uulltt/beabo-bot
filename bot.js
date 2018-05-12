@@ -166,8 +166,12 @@ client.on('message', message => {
 			destination: dest
 		})
 		.then(function (result) {
-			var dir = ':motorway: **' + ori + '** to **' + dest + '**\n' + xtra.getDirections(result);
-			message.channel.send(dir.length <= 2000 ? dir : 'Too many directions. Just Google it.');
+			var dirTitle = ':motorway: **' + ori + '** to **' + dest + '**'
+			var dir = xtra.getDirections(result);
+			message.channel.send({embed: {
+				title: dirTitle,
+				description: dir.length <= 2048 ? dir : 'Too many directions. Just Google it.'
+			}});
 		}).catch(console.error);
 	}
 	if (message.content.substring(0, 6) == '!pics ' || message.content.substring(0, 6) == '!full ' || message.content.substring(0, 7) == '!album ') {
@@ -258,7 +262,7 @@ client.on('message', message => {
 													footer: {
 														text: 'From RottenTomatoes'
 													},
-													color: 0xfa320a,
+													color: 0xa81717,
 													fields: [{
 															name: "🍅 Critic Score",
 															value: scores.critic + '%',
