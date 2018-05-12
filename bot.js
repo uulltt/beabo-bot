@@ -261,11 +261,11 @@ client.on('message', message => {
 													color: 0xfa320a,
 													fields: [{
 															name: "🍅 Critic Score",
-															value: scores.critic,
+															value: scores.critic + '%',
 															inline: true
 														}, {
 															name: "🍿 Audience Score",
-															value: scores.audience,
+															value: scores.audience + '%',
 															inline: true
 														}
 													]
