@@ -310,12 +310,13 @@ client.on('message', message => {
 		}
 	}
 	if (new RegExp(/[Ff]ont!crash\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-		var text = message.content.substring(11).toLowerCase().replace(/[^a-z0-9\.!\: ]/gm, '') + ' ';
+		var text = message.content.substring(11).toLowerCase().replace(/[^a-z0-9\.!\:\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		for(var t = 0; t < Math.min(texts.length, 5); t++){
 			var paths = [];
 			
 			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace('\n', '');
 			var cursor = 0;
 for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
 if (cursor === texts[t].length){
@@ -340,12 +341,13 @@ if (cursor === texts[t].length){
 		}
 	}
 	if (new RegExp(/[Ff]ont!ms\W/gm).test(message.content.substring(0, 8)) && message.content.length > 8){
-		var text = message.content.substring(8).toLowerCase().replace(/[^a-z0-9\?! ]/gm, '') + ' ';
+		var text = message.content.substring(8).toLowerCase().replace(/[^a-z0-9\?!\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		for(var t = 0; t < Math.min(texts.length, 5); t++){
 			var paths = [];
 			
 			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace('\n', '');
 			var cursor = 0;
 for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./metalslug/metalslug_' + (metalslugString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
 if (cursor === texts[t].length){
