@@ -142,14 +142,14 @@ client.on('message', message => {
 			var filename = texts[t] + '.png';
 			var cursor = 0;
 for(;cursor < texts[t].length - 1;console.log('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), console.log(paths[cursor]), cursor++);
-if (cursor === texts[t].length){
+if (cursor === texts[t].length - 1){
 	concat({
   images: paths,
   margin: 0 // optional, in px, defaults to 10px
 }, function(err, canvas) {
   // canvas === https://github.com/LearnBoost/node-canvas
 		const attachment = new Discord.Attachment(canvas.toBuffer(), 'crash.png');
-		console.log(attachment);
+		//console.log(attachment);
 		message.channel.send({
   files: [{
     attachment: canvas.toBuffer(),
