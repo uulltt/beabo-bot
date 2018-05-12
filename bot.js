@@ -39,7 +39,8 @@ client.on('ready', () => {
 
 
 const steamgames = ['514340', '658150', '522490', '598640'];
-const crashfontString = 'abcdefghijklmnopqrstuvwxyz0123456789.:! '
+const crashfontString = 'abcdefghijklmnopqrstuvwxyz0123456789.:! ';
+const metalslugString = ' ?!abcdefghijklmnopqrstuvwxyz0123456789';
 
 client.on('message', message => {
 
@@ -134,36 +135,7 @@ client.on('message', message => {
 			}
 		});
 	}
-	if (new RegExp(/[Ff]ont!crash\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-		var text = message.content.substring(11).toLowerCase().replace(/[^a-z0-9\.!\: ]/gm, '') + ' ';
-		var texts = text.match(/.{1,24}\W/gm);
-		for(var t = 0; t < Math.min(texts.length, 5); t++){
-			var paths = [];
-			
-			texts[t] = ' ' + texts[t];
-			var cursor = 0;
-for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
-if (cursor === texts[t].length){
-	concat({
-  images: paths,
-  margin: 0 // optional, in px, defaults to 10px
-}, function(err, canvas) {
-  // canvas === https://github.com/LearnBoost/node-canvas
-		const attachment = new Discord.Attachment(canvas.toBuffer(), 'crash.png');
-		//console.log(attachment);
-		message.channel.send({
-  files: [{
-    attachment: canvas.toBuffer(),
-    name: 'crash.png'
-  }]
-});
-});
 	
-}
-
-		
-		}
-	}
 	if (message.content.substring(0, 8) === '!places ') {
 		parameters = {
 			query: message.content.substring(8).split('\"')[1]
@@ -274,7 +246,7 @@ if (cursor === texts[t].length){
 		}
 
 	}
-	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(kof97|crash)\W/gm).test(message.content.substring(0, 11)))) {
+	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(kof97|crash)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
 		var urls = xtra.font(message.content);
 		for (var i = 0; i < Math.min(urls.length, 5); i++) {
 			if (urls[i].length > 0)
@@ -335,6 +307,66 @@ if (cursor === texts[t].length){
 						}
 					}
 				})
+		}
+	}
+	if (new RegExp(/[Ff]ont!crash\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
+		var text = message.content.substring(11).toLowerCase().replace(/[^a-z0-9\.!\: ]/gm, '') + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		for(var t = 0; t < Math.min(texts.length, 5); t++){
+			var paths = [];
+			
+			texts[t] = ' ' + texts[t];
+			var cursor = 0;
+for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
+if (cursor === texts[t].length){
+	concat({
+  images: paths,
+  margin: 0 // optional, in px, defaults to 10px
+}, function(err, canvas) {
+  // canvas === https://github.com/LearnBoost/node-canvas
+		const attachment = new Discord.Attachment(canvas.toBuffer(), 'crash.png');
+		//console.log(attachment);
+		message.channel.send({
+  files: [{
+    attachment: canvas.toBuffer(),
+    name: 'crash.png'
+  }]
+});
+});
+	
+}
+
+		
+		}
+	}
+	if (new RegExp(/[Ff]ont!ms\W/gm).test(message.content.substring(0, 8)) && message.content.length > 8){
+		var text = message.content.substring(8).toLowerCase().replace(/[^a-z0-9\?! ]/gm, '') + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		for(var t = 0; t < Math.min(texts.length, 5); t++){
+			var paths = [];
+			
+			texts[t] = ' ' + texts[t];
+			var cursor = 0;
+for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./metalslug/metalslug_' + (metalslugString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
+if (cursor === texts[t].length){
+	concat({
+  images: paths,
+  margin: 0 // optional, in px, defaults to 10px
+}, function(err, canvas) {
+  // canvas === https://github.com/LearnBoost/node-canvas
+		const attachment = new Discord.Attachment(canvas.toBuffer(), 'metalslug.png');
+		//console.log(attachment);
+		message.channel.send({
+  files: [{
+    attachment: canvas.toBuffer(),
+    name: 'metalslug.png'
+  }]
+});
+});
+	
+}
+
+		
 		}
 	}
 	if (message.content.substring(0, 6) === '!time ') {
