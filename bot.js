@@ -11,7 +11,7 @@ var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 var fs = require('fs');
 var concat = require('concat-image');
-//console.log(fs);
+const rm = require('rotten-movies');
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
 const gbSearchGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people, gb.objects];
@@ -247,8 +247,9 @@ client.on('message', message => {
 
 	}
 	if (message.content.startsWith(':tomato:')){
+		console.log('tomato');
 		//var title = message.content.substring(9).replace(/ /gm, '_');
-		var rm = require('rotten-movies');
+		
 		console.log(rm);
 	}
 	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(kof97|crash)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
@@ -380,7 +381,7 @@ if (cursor === texts[t].length){
 		xtra.cityTime(message);
 	}
 	if (message.content.substring(0, 4) === '!gb '){
-		console.log('giant bomb');
+		//console.log('giant bomb');
 		var choice = 0;
 	for (var g = 0; g < 7; g++) {
 		//console.log(g);
