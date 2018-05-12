@@ -148,9 +148,14 @@ if (cursor === texts[t].length){
   margin: 10 // optional, in px, defaults to 10px
 }, function(err, canvas) {
   // canvas === https://github.com/LearnBoost/node-canvas
-		const attachment = new Discord.MessageAttachment(canvas.toBuffer(), filename);
+		const attachment = new Discord.Attachment(canvas.toBuffer(), 'crash.png');
 		console.log(attachment);
-		message.channel.send(`${message.author}, here are your memes!`, attachment);
+		message.channel.send({
+  files: [{
+    attachment: canvas.toBuffer(),
+    name: 'crash.png'
+  }]
+});
 });
 	
 }
