@@ -378,7 +378,7 @@ if (cursor === texts[t].length){
 		var text = message.content.substring(11) + ' ';
 		console.log(text);
 		var texts = text.match(/.{1,24}\W/gm);
-		console.log(texts);
+		console.log('\u41\u72');
 		for(var t = 0; t < Math.min(texts.length, 5); t++){
 			var paths = [];
 			
