@@ -10,7 +10,7 @@ var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 var fs = require('fs');
-var merge = require('merge-img');
+var PNGImage = require('pngjs-image');
 //console.log(fs);
 const giantbomb = require('giantbomb');
 const gb = giantbomb(process.env.GIANT_BOMB);
@@ -141,23 +141,9 @@ client.on('message', message => {
 			var paths = [];
 			var filename = texts[t] + '.png';
 for(var cursor = 0; cursor < texts[t].length;paths[cursor] = './crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png', cursor++);
-merge(paths)
-  .then((img) => {
-    // Save image as file
-    img.write(texts[t] + '.png', function() {
-const buffer = fs.readFileSync('./'+filename);
-		
-	var attachment = new Discord.MessageAttachment(buffer, './'+filename); //might need to change back to const
-		// Send the attachment in the message channel with a content
-		message.channel.send(``, attachment);
-	});
- 	
-    // Get image as `Buffer`
-    //img.getBuffer(img.getMIME(), (buf) => console.log(buf));
-  });
+
 		
 		}
-		
 	}
 	if (message.content.substring(0, 8) === '!places ') {
 		parameters = {

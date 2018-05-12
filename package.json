@@ -14,7 +14,7 @@
     "google-maps-direction": "1.0.0",
     "googleplaces": "0.6.1",
     "imgur": "0.2.1",
-    "merge-img": "^2.1.2",
+	"pngjs-image": "0.11.7"
     "node-google-timezone": "0.1.1",
     "request": "2.85.0",
     "tumblrwks": "0.3.0",
