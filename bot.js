@@ -246,10 +246,34 @@ client.on('message', message => {
 		}
 
 	}
-	if (message.content.startsWith('🍅 ') && message.content.length > 2){
-		var url = 'https://www.rottentomatoes.com/m/' + encodeURI(message.content.substring(3).replace(/ /gm, '_'));
+	if (message.content.startsWith('🍅 ') && message.content.length > 3){
+		var movieurl = 'https://www.rottentomatoes.com/m/' + encodeURI(message.content.substring(3).replace(/ /gm, '_'));
 		console.log(url);
-		rm.scores(url, function(err, scores) { console.log(scores) });
+		rm.info(movieurl, function(err, info) {
+			rm.scores(movieurl, function(err, scores) {
+			message.channel.send({
+												embed: {
+													title: info.name,
+													description: info.description,
+													url: movieurl,
+													footer: {
+														text: 'From RottenTomatoes'
+													},
+													color: 0xfa320a,
+													fields: [{
+															name: "🍅 Critic Score",
+															value: scores.critic,
+															inline: true
+														}, {
+															name: "🍿 Audience Score",
+															value: scores.audience,
+															inline: true
+														}
+													]
+												}
+											});
+			});
+			});
 	}
 	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(kof97|crash)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
 		var urls = xtra.font(message.content);
