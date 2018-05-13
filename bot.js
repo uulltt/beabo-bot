@@ -512,6 +512,12 @@ if (cursor === texts[t].length){
 		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
 		message.channel.send(attachment);
 	}
+	if (message.content.startsWith('!thumbnail') && message.content.includes('youtu.be/')){
+		var videocode = message.content.substring(message.content.indexOf('.be/')+4);
+		console.log(videocode);
+		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
+		message.channel.send(attachment);
+	}
 	if (message.content.substring(0, 6) === '!time ') {
 		xtra.cityTime(message);
 	}
