@@ -87,12 +87,11 @@ if (message.content.substring(0, 5) === '!dir ') {
 		message.channel.send({embed: { title: dirTitle, description: dir.length <= 2048 ? dir : 'Too many directions. Just Google it.' }});
 	}).catch(console.error);
 }
-if (message.content.startsWith('📷 ')) {
+if (message.content.startsWith('📷 ')) { //all the camera commands go in here
 	if (message.content.includes('twitter.com/') && message.content.includes('/status/')) {
 		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
 		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
 			if (!error) {
-				//console.log(tweet);
 				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
 					for (var i = 1; i < tweet.extended_entities.media.length; message.channel.send({ embed: { image: { url: tweet.extended_entities.media[i++].media_url } } }));
 				}
@@ -125,9 +124,7 @@ encoding: null
 		request.get(encodeURI(message.content.substring(3).replace(/ /gm, '')), function (err, res, body) {
 			var exifString = ':frame_photo: EXIF data:\n';
 			try {
-				new ExifImage({
-image: body
-				}, function (error, exifData) {
+				new ExifImage({ image: body }, function (error, exifData) {
 					if (error)
 					message.channel.send('Error: ' + error.message);
 					else {
@@ -177,17 +174,10 @@ image: body
 						if (exifString.length > 2000) {
 							message.channel.send(exifString.substring(0, 2000));
 						} else {
-							message.channel.send(exifString, {
-embed: {
-image: {
-url: encodeURI(message.content.substring(3).replace(/ /gm, ''))
-									}
-								}
-							});
+							message.channel.send(exifString, { embed: { image: { url: encodeURI(message.content.substring(3).replace(/ /gm, ''))}}});
 						}
 					}
 				});
-
 			} catch (error) {
 				message.channel.send('Error: ' + error.message);
 			}
@@ -465,6 +455,7 @@ files: [{
 		xtra.cityTime(message);
 	}
 	if (message.content.substring(0, 4) === '!gb '){
+		console.log(message.content);
 		var choice = 0;
 	for (var g = 0; g < 7; g++) {
 		if (message.content.substring(4, 4 + gbStrings[g].length) === gbStrings[g]) {
