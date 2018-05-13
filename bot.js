@@ -252,6 +252,7 @@ client.on('message', message => {
 
 	}
 	if (message.content.startsWith('🍅 ') && message.content.length > 3){
+		if (!message.content.includes('coming soon') && !message.content.includes('box office'), !message.content.includes('opening')){
 		var movieurl = 'https://www.rottentomatoes.com/m/' + encodeURI(message.content.substring(3).toLowerCase().replace(/ /gm, '_').replace(/[^a-z0-9_]/gm, ''));
 		rm.info(movieurl, function(err, info) {
 			rm.scores(movieurl, function(err2, scores) {
@@ -278,6 +279,24 @@ client.on('message', message => {
 											});
 			});
 			});
+		} else {
+			var rtscraper = require('rt-scraper');
+			rtscraper.getRottenTomatoesScraperData( function(error, data) {
+        if (!error) {
+			console.log(data);
+            if (message.content.includes('coming soon'){
+var RTembed = new Discord.RichEmbed().setTitle('Coming Soon').setColor(0xa81717);
+for(var i = 0; i < data.comingSoon.length; i++){
+	RTembed.addField(data.comingSoon[i].title, data.comingSoon[i].date);
+}
+message.channel.send({RTembed});
+			}			
+        }
+        else {
+            message.channel.send('Some error occured.');
+        }
+    });
+		}
 	}
 	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.content.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash|wario)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
 		var urls = xtra.font(message.content);
