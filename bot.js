@@ -600,7 +600,7 @@ if (cursor === texts[t].length){
 			'\n**Google Maps Commands**\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n!time cityname - gets local time of that city\n' +
 			'\n**Giant Bomb Wiki Commands**\n!gb concept/person/franchise/object/game/character/company info/characters/companies/concepts/locations/objects/people/games/franchises/similar/friends/enemies name of thing - returns the info searched for relating to a game/character/company/etc.\n' +
 			'\n**Other Commands**\n!full or !pics or !album followed by twitter/imgur/tumblr link - displays full photo album of tweet or imgur/tumblr post\n' +
-			'🍅 movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\n!hex#hexCode - displays image of a color pertaining to the hex code\n*/!exif followed by link to jpg image - prints out exif data of image\n' +
+			'🍅 movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\n!hex#hexCode - displays image of a color pertaining to the hex code\n!exif followed by link to jpg image - prints out exif data of image\n' +
 			'');
 	}
 
