@@ -506,7 +506,16 @@ if (cursor === texts[t].length){
 		
 		}
 	}
-	
+	if (message.content.startsWith('!thumbnail') && message.content.includes('watch?v=')){
+		var videocode = message.content.substring(message.content.indexOf('v=')+2);
+		const attachment = new Discord.MessageAttachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
+		message.channel.send({
+  files: [{
+    attachment: attachment,
+    name: 'thumbnail.jpg'
+  }]
+});
+	}
 	if (message.content.substring(0, 6) === '!time ') {
 		xtra.cityTime(message);
 	}
