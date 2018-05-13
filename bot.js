@@ -507,7 +507,10 @@ if (cursor === texts[t].length){
 		}
 	}
 	if (message.content.startsWith('!thumbnail') && message.content.includes('watch?v=')){
-		message.channel.send(new Discord.MessageAttachment('https://i.ytimg.com/vi/'+message.content.substring(message.content.indexOf('v=')+2)+'/maxresdefault.jpg'));
+		var videocode = message.content.substring(message.content.indexOf('v=')+2);
+		console.log(videocode);
+		const attachment = new Discord.MessageAttachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
+		message.channel.send(attachment);
 	}
 	if (message.content.substring(0, 6) === '!time ') {
 		xtra.cityTime(message);
