@@ -127,7 +127,7 @@ function movies(message, content) {
 			rtscraper.getRottenTomatoesScraperData(function (error, data) {
 				if (!error) {
 					if (content.includes('coming soon')) {
-						const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Coming Soon').setColor(0xa81717);
+						const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Coming Soon').setColor(0xa81717).setFooter("From RottenTomatoes");
 						for (var i = 0; i < data.comingSoon.length; i++) {
 							RTembed.addField(data.comingSoon[i].title, data.comingSoon[i].date + '; ' + data.comingSoon[i].meter);
 						}
@@ -137,7 +137,7 @@ function movies(message, content) {
 						});
 					}
 					if (content.includes('opening')) {
-						const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Opening This Week').setColor(0xa81717);
+						const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Opening This Week').setColor(0xa81717).setFooter("From RottenTomatoes");
 						for (var i = 0; i < data.openingThisWeek.length; i++) {
 							RTembed.addField(data.openingThisWeek[i].title, data.openingThisWeek[i].date + '; ' + data.openingThisWeek[i].meter);
 						}
@@ -146,7 +146,7 @@ function movies(message, content) {
 						});
 					}
 					if (content.includes('box office')) {
-						const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Box Office').setColor(0xa81717);
+						const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Box Office').setColor(0xa81717).setFooter("From RottenTomatoes");
 						for (var i = 0; i < data.boxOffice.length; i++) {
 							RTembed.addField(data.boxOffice[i].title, data.boxOffice[i].gross + '; ' + data.boxOffice[i].meter);
 						}
