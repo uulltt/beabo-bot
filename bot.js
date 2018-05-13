@@ -10,6 +10,7 @@ var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 var fs = require('fs');
+var fonts = require('./fonts.js');
 var pics = require('./pics.js');
 var concat = require('concat-image');
 const rm = require('rotten-movies');
@@ -36,7 +37,7 @@ client.on('ready', () => {
 	client.user.setActivity('type b!commands for help', { type: 'WATCHING'});
 });
 
-function parallel (message, content){
+function movies (message, content){
 	if ((content.startsWith('🍅 ') || content.startsWith('!rt ')) && content.length > 3){
 	var com = content.startsWith('🍅 ') ? 3 : 4;
 	if (!content.includes('coming soon') && !content.includes('box office') && !content.includes('opening')){
@@ -100,113 +101,6 @@ inline: true
 		});
 	}
 }
-	/*if (content.startsWith('📷 ') || content.startsWith('!pics ')) { //all the camera commands go in here
-	if (content.includes('twitter.com/') && content.includes('/status/')) {
-		var tweetId = content.substring(content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
-		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
-			if (!error) {
-				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
-					for (var i = 1; i < tweet.extended_entities.media.length; message.channel.send({ embed: { image: { url: tweet.extended_entities.media[i++].media_url } } }));
-				}
-			} else {
-				message.channel.send(error);
-			}
-		});
-	}
-	if (content.includes('imgur.com/') && content.includes('/a/')) {
-		var theAlbum = content.substring(content.indexOf('/a/') + ('/a/').length).match(/[0-9a-zA-Z]+/gm)[0];
-		imgur.getAlbumInfo(theAlbum)
-		.then(function (json) {
-			for (var i = 0; i < Math.min(json.data.images.length, 10); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }));
-		}).catch(function (err) { message.channel.send(err.message); });
-	}
-	if (content.includes('tumblr.com/post/')) {
-		var hasBlogId = content.substring(0, content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
-		var blogId = hasBlogId[hasBlogId.length - 1];
-		var postId = parseInt(content.substring(content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0]);
-		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
-			if (json.total_posts > 0 && json.posts[0].type === 'photo') {
-				for (var i = 1; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
-			}
-		});
-	}
-	if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
-		var request = require('request').defaults({
-encoding: null
-		});
-		request.get(encodeURI(content.substring(content.startsWith('!pics ') ? 6 : 3).replace(/ /gm, '')), function (err, res, body) {
-			var exifString = ':frame_photo: EXIF data:\n';
-			try {
-				new ExifImage({ image: body }, function (error, exifData) {
-					if (error)
-					message.channel.send('Error: ' + error.message);
-					else {
-						var propValue;
-						for (var propName in exifData.image) {
-							propValue = exifData.image[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-								exifString += field;
-							}
-						}
-						for (var propName in exifData.thumbnail) {
-							propValue = exifData.image[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-								exifString += field;
-							}
-						}
-						for (var propName in exifData.exif) {
-							propValue = exifData.exif[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-								exifString += field;
-							}
-						}
-						for (var propName in exifData.gps) {
-							propValue = exifData.gps[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-								exifString += field;
-							}
-						}
-						for (var propName in exifData.interoperability) {
-							propValue = exifData.interoperability[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-								exifString += field;
-							}
-						}
-						if (exifString.length > 2000) {
-							message.channel.send(exifString.substring(0, 2000));
-						} else {
-							message.channel.send(exifString, { embed: { image: { url: encodeURI(content.substring(content.startsWith('!pics ') ? 6 : 3).replace(/ /gm, ''))}}});
-						}
-					}
-				});
-			} catch (error) {
-				message.channel.send('Error: ' + error.message);
-			}
-		});
-	}
-	if (content.includes('watch?v=')){
-		var videocode = content.substring(content.indexOf('v=')+2).match(/[0-9a-zA-Z_\-]+/gm)[0];
-		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
-		message.channel.send(attachment);
-	}
-	if (content.includes('youtu.be/')){
-		var videocode = content.substring(content.indexOf('.be/')+4).match(/[0-9a-zA-Z_\-]+/gm)[0];
-		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
-		message.channel.send(attachment);
-	}
-}*/
 }
 	
 	
@@ -224,176 +118,9 @@ client.on('message', message => {
 						message.channel.send(xtra.beeb());
 					}
 				}
-				if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.content.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash|wario)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
-	var urls = xtra.font(message.content);
-	for (var i = 0; i < Math.min(urls.length, 5); i++) {
-		if (urls[i].length > 0)
-		message.channel.send({
-embed: {
-image: {
-url: urls[i]
-				}
-			}
-		});
-	}
-}
-if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Bb][du][0-9][0-9]!kof97\W/gm).test(message.content.substring(0, 11)))) {
-	var urls = xtra.bubble(message.content);
-	for (var i = 0; i < Math.min(urls.length, 5); i++) {
-		if (urls[i].length > 0)
-		message.channel.send({
-embed: {
-image: {
-url: urls[i]
-				}
-			}
-		});
-	}
-}
-
-if (new RegExp(/[Ff]ont!kof97\W/gm).test(message.content.substring(0, 11))) {
-	var arg = message.content.substring(11) + '\u200B';
-	var args = arg.match(/.{1,24}\W/gm);
-	for (var i = 0; i < Math.min(args.length, 5); i++) {
-		if (args[i].charAt(args[i].length - 1) === '\n') {
-			args[i] = args[i].substring(0, args[i].length - 1);
-		}
-		if (args[i].length > 0)
-		message.channel.send({
-embed: {
-image: {
-url: 'https://nfggames.com/system/arcade/arcade.php/y-kof97/z-0/dbl-2/x-' + encodeURI(args[i] + '\u200B')
-				}
-			}
-		})
-	}
-}
-if (new RegExp(/[Bb][ud][0-9][0-9]!kof97\W/gm).test(message.content.substring(0, 11))) {
-	var arg = message.content.substring(11) + '\u200B';
-	var dir = message.content.charAt(1);
-	var pos = message.content.substring(2, 4);
-	var args = arg.match(/.{1,24}\W/gm);
-	for (var i = 0; i < Math.min(args.length, 5); i++) {
-		if (args[i].charAt(args[i].length - 1) === '\n') {
-			args[i] = args[i].substring(0, args[i].length - 1);
-		}
-		if (args[i].length > 0)
-		message.channel.send({
-embed: {
-image: {
-url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + 'y-kof97/z-0/dbl-2/x-' + encodeURI(args[i] + '\u200B')
-				}
-			}
-		})
-	}
-}
-if (new RegExp(/[Ff]ont!crash\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-	var text = message.content.substring(11).toLowerCase().replace(/[^a-z0-9\.!\:\n ]/gm, '') + ' ';
-	var texts = text.match(/.{1,24}\W/gm);
-	for(var t = 0; t < Math.min(texts.length, 5); t++){
-		var paths = [];
-		texts[t] = ' ' + texts[t];
-		texts[t] = texts[t].replace(/\n/gm, '');
-		var cursor = 0;
-		for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
-		if (cursor === texts[t].length){
-			concat({
-images: paths,
-margin: 0 // optional, in px, defaults to 10px
-			}, function(err, canvas) {
-				message.channel.send({
-files: [{
-attachment: canvas.toBuffer(),
-name: 'crash.png'
-					}]
-				});
-			});	
-		}	
-	}
-}
-
-if (new RegExp(/[Ff]ont!wario\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-	var text = message.content.substring(11).replace(/[^A-Za-z0-9\.!\:\n\?'",\+\-= %&;:\(\)⭐✏]/gm, '') + ' ';
-		//console.log(text);
-		var texts = text.match(/.{1,24}\W/gm);
-		
-		for(var t = 0; t < Math.min(texts.length, 5); t++){
-			var paths = [];
-			texts[t] = ' ' + texts[t];
-			texts[t] = texts[t].replace(/\n/gm, '');
-			var cursor = 0;
-for(;cursor < texts[t].length; cursor++){
-	paths[cursor] = fs.readFileSync('./warioware/warioware_' + (wariowareString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png');
-}
-if (cursor === texts[t].length){
-	concat({
-images: paths,
-margin: 0 // optional, in px, defaults to 10px
-}, function(err, canvas) {
-		message.channel.send({
-files: [{
-	attachment: canvas.toBuffer(),
-	name: 'warioware.png'
-}]
-});
-});	
-}
-		}
-	}
-	
-	if (new RegExp(/[Ff]ont!mario64\W/gm).test(message.content.substring(0, 13)) && message.content.length > 13){
-		var text = message.content.substring(13).toLowerCase().replace(/[^a-z0-9\.!\n\?'", %&;:⭐]/gm, '') + ' ';
-		var texts = text.match(/.{1,24}\W/gm);
-		for(var t = 0; t < Math.min(texts.length, 5); t++){
-			var paths = [];
-			
-			texts[t] = ' ' + texts[t];
-			texts[t] = texts[t].replace(/\n/gm, '');
-			var cursor = 0;
-for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./mario64/mario64_' + (mario64String.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
-if (cursor === texts[t].length){
-	concat({
-images: paths,
-margin: 0 // optional, in px, defaults to 10px
-}, function(err, canvas) {
-		message.channel.send({
-files: [{
-	attachment: canvas.toBuffer(),
-	name: 'mario64.png'
-}]
-});
-});	
-}		
-		}
-	}
-	if (new RegExp(/[Ff]ont!ms\W/gm).test(message.content.substring(0, 8)) && message.content.length > 8){
-		var text = message.content.substring(8).toLowerCase().replace(/[^a-z0-9\?!\n ]/gm, '') + ' ';
-		var texts = text.match(/.{1,24}\W/gm);
-		for(var t = 0; t < Math.min(texts.length, 5); t++){
-			var paths = [];
-			
-			texts[t] = ' ' + texts[t];
-			texts[t] = texts[t].replace(/\n/gm, '');
-			var cursor = 0;
-for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./metalslug/metalslug_' + (metalslugString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
-if (cursor === texts[t].length){
-	concat({
-images: paths,
-margin: 0 // optional, in px, defaults to 10px
-}, function(err, canvas) {
-		message.channel.send({
-files: [{
-	attachment: canvas.toBuffer(),
-	name: 'metalslug.png'
-}]
-});
-});	
-}
-		
-		}
-	}
-	
-	parallel(message, message.content);
+				
+	fonts(message);
+	movies(message, message.content);
 	pics(message, message.content);
 if (message.content.charAt(0) === 'b' || message.content.charAt(0) === 'B'){
 var beaboMessage = message.content.substring(1);
@@ -435,7 +162,7 @@ if (beaboMessage.substring(0, 5) === '!dir ') {
 		message.channel.send({embed: { title: dirTitle, description: dir.length <= 2048 ? dir : 'Too many directions. Just Google it.' }});
 	}).catch(console.error);
 }
-parallel(message, beaboMessage);
+movies(message, beaboMessage);
 pics(message, beaboMessage);
 
 
