@@ -126,7 +126,6 @@ function movies(message, content) {
 			var rtscraper = require('rt-scraper');
 			rtscraper.getRottenTomatoesScraperData(function (error, data) {
 				if (!error) {
-					console.log(data);
 					if (content.includes('coming soon')) {
 						const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Coming Soon').setColor(0xa81717);
 						for (var i = 0; i < data.comingSoon.length; i++) {
@@ -198,11 +197,7 @@ client.on('message', message => {
 				for (var i = 0; i < Math.min(response.results.length, 5); i++) {
 					var open = '';
 					if (response.results[i].hasOwnProperty('opening_hours') && response.results[i].opening_hours.hasOwnProperty('open_now')) {
-						if (response.results[i].opening_hours.open_now) {
-							open = ':large_blue_circle: ***OPEN NOW!***';
-						} else {
-							open = ':red_circle: Sorry, closed.';
-						}
+							open = response.results[i].opening_hours.open_now ? ':large_blue_circle: ***OPEN NOW!***' : ':red_circle: Sorry, closed.';
 					}
 					message.channel.send('**' + response.results[i].name + '**\n`' + response.results[i].formatted_address + '`\n:star: ' + response.results[i].rating + '\n' + open);
 				}
@@ -236,16 +231,16 @@ client.on('message', message => {
 		if (beaboMessage.substring(0, 4) === '!gb ') {
 			giantbomb(message, beaboMessage);
 		}
-
-		if (beaboMessage.substring(0, 8) === '!ZiV-id ') {
-			message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + beaboMessage.substring(8) + '#summary');
-		}
 		if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
 			var command = '**' + beaboMessage.substring(8) + '**';
 			command = command.replace(/1/gm, ':arrow_lower_left:').replace(/2/gm, ':arrow_down:').replace(/3/gm, ':arrow_lower_right:').replace(/4/gm, ':arrow_left:')
 				.replace(/7/gm, ':arrow_upper_left:').replace(/8/gm, ':arrow_up:').replace(/9/gm, ':arrow_upper_right:').replace(/6/gm, ':arrow_right:').replace(/5/gm, 'neutral');
 			message.channel.send(command);
 		}
+		if (beaboMessage.substring(0, 8) === '!ZiV-id ') {
+			message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + beaboMessage.substring(8) + '#summary');
+		}
+		
 		if (beaboMessage.substring(0, 11) === '!ZiV-random') {
 			message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000) + 2).toString() + '#summary');
 		}
