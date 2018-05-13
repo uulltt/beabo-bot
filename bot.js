@@ -172,11 +172,10 @@ client.on('message', message => {
 			message.channel.send(beeb());
 		}
 	}
-
 	fonts(message);
 	movies(message, message.content);
 	pics(message, message.content);
-	if (message.content.charAt(0) === 'b' || message.content.charAt(0) === 'B') {
+	if (message.content.toLowerCase().charAt(0) === 'b') {
 		var beaboMessage = message.content.substring(1);
 
 		if (new RegExp(/!hex#[0-9A-Fa-f]{6}/gm).test(beaboMessage.substring(0, 11))) {

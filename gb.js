@@ -4,10 +4,6 @@ const gbSearchGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.com
 const gbStrings = ['game ', 'character ', 'concept ', 'franchise ', 'company ', 'person ', 'object '];
 const Discord = require('discord.js');
 
-
-
-
-
 function gbwiki(json, query) {
 	var embedString = '';
 	if (query === 'locations') {
@@ -45,9 +41,7 @@ function gbwiki(json, query) {
 
 }
 
-
-
-function gbWiki (json2, query, message, g) {
+function gbWiki(json2, query, message, g) {
 	var queries = query.split(',');
 	var Name = json2.results.name;
 	var imageURL = json2.results.image.original_url;
@@ -310,42 +304,39 @@ function gbWiki (json2, query, message, g) {
 
 module.exports = (message, content) => {
 	console.log(content);
-			var choice = 0;
-			for (var g = 0; g < 7; g++) {
-				if (content.substring(4, 4 + gbStrings[g].length) === gbStrings[g]) {
-					choice = g;
-					console.log(gbStrings[g]);
-					var typequery = content.substring(4 + gbStrings[g].length)
-						var query = typequery.substring(0, typequery.indexOf(' '));
-					var title = typequery.substring(typequery.indexOf(' ') + 1);
-					gbSearchGet[choice].search(title, {
-						limit: 1
-					}, (err, res, json) => {
-						if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0) {
-							var gamelist = ''
-								for (var i = 0; i < json.results.length; i++) {
-									gamelist += (i + 1).toString() + '. ' + json.results[i].name + '\n';
-								}
-								message.channel.send('Which did you mean? Please Reply with a number.\n' + gamelist);
-							const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, {
-									time: 10000
-								});
-							collector.on('collect', message2 => {
-								if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)) {
-									var id = json.results[parseInt(message2.content) - 1].id;
-									if (query === '*' || query === 'all') {
-										query = 'info,characters,friends,enemies,concepts,franchises,games,developed,published,locations,objects,people,similar,companies';
-									}
-									gbSearchGet[choice].get(id, function (err2, res2, json2) {
-										gbWiki(json2, query, message, 0);
-									});
-								}
-
+	var choice = 0;
+	for (var g = 0; g < 7; g++) {
+		if (content.substring(4, 4 + gbStrings[g].length) === gbStrings[g]) {
+			choice = g;
+			var typequery = content.substring(4 + gbStrings[g].length)
+				var query = typequery.substring(0, typequery.indexOf(' '));
+			var title = typequery.substring(typequery.indexOf(' ') + 1);
+			gbSearchGet[choice].search(title, {
+				limit: 1
+			}, (err, res, json) => {
+				if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0) {
+					var gamelist = ''
+						for (var i = 0; i < json.results.length; i++) {
+							gamelist += (i + 1).toString() + '. ' + json.results[i].name + '\n';
+						}
+						message.channel.send('Which did you mean? Please Reply with a number.\n' + gamelist);
+					const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, {
+							time: 10000
+						});
+					collector.on('collect', message2 => {
+						if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)) {
+							var id = json.results[parseInt(message2.content) - 1].id;
+							if (query === '*' || query === 'all') {
+								query = 'info,characters,friends,enemies,concepts,franchises,games,developed,published,locations,objects,people,similar,companies';
+							}
+							gbSearchGet[choice].get(id, function (err2, res2, json2) {
+								gbWiki(json2, query, message, choice);
 							});
 						}
-					});
 
+					});
 				}
-			}
-	
+			});
+		}
+	}
 }
