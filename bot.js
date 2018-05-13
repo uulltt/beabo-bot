@@ -604,6 +604,8 @@ if (cursor === texts[t].length){
 		var searchtexttype = message.content.substring(message.content.indexOf(' ')+1);
 		var searchtype = searchtexttype.split(' ')[0];
 		var searchtext = searchtexttype.substring(searchtexttype.indexOf(' ') + 1);
+		console.log(searchtype);
+		console.log(searchtext);
 		metacritic.search(searchtext, {category: searchtype}).on('end', (results) => {
     if (results.length > 0){
     metacritic.getProduct(results[0]).on('end', (info) => {
