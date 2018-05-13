@@ -13,6 +13,7 @@ var fs = require('fs');
 var concat = require('concat-image');
 const rm = require('rotten-movies');
 const giantbomb = require('giantbomb');
+const metacritic = require('metacritic-scraper');
 const gb = giantbomb(process.env.GIANT_BOMB);
 const gbSearchGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people, gb.objects];
 const gbGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people, gb.objects];
@@ -600,11 +601,15 @@ if (cursor === texts[t].length){
 	}
 	}
 	if (message.content.startsWith('!metacritic ')){
-		var searchtext = message.content.substring(message.content.indexOf(' ')+1);
-		var metacritic = require('metacritic');
-
-metacritic.Search({ text: searchtext }, function (err, list) {
-console.log(list);
+		var searchtexttype = message.content.substring(message.content.indexOf(' ')+1);
+		var searchtype = searchtexttype.split(' ')[0];
+		var searchtext = searchtexttype.substring(searchtexttype.indexOf(' ') + 1);
+		metacritic.search(searchtext, {category: searchtype}).on('end', (results) => {
+    if (results.length > 0){
+    metacritic.getProduct(results[0]).on('end', (info) => {
+        console.log(info.reviews.critic_reviews);
+    });
+	}
 });
 	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
