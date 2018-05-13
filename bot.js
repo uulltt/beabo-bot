@@ -19,27 +19,25 @@ const gbSearchGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.com
 const gbGet = [gb.games, gb.characters, gb.concepts, gb.franchises, gb.companies, gb.people, gb.objects];
 const gbStrings = ['game ', 'character ', 'concept ', 'franchise ', 'company ', 'person ', 'object '];
 var tumblr = new Tumblr({
-		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
-	});
+consumerKey: process.env.TUMBLR_CONSUMER_KEY,
+});
 
 var tweeter = new Twitter({
-		consumer_key: process.env.TWITTER_CONSUMER_KEY,
-		consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-		access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-		access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-	});
+	consumer_key: process.env.TWITTER_CONSUMER_KEY,
+	consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+	access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+	access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+});
 
 client.on('ready', () => {
 	console.log('I am ready!');
 	client.user.setUsername("Beabo");
-	client.user.setActivity('type !commands for help', {
-		type: 'WATCHING'
-	});
+	client.user.setActivity('type !commands for help', { type: 'WATCHING'});
 });
 
 
 
-const steamgames = ['514340', '658150', '522490', '598640'];
+const steamgames = ['514340', '514340','514340', '658150', '658150', '522490', '598640'];
 const crashfontString = 'abcdefghijklmnopqrstuvwxyz0123456789.:! ';
 const metalslugString = ' ?!abcdefghijklmnopqrstuvwxyz0123456789';
 const mario64String = '1234567890abcdefghijklmnopqrstuvwxyz ?\'\".,%&!⭐';
@@ -48,136 +46,90 @@ client.on('message', message => {
 
 	if (message.isMentioned(client.user)) {
 		if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vidya)?( )?((ga([me]{2}))|vidya)(\?)?/gm)){
-			message.channel.send('https://store.steampowered.com/app/' + steamgames[(Math.floor(Math.random() * 4))] + '/');
-		} else {
-		message.channel.send(xtra.beeb());
-		}
-	}
-	
-	if (new RegExp(/!hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 11))) {
-		message.channel.send({
-			embed: {
-				image: {
-					url: 'https://www.colorcombos.com/images/colors/' + message.content.substring(5, 11) + '.png'
-				}
-			}
-		});
-	}
-	
-	if (message.content.substring(0, 8) === '!places ') {
-		parameters = {
-			query: message.content.substring(8).split('\"')[1]
-		};
-		GPlaces.textSearch(parameters, function (error, response) {
-			if (error)
-				throw error;
-			for (var i = 0; i < Math.min(response.results.length, 5); i++) {
-				var open = '';
-				if (response.results[i].hasOwnProperty('opening_hours') && response.results[i].opening_hours.hasOwnProperty('open_now')) {
-					if (response.results[i].opening_hours.open_now) {
-						open = ':large_blue_circle: ***OPEN NOW!***';
+			message.channel.send('https://store.steampowered.com/app/' + steamgames[(Math.floor(Math.random() * 7))] + '/');
 					} else {
-						open = ':red_circle: Sorry, closed.';
+						message.channel.send(xtra.beeb());
 					}
 				}
-				message.channel.send('**' + response.results[i].name + '**\n`' + response.results[i].formatted_address + '`\n:star: ' + response.results[i].rating + '\n' + open);
+				
+				if (new RegExp(/!hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 11))) {
+	message.channel.send({ embed: { image: { url: 'https://www.colorcombos.com/images/colors/' + message.content.substring(5, 11) + '.png'}}});
+}
+
+if (message.content.substring(0, 8) === '!places ') {
+	parameters = {
+query: message.content.substring(8).split('\"')[1]
+	};
+	GPlaces.textSearch(parameters, function (error, response) {
+		if (error)
+		throw error;
+		for (var i = 0; i < Math.min(response.results.length, 5); i++) {
+			var open = '';
+			if (response.results[i].hasOwnProperty('opening_hours') && response.results[i].opening_hours.hasOwnProperty('open_now')) {
+				if (response.results[i].opening_hours.open_now) {
+					open = ':large_blue_circle: ***OPEN NOW!***';
+				} else {
+					open = ':red_circle: Sorry, closed.';
+				}
+			}
+			message.channel.send('**' + response.results[i].name + '**\n`' + response.results[i].formatted_address + '`\n:star: ' + response.results[i].rating + '\n' + open);
+		}
+	});
+
+}
+if (message.content.substring(0, 5) === '!dir ') {
+	var args = message.content.substring(5).split('\"');
+	var ori = args[1];
+	var dest = args[3];
+	direction({ origin: ori, destination: dest }).then(function (result) {
+		var dirTitle = ':motorway: **' + ori + '** to **' + dest + '**'
+		var dir = xtra.getDirections(result);
+		message.channel.send({embed: { title: dirTitle, description: dir.length <= 2048 ? dir : 'Too many directions. Just Google it.' }});
+	}).catch(console.error);
+}
+if (message.content.startsWith('📷 ')) {
+	if (message.content.includes('twitter.com/') && message.content.includes('/status/')) {
+		var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
+		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
+			if (!error) {
+				//console.log(tweet);
+				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
+					for (var i = 1; i < tweet.extended_entities.media.length; message.channel.send({ embed: { image: { url: tweet.extended_entities.media[i++].media_url } } }));
+				}
+			} else {
+				message.channel.send(error);
 			}
 		});
-
 	}
-	if (message.content.substring(0, 5) === '!dir ') {
-		var args = message.content.substring(5).split('\"');
-		var ori = args[1];
-		var dest = args[3];
-		direction({
-			origin: ori,
-			destination: dest
-		})
-		.then(function (result) {
-			var dirTitle = ':motorway: **' + ori + '** to **' + dest + '**'
-			var dir = xtra.getDirections(result);
-			message.channel.send({embed: {
-				title: dirTitle,
-				description: dir.length <= 2048 ? dir : 'Too many directions. Just Google it.'
-			}});
-		}).catch(console.error);
+	if (message.content.includes('imgur.com/') && message.content.includes('/a/')) {
+		var theAlbum = message.content.substring(message.content.indexOf('/a/') + ('/a/').length).match(/[0-9a-zA-Z]+/gm)[0];
+		imgur.getAlbumInfo(theAlbum)
+		.then(function (json) {
+			for (var i = 0; i < Math.min(json.data.images.length, 10); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }););
+		}).catch(function (err) { message.channel.send(err.message); });
 	}
-	if (message.content.startsWith('📷 ')) {
-		if (message.content.includes('twitter.com/') && message.content.includes('/status/')) {
-			var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
-			tweeter.get('statuses/show/' + tweetId, {
-				tweet_mode: 'extended'
-			}, function (error, tweet, response) {
-
-				if (!error) {
-					//console.log(tweet);
-					if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
-						for (var i = 1; i < tweet.extended_entities.media.length; i++) {
-							message.channel.send({
-								embed: {
-									image: {
-										url: tweet.extended_entities.media[i].media_url
-									}
-								}
-							});
-						}
-					}
-				} else {
-					message.channel.send(error);
-				}
-			})
-		}
-		if (message.content.includes('imgur.com/') && message.content.includes('/a/')) {
-			var theAlbum = message.content.substring(message.content.indexOf('/a/') + ('/a/').length).match(/[0-9a-zA-Z]+/gm)[0];
-			imgur.getAlbumInfo(theAlbum)
-			.then(function (json) {
-				for (var i = 0; i < Math.min(json.data.images.length, 10); i++) {
-					message.channel.send({
-						embed: {
-							image: {
-								url: json.data.images[i].link
-							}
-						}
-					});
-				}
-			})
-			.catch(function (err) {
-				message.channel.send(err.message);
-			});
-		}
-		if (message.content.includes('tumblr.com/post/')) {
-			var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
-			var blogId = hasBlogId[hasBlogId.length - 1];
-			var postId = parseInt(message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0]);
-			tumblr.get('/posts', {
-				hostname: blogId + '.tumblr.com',
-				id: postId
-			}, function (err, json) {
-				if (json.total_posts > 0 && json.posts[0].type === 'photo') {
-					for (var i = 1; i < json.posts[0].photos.length; i++) {
-						message.channel.send({
-							embed: {
-								image: {
-									url: json.posts[0].photos[i].original_size.url
-								}
-							}
-						});
-					}
-				}
-			});
-		}
-		if (message.content.toLowerCase().includes('.jpg') || message.content.toLowerCase().includes('.jpeg')) {
+	if (message.content.includes('tumblr.com/post/')) {
+		var hasBlogId = message.content.substring(0, message.content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
+		var blogId = hasBlogId[hasBlogId.length - 1];
+		var postId = parseInt(message.content.substring(message.content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0]);
+		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
+			if (json.total_posts > 0 && json.posts[0].type === 'photo') {
+				for (var i = 1; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
+			}
+		});
+	}
+	if (message.content.toLowerCase().includes('.jpg') || message.content.toLowerCase().includes('.jpeg')) {
 		var request = require('request').defaults({
-				encoding: null
-			});
+encoding: null
+		});
 		request.get(encodeURI(message.content.substring(3).replace(/ /gm, '')), function (err, res, body) {
 			var exifString = ':frame_photo: EXIF data:\n';
 			try {
 				new ExifImage({
-					image: body
+image: body
 				}, function (error, exifData) {
 					if (error)
-						message.channel.send('Error: ' + error.message);
+					message.channel.send('Error: ' + error.message);
 					else {
 						var propValue;
 						for (var propName in exifData.image) {
@@ -185,7 +137,7 @@ client.on('message', message => {
 							if (typeof propValue !== "undefined") {
 								var field = propName.toString() + ": " + propValue.toString() + "\n";
 								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-									exifString += field;
+								exifString += field;
 							}
 						}
 						for (var propName in exifData.thumbnail) {
@@ -193,7 +145,7 @@ client.on('message', message => {
 							if (typeof propValue !== "undefined") {
 								var field = propName.toString() + ": " + propValue.toString() + "\n";
 								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-									exifString += field;
+								exifString += field;
 							}
 						}
 						for (var propName in exifData.exif) {
@@ -201,7 +153,7 @@ client.on('message', message => {
 							if (typeof propValue !== "undefined") {
 								var field = propName.toString() + ": " + propValue.toString() + "\n";
 								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-									exifString += field;
+								exifString += field;
 							}
 						}
 						for (var propName in exifData.gps) {
@@ -210,7 +162,7 @@ client.on('message', message => {
 								var field = propName.toString() + ": " + propValue.toString() + "\n";
 
 								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-									exifString += field;
+								exifString += field;
 							}
 						}
 						for (var propName in exifData.interoperability) {
@@ -219,16 +171,16 @@ client.on('message', message => {
 								var field = propName.toString() + ": " + propValue.toString() + "\n";
 
 								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-									exifString += field;
+								exifString += field;
 							}
 						}
 						if (exifString.length > 2000) {
 							message.channel.send(exifString.substring(0, 2000));
 						} else {
 							message.channel.send(exifString, {
-								embed: {
-									image: {
-										url: encodeURI(message.content.substring(3).replace(/ /gm, ''))
+embed: {
+image: {
+url: encodeURI(message.content.substring(3).replace(/ /gm, ''))
 									}
 								}
 							});
@@ -253,177 +205,174 @@ client.on('message', message => {
 		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
 		message.channel.send(attachment);
 	}
+}
+if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
+	var args = message.content.substring(5).split('\n'); //we split by line breaks
+	if (args.length == 1) { //if there's no line breaks
+		args = message.content.substring(5).split(','); //we split by commas
 	}
-	if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
-		var args = message.content.substring(5).split('\n'); //we split by line breaks
-		if (args.length == 1) { //if there's no line breaks
-			args = message.content.substring(5).split(','); //we split by commas
-		}
-		for (var i = 0; i < args.length; i++) { //go through each of the arguments
-			if (args[i].length > 0 && (args[i].length < 3 || args[i].substring(0, 3) != '```')) //if the first character isn't an accent mark and the length of the argument is greater than 0
-				message.channel.send('•' + args[i]); //send the list element
-		}
+	for (var i = 0; i < args.length; i++) { //go through each of the arguments
+		if (args[i].length > 0 && (args[i].length < 3 || args[i].substring(0, 3) != '```')) //if the first character isn't an accent mark and the length of the argument is greater than 0
+		message.channel.send('•' + args[i]); //send the list element
+	}
 
-	}
-	if (message.content.startsWith('🍅 ') && message.content.length > 3){
-		if (!message.content.includes('coming soon') && !message.content.includes('box office') && !message.content.includes('opening')){
+}
+if (message.content.startsWith('🍅 ') && message.content.length > 3){
+	if (!message.content.includes('coming soon') && !message.content.includes('box office') && !message.content.includes('opening')){
 		var movieurl = 'https://www.rottentomatoes.com/m/' + encodeURI(message.content.substring(3).toLowerCase().replace(/ /gm, '_').replace(/[^a-z0-9_]/gm, ''));
 		rm.info(movieurl, function(err, info) {
 			rm.scores(movieurl, function(err2, scores) {
-			message.channel.send({
-												embed: {
-													title: info.name,
-													description: info.description,
-													url: movieurl,
-													footer: {
-														text: 'From RottenTomatoes'
-													},
-													color: 0xa81717,
-													fields: [{
-															name: "🍅 Critic Score",
-															value: scores.critic + '%',
-															inline: true
-														}, {
-															name: "🍿 Audience Score",
-															value: scores.audience + '%',
-															inline: true
-														}
-													]
-												}
-											});
-			});
-			});
-		} else {
-			var rtscraper = require('rt-scraper');
-			rtscraper.getRottenTomatoesScraperData( function(error, data) {
-        if (!error) {
-			console.log(data);
-            if (message.content.includes('coming soon')){
-const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Coming Soon').setColor(0xa81717);
-for(var i = 0; i < data.comingSoon.length; i++){
-	RTembed.addField(data.comingSoon[i].title, data.comingSoon[i].date + '; ' + data.comingSoon[i].meter);
-}
-console.log(RTembed);
-message.channel.send({embed: RTembed});
-			}
-if (message.content.includes('opening')){
-const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Opening This Week').setColor(0xa81717);
-for(var i = 0; i < data.openingThisWeek.length; i++){
-	RTembed.addField(data.openingThisWeek[i].title, data.openingThisWeek[i].date + '; ' + data.openingThisWeek[i].meter);
-}
-message.channel.send({embed: RTembed});
-			}
-if (message.content.includes('box office')){
-const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Box Office').setColor(0xa81717);
-for(var i = 0; i < data.boxOffice.length; i++){
-	RTembed.addField(data.boxOffice[i].title, data.boxOffice[i].gross + '; ' + data.boxOffice[i].meter);
-}
-message.channel.send({embed: RTembed});
-			}				
-        }
-        else {
-            message.channel.send('Some error occured.');
-        }
-    });
-		}
-	}
-	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.content.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash|wario)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
-		var urls = xtra.font(message.content);
-		for (var i = 0; i < Math.min(urls.length, 5); i++) {
-			if (urls[i].length > 0)
 				message.channel.send({
-					embed: {
-						image: {
-							url: urls[i]
+embed: {
+title: info.name,
+description: info.description,
+url: movieurl,
+footer: {
+text: 'From RottenTomatoes'
+						},
+color: 0xa81717,
+fields: [{
+name: "🍅 Critic Score",
+value: scores.critic + '%',
+inline: true
+						}, {
+name: "🍿 Audience Score",
+value: scores.audience + '%',
+inline: true
 						}
+						]
 					}
 				});
-		}
-	}
-	if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Bb][du][0-9][0-9]!kof97\W/gm).test(message.content.substring(0, 11)))) {
-		var urls = xtra.bubble(message.content);
-		for (var i = 0; i < Math.min(urls.length, 5); i++) {
-			if (urls[i].length > 0)
-				message.channel.send({
-					embed: {
-						image: {
-							url: urls[i]
-						}
+			});
+		});
+	} else {
+		var rtscraper = require('rt-scraper');
+		rtscraper.getRottenTomatoesScraperData( function(error, data) {
+			if (!error) {
+				console.log(data);
+				if (message.content.includes('coming soon')){
+					const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Coming Soon').setColor(0xa81717);
+					for(var i = 0; i < data.comingSoon.length; i++){
+						RTembed.addField(data.comingSoon[i].title, data.comingSoon[i].date + '; ' + data.comingSoon[i].meter);
 					}
-				});
-		}
-	}
-	
-	if (new RegExp(/[Ff]ont!kof97\W/gm).test(message.content.substring(0, 11))) {
-		var arg = message.content.substring(11) + '\u200B';
-		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 5); i++) {
-			if (args[i].charAt(args[i].length - 1) === '\n') {
-				args[i] = args[i].substring(0, args[i].length - 1);
+					console.log(RTembed);
+					message.channel.send({embed: RTembed});
+				}
+				if (message.content.includes('opening')){
+					const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Opening This Week').setColor(0xa81717);
+					for(var i = 0; i < data.openingThisWeek.length; i++){
+						RTembed.addField(data.openingThisWeek[i].title, data.openingThisWeek[i].date + '; ' + data.openingThisWeek[i].meter);
+					}
+					message.channel.send({embed: RTembed});
+				}
+				if (message.content.includes('box office')){
+					const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Box Office').setColor(0xa81717);
+					for(var i = 0; i < data.boxOffice.length; i++){
+						RTembed.addField(data.boxOffice[i].title, data.boxOffice[i].gross + '; ' + data.boxOffice[i].meter);
+					}
+					message.channel.send({embed: RTembed});
+				}				
 			}
-			if (args[i].length > 0)
-				message.channel.send({
-					embed: {
-						image: {
-							url: 'https://nfggames.com/system/arcade/arcade.php/y-kof97/z-0/dbl-2/x-' + encodeURI(args[i] + '\u200B')
-						}
-					}
-				})
-		}
-	}
-	if (new RegExp(/[Bb][ud][0-9][0-9]!kof97\W/gm).test(message.content.substring(0, 11))) {
-		var arg = message.content.substring(11) + '\u200B';
-		var dir = message.content.charAt(1);
-		var pos = message.content.substring(2, 4);
-		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 5); i++) {
-			if (args[i].charAt(args[i].length - 1) === '\n') {
-				args[i] = args[i].substring(0, args[i].length - 1);
+			else {
+				message.channel.send('Some error occured.');
 			}
-			if (args[i].length > 0)
-				message.channel.send({
-					embed: {
-						image: {
-							url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + 'y-kof97/z-0/dbl-2/x-' + encodeURI(args[i] + '\u200B')
-						}
-					}
-				})
-		}
+		});
 	}
-	if (new RegExp(/[Ff]ont!crash\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-		var text = message.content.substring(11).toLowerCase().replace(/[^a-z0-9\.!\:\n ]/gm, '') + ' ';
-		var texts = text.match(/.{1,24}\W/gm);
-		for(var t = 0; t < Math.min(texts.length, 5); t++){
-			var paths = [];
-			
-			texts[t] = ' ' + texts[t];
-			texts[t] = texts[t].replace(/\n/gm, '');
-			var cursor = 0;
-for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
-if (cursor === texts[t].length){
-	concat({
-  images: paths,
-  margin: 0 // optional, in px, defaults to 10px
-}, function(err, canvas) {
-  // canvas === https://github.com/LearnBoost/node-canvas
-		const attachment = new Discord.Attachment(canvas.toBuffer(), 'crash.png');
-		//console.log(attachment);
+}
+if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.content.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash|wario)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
+	var urls = xtra.font(message.content);
+	for (var i = 0; i < Math.min(urls.length, 5); i++) {
+		if (urls[i].length > 0)
 		message.channel.send({
-  files: [{
-    attachment: canvas.toBuffer(),
-    name: 'crash.png'
-  }]
-});
-});
-	
+embed: {
+image: {
+url: urls[i]
+				}
+			}
+		});
+	}
+}
+if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Bb][du][0-9][0-9]!kof97\W/gm).test(message.content.substring(0, 11)))) {
+	var urls = xtra.bubble(message.content);
+	for (var i = 0; i < Math.min(urls.length, 5); i++) {
+		if (urls[i].length > 0)
+		message.channel.send({
+embed: {
+image: {
+url: urls[i]
+				}
+			}
+		});
+	}
 }
 
-		
+if (new RegExp(/[Ff]ont!kof97\W/gm).test(message.content.substring(0, 11))) {
+	var arg = message.content.substring(11) + '\u200B';
+	var args = arg.match(/.{1,24}\W/gm);
+	for (var i = 0; i < Math.min(args.length, 5); i++) {
+		if (args[i].charAt(args[i].length - 1) === '\n') {
+			args[i] = args[i].substring(0, args[i].length - 1);
 		}
+		if (args[i].length > 0)
+		message.channel.send({
+embed: {
+image: {
+url: 'https://nfggames.com/system/arcade/arcade.php/y-kof97/z-0/dbl-2/x-' + encodeURI(args[i] + '\u200B')
+				}
+			}
+		})
 	}
-	
-	if (new RegExp(/[Ff]ont!wario\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-		var text = message.content.substring(11).replace(/[^A-Za-z0-9\.!\:\n\?'",\+\-= %&;:\(\)⭐✏]/gm, '') + ' ';
+}
+if (new RegExp(/[Bb][ud][0-9][0-9]!kof97\W/gm).test(message.content.substring(0, 11))) {
+	var arg = message.content.substring(11) + '\u200B';
+	var dir = message.content.charAt(1);
+	var pos = message.content.substring(2, 4);
+	var args = arg.match(/.{1,24}\W/gm);
+	for (var i = 0; i < Math.min(args.length, 5); i++) {
+		if (args[i].charAt(args[i].length - 1) === '\n') {
+			args[i] = args[i].substring(0, args[i].length - 1);
+		}
+		if (args[i].length > 0)
+		message.channel.send({
+embed: {
+image: {
+url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + 'y-kof97/z-0/dbl-2/x-' + encodeURI(args[i] + '\u200B')
+				}
+			}
+		})
+	}
+}
+if (new RegExp(/[Ff]ont!crash\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
+	var text = message.content.substring(11).toLowerCase().replace(/[^a-z0-9\.!\:\n ]/gm, '') + ' ';
+	var texts = text.match(/.{1,24}\W/gm);
+	for(var t = 0; t < Math.min(texts.length, 5); t++){
+		var paths = [];
+		
+		texts[t] = ' ' + texts[t];
+		texts[t] = texts[t].replace(/\n/gm, '');
+		var cursor = 0;
+		for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
+		if (cursor === texts[t].length){
+			concat({
+images: paths,
+margin: 0 // optional, in px, defaults to 10px
+			}, function(err, canvas) {
+				message.channel.send({
+files: [{
+attachment: canvas.toBuffer(),
+name: 'crash.png'
+					}]
+				});
+			});
+			
+		}
+
+		
+	}
+}
+
+if (new RegExp(/[Ff]ont!wario\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
+	var text = message.content.substring(11).replace(/[^A-Za-z0-9\.!\:\n\?'",\+\-= %&;:\(\)⭐✏]/gm, '') + ' ';
 		//console.log(text);
 		var texts = text.match(/.{1,24}\W/gm);
 		
@@ -438,17 +387,14 @@ for(;cursor < texts[t].length; cursor++){
 }
 if (cursor === texts[t].length){
 	concat({
-  images: paths,
-  margin: 0 // optional, in px, defaults to 10px
+images: paths,
+margin: 0 // optional, in px, defaults to 10px
 }, function(err, canvas) {
-  // canvas === https://github.com/LearnBoost/node-canvas
-		const attachment = new Discord.Attachment(canvas.toBuffer(), 'warioware.png');
-		//console.log(attachment);
 		message.channel.send({
-  files: [{
-    attachment: canvas.toBuffer(),
-    name: 'warioware.png'
-  }]
+files: [{
+	attachment: canvas.toBuffer(),
+	name: 'warioware.png'
+}]
 });
 });
 	
@@ -470,17 +416,14 @@ if (cursor === texts[t].length){
 for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./mario64/mario64_' + (mario64String.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
 if (cursor === texts[t].length){
 	concat({
-  images: paths,
-  margin: 0 // optional, in px, defaults to 10px
+images: paths,
+margin: 0 // optional, in px, defaults to 10px
 }, function(err, canvas) {
-  // canvas === https://github.com/LearnBoost/node-canvas
-		//const attachment = new Discord.Attachment(canvas.toBuffer(), 'mario64.png');
-		//console.log(attachment);
 		message.channel.send({
-  files: [{
-    attachment: canvas.toBuffer(),
-    name: 'mario64.png'
-  }]
+files: [{
+	attachment: canvas.toBuffer(),
+	name: 'mario64.png'
+}]
 });
 });
 	
@@ -501,17 +444,14 @@ if (cursor === texts[t].length){
 for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./metalslug/metalslug_' + (metalslugString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
 if (cursor === texts[t].length){
 	concat({
-  images: paths,
-  margin: 0 // optional, in px, defaults to 10px
+images: paths,
+margin: 0 // optional, in px, defaults to 10px
 }, function(err, canvas) {
-  // canvas === https://github.com/LearnBoost/node-canvas
-		const attachment = new Discord.Attachment(canvas.toBuffer(), 'metalslug.png');
-		//console.log(attachment);
 		message.channel.send({
-  files: [{
-    attachment: canvas.toBuffer(),
-    name: 'metalslug.png'
-  }]
+files: [{
+	attachment: canvas.toBuffer(),
+	name: 'metalslug.png'
+}]
 });
 });
 	
@@ -525,19 +465,15 @@ if (cursor === texts[t].length){
 		xtra.cityTime(message);
 	}
 	if (message.content.substring(0, 4) === '!gb '){
-		//console.log('giant bomb');
 		var choice = 0;
 	for (var g = 0; g < 7; g++) {
-		//console.log(g);
 		if (message.content.substring(4, 4 + gbStrings[g].length) === gbStrings[g]) {
 			choice = g;
 			console.log(gbStrings[g]);
 			var typequery = message.content.substring(4 + gbStrings[g].length)
 				var query = typequery.substring(0, typequery.indexOf(' '));
 			var title = typequery.substring(typequery.indexOf(' ') + 1);
-			//console.log(query);
-			//console.log(title);
-			gbSearchGet[g].search(title, {
+			gbSearchGet[choice].search(title, {
 				limit: 1
 			}, (err, res, json) => {
 				if (json.hasOwnProperty('results') && json.results.hasOwnProperty('length') && json.results.length > 0) {
@@ -553,46 +489,11 @@ if (cursor === texts[t].length){
 						if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)) {
 							var id = json.results[parseInt(message2.content) - 1].id;
 							if (query === '*' || query === 'all'){
-								query = 'info,characters,friends,enemies,concepts,franchises,games,developed,published,locations,objects,people,similar';
+								query = 'info,characters,friends,enemies,concepts,franchises,games,developed,published,locations,objects,people,similar,companies';
 							}
-							//console.log(g);
-							switch(choice){
-								case 0:
-							gb.games.get(id, function (err2, res2, json2) {
+							gbSearchGet[choice].get(id, function (err2, res2, json2) {
 							xtra.gbWiki(json2, query, message, 0);	
 							});
-							break;
-							case 1:
-							gb.characters.get(id, function (err2, res2, json2) {
-							xtra.gbWiki(json2, query, message, 1);	
-							});
-							break;
-							case 2:
-							gb.concepts.get(id, function (err2, res2, json2) {
-							xtra.gbWiki(json2, query, message, 2);	
-							});
-							break;
-							case 3:
-							gb.franchises.get(id, function (err2, res2, json2) {
-							xtra.gbWiki(json2, query, message, 3);	
-							});
-							break;
-							case 4:
-							gb.companies.get(id, function (err2, res2, json2) {
-							xtra.gbWiki(json2, query, message, 4);	
-							});
-							break;
-							case 5:
-							gb.people.get(id, function (err2, res2, json2) {
-							xtra.gbWiki(json2, query, message, 5);	
-							});
-							break;
-							case 6:
-							gb.objects.get(id, function (err2, res2, json2) {
-							xtra.gbWiki(json2, query, message, 6);	
-							});
-							break;
-							}
 						}
 
 					});
@@ -617,7 +518,6 @@ if (cursor === texts[t].length){
 		{name: '📷 Commands (📷 followed by)', value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'},
 		{name: 'Other Commands', value: '🍅 movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\n!hex#hexCode - displays image of a color pertaining to the hex code'}]}});
 	}
-
 });
 
 client.login(process.env.BOT_TOKEN);
