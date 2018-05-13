@@ -607,9 +607,8 @@ if (cursor === texts[t].length){
 		console.log(searchtype);
 		console.log(searchtext);
 		metacritic.search(searchtext, {category: searchtype}).on('end', (results) => {
-    if (results.length > 0){
     metacritic.getProduct(results[0]).on('end', (info) => {
-        console.log(info.reviews.critic_reviews);
+        console.log(info);
     });
 	}
 });
