@@ -599,6 +599,14 @@ if (cursor === texts[t].length){
 		} 
 	}
 	}
+	if (message.content.startsWith('!metacritic ')){
+		var searchtext = message.content.substring(message.content.indexOf(' ')+1);
+		var metacritic = require('metacritic');
+
+metacritic.Search({ text: searchtext }, function (err, list) {
+console.log(list);
+});
+	}
 	if (message.content.substring(0, 8) === '!ZiV-id ') {
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + message.content.substring(8) + '#summary');
 	}

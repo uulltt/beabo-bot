@@ -20,6 +20,7 @@
     "tumblrwks": "0.3.0",
     "twitter": "1.7.1",
 	"rotten-movies": "0.1.1",
-	"rt-scraper": "1.0.5"
+	"rt-scraper": "1.0.5",
+	"metacritic": "0.0.11"
   }
 }
