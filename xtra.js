@@ -45,7 +45,7 @@ module.exports.beeb = () => {
 var cityTimezones = require('city-timezones');
 var timezone = require('node-google-timezone');
 module.exports.cityTime = (message) => {
-	var city = message.content.substring(6);
+	var city = message.content.substring(7);
 	const citydata = cityTimezones.lookupViaCity(city);
 	try {
 		var lati = citydata[city === 'London' ? 1 : 0].lat;
