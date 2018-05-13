@@ -293,7 +293,7 @@ for(var i = 0; i < data.comingSoon.length; i++){
 	console.log(RTembed);
 }
 console.log(RTembed);
-//message.channel.send({RTembed});
+message.channel.send({embed: RTembed});
 			}			
         }
         else {
