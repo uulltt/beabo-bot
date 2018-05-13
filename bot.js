@@ -57,7 +57,6 @@ client.on('message', message => {
 		var request = require('request').defaults({
 				encoding: null
 			});
-			console.log(message.content.substring(3));
 		request.get(message.content.substring(3), function (err, res, body) {
 			var exifString = ':frame_photo: EXIF data:\n';
 			try {
@@ -116,7 +115,7 @@ client.on('message', message => {
 							message.channel.send(exifString, {
 								embed: {
 									image: {
-										url: message.content.substring(6)
+										url: message.content.substring(3)
 									}
 								}
 							});
