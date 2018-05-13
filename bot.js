@@ -264,7 +264,7 @@ client.on('message', message => {
 						}, {
 							name: 'Other Commands',
 							value: ':tomato: or b!rt movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\nb!hex#hexCode - displays image of a color pertaining to the hex code' +
-							'\nb!numpad command - turns fighting game numpad notation into emoji\nb!list or b!todo - separates a discord message into a list based on either line breaks or commas'
+							'\nb!numpad command - turns fighting game numpad notation into emoji\nb!list or b!todo your list here - separates a discord message into a list based on either line breaks or commas'
 						}
 					]
 				}
