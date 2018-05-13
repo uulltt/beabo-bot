@@ -104,7 +104,7 @@ if (message.content.startsWith('📷 ')) { //all the camera commands go in here
 		var theAlbum = message.content.substring(message.content.indexOf('/a/') + ('/a/').length).match(/[0-9a-zA-Z]+/gm)[0];
 		imgur.getAlbumInfo(theAlbum)
 		.then(function (json) {
-			for (var i = 0; i < Math.min(json.data.images.length, 10); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }););
+			for (var i = 0; i < Math.min(json.data.images.length, 10); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }));
 		}).catch(function (err) { message.channel.send(err.message); });
 	}
 	if (message.content.includes('tumblr.com/post/')) {
