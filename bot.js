@@ -57,7 +57,8 @@ client.on('message', message => {
 		var request = require('request').defaults({
 				encoding: null
 			});
-		request.get(message.content.substring(2), function (err, res, body) {
+			console.log(message.content.substring(3));
+		request.get(message.content.substring(3), function (err, res, body) {
 			var exifString = ':frame_photo: EXIF data:\n';
 			try {
 				new ExifImage({
