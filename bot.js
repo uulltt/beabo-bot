@@ -10,7 +10,7 @@ var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 var fs = require('fs');
-var pictures = require('./pics.js');
+var pics = require('./pics.js');
 var concat = require('concat-image');
 const rm = require('rotten-movies');
 const giantbomb = require('giantbomb');
@@ -394,7 +394,7 @@ files: [{
 	}
 	
 	parallel(message, message.content);
-	pictures.pics(message, message.content);
+	pics(message, message.content);
 if (message.content.charAt(0) === 'b' || message.content.charAt(0) === 'B'){
 var beaboMessage = message.content.substring(1);
 
@@ -436,7 +436,7 @@ if (beaboMessage.substring(0, 5) === '!dir ') {
 	}).catch(console.error);
 }
 parallel(message, beaboMessage);
-pictures.pics(message, beaboMessage);
+pics(message, beaboMessage);
 
 
 	

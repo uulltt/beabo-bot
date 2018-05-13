@@ -12,7 +12,7 @@ var tweeter = new Twitter({
 	access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 });
 
-module.exports.pics = (message, content) {
+module.exports = (message, content) => {
 	if (content.startsWith('📷 ') || content.startsWith('!pics ')) { //all the camera commands go in here
 	if (content.includes('twitter.com/') && content.includes('/status/')) {
 		var tweetId = content.substring(content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
