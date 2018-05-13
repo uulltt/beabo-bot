@@ -53,11 +53,11 @@ client.on('message', message => {
 		message.channel.send(xtra.beeb());
 		}
 	}
-	if (message.content.substring(0, 6) === '!exif ') {
+	if (message.content.startsWith('📷 ') && (message.content.toLowerCase().includes('.jpg') || message.content.toLowerCase().includes('.jpeg'))) {
 		var request = require('request').defaults({
 				encoding: null
 			});
-		request.get(message.content.substring(6), function (err, res, body) {
+		request.get(message.content.substring(3), function (err, res, body) {
 			var exifString = ':frame_photo: EXIF data:\n';
 			try {
 				new ExifImage({
