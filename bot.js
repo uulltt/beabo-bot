@@ -286,10 +286,14 @@ client.on('message', message => {
 			console.log(data);
             if (message.content.includes('coming soon')){
 const RTembed = new Discord.RichEmbed().setTitle('Coming Soon').setColor(0xa81717);
+console.log(RTembed);
 for(var i = 0; i < data.comingSoon.length; i++){
+	console.log(data.comingSoon[i]);
 	RTembed.addField(data.comingSoon[i].title, data.comingSoon[i].date);
+	console.log(RTembed);
 }
-message.channel.send({RTembed});
+console.log(RTembed);
+//message.channel.send({RTembed});
 			}			
         }
         else {
