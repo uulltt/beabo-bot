@@ -53,81 +53,7 @@ client.on('message', message => {
 		message.channel.send(xtra.beeb());
 		}
 	}
-	if (message.content.startsWith('📷 ') && (message.content.toLowerCase().includes('.jpg') || message.content.toLowerCase().includes('.jpeg'))) {
-		var request = require('request').defaults({
-				encoding: null
-			});
-		request.get(message.content.substring(3), function (err, res, body) {
-			var exifString = ':frame_photo: EXIF data:\n';
-			try {
-				new ExifImage({
-					image: body
-				}, function (error, exifData) {
-					if (error)
-						message.channel.send('Error: ' + error.message);
-					else {
-						var propValue;
-						for (var propName in exifData.image) {
-							propValue = exifData.image[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-									exifString += field;
-							}
-						}
-						for (var propName in exifData.thumbnail) {
-							propValue = exifData.image[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-									exifString += field;
-							}
-						}
-						for (var propName in exifData.exif) {
-							propValue = exifData.exif[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-									exifString += field;
-							}
-						}
-						for (var propName in exifData.gps) {
-							propValue = exifData.gps[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-									exifString += field;
-							}
-						}
-						for (var propName in exifData.interoperability) {
-							propValue = exifData.interoperability[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-									exifString += field;
-							}
-						}
-						if (exifString.length > 2000) {
-							message.channel.send(exifString.substring(0, 2000));
-						} else {
-							message.channel.send(exifString, {
-								embed: {
-									image: {
-										url: message.content.substring(3)
-									}
-								}
-							});
-						}
-					}
-				});
-
-			} catch (error) {
-				message.channel.send('Error: ' + error.message);
-			}
-		});
-	}
+	
 	if (new RegExp(/!hex#[0-9A-Fa-f]{6}/gm).test(message.content.substring(0, 11))) {
 		message.channel.send({
 			embed: {
@@ -176,7 +102,7 @@ client.on('message', message => {
 			}});
 		}).catch(console.error);
 	}
-	if (message.content.substring(0, 6) == '!pics ' || message.content.substring(0, 6) == '!full ' || message.content.substring(0, 7) == '!album ') {
+	if (message.content.startsWith('📷 ')) {
 		if (message.content.includes('twitter.com/') && message.content.includes('/status/')) {
 			var tweetId = message.content.substring(message.content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
 			tweeter.get('statuses/show/' + tweetId, {
@@ -240,6 +166,93 @@ client.on('message', message => {
 				}
 			});
 		}
+		if (message.content.toLowerCase().includes('.jpg') || message.content.toLowerCase().includes('.jpeg')) {
+		var request = require('request').defaults({
+				encoding: null
+			});
+		request.get(encodeURI(message.content.substring(3).replace(/ /gm, '')), function (err, res, body) {
+			var exifString = ':frame_photo: EXIF data:\n';
+			try {
+				new ExifImage({
+					image: body
+				}, function (error, exifData) {
+					if (error)
+						message.channel.send('Error: ' + error.message);
+					else {
+						var propValue;
+						for (var propName in exifData.image) {
+							propValue = exifData.image[propName];
+							if (typeof propValue !== "undefined") {
+								var field = propName.toString() + ": " + propValue.toString() + "\n";
+								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
+									exifString += field;
+							}
+						}
+						for (var propName in exifData.thumbnail) {
+							propValue = exifData.image[propName];
+							if (typeof propValue !== "undefined") {
+								var field = propName.toString() + ": " + propValue.toString() + "\n";
+								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
+									exifString += field;
+							}
+						}
+						for (var propName in exifData.exif) {
+							propValue = exifData.exif[propName];
+							if (typeof propValue !== "undefined") {
+								var field = propName.toString() + ": " + propValue.toString() + "\n";
+								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
+									exifString += field;
+							}
+						}
+						for (var propName in exifData.gps) {
+							propValue = exifData.gps[propName];
+							if (typeof propValue !== "undefined") {
+								var field = propName.toString() + ": " + propValue.toString() + "\n";
+
+								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
+									exifString += field;
+							}
+						}
+						for (var propName in exifData.interoperability) {
+							propValue = exifData.interoperability[propName];
+							if (typeof propValue !== "undefined") {
+								var field = propName.toString() + ": " + propValue.toString() + "\n";
+
+								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
+									exifString += field;
+							}
+						}
+						if (exifString.length > 2000) {
+							message.channel.send(exifString.substring(0, 2000));
+						} else {
+							message.channel.send(exifString, {
+								embed: {
+									image: {
+										url: encodeURI(message.content.substring(3).replace(/ /gm, ''))
+									}
+								}
+							});
+						}
+					}
+				});
+
+			} catch (error) {
+				message.channel.send('Error: ' + error.message);
+			}
+		});
+	}
+	if (message.content.includes('watch?v=')){
+		var videocode = message.content.substring(message.content.indexOf('v=')+2);
+		console.log(videocode);
+		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
+		message.channel.send(attachment);
+	}
+	if (message.content.includes('youtu.be/')){
+		var videocode = message.content.substring(message.content.indexOf('.be/')+4);
+		console.log(videocode);
+		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
+		message.channel.send(attachment);
+	}
 	}
 	if (message.content.substring(0, 5) === '!list' || message.content.substring(0, 5) === '!todo') {
 		var args = message.content.substring(5).split('\n'); //we split by line breaks
@@ -507,18 +520,7 @@ if (cursor === texts[t].length){
 		
 		}
 	}
-	if (message.content.startsWith('!thumbnail') && message.content.includes('watch?v=')){
-		var videocode = message.content.substring(message.content.indexOf('v=')+2);
-		console.log(videocode);
-		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
-		message.channel.send(attachment);
-	}
-	if (message.content.startsWith('!thumbnail') && message.content.includes('youtu.be/')){
-		var videocode = message.content.substring(message.content.indexOf('.be/')+4);
-		console.log(videocode);
-		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
-		message.channel.send(attachment);
-	}
+	
 	if (message.content.substring(0, 6) === '!time ') {
 		xtra.cityTime(message);
 	}
