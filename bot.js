@@ -610,13 +610,12 @@ if (cursor === texts[t].length){
 		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000) + 2).toString() + '#summary');
 	}
 	if (message.content.substring(0, 9) === '!commands') {
-		message.channel.send('**Font Commands**\nTo find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
-			'\nfont!gamename your text here - creates image of your text in the game\'s font\nb(u/d)(two digits)!game your text here to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size. also works for speech bubbles.\n' +
-			'\n**Google Maps Commands**\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n!time cityname - gets local time of that city\n' +
-			'\n**Giant Bomb Wiki Commands**\n!gb game/character/object/concept/person/franchise/object/company, followed by info/characters/companies/concepts/locations/objects/people/games/franchises/similar/friends/enemies, then finally name of thing - returns the info searched for relating to a game/character/company/etc.\n' +
-			'\n**Other Commands**\n!full or !pics or !album followed by twitter/imgur/tumblr link - displays full photo album of tweet or imgur/tumblr post\n' +
-			'🍅 movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\n!hex#hexCode - displays image of a color pertaining to the hex code\n!exif followed by link to jpg image - prints out exif data of image\n' +
-			'');
+		message.channel.send({embed : {fields: [{name: 'Font Commands', value: 'To find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
+		'\nfont!gamename your text here - creates image of your text in the game\'s font\nb(u/d)(two digits)!game your text here to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size. also works for speech bubbles.\n'},
+		{name: 'Google Maps Commands', value: '!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n!time cityname - gets local time of that city\n'},
+		{name:	'Giant Bomb Wiki Commands', value: '!gb game/character/company/etc. info/characters/concepts/locations/people/etc. name of thing - returns the info searched for relating to a game/character/company/etc.'},
+		{name: '📷 Commands (📷 followed by)', value'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'},
+		{name: 'Other Commands', value: '🍅 movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\n!hex#hexCode - displays image of a color pertaining to the hex code'}]}});
 	}
 
 });
