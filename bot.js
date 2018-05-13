@@ -513,7 +513,8 @@ files: [{
 		{name: 'Google Maps Commands', value: '!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n!time cityname - gets local time of that city\n'},
 		{name:	'Giant Bomb Wiki Commands', value: '!gb game/character/company/etc. info/characters/concepts/locations/people/etc. name of thing - returns the info searched for relating to a game/character/company/etc.'},
 		{name: '📷 Commands (📷 followed by)', value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'},
-		{name: 'Other Commands', value: '🍅 movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\n!hex#hexCode - displays image of a color pertaining to the hex code'}]}});
+		{name: 'Other Commands', value: '🍅 movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\n!hex#hexCode - displays image of a color pertaining to the hex code'+
+		'\n!numpad command - turns fighting game numpad notation into emoji\n!list or !todo - separates a discord message into a list based on either line breaks or commas'}]}});
 	}
 });
 
