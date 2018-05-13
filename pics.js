@@ -2,6 +2,7 @@ var Twitter = require('twitter');
 var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
+const Discord = require('discord.js');
 var tumblr = new Tumblr({
 consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 });
