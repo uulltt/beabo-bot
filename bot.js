@@ -285,16 +285,27 @@ client.on('message', message => {
         if (!error) {
 			console.log(data);
             if (message.content.includes('coming soon')){
-const RTembed = new Discord.RichEmbed().setTitle('Coming Soon').setColor(0xa81717);
-console.log(RTembed);
+const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Coming Soon').setColor(0xa81717);
 for(var i = 0; i < data.comingSoon.length; i++){
-	console.log(data.comingSoon[i]);
-	RTembed.addField(data.comingSoon[i].title, data.comingSoon[i].date);
-	console.log(RTembed);
+	RTembed.addField(data.comingSoon[i].title, data.comingSoon[i].date + '; ' + data.comingSoon[i].meter);
 }
 console.log(RTembed);
 message.channel.send({embed: RTembed});
-			}			
+			}
+if (message.content.includes('opening')){
+const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Opening This Week').setColor(0xa81717);
+for(var i = 0; i < data.openingThisWeek.length; i++){
+	RTembed.addField(data.openingThisWeek[i].title, data.openingThisWeek[i].date + '; ' + data.openingThisWeek[i].meter);
+}
+message.channel.send({embed: RTembed});
+			}
+if (message.content.includes('box office')){
+const RTembed = new Discord.RichEmbed().setTitle(':film_frames: Box Office').setColor(0xa81717);
+for(var i = 0; i < data.boxOffice.length; i++){
+	RTembed.addField(data.boxOffice[i].title, data.boxOffice[i].gross + '; ' + data.boxOffice[i].meter);
+}
+message.channel.send({embed: RTembed});
+			}				
         }
         else {
             message.channel.send('Some error occured.');
