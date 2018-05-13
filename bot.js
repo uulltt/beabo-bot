@@ -598,12 +598,10 @@ if (cursor === texts[t].length){
 		message.channel.send('**Font Commands**\nTo find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
 			'\nfont!gamename your text here - creates image of your text in the game\'s font\nb(u/d)(two digits)!game your text here to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size. also works for speech bubbles.\n' +
 			'\n**Google Maps Commands**\n!dir \"origin\" \"destination\" - prints directions from origin to destination\n!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n!time cityname - gets local time of that city\n' +
-			'\n**Giant Bomb Wiki Commands**\n!gb game info/characters/concepts/franchises/locations/objects/people/similar gamename - returns the info/characters/etc. of that game from the Giant Bomb wiki\n' +
-			'!gb company info/characters/concepts/locations/objects/people/developed/published companyname - returns the info/characterc/concepts/etc. from a given company\n!gb concept/person/franchise/object info/characters/companies/concepts/locations/objects/people/games/franchises(concept/person only) name - returns that info but for a concept, person, or franchise\n' +
-			'!gb character info/concepts/locations/objects/people/franchises/games/friends/enemies charactername - returns the given parameter for a video game character\n' +
+			'\n**Giant Bomb Wiki Commands**\n!gb concept/person/franchise/object/game/character/company info/characters/companies/concepts/locations/objects/people/games/franchises/similar/friends/enemies name of thing - returns the info searched for relating to a game/character/company/etc.\n' +
 			'\n**Other Commands**\n!full or !pics or !album followed by twitter/imgur/tumblr link - displays full photo album of tweet or imgur/tumblr post\n' +
-			'🍅 movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie\n!hex#hexCode - displays image of a color pertaining to the hex cde\n!exif followed by link to jpg image - prints out exif data of image\n' +
-			'!list or !todo - splits discord message into a to-do list\n!ZiV-id (number) - gets arcade on Zenius-i-Vanisher with that number\n!ZiV-random - gets a random arcade on Zenius-i-Vanisher');
+			'🍅 movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\n!hex#hexCode - displays image of a color pertaining to the hex code\n*/!exif followed by link to jpg image - prints out exif data of image\n' +
+			'');
 	}
 
 });
