@@ -341,7 +341,7 @@ files: [{
 			texts[t] = ' ' + texts[t];
 			texts[t] = texts[t].replace(/\n/gm, '');
 			var cursor = 0;
-for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./metalslug/metalslug_' + (metalslugString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
+for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./metalslug/metalslug_' + (puyoString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
 if (cursor === texts[t].length){
 	concat({
 images: paths,
@@ -367,7 +367,7 @@ files: [{
 			texts[t] = ' ' + texts[t];
 			texts[t] = texts[t].replace(/\n/gm, '');
 			var cursor = 0;
-for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./mk2/mk2_' + (metalslugString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
+for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./mk2/mk2_' + (mk2String.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
 if (cursor === texts[t].length){
 	concat({
 images: paths,
