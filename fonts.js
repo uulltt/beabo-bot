@@ -308,7 +308,7 @@ files: [{
 	}
 	
 	if (new RegExp(/[Ff]ont!mario64\W/gm).test(message.content.substring(0, 13)) && message.content.length > 13){
-		var text = message.content.substring(13).toLowerCase().replace(/[^a-z0-9\.!\n\?'", %&;:⭐]/gm, '') + ' ';
+		var text = message.content.substring(13).toLowerCase().replace(/[^a-z0-9\.!\n\?'", %&⭐]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		for(var t = 0; t < Math.min(texts.length, 5); t++){
 			var paths = [];
