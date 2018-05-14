@@ -1,29 +1,14 @@
 
 const Discord = require('discord.js');
-var Twitter = require('twitter');
 var direction = require('google-maps-direction');
 const client = new Discord.Client();
 var googlePlaces = require('googleplaces');
 var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
-var imgur = require('imgur');
-var ExifImage = require('exif').ExifImage;
-var Tumblr = require('tumblrwks');
 var fs = require('fs');
 var fonts = require('./fonts.js');
 var pics = require('./pics.js');
-var concat = require('concat-image');
 const rm = require('rotten-movies');
 const giantbomb = require('./gb.js');
-var tumblr = new Tumblr({
-		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
-	});
-
-var tweeter = new Twitter({
-		consumer_key: process.env.TWITTER_CONSUMER_KEY,
-		consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-		access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-		access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-	});
 
 client.on('ready', () => {
 	console.log('I am ready!');

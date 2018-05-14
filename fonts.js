@@ -15,11 +15,13 @@ function bubbleText (game, dir, pos, style, size, text) {
 	}
 	return 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-'+ style +'/dbl-'+ size +'/x-' + encodeURI(text  + '\u200B');
 }
-
-const crashfontString = 'abcdefghijklmnopqrstuvwxyz0123456789.:! ';
-const metalslugString = ' ?!abcdefghijklmnopqrstuvwxyz0123456789';
-const mario64String = '1234567890abcdefghijklmnopqrstuvwxyz ?\'\".,%&!⭐';
-const wariowareString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ?+-=#✏$^<%&⭐>/abcdefghijklmnopqrstuvwxyz,.:;\'\"()!';
+const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+const crashfontString = alphabet + '0123456789.:! ';
+const metalslugString = ' ?!'+alphabet+'0123456789';
+const mario64String = '1234567890'+alphabet+' ?\'\".,%&!⭐';
+const wariowareString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ?+-=#✏$^<%&⭐>/'+alphabet+',.:;\'\"()!';
+const puyoString = '0123456789'+alphabet+'. ';
+const mk2String = '**1234567890 -\''+alphabet+'!.,';
 
 function font (message) {
 	var arg = ' ';
@@ -188,7 +190,7 @@ function bubble (message) {
 }
 
 module.exports = (message) => {
-	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.content.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash|wario)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
+	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))&& !(new RegExp(/[Ff]ont!(mk2)\W/gm).test(message.content.substring(0, 9))) && !(new RegExp(/[Ff]ont!(puyo)\W/gm).test(message.content.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.content.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash|wario)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
 	var urls = font(message.content);
 	for (var i = 0; i < Math.min(urls.length, 5); i++) {
 		if (urls[i].length > 0)
@@ -349,6 +351,59 @@ margin: 0 // optional, in px, defaults to 10px
 files: [{
 	attachment: canvas.toBuffer(),
 	name: 'metalslug.png'
+}]
+});
+});	
+}
+		
+		}
+	}
+		if (new RegExp(/[Ff]ont!mk2\W/gm).test(message.content.substring(0, 9)) && message.content.length > 9){
+		var text = message.content.substring(8).toLowerCase().replace(/[^a-z0-9\-\.,'!\n ]/gm, '') + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		for(var t = 0; t < Math.min(texts.length, 5); t++){
+			var paths = [];
+			
+			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace(/\n/gm, '');
+			var cursor = 0;
+for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./mk2/mk2_' + (metalslugString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
+if (cursor === texts[t].length){
+	concat({
+images: paths,
+margin: 0 // optional, in px, defaults to 10px
+}, function(err, canvas) {
+		message.channel.send({
+files: [{
+	attachment: canvas.toBuffer(),
+	name: 'mk2.png'
+}]
+});
+});	
+}
+		
+		}
+	}
+	
+	if (new RegExp(/[Ff]ont!puyo\W/gm).test(message.content.substring(0, 10)) && message.content.length > 10){
+		var text = message.content.substring(8).toLowerCase().replace(/[^a-z0-9\.\n ]/gm, '') + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		for(var t = 0; t < Math.min(texts.length, 5); t++){
+			var paths = [];
+			
+			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace(/\n/gm, '');
+			var cursor = 0;
+for(;cursor < texts[t].length;paths[cursor] = fs.readFileSync('./puyo/puyo_' + (metalslugString.indexOf(texts[t].charAt(cursor))+1).toString() + '.png'), cursor++);
+if (cursor === texts[t].length){
+	concat({
+images: paths,
+margin: 0 // optional, in px, defaults to 10px
+}, function(err, canvas) {
+		message.channel.send({
+files: [{
+	attachment: canvas.toBuffer(),
+	name: 'puyo.png'
 }]
 });
 });	
