@@ -13,7 +13,7 @@ const giantbomb = require('./gb.js');
 client.on('ready', () => {
 	console.log('I am ready!');
 	client.user.setUsername("Beabo");
-	client.user.setActivity('type b!commands for help', {
+	client.user.setActivity('type b!help for commands', {
 		type: 'WATCHING'
 	});
 });
@@ -229,8 +229,8 @@ client.on('message', message => {
 		if (beaboMessage.substring(0, 11) === '!ZiV-random') {
 			message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000) + 2).toString() + '#summary');
 		}
-		if (beaboMessage.substring(0, 9) === '!commands') {
-			message.channel.send({
+		if (beaboMessage.substring(0, 9) === '!commands' || beaboMessage.substring(0, 5) === '!help') {
+			message.channel.send('http://uulltt.tumblr.com/beabo', {
 				embed: {
 					fields: [{
 							name: 'Font Commands',
