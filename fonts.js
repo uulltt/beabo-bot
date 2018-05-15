@@ -17,9 +17,9 @@ function bubbleText (game, dir, pos, style, size, text) {
 }
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const crashfontString = alphabet + '0123456789.:! ';
-const metalslugString = ' ?!'+alphabet+'0123456789';
+const metalslugString = ' ?!'+alphabet+'0123456789.';
 const mario64String = '1234567890'+alphabet+' ?\'\".,%&!⭐:';
-const wariowareString = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 ?+-=#✏$^<%&⭐>/'+alphabet+',.:;\'\"()!';
+const wariowareString = alphabet.toUpperCase() + '0123456789 ?+-=#✏$^<%&⭐>/'+alphabet+',.:;\'\"()!';
 const puyoString = '0123456789'+alphabet+'. ';
 const mk2String = '**1234567890 -\''+alphabet+'!.,';
 
@@ -333,7 +333,7 @@ files: [{
 		}
 	}
 	if (new RegExp(/[Ff]ont!ms\W/gm).test(message.cleanContent.substring(0, 8)) && message.cleanContent.length > 8){
-		var text = message.cleanContent.substring(8).toLowerCase().replace(/[^a-z0-9\?!\n ]/gm, '') + ' ';
+		var text = message.cleanContent.substring(8).toLowerCase().replace(/[^a-z0-9\?!\n\. ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		for(var t = 0; t < Math.min(texts.length, 5); t++){
 			var paths = [];
