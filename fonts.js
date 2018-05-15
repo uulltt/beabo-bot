@@ -30,10 +30,19 @@ function font (message) {
 	var size = '2';
 	var args = [];
 	var urls = [];
-	if (new RegExp(/[a-z0-9]{2}\W/gm).test(message.substring(5, 8)) || new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.substring(5, 10))) {
+	
+	/*if (new RegExp(/[a-z0-9]{2}\W/gm).test(message.substring(5, 8)) || new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.substring(5, 10))) {
 		arg = message.substring(8) + '\u200B';
 		game = message.substring(5, 7);
 		if (new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.substring(5, 10))) {
+			arg = arg.substring(2);
+			style = message.charAt(7);
+			size = message.charAt(8);
+		}
+	} */if (new RegExp("[a-z0-9]{2}\W", "gm").test(message.substring(5, 8)) || new RegExp("[a-z0-9]{2}[0-9]{2}\W","gm").test(message.substring(5, 10))) {
+		arg = message.substring(8) + '\u200B';
+		game = message.substring(5, 7);
+		if (new RegExp("[a-z0-9]{2}[0-9]{2}\W","gm").test(message.substring(5, 10))) {
 			arg = arg.substring(2);
 			style = message.charAt(7);
 			size = message.charAt(8);
