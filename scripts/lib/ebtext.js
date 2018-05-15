@@ -139,12 +139,12 @@ module.exports = {
         delay: this.print_delay
       };
       this.create_encoder();
-      this.encoder.on('end', this.render_callback);
+      this.encoder.on('end', message.channel.send('hello'));
     },
 
     create_encoder: function() {
       this.encoder = new GIF(this.dialog_width, this.dialog_height); 
-	 //file = require('fs').createWriteStream('img.gif');
+	 file = require('fs').createWriteStream('img.gif');
 	  this.encoder.pipe(file);
 	  this.encoder.writeHeader();
 console.log("creating encoder");
