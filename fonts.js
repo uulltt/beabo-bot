@@ -32,6 +32,7 @@ function font (message) {
 	var urls = [];
 	for(var i = 0; i < 5; i++){
 	if (new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}\\W', 'gm').test(message.substring(5, 8)) || new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}[0-9]{2}\\W','gm').test(message.substring(5, 10))) {
+		console.log('oh!');
 		arg = message.substring(8+i) + '\u200B';
 		game = message.substring(5, 7+i);
 		if (new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}[0-9]{2}\\W','gm').test(message.substring(5, 10))) {
@@ -39,6 +40,7 @@ function font (message) {
 			style = message.charAt(7+i);
 			size = message.charAt(8+i);
 		}
+		break;
 	}
 	}/*	else if (new RegExp(/[A-Za-z0-9]{3}\W/gm).test(message.substring(5, 9)) || new RegExp(/[A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.substring(5, 11))) {
 		arg = message.substring(9) + '\u200B';
