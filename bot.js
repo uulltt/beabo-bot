@@ -251,7 +251,6 @@ client.on('message', message => {
 			const flavorstring = 'nmsbp'
 				var speed = speeds[speedstring.indexOf(beaboMessage.charAt(3))];
 			var flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(4))];
-			console.log(speed + ' ' + flavor);
 						var text = message.cleanContent.substring(7);
 
 						concat({

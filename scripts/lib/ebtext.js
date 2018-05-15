@@ -298,7 +298,8 @@ module.exports = {
 
       // Get the last three lines of the text state, that's all we're going to draw in this frame
       var lines = this.text_state.lines.slice(-3);
-
+	  console.log(this.get_context());
+	  console.log(this.asset('dialog'));
       // Draw the text box
       this.get_context().drawImage(
         this.asset('dialog'),
@@ -414,6 +415,7 @@ module.exports = {
    preload_image: function(url) {
       var image = new Image();
       image.src = url;
+	  console.log(image);
       return image;
     },
 
