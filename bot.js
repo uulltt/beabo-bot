@@ -240,7 +240,8 @@ client.on('message', message => {
 		}
 		if (beaboMessage.toLowerCase().substring(0, 9) === '!settime ' && beaboMessage.length > 9) {
 			var city = beaboMessage.substring(9);
-			herokupg.query('INSERT localtimes ( user_id, city_name) VALUES (\''+message.author.id+'\',\''+city+'\')ON CONFLICT (user_id) DO UPDATE city_name = \''+city+'\';', (err, res) => {
+			console.log('INSERT INTO localtimes( user_id, city_name) VALUES (\''+message.author.id+'\',\''+city+'\')ON CONFLICT (user_id) DO UPDATE city_name = \''+city+'\';');
+			herokupg.query('INSERT INTO localtimes( user_id, city_name) VALUES (\''+message.author.id+'\',\''+city+'\')ON CONFLICT (user_id) DO UPDATE city_name = \''+city+'\';', (err, res) => {
 				if (!err)
 				console.log(res);
 			else
