@@ -141,7 +141,7 @@ module.exports = {
     },
 
     create_encoder: function() {
-      this.encoder = new gifStuff.GIF({
+      this.encoder = new gifs.GIF({
         workers: this.encoder_workers,
         quality: this.encoder_quality,
         height: this.dialog_height,
