@@ -1,5 +1,7 @@
 var fs = require('fs');
 var GIF = require('gif-encoder');
+var Canvas = require('canvas');
+var Image = Canvas.Image;
 module.exports = {
 
     // Encoder configuration
