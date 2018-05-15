@@ -240,10 +240,12 @@ client.on('message', message => {
 		}
 		if (beaboMessage.toLowerCase().substring(0, 9) === '!settime ' && beaboMessage.length > 9) {
 			var city = beaboMessage.substring(9);
-			console.log('INSERT INTO localtimes( user_id, city_name) VALUES (\''+message.author.id+'\',\''+city+'\')ON CONFLICT (user_id) DO UPDATE city_name = \''+city+'\';');
-			herokupg.query('INSERT INTO localtimes( user_id, city_name) VALUES (\''+message.author.id+'\',\''+city+'\')ON CONFLICT (user_id) DO UPDATE city_name = \''+city+'\';', (err, res) => {
-				if (!err)
+			console.log('INSERT INTO localtimes(user_id, city_name) VALUES (\''+message.author.id+'\',\''+city+'\')ON CONFLICT (user_id) DO UPDATE SET city_name = EXCLUDED.city_name;');
+			herokupg.query('INSERT INTO localtimes(user_id, city_name) VALUES (\''+message.author.id+'\',\''+city+'\')ON CONFLICT (user_id) DO UPDATE SET city_name = EXCLUDED.city_name;', (err, res) => {
+				if (!err){
 				console.log(res);
+				message.channel.send('Beabo bee! (Local time set for <@' + message.author.id + '>)');
+				}
 			else
 				console.log(err);
 });
