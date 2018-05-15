@@ -307,8 +307,8 @@ client.on('message', message => {
 });
 		}
 		
-		if (beaboMessage.toLowerCase().substring(0, 9) === '!gettime ' && beaboMessage.length > 9) {
-			var id = beaboMessage.substring(9).replace(/[^0-9]/gm, '');
+		if (beaboMessage.toLowerCase().substring(0, 11) === '!gettime <@' && beaboMessage.length > 9) {
+			var id = beaboMessage.substring(11).replace(/[^0-9]/gm, '');
 			herokupg.query('SELECT city_name FROM localtimes WHERE user_id = \'' + id + '\';', (err, res) => {
 				if (!err){
 				console.log(res);
