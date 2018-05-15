@@ -146,12 +146,17 @@ function movies(message, content) {
 		}
 	}
 }
-
+const steamlink = 'https://store.steampowered.com/app/';
 const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', '598640'];
+const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 client.on('message', message => {
 	if (message.isMentioned(client.user)) {
 		if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vidya)?( )?((ga([me]{2}))|vidya)(\?)?/gm)) {
-			message.channel.send('https://store.steampowered.com/app/' + steamgames[(Math.floor(Math.random() * 7))] + '/');
+			if (message.content.toLowerCase().includes("steam")){
+			message.channel.send(favegames[(Math.floor(Math.random() * 7))] + '/');
+			} else {
+				message.channel.send(favegames[(Math.floor(Math.random() * 8))] + '/');
+			}
 		} else {
 			message.channel.send(beeb());
 		}
@@ -215,6 +220,9 @@ client.on('message', message => {
 		}
 		if (beaboMessage.substring(0, 4) === '!gb ') {
 			giantbomb(message, beaboMessage);
+		}
+		if (beaboMessage.substring(0, 5) === '!user') {
+			console.log(message.user);
 		}
 		if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
 			var command = '**' + beaboMessage.substring(8) + '**';
