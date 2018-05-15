@@ -30,26 +30,17 @@ function font (message) {
 	var size = '2';
 	var args = [];
 	var urls = [];
-	console.log(new RegExp(/[a-z0-9]{2}\W/gm));
-	console.log(new RegExp('[a-z0-9]{2}\\W', 'gm'));
-	/*if (new RegExp(/[a-z0-9]{2}\W/gm).test(message.substring(5, 8)) || new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.substring(5, 10))) {
-		arg = message.substring(8) + '\u200B';
-		game = message.substring(5, 7);
-		if (new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.substring(5, 10))) {
+	for(var i = 0; i < 5; i++){
+	if (new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}\\W', 'gm').test(message.substring(5, 8)) || new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}[0-9]{2}\\W','gm').test(message.substring(5, 10))) {
+		arg = message.substring(8+i) + '\u200B';
+		game = message.substring(5, 7+i);
+		if (new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}[0-9]{2}\\W','gm').test(message.substring(5, 10))) {
 			arg = arg.substring(2);
-			style = message.charAt(7);
-			size = message.charAt(8);
+			style = message.charAt(7+i);
+			size = message.charAt(8+i);
 		}
-	} */if (new RegExp('[a-z0-9]{2}\\W', 'gm').test(message.substring(5, 8)) || new RegExp('[a-z0-9]{2}[0-9]{2}\\W','gm').test(message.substring(5, 10))) {
-		console.log("oh!");
-		arg = message.substring(8) + '\u200B';
-		game = message.substring(5, 7);
-		if (new RegExp('[a-z0-9]{2}[0-9]{2}\\W','gm').test(message.substring(5, 10))) {
-			arg = arg.substring(2);
-			style = message.charAt(7);
-			size = message.charAt(8);
-		}
-	} else if (new RegExp(/[A-Za-z0-9]{3}\W/gm).test(message.substring(5, 9)) || new RegExp(/[A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.substring(5, 11))) {
+	}
+	}/*	else if (new RegExp(/[A-Za-z0-9]{3}\W/gm).test(message.substring(5, 9)) || new RegExp(/[A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.substring(5, 11))) {
 		arg = message.substring(9) + '\u200B';
 		game = message.substring(5, 8);
 		if (new RegExp(/[A-Za-z0-9]{3}[0-9]{2}\W/gm).test(message.substring(5, 11))){
@@ -89,7 +80,7 @@ function font (message) {
 			style = message.charAt(2);
 			size = message.charAt(13);
 		}
-	}
+	}*/
 	if (game === 'kof2k')
 	game = 'KoF2k';
 	if (game.substring(0, 5) === 'kof2k')
