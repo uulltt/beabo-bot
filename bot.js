@@ -263,7 +263,7 @@ client.on('message', message => {
                     Text: text,
                     on_render: function(blob) {
 						console.log("holy fuck it worked?");
-                        console.log(blob);
+                        console.log(blob.toBuffer());
                     }
                 });
 							
