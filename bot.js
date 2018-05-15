@@ -222,7 +222,7 @@ client.on('message', message => {
 			giantbomb(message, beaboMessage);
 		}
 		if (beaboMessage.substring(0, 5) === '!user') {
-			console.log(message.user);
+			console.log(beaboMessage);
 		}
 		if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
 			var command = '**' + beaboMessage.substring(8) + '**';
