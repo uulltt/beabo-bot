@@ -9,6 +9,8 @@ var fonts = require('./fonts.js');
 var pics = require('./pics.js');
 const movies = require('./rotten.js');
 const giantbomb = require('./gb.js');
+var Canvas = require('canvas');
+var Image = Canvas.Image;
 var EarthBoundText = require('./scripts/lib/ebtext.js');
 const {
 	Client
@@ -253,22 +255,18 @@ client.on('message', message => {
 			var flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(4))];
 						var text = message.cleanContent.substring(7);
 
-						concat({
-							images: [fs.readFileSync('./eb-canvas.png')],
-							margin: 0 // optional, in px, defaults to 10px
-						}, function (err, canvas) {
-							console.log(canvas.toBuffer());
-							EarthBoundText.preload_assets();
+						EarthBoundText.preload_assets();
 							EarthBoundText.render({
-                    Canvas: canvas,
+                    Canvas: new Canvas(608, 256);
                     Flavor: flavor,
                     Speed: speed,
                     Text: text,
                     on_render: function(blob) {
+						console.log("holy fuck it worked?");
                         console.log(blob);
-						console.log(canvas.toBuffer());
                     }
                 });
+							
 							/*message.channel.send({
 								files: [{
 										attachment: canvas.toBuffer(),
@@ -276,7 +274,7 @@ client.on('message', message => {
 									}
 								]
 							});*/
-						});
+						
 
 			}
 
