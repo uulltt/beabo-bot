@@ -30,7 +30,8 @@ function font (message) {
 	var size = '2';
 	var args = [];
 	var urls = [];
-	
+	console.log(new RegExp(/[a-z0-9]{2}\W/gm));
+	console.log(new RegExp('[a-z0-9]{2}\W', 'gm'));
 	/*if (new RegExp(/[a-z0-9]{2}\W/gm).test(message.substring(5, 8)) || new RegExp(/[a-z0-9]{2}[0-9]{2}\W/gm).test(message.substring(5, 10))) {
 		arg = message.substring(8) + '\u200B';
 		game = message.substring(5, 7);
