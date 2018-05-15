@@ -418,12 +418,12 @@ module.exports = {
     preload_assets: function() {
       for (var i in this.flavors) {
         this.flavor_assets[this.flavors[i]] = {
-          arrowsm:  fs.readFileSync('assets/flavors/' + this.flavors[i] + '/arrowsm.png'),
-          arrowbig: fs.readFileSync('assets/flavors/' + this.flavors[i] + '/arrowbig.png'),
-          dialog:   fs.readFileSync('assets/flavors/' + this.flavors[i] + '/dialog.png'),
+          arrowsm:  preload_image('assets/flavors/' + this.flavors[i] + '/arrowsm.png'),
+          arrowbig: preload_image('assets/flavors/' + this.flavors[i] + '/arrowbig.png'),
+          dialog:   preload_image('assets/flavors/' + this.flavors[i] + '/dialog.png'),
         };
 
-        this.flavor_assets[this.flavors[i]].glyphs = (this.flavors[i] == 'plain') ? fs.readFileSync('assets/text/plain.png') : fs.readFileSync('assets/text/flavored.png');
+        this.flavor_assets[this.flavors[i]].glyphs = (this.flavors[i] == 'plain') ? preload_image('assets/text/plain.png') : preload_image('assets/text/flavored.png');
       }
     },
 };
