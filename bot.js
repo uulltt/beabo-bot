@@ -251,19 +251,21 @@ client.on('message', message => {
 				const speeds = [15, 33, 50];
 			const flavors = ['plain', 'mint', 'strawberry', 'banana', 'peanut'];
 			const flavorstring = 'nmsbp'
-				var speed = speeds[speedstring.indexOf(beaboMessage.charAt(3))];
-			var flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(4))];
-						var text = message.cleanContent.substring(7);
-
+				var Speed = speeds[speedstring.indexOf(beaboMessage.charAt(3))];
+			var Flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(4))];
+						var Text = message.cleanContent.substring(7);
+var textCanvas = new Canvas(608, 256);
+console.log(textCanvas.toBuffer());
 						EarthBoundText.preload_assets();
 							EarthBoundText.render({
-                    Canvas: new Canvas(608, 256),
-                    Flavor: flavor,
-                    Speed: speed,
-                    Text: text,
+                    canvas: textCanvas,
+                    flavor: Flavor,
+                    speed: Speed,
+                    text: Text,
                     on_render: function(blob) {
 						console.log("holy fuck it worked?");
-                        console.log(blob.toBuffer());
+                        console.log(blob);
+						console.log(textCanvas.toBuffer());
                     }
                 });
 							
