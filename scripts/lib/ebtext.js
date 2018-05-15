@@ -1,5 +1,5 @@
 var fs = require('fs');
-import GIF from 'gif.js.optimized';
+var GIF = require('gif.js.optimized').GIF;
 module.exports = {
 
     // Encoder configuration
