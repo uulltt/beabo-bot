@@ -139,7 +139,7 @@ module.exports = {
         delay: this.print_delay
       };
       this.create_encoder();
-      this.encoder.on('end', message.channel.send('hello'));
+      this.encoder.on('end', this.render_callback);
     },
 
     create_encoder: function() {
@@ -165,8 +165,10 @@ console.log(this.encoder);
       this.initialize(opts);
       this.preprocess_text();
       this.render_dialog();
+	  console.log(file.toBuffer());
       this.encoder.finish();
 	  console.log(this.encoder);
+	  console.log(file.toBuffer());
     },
 
     preprocess_text_simple: function() {
