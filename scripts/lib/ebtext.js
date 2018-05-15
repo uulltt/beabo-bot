@@ -1,4 +1,5 @@
 var fs = require('fs');
+var gifs = require('../3rdparty/gif.js/dist/gif.js');
 module.exports = {
 
     // Encoder configuration
@@ -140,7 +141,7 @@ module.exports = {
     },
 
     create_encoder: function() {
-      this.encoder = new GIF({
+      this.encoder = new gifStuff.GIF({
         workers: this.encoder_workers,
         quality: this.encoder_quality,
         height: this.dialog_height,
