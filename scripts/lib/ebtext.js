@@ -125,11 +125,11 @@ module.exports = {
 
     initialize: function(opts) {
       this.context = false; // So we re-fetch the context and keep smoothing disabled
-      this.print_delay = opts.speed || this.print_delay;
-      this.input_text = opts.text || this.input_text;
-      this.selected_flavor = opts.flavor || this.selected_flavor;
+      this.print_delay = opts.Speed;
+      this.input_text = opts.Text;
+      this.selected_flavor = opts.Flavor;
       this.render_callback = opts.on_render || this.render_callback;
-      this.canvas = opts.canvas || this.canvas;
+      this.canvas = opts.Canvas;
       this.canvas.width = this.dialog_width;
       this.canvas.height = this.dialog_height;
       this.text_state = {
