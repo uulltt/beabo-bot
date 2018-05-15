@@ -1,5 +1,5 @@
 var fs = require('fs');
-var gifs = require('scripts/3rdparty/gif.js/dist/gif.js');
+var gifs = require('gif.js').require('./dist/gif.js');
 module.exports = {
 
     // Encoder configuration
@@ -146,7 +146,7 @@ module.exports = {
         quality: this.encoder_quality,
         height: this.dialog_height,
         width: this.dialog_width,
-        workerScript: 'scripts/3rdparty/gif.js/dist/gif.worker.js',
+        workerScript: require('gif.js').require('./dist/gif.worker.js'),
         background: this.encoder_background,
         transparent: this.encoder_transparent
       });  
