@@ -78,6 +78,27 @@ function cityTime (message) {
 
 }
 
+function localcityTime (message, city) {
+	const citydata = cityTimezones.lookupViaCity(city);
+	try {
+		var lati = citydata[city === 'London' ? 1 : 0].lat;
+		var lngi = citydata[city === 'London' ? 1 : 0].lng;
+		var timestamp = Date.now() / 1000;
+		timezone.data(lati, lngi, timestamp, function (err, tz) {
+			if (!err) {
+				var d = new Date(tz.local_timestamp * 1000);
+				message.channel.send(d.toDateString() + ' - ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()));
+			} else {
+				message.channel.send(err);
+			}
+
+		});
+	} catch (error) {
+		message.channel.send('Error: ' + error.message);
+	}
+
+}
+
 function getDirections (result) {
 	var dir = '';
 	for (var i = 0; i < result.routes[0].legs[0].steps.length; i++) {
@@ -256,6 +277,7 @@ client.on('message', message => {
 			herokupg.query('SELECT city_name FROM localtimes WHERE user_id = \'' + id + '\';', (err, res) => {
 				if (!err){
 				console.log(res);
+				localcityTime(message, res.rows[0].city_name);
 				}else
 				console.log(err);
 });
