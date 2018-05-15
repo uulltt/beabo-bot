@@ -107,6 +107,36 @@ function getDirections (result) {
 	return dir + 'And you\'re there! :smiley:';
 }
 
+function helpMessage (message) {
+	message.channel.send('http://uulltt.tumblr.com/beabo', {
+				embed: {
+					fields: [{
+							name: 'Font Commands',
+							value: 'To find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
+							'\nfont!gamename your text here - creates image of your text in the game\'s font\nb(u/d)(two digits)!game your text here to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size. also works for speech bubbles.\n'
+							 + 'Custom Fonts: font!crash, font!ms (metal slug), font!mario64, font!wario (warioware), font!puyo (Puyo Puyo), font!mk2 (mortal kombat 2)'
+						}, {
+							name: 'Google Maps Commands',
+							value: 'b!dir \"origin\" \"destination\" - prints directions from origin to destination\nb!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n'
+						}, {
+							name: 'Local Time Commands',
+							value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
+						}, {
+							name: 'Giant Bomb Wiki Commands',
+							value: 'b!gb game/character/company/etc. info/characters/concepts/locations/people/etc. name of thing - returns the info searched for relating to a game/character/company/etc.'
+						}, {
+							name: ':camera: Commands (:camera: or b!pics followed by)',
+							value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'
+						}, {
+							name: 'Other Commands',
+							value: ':tomato: or b!rt movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\nb!hex#hexCode - displays image of a color pertaining to the hex code' +
+							'\nb!numpad command - turns fighting game numpad notation into emoji\nb!list or b!todo your list here - separates a discord message into a list based on either line breaks or commas'
+						}
+					]
+				}
+			});
+}
+
 function movies(message, content) {
 	if ((content.startsWith('🍅 ') || content.startsWith('!rt ')) && content.length > 3) {
 		var com = content.startsWith('🍅 ') ? 3 : 4;
@@ -181,6 +211,10 @@ const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', 
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 client.on('message', message => {
 	if (message.isMentioned(client.user)) {
+		
+		if (message.content.toLowerCase().includes("help")){
+		helpMessage(message);
+		} else {
 		if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vidya)?( )?((ga([me]{2}))|vidya)(\?)?/gm)) {
 			if (message.content.toLowerCase().includes("steam")){
 			message.channel.send(favegames[(Math.floor(Math.random() * 7))] + '/');
@@ -189,6 +223,7 @@ client.on('message', message => {
 			}
 		} else {
 			message.channel.send(beeb());
+		}
 		}
 	}
 	fonts(message);
@@ -297,33 +332,7 @@ client.on('message', message => {
 			message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000) + 2).toString() + '#summary');
 		}
 		if (beaboMessage.substring(0, 9) === '!commands' || beaboMessage.substring(0, 5) === '!help') {
-			message.channel.send('http://uulltt.tumblr.com/beabo', {
-				embed: {
-					fields: [{
-							name: 'Font Commands',
-							value: 'To find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
-							'\nfont!gamename your text here - creates image of your text in the game\'s font\nb(u/d)(two digits)!game your text here to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size. also works for speech bubbles.\n'
-							 + 'Custom Fonts: font!crash, font!ms (metal slug), font!mario64, font!wario (warioware), font!puyo (Puyo Puyo), font!mk2 (mortal kombat 2)'
-						}, {
-							name: 'Google Maps Commands',
-							value: 'b!dir \"origin\" \"destination\" - prints directions from origin to destination\nb!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n'
-						}, {
-							name: 'Local Time Commands',
-							value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
-						}, {
-							name: 'Giant Bomb Wiki Commands',
-							value: 'b!gb game/character/company/etc. info/characters/concepts/locations/people/etc. name of thing - returns the info searched for relating to a game/character/company/etc.'
-						}, {
-							name: ':camera: Commands (:camera: or b!pics followed by)',
-							value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'
-						}, {
-							name: 'Other Commands',
-							value: ':tomato: or b!rt movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\nb!hex#hexCode - displays image of a color pertaining to the hex code' +
-							'\nb!numpad command - turns fighting game numpad notation into emoji\nb!list or b!todo your list here - separates a discord message into a list based on either line breaks or commas'
-						}
-					]
-				}
-			});
+			helpMessage(message);
 		}
 	}
 });
