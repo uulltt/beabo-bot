@@ -10,8 +10,21 @@ var pics = require('./pics.js');
 const rm = require('rotten-movies');
 const giantbomb = require('./gb.js');
 
+const { herokuPG } = require('pg');
+
+const herokupg = new herokuPG({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
+
+
+
+client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
+});
+
 client.on('ready', () => {
 	console.log('I am ready!');
+	herokupg.connect();
 	client.user.setUsername("Beabo");
 	client.user.setActivity('type b!help for commands', {
 		type: 'WATCHING'
@@ -221,8 +234,13 @@ client.on('message', message => {
 		if (beaboMessage.substring(0, 4) === '!gb ') {
 			giantbomb(message, beaboMessage);
 		}
-		if (beaboMessage.substring(0, 5) === '!user' && message.author.id === '122098319123021824') {
-			message.channel.send('HOLY FUCK!');
+		if (beaboMessage.substring(0, 4) === '!pg ' && message.author.id === '122098319123021824') {
+			herokupg.query(beaboMessage.substring(4), (err, res) => {
+				if (!err)
+				console.log(res);
+			else
+				console.log(err);
+}).catch(console.error);
 		}
 		if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
 			var command = '**' + beaboMessage.substring(8) + '**';

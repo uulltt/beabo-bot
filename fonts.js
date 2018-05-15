@@ -190,8 +190,8 @@ function bubble (message) {
 }
 
 module.exports = (message) => {
-	if (new RegExp(/[Ff]ont!/gm).test(message.content.substring(0, 5))&& !(new RegExp(/[Ff]ont!(mk2)\W/gm).test(message.content.substring(0, 9))) && !(new RegExp(/[Ff]ont!(puyo)\W/gm).test(message.content.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.content.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash|wario)\W/gm).test(message.content.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.content.substring(0, 8)))) {
-	var urls = font(message.content);
+	if (new RegExp(/[Ff]ont!/gm).test(message.cleanContent.substring(0, 5))&& !(new RegExp(/[Ff]ont!(mk2)\W/gm).test(message.cleanContent.substring(0, 9))) && !(new RegExp(/[Ff]ont!(puyo)\W/gm).test(message.cleanContent.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash|wario)\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.cleanContent.substring(0, 8)))) {
+	var urls = font(message.cleanContent);
 	for (var i = 0; i < Math.min(urls.length, 5); i++) {
 		if (urls[i].length > 0)
 		message.channel.send({
@@ -203,8 +203,8 @@ url: urls[i]
 		});
 	}
 }
-if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.content.substring(0, 5)) && !(new RegExp(/[Bb][du][0-9][0-9]!kof97\W/gm).test(message.content.substring(0, 11)))) {
-	var urls = bubble(message.content);
+if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.cleanContent.substring(0, 5)) && !(new RegExp(/[Bb][du][0-9][0-9]!kof97\W/gm).test(message.cleanContent.substring(0, 11)))) {
+	var urls = bubble(message.cleanContent);
 	for (var i = 0; i < Math.min(urls.length, 5); i++) {
 		if (urls[i].length > 0)
 		message.channel.send({
@@ -217,8 +217,8 @@ url: urls[i]
 	}
 }
 
-if (new RegExp(/[Ff]ont!kof97\W/gm).test(message.content.substring(0, 11))) {
-	var arg = message.content.substring(11) + '\u200B';
+if (new RegExp(/[Ff]ont!kof97\W/gm).test(message.cleanContent.substring(0, 11))) {
+	var arg = message.cleanContent.substring(11) + '\u200B';
 	var args = arg.match(/.{1,24}\W/gm);
 	for (var i = 0; i < Math.min(args.length, 5); i++) {
 		if (args[i].charAt(args[i].length - 1) === '\n') {
@@ -234,10 +234,10 @@ url: 'https://nfggames.com/system/arcade/arcade.php/y-kof97/z-0/dbl-2/x-' + enco
 		})
 	}
 }
-if (new RegExp(/[Bb][ud][0-9][0-9]!kof97\W/gm).test(message.content.substring(0, 11))) {
-	var arg = message.content.substring(11) + '\u200B';
-	var dir = message.content.charAt(1);
-	var pos = message.content.substring(2, 4);
+if (new RegExp(/[Bb][ud][0-9][0-9]!kof97\W/gm).test(message.cleanContent.substring(0, 11))) {
+	var arg = message.cleanContent.substring(11) + '\u200B';
+	var dir = message.cleanContent.charAt(1);
+	var pos = message.cleanContent.substring(2, 4);
 	var args = arg.match(/.{1,24}\W/gm);
 	for (var i = 0; i < Math.min(args.length, 5); i++) {
 		if (args[i].charAt(args[i].length - 1) === '\n') {
@@ -253,8 +253,8 @@ url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '
 		})
 	}
 }
-if (new RegExp(/[Ff]ont!crash\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-	var text = message.content.substring(11).toLowerCase().replace(/[^a-z0-9\.!\:\n ]/gm, '') + ' ';
+if (new RegExp(/[Ff]ont!crash\W/gm).test(message.cleanContent.substring(0, 11)) && message.cleanContent.length > 11){
+	var text = message.cleanContent.substring(11).toLowerCase().replace(/[^a-z0-9\.!\:\n ]/gm, '') + ' ';
 	var texts = text.match(/.{1,24}\W/gm);
 	for(var t = 0; t < Math.min(texts.length, 5); t++){
 		var paths = [];
@@ -278,8 +278,8 @@ name: 'crash.png'
 	}
 }
 
-if (new RegExp(/[Ff]ont!wario\W/gm).test(message.content.substring(0, 11)) && message.content.length > 11){
-	var text = message.content.substring(11).replace(/[^A-Za-z0-9\.!\:\n\?'",\+\-= %&;:\(\)⭐✏]/gm, '') + ' ';
+if (new RegExp(/[Ff]ont!wario\W/gm).test(message.cleanContent.substring(0, 11)) && message.cleanContent.length > 11){
+	var text = message.cleanContent.substring(11).replace(/[^A-Za-z0-9\.!\:\n\?'",\+\-= %&;:\(\)⭐✏]/gm, '') + ' ';
 		//console.log(text);
 		var texts = text.match(/.{1,24}\W/gm);
 		
@@ -307,8 +307,8 @@ files: [{
 		}
 	}
 	
-	if (new RegExp(/[Ff]ont!mario64\W/gm).test(message.content.substring(0, 13)) && message.content.length > 13){
-		var text = message.content.substring(13).toLowerCase().replace(/[^a-z0-9\.!\n\?'",: %&⭐]/gm, '') + ' ';
+	if (new RegExp(/[Ff]ont!mario64\W/gm).test(message.cleanContent.substring(0, 13)) && message.cleanContent.length > 13){
+		var text = message.cleanContent.substring(13).toLowerCase().replace(/[^a-z0-9\.!\n\?'",: %&⭐]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		for(var t = 0; t < Math.min(texts.length, 5); t++){
 			var paths = [];
@@ -332,8 +332,8 @@ files: [{
 }		
 		}
 	}
-	if (new RegExp(/[Ff]ont!ms\W/gm).test(message.content.substring(0, 8)) && message.content.length > 8){
-		var text = message.content.substring(8).toLowerCase().replace(/[^a-z0-9\?!\n ]/gm, '') + ' ';
+	if (new RegExp(/[Ff]ont!ms\W/gm).test(message.cleanContent.substring(0, 8)) && message.cleanContent.length > 8){
+		var text = message.cleanContent.substring(8).toLowerCase().replace(/[^a-z0-9\?!\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		for(var t = 0; t < Math.min(texts.length, 5); t++){
 			var paths = [];
@@ -358,8 +358,8 @@ files: [{
 		
 		}
 	}
-		if (new RegExp(/[Ff]ont!mk2\W/gm).test(message.content.substring(0, 9)) && message.content.length > 9){
-		var text = message.content.substring(9).toLowerCase().replace(/[^a-z0-9\-\.,'!\n ]/gm, '') + ' ';
+		if (new RegExp(/[Ff]ont!mk2\W/gm).test(message.cleanContent.substring(0, 9)) && message.cleanContent.length > 9){
+		var text = message.cleanContent.substring(9).toLowerCase().replace(/[^a-z0-9\-\.,'!\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		for(var t = 0; t < Math.min(texts.length, 5); t++){
 			var paths = [];
@@ -385,8 +385,8 @@ files: [{
 		}
 	}
 	
-	if (new RegExp(/[Ff]ont!puyo\W/gm).test(message.content.substring(0, 10)) && message.content.length > 10){
-		var text = message.content.substring(10).toLowerCase().replace(/[^a-z0-9\.\n ]/gm, '') + ' ';
+	if (new RegExp(/[Ff]ont!puyo\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10){
+		var text = message.cleanContent.substring(10).toLowerCase().replace(/[^a-z0-9\.\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		for(var t = 0; t < Math.min(texts.length, 5); t++){
 			var paths = [];
