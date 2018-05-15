@@ -165,7 +165,7 @@ console.log(this.encoder);
       this.initialize(opts);
       this.preprocess_text();
       this.render_dialog();
-	  console.log(this.encoder.toBuffer());
+	  console.log(this.encoder);
       this.encoder.finish();
     },
 
