@@ -409,7 +409,7 @@ module.exports = {
       return 0;
     },
 
-    preload_image: function(url) {
+   preload_image: function(url) {
       var image = new Image();
       image.src = url;
       return image;
@@ -418,12 +418,12 @@ module.exports = {
     preload_assets: function() {
       for (var i in this.flavors) {
         this.flavor_assets[this.flavors[i]] = {
-          arrowsm:  preload_image('assets/flavors/' + this.flavors[i] + '/arrowsm.png'),
-          arrowbig: preload_image('assets/flavors/' + this.flavors[i] + '/arrowbig.png'),
-          dialog:   preload_image('assets/flavors/' + this.flavors[i] + '/dialog.png'),
+          arrowsm:  this.preload_image('assets/flavors/' + this.flavors[i] + '/arrowsm.png'),
+          arrowbig: this.preload_image('assets/flavors/' + this.flavors[i] + '/arrowbig.png'),
+          dialog:   this.preload_image('assets/flavors/' + this.flavors[i] + '/dialog.png'),
         };
 
-        this.flavor_assets[this.flavors[i]].glyphs = (this.flavors[i] == 'plain') ? preload_image('assets/text/plain.png') : preload_image('assets/text/flavored.png');
+        this.flavor_assets[this.flavors[i]].glyphs = (this.flavors[i] == 'plain') ? this.preload_image('assets/text/plain.png') : this.preload_image('assets/text/flavored.png');
       }
     },
 };
