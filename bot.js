@@ -221,9 +221,8 @@ client.on('message', message => {
 		if (beaboMessage.substring(0, 4) === '!gb ') {
 			giantbomb(message, beaboMessage);
 		}
-		if (beaboMessage.substring(0, 5) === '!user') {
-			console.log(message.client);
-			console.log(message.author);
+		if (beaboMessage.substring(0, 5) === '!user' && message.author.id === '122098319123021824') {
+			message.channel.send('HOLY FUCK!');
 		}
 		if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
 			var command = '**' + beaboMessage.substring(8) + '**';
