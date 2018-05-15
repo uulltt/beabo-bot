@@ -260,7 +260,7 @@ client.on('message', message => {
 						}, function (err, canvas) {
 							console.log(canvas.toBuffer());
 							EarthBoundText.preload_assets();
-							EarthboundText.render({
+							EarthBoundText.render({
                     canvas: canvas,
                     flavor: flavor,
                     speed: speed,
