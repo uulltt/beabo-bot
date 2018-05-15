@@ -257,7 +257,7 @@ client.on('message', message => {
 
 						EarthBoundText.preload_assets();
 							EarthBoundText.render({
-                    Canvas: new Canvas(608, 256);
+                    Canvas: new Canvas(608, 256),
                     Flavor: flavor,
                     Speed: speed,
                     Text: text,
