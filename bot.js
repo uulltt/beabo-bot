@@ -258,13 +258,25 @@ client.on('message', message => {
 							images: [fs.readFileSync('./eb-canvas.png')],
 							margin: 0 // optional, in px, defaults to 10px
 						}, function (err, canvas) {
-							message.channel.send({
+							console.log(canvas.toBuffer());
+							EarthBoundText.preload_assets();
+							EarthboundText.render({
+                    canvas: canvas,
+                    flavor: flavor,
+                    speed: speed,
+                    text: text,
+                    on_render: function(blob) {
+                        console.log(blob);
+						console.log(canvas.toBuffer());
+                    }
+                });
+							/*message.channel.send({
 								files: [{
 										attachment: canvas.toBuffer(),
 										name: 'crash.png'
 									}
 								]
-							});
+							});*/
 						});
 
 			}
