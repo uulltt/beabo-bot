@@ -147,16 +147,10 @@ client.on('message', message => {
 		
 		if (message.content.toLowerCase().includes("help")){
 		helpMessage(message);
-		} else {
-		if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vidya)?( )?((ga([me]{2}))|vidya)(\?)?/gm)) {
-			if (message.content.toLowerCase().includes("steam")){
-			message.channel.send(favegames[(Math.floor(Math.random() * 7))] + '/');
-			} else {
-				message.channel.send(favegames[(Math.floor(Math.random() * 8))] + '/');
-			}
+		} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vidya)?( )?((ga([me]{2}))|vidya)(\?)?/gm)) {
+			message.channel.send(favegames[(Math.floor(Math.random() * (message.content.toLowerCase().includes("steam") ? 7 : 8)))] + '/');
 		} else {
 			message.channel.send(beeb()).then(console.log).catch(console.error);
-		}
 		}
 	}
 	fonts(message);
