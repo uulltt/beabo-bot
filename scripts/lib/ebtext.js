@@ -146,7 +146,9 @@ module.exports = {
       this.encoder = new GIF(this.dialog_width, this.dialog_height); 
 	  var file = require('fs').createWriteStream('img.gif');
 	  this.encoder.pipe(file);
-	  this.encoder.writeHeader();	  
+	  this.encoder.writeHeader();
+console.log("creating encoder");
+console.log(this.encoder);	  
     },
 
     get_context: function() {
@@ -163,6 +165,7 @@ module.exports = {
       this.initialize(opts);
       this.preprocess_text();
       this.render_dialog();
+	  console.log(this.encoder.toBuffer());
       this.encoder.finish();
     },
 
@@ -336,7 +339,7 @@ module.exports = {
       }
 		console.log(this.get_context());
       // Add the frame to the encoder
-      this.encoder.addFrame(this.get_context().getImageData(0, 0, this.dialog_asset_width, this.dialog_asset_height));
+      this.encoder.addFrame(this.get_context().getImageData(0, 0, this.dialog_width, this.dialog_height));
 	  this.encoder.setDelay(this.text_state.delay);
     },
 
