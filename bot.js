@@ -222,7 +222,7 @@ client.on('message', message => {
 				message.channel.send(favegames[(Math.floor(Math.random() * 8))] + '/');
 			}
 		} else {
-			message.channel.send(beeb());
+			message.channel.send(beeb()).then(console.log).catch(console.error);
 		}
 		}
 	}
