@@ -18,10 +18,6 @@ const herokupg = new Client({
 });
 
 
-
-client.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-});
-
 client.on('ready', () => {
 	console.log('I am ready!');
 	herokupg.connect();
