@@ -1,5 +1,5 @@
 var fs = require('fs');
-var GIF = require('gif.js.optimized').GIF;
+var GIF = require('gif-encoder');
 module.exports = {
 
     // Encoder configuration
@@ -137,19 +137,14 @@ module.exports = {
         delay: this.print_delay
       };
       this.create_encoder();
-      this.encoder.on('finished', this.render_callback);
+      this.encoder.on('end', this.render_callback);
     },
 
     create_encoder: function() {
-      this.encoder = new GIF({
-        workers: this.encoder_workers,
-        quality: this.encoder_quality,
-        height: this.dialog_height,
-        width: this.dialog_width,
-        workerScript: './dist/gif.worker.js',
-        background: this.encoder_background,
-        transparent: this.encoder_transparent
-      });  
+      this.encoder = new GIF(this.dialog_width, this.dialog_height); 
+	  var file = require('fs').createWriteStream('img.gif');
+	  this.encoder.pipe(file);
+	  this.encoder.writeHeader();	  
     },
 
     get_context: function() {
@@ -166,7 +161,7 @@ module.exports = {
       this.initialize(opts);
       this.preprocess_text();
       this.render_dialog();
-      this.encoder.render();
+      this.encoder.finish();
     },
 
     preprocess_text_simple: function() {
