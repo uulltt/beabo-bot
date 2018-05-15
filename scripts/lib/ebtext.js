@@ -1,5 +1,5 @@
 var fs = require('fs');
-var gifs = require('../3rdparty/gif.js/dist/gif.js');
+var gifs = require('scripts/3rdparty/gif.js/dist/gif.js');
 module.exports = {
 
     // Encoder configuration
