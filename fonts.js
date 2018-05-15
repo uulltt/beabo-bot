@@ -31,11 +31,12 @@ function font (message) {
 	var args = [];
 	var urls = [];
 	for(var i = 0; i < 5; i++){
-	if (new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}\\W', 'gm').test(message.substring(5, 8)) || new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}[0-9]{2}\\W','gm').test(message.substring(5, 10))) {
-		console.log('oh!');
+		//console.log(new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}\\W', 'gm'));
+	if (new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}\\W', 'gm').test(message.substring(5, 8+i)) || new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}[0-9]{2}\\W','gm').test(message.substring(5, 10+i))) {
+		//console.log('oh!');
 		arg = message.substring(8+i) + '\u200B';
 		game = message.substring(5, 7+i);
-		if (new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}[0-9]{2}\\W','gm').test(message.substring(5, 10))) {
+		if (new RegExp('[A-Za-z0-9]{'+(2+i).toString()+'}[0-9]{2}\\W','gm').test(message.substring(5, 10+i))) {
 			arg = arg.substring(2);
 			style = message.charAt(7+i);
 			size = message.charAt(8+i);
