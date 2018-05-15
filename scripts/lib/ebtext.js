@@ -10,12 +10,12 @@ module.exports = {
     encoder_quality:    10,
     encoder_background: '#000',
     encoder_transparent: 0x00FF00,
-
+	file:			 null,
     // Flavor information
     flavors:         ['plain','mint','strawberry','banana','peanut'],
     flavor_assets:   {},
     selected_flavor: 'plain',
-
+	
     // Measurements
     scale:               4,   // 4x magnification
     dialog_width:        608, // 608px, fix this
@@ -144,7 +144,7 @@ module.exports = {
 
     create_encoder: function() {
       this.encoder = new GIF(this.dialog_width, this.dialog_height); 
-	  var file = require('fs').createWriteStream('img.gif');
+	 //file = require('fs').createWriteStream('img.gif');
 	  this.encoder.pipe(file);
 	  this.encoder.writeHeader();
 console.log("creating encoder");
@@ -165,8 +165,8 @@ console.log(this.encoder);
       this.initialize(opts);
       this.preprocess_text();
       this.render_dialog();
-	  console.log(this.encoder);
       this.encoder.finish();
+	  console.log(this.encoder);
     },
 
     preprocess_text_simple: function() {

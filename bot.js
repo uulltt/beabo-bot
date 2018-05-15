@@ -264,6 +264,7 @@ console.log(textCanvas.toBuffer());
                     text: Text,
                     on_render: function(blob) {
 						console.log("holy fuck it worked?");
+						console.log(EarthBoundText.file);
                         console.log(blob);
 						console.log(textCanvas.toBuffer());
                     }
