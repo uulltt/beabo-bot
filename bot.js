@@ -9,7 +9,7 @@ var fonts = require('./fonts.js');
 var pics = require('./pics.js');
 const movies = require('./rotten.js');
 const giantbomb = require('./gb.js');
-
+var EarthBoundText = require('./scripts/lib/ebtext.js');
 const { Client } = require('pg');
 
 const herokupg = new Client({
