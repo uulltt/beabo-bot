@@ -22,7 +22,7 @@
 	"rt-scraper": "1.0.5",
 	"pg": "7.4.3",
 	"lodash": "^4.17.4",
-	"gif.js": "0.1.6"
+	"gif.js.optimized": "^1.0.1",
   },
     "devDependencies": {
         "mocha": "^3.2.0"
