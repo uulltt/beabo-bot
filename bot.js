@@ -236,7 +236,7 @@ client.on('message', message => {
 				console.log(res);
 			else
 				console.log(err);
-}).catch(console.error);
+});
 		}
 		if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
 			var command = '**' + beaboMessage.substring(8) + '**';
