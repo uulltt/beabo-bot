@@ -334,9 +334,10 @@ module.exports = {
           this.get_context().drawImage(this.asset('arrowsm'), this.dialog_width - 64, this.dialog_height - 32, 64, 32);
         }
       }
-
+		console.log(this.get_context());
       // Add the frame to the encoder
-      this.encoder.addFrame(this.get_context(), {copy: true, delay: this.text_state.delay});
+      this.encoder.addFrame(this.get_context().getImageData(0, 0, this.dialog_asset_width, this.dialog_asset_height));
+	  this.encoder.setDelay(this.text_state.delay);
     },
 
     add_line: function() {
