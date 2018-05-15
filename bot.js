@@ -54,7 +54,7 @@ function beeb () {
 
 }
 
-var cityTimezones = require('city-timezones');
+var cityTimezones = require('./citytime.js');
 var timezone = require('node-google-timezone');
 function cityTime (message) {
 	var city = message.content.substring(7);

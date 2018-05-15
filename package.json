@@ -7,7 +7,6 @@
     "start": "node bot.js"
   },
   "dependencies": {
-    "city-timezones": "1.0.3",
     "discord.js": "11.3.2",
     "exif": "0.6.0",
     "giantbomb": "2.0.2",
@@ -21,6 +20,10 @@
     "twitter": "1.7.1",
 	"rotten-movies": "0.1.1",
 	"rt-scraper": "1.0.5",
-	"pg": "7.4.3"
-  }
+	"pg": "7.4.3",
+	"lodash": "^4.17.4"
+  },
+    "devDependencies": {
+        "mocha": "^3.2.0"
+}
 }
