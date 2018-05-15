@@ -288,6 +288,8 @@ module.exports = {
     },
 
     draw_frame: function(pause) {
+		console.log('hey!');
+	console.log(this.canvas.toBuffer());
       pause = pause || false;
       this.get_context().fillStyle = "rgba(0,255,0,1)";  
       this.get_context().fillRect(0,0,this.canvas.width, this.canvas.height);
