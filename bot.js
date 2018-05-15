@@ -10,9 +10,9 @@ var pics = require('./pics.js');
 const rm = require('rotten-movies');
 const giantbomb = require('./gb.js');
 
-const { herokuPG } = require('pg');
+const { Client } = require('pg');
 
-const herokupg = new herokuPG({
+const herokupg = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
