@@ -191,7 +191,7 @@ name: 'eb.gif'
       this.render_dialog();
        this.message.channel.send({
 files: [{
-attachment: this.get_context().toBuffer(),
+attachment: this.context.toBuffer(),
 name: 'eb.png'
 					}]
 				});
