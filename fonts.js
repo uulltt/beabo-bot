@@ -348,10 +348,7 @@ files: [{
 			var cursor = 0;
 for(;cursor < texts[t].length; cursor++){
 	if (texts[t].charCodeAt(cursor) > 31 && texts[t].charCodeAt(cursor) < 96){
-	if (texts[t].charCodeAt(cursor) < 100)
 	paths[cursor] = fs.readFileSync('./doom/STCFN0' + (texts[t].charCodeAt(cursor)).toString() + '.png'),
-else
-	paths[cursor] = fs.readFileSync('./doom/STCFN' + (texts[t].charCodeAt(cursor)).toString() + '.png'),
 	} else {
 		paths[cursor] = fs.readFileSync('./doom/STCFN032.png'),
 	}
