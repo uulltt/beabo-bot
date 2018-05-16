@@ -252,7 +252,8 @@ client.on('message', message => {
 			var Flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(3).toLowerCase())];
 						var Text = message.cleanContent.substring(6);
 var textCanvas = new Canvas(608, 256);
-console.log(textCanvas.toBuffer());
+textCanvas.imageSmoothingEnabled = false;
+//console.log(textCanvas.toBuffer());
 						EarthBoundText.preload_assets();
 							EarthBoundText.render({
                     canvas: textCanvas,
@@ -281,10 +282,10 @@ textCanvas.imageSmoothingEnabled = false;
                     text: Text,
 					Message: message,
                     on_render: function(blob) {
-						console.log("holy fuck it worked?");
-						console.log(EarthBoundText.file);
-                        console.log(blob);
-						console.log(textCanvas.toBuffer());
+						//console.log("holy fuck it worked?");
+						//console.log(EarthBoundText.file);
+                        //console.log(blob);
+						//console.log(textCanvas.toBuffer());
                     }
                 });
 			}
