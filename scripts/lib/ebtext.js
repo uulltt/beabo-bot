@@ -354,7 +354,7 @@ console.log(this.file.getContents());
       }
 		//console.log(this.get_context());
       // Add the frame to the encoder
-	  message.channel.send({
+	  this.message.channel.send({
 files: [{
 attachment: this.canvas.toBuffer(),
 name: 'eb.png'
