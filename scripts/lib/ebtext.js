@@ -144,7 +144,17 @@ module.exports = {
       this.create_encoder();
       this.encoder.on('end', () =>{
 		  console.log(this.file);
-		  file.end();
+		  try{
+			  console.log(this.file.toBuffer());
+		  } catch (error) {
+			  console.log(error);
+		  }
+		  this.file.end();
+		  try{
+			  console.log(this.file.toBuffer());
+		  } catch (error) {
+			  console.log(error);
+		  }
 		  console.log(this.file);
 		  console.log(fs.readFileSync('img.gif')); //this doesn't work
 		  this.message.channel.send('hello');
@@ -154,7 +164,7 @@ module.exports = {
     create_encoder: function() {
       this.encoder = new GIF(this.dialog_width, this.dialog_height); 
 	  this.file = require('fs').createWriteStream('img.gif');
-	  this.encoder.pipe(file);
+	  this.encoder.pipe(this.file);
 	  this.encoder.writeHeader();
 console.log("creating encoder");
 console.log(this.encoder);	  
