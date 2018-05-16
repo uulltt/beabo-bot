@@ -54,6 +54,8 @@ function font (message) {
 	game = 'niga';
 	if (game === 'sfa3')
 	game = 'sfz3';
+	if (game === 'smb3')
+	game = 'smar';
 	args = arg.match(/.{1,24}\W/gm);
 	if (game === 'pubu')
 	args = arg.match(/.{1,34}\W/gm);
@@ -101,6 +103,8 @@ function bubble (message) {
 	game = 'niga';
 	if (game === 'sfa3')
 	game = 'sfz3';
+	if (game === 'smb3')
+	game = 'smar';
 	args = arg.match(/.{1,24}\W/gm);
 	if (game === 'pubu')
 	args = arg.match(/.{1,34}\W/gm);
