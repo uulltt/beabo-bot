@@ -178,9 +178,9 @@ name: 'eb.gif'
     get_context: function() {
       if (!this.context) {
         this.context = this.canvas.getContext('2d');
-        this.context.mozImageSmoothingEnabled = true;
-        this.context.webkitImageSmoothingEnabled = true;
-        this.context.imageSmoothingEnabled = true;
+        this.context.mozImageSmoothingEnabled = false;
+        this.context.webkitImageSmoothingEnabled = false;
+        this.context.imageSmoothingEnabled = false;
       }
       return this.context;
     },
@@ -191,7 +191,7 @@ name: 'eb.gif'
       this.render_dialog();
        this.message.channel.send({
 files: [{
-attachment: this.canvas.toBuffer(),
+attachment: this.get_context().toBuffer(),
 name: 'eb.png'
 					}]
 				});
