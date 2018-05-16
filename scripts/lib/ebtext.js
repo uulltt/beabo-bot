@@ -178,9 +178,9 @@ name: 'eb.gif'
     get_context: function() {
       if (!this.context) {
         this.context = this.canvas.getContext('2d');
-        this.context.mozImageSmoothingEnabled = false;
-        this.context.webkitImageSmoothingEnabled = false;
-        this.context.imageSmoothingEnabled = false;
+        this.context.mozImageSmoothingEnabled = true;
+        this.context.webkitImageSmoothingEnabled = true;
+        this.context.imageSmoothingEnabled = true;
       }
       return this.context;
     },

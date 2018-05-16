@@ -246,7 +246,7 @@ client.on('message', message => {
 			});
 		}
 
-		if (new RegExp(/!eb(n|m|s|b|p)\W/gm).test(beaboMessage.substring(0, 5))) {
+		if (new RegExp(/!eb(n|m|s|b|p|N|M|S|B|P)\W/gm).test(beaboMessage.substring(0, 5))) {
 			const flavors = ['plain', 'mint', 'strawberry', 'banana', 'peanut'];
 			const flavorstring = 'nmsbp'
 			var Flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(3).toLowerCase())];
@@ -292,7 +292,8 @@ console.log(textCanvas.toBuffer());
 			if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
 				var command = '**' + beaboMessage.substring(8) + '**';
 				command = command.replace(/1/gm, ':arrow_lower_left:').replace(/2/gm, ':arrow_down:').replace(/3/gm, ':arrow_lower_right:').replace(/4/gm, ':arrow_left:')
-					.replace(/7/gm, ':arrow_upper_left:').replace(/8/gm, ':arrow_up:').replace(/9/gm, ':arrow_upper_right:').replace(/6/gm, ':arrow_right:').replace(/5/gm, 'neutral');
+					.replace(/7/gm, ':arrow_upper_left:').replace(/8/gm, ':arrow_up:').replace(/9/gm, ':arrow_upper_right:').replace(/6/gm, ':arrow_right:').replace(/5/gm, ' neutral ')
+					.replace(/j\./gm, ' jumping ');
 				message.channel.send(command);
 			}
 			if (beaboMessage.substring(0, 8) === '!ZiV-id ') {
