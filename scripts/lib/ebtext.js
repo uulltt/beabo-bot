@@ -2,7 +2,7 @@ var fs = require('fs');
 var GIF = require('gif-encoder');
 var Canvas = require('canvas');
 var Image = Canvas.Image;
-module.exports = {
+module.exports = (message)=> {
 
     // Encoder configuration
     encoder:            null,
@@ -139,9 +139,9 @@ module.exports = {
         delay: this.print_delay
       };
       this.create_encoder();
-      this.encoder.on('end', function(blob){
-		  console.log(blob);
+      this.encoder.on('end', () =>{
 		  console.log(file);
+		  message.channel.send('hello');
 	  });
     },
 
