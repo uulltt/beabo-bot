@@ -143,7 +143,7 @@ module.exports = {
       this.create_encoder();
       this.encoder.on('end', () =>{
 		  console.log(file);
-		  message.channel.send('hello');
+		  this.message.channel.send('hello');
 	  });
     },
 
@@ -298,7 +298,7 @@ console.log(this.encoder);
     },
 
     draw_frame: function(pause) {
-		console.log('hey!');
+		//console.log('hey!');
 	//console.log(this.canvas.toBuffer());
       pause = pause || false;
       this.get_context().fillStyle = "rgba(0,255,0,1)";  
@@ -306,8 +306,8 @@ console.log(this.encoder);
 
       // Get the last three lines of the text state, that's all we're going to draw in this frame
       var lines = this.text_state.lines.slice(-3);
-	  console.log(this.get_context());
-	  console.log(this.asset('dialog'));
+	  //console.log(this.get_context());
+	 // console.log(this.asset('dialog'));
       // Draw the text box
       this.get_context().drawImage(
         this.asset('dialog'),
@@ -424,7 +424,7 @@ console.log(this.encoder);
    preload_image: function(url) {
       var image = new Image();
       image.src = url;
-	  console.log(image);
+	 // console.log(image);
       return image;
     },
 
