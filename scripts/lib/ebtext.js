@@ -2,7 +2,7 @@ var fs = require('fs');
 var GIF = require('gif-encoder');
 var Canvas = require('canvas');
 var Image = Canvas.Image;
-module.exports = (message)=> {
+module.exports = {
 
     // Encoder configuration
     encoder:            null,
@@ -11,6 +11,7 @@ module.exports = (message)=> {
     encoder_background: '#000',
     encoder_transparent: 0x00FF00,
 	file:			 null,
+	message: null,
     // Flavor information
     flavors:         ['plain','mint','strawberry','banana','peanut'],
     flavor_assets:   {},
@@ -132,6 +133,7 @@ module.exports = (message)=> {
       this.selected_flavor = opts.flavor;
       this.render_callback = opts.on_render || this.render_callback;
       this.canvas = opts.canvas;
+	  this.message = opts.Message;
       this.canvas.width = this.dialog_width;
       this.canvas.height = this.dialog_height;
       this.text_state = {

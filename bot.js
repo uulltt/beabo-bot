@@ -262,6 +262,7 @@ console.log(textCanvas.toBuffer());
                     flavor: Flavor,
                     speed: Speed,
                     text: Text,
+					Message: message,
                     on_render: function(blob) {
 						console.log("holy fuck it worked?");
 						console.log(EarthBoundText.file);
