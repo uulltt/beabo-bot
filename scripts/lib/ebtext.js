@@ -139,7 +139,10 @@ module.exports = {
         delay: this.print_delay
       };
       this.create_encoder();
-      this.encoder.on('end', this.render_callback);
+      this.encoder.on('end', function(blob){
+		  console.log(blob);
+		  console.log(file);
+	  });
     },
 
     create_encoder: function() {
