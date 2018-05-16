@@ -289,6 +289,27 @@ textCanvas.imageSmoothingEnabled = false;
                     }
                 });
 			}
+			
+			if (new RegExp(/!ut\W/gm).test(beaboMessage.substring(0, 4))) {
+						var Text = message.cleanContent.substring(5);
+						message.channel.send( {embed: {
+							image: {
+								url: 'https://www.demirramon.com/gen/undertale_box.png?text=' + encodeURI(text);
+							}
+							}
+						});
+			}
+			
+			if (new RegExp(/!ut.+\W/gm).test(beaboMessage.substring(0, 6))) {
+						var character = beaboMessage.substring(3, beaboMessage.search(/\W/gm)); 
+						var Text = message.cleanContent.substring(message.cleanContent.search(/\W/gm)+1);
+						message.channel.send( {embed: {
+							image: {
+								url: 'https://www.demirramon.com/gen/undertale_box.png?character='+encodeURI(character)+'&text=' + encodeURI(text);
+							}
+							}
+						});
+			}
 
 			if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
 				var command = '**' + beaboMessage.substring(8) + '**';
