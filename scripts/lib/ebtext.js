@@ -165,10 +165,10 @@ console.log(this.encoder);
       this.initialize(opts);
       this.preprocess_text();
       this.render_dialog();
-	  console.log(file.toBuffer());
+	  console.log(file);
       this.encoder.finish();
 	  console.log(this.encoder);
-	  console.log(file.toBuffer());
+	  console.log(file);
     },
 
     preprocess_text_simple: function() {
