@@ -246,21 +246,18 @@ client.on('message', message => {
 			});
 		}
 
-		if (new RegExp(/!eb(f|m|s)(n|m|s|b|p)\W/gm).test(beaboMessage.substring(0, 6))) {
-			const speedstring = 'fms'
-				const speeds = [15, 33, 50];
+		if (new RegExp(/!eb(n|m|s|b|p)\W/gm).test(beaboMessage.substring(0, 5))) {
 			const flavors = ['plain', 'mint', 'strawberry', 'banana', 'peanut'];
 			const flavorstring = 'nmsbp'
-				var Speed = speeds[speedstring.indexOf(beaboMessage.charAt(3))];
-			var Flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(4))];
-						var Text = message.cleanContent.substring(7);
+			var Flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(3))];
+						var Text = message.cleanContent.substring(6);
 var textCanvas = new Canvas(608, 256);
 console.log(textCanvas.toBuffer());
 						EarthBoundText.preload_assets();
 							EarthBoundText.render({
                     canvas: textCanvas,
                     flavor: Flavor,
-                    speed: Speed,
+                    speed: 15,
                     text: Text,
 					Message: message,
                     on_render: function(blob) {
@@ -270,16 +267,26 @@ console.log(textCanvas.toBuffer());
 						console.log(textCanvas.toBuffer());
                     }
                 });
-							
-							/*message.channel.send({
-								files: [{
-										attachment: canvas.toBuffer(),
-										name: 'crash.png'
-									}
-								]
-							});*/
-						
-
+			}
+			
+			if (new RegExp(/!eb\W/gm).test(beaboMessage.substring(0, 4))) {
+						var Text = message.cleanContent.substring(5);
+var textCanvas = new Canvas(608, 256);
+console.log(textCanvas.toBuffer());
+						EarthBoundText.preload_assets();
+							EarthBoundText.render({
+                    canvas: textCanvas,
+                    flavor: 'plain',
+                    speed: 15,
+                    text: Text,
+					Message: message,
+                    on_render: function(blob) {
+						console.log("holy fuck it worked?");
+						console.log(EarthBoundText.file);
+                        console.log(blob);
+						console.log(textCanvas.toBuffer());
+                    }
+                });
 			}
 
 			if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
