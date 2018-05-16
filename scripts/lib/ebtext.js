@@ -146,18 +146,19 @@ module.exports = {
       this.encoder.on('end', () =>{
 		  console.log('fuck');
 		  console.log(this.file.getContents());
+		  const buff = this.file.getContents();
 		   this.message.channel.send({
 files: [{
 attachment: this.canvas.toBuffer(),
 name: 'eb.png'
 					}]
 				});
-		  /*this.message.channel.send({
+		  this.message.channel.send({
 files: [{
-attachment: this.file.getContentsAsString(),
+attachment: buff,
 name: 'eb.gif'
 					}]
-				});*/
+				});
 		 
 		  //this.message.channel.send('hello');
 	  });
