@@ -2,7 +2,7 @@ var fs = require('fs');
 var GIF = require('gif-encoder');
 var Canvas = require('canvas');
 const Discord = require('discord.js');
-const stream = require('./stream.js');
+var streamBuffers = require('stream-buffers');
 var Image = Canvas.Image;
 module.exports = {
 
@@ -144,19 +144,8 @@ module.exports = {
       };
       this.create_encoder();
       this.encoder.on('end', () =>{
-		  console.log(this.file);
-		  try{
-			  console.log(this.file.toBuffer());
-		  } catch (error) {
-			  console.log(error);
-		  }
-		  this.file.end();
-		  try{
-			  console.log(this.file.toBuffer());
-		  } catch (error) {
-			  console.log(error);
-		  }
-		  console.log(this.file._events.finish);
+		  console.log(this.file.getContents());
+		  
 		 
 		  this.message.channel.send('hello');
 	  });
@@ -164,15 +153,14 @@ module.exports = {
 
     create_encoder: function() {
       this.encoder = new GIF(this.dialog_width, this.dialog_height);
-console.log(stream);	  
-	  this.file = stream.WritableBufferStream();
+console.log(this.file.getContents());	  
+	  this.file = new streamBuffers.WritableStreamBuffer({
+    initialSize: (7 * 1024 * 1024),   // start at 100 kilobytes.
+    incrementAmount: (10 * 1024) // grow by 10 kilobytes each time buffer overflows.
+});
 	  this.encoder.pipe(this.file);
 	  this.encoder.writeHeader();
-	  this.file.on('finish', () => {
-  // console log pdf as bas64 string
-  console.log('done');
-  console.log(writeStream.toBuffer().toString('base64'));
-});
+	  
 //console.log("creating encoder");
 //console.log(this.encoder);	  
     },
