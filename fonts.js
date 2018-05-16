@@ -116,7 +116,7 @@ function bubble (message) {
 }
 
 module.exports = (message) => {
-	if (new RegExp(/[Ff]ont!/gm).test(message.cleanContent.substring(0, 5))&& !(new RegExp(/[Ff]ont!(mk2)\W/gm).test(message.cleanContent.substring(0, 9))) && !(new RegExp(/[Ff]ont!(puyo)\W/gm).test(message.cleanContent.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash|wario)\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.cleanContent.substring(0, 8)))) {
+	if (new RegExp(/[Ff]ont!/gm).test(message.cleanContent.substring(0, 5))&& !(new RegExp(/[Ff]ont!(mk2)\W/gm).test(message.cleanContent.substring(0, 9))) && !(new RegExp(/[Ff]ont!(puyo|doom)\W/gm).test(message.cleanContent.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash|wario)\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.cleanContent.substring(0, 8)))) {
 	var urls = font(message.cleanContent);
 	for (var i = 0; i < Math.min(urls.length, 5); i++) {
 		if (urls[i].length > 0)
@@ -330,6 +330,37 @@ margin: 0 // optional, in px, defaults to 10px
 files: [{
 	attachment: canvas.toBuffer(),
 	name: 'puyo.png'
+}]
+});
+});	
+}
+		
+		}
+	}
+	if (new RegExp(/[Ff]ont!doom\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10){
+		var text = message.cleanContent.substring(10).toUpperCase() + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		for(var t = 0; t < Math.min(texts.length, 5); t++){
+			var paths = [];
+			
+			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace(/\n/gm, '');
+			var cursor = 0;
+for(;cursor < texts[t].length; cursor++){
+	if (texts[t].charCodeAt(cursor) != 121)
+	paths[cursor] = fs.readFileSync('./doom/STCFN0' + (texts[t].charCodeAt(cursor)).toString() + '.png'),
+else
+	paths[cursor] = fs.readFileSync('./doom/STCFN' + (texts[t].charCodeAt(cursor)).toString() + '.png'),
+}
+if (cursor === texts[t].length){
+	concat({
+images: paths,
+margin: 0 // optional, in px, defaults to 10px
+}, function(err, canvas) {
+		message.channel.send({
+files: [{
+	attachment: canvas.toBuffer(),
+	name: 'doom.png'
 }]
 });
 });	
