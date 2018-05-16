@@ -272,7 +272,7 @@ console.log(textCanvas.toBuffer());
 			if (new RegExp(/!eb\W/gm).test(beaboMessage.substring(0, 4))) {
 						var Text = message.cleanContent.substring(5);
 var textCanvas = new Canvas(608, 256);
-console.log(textCanvas.toBuffer());
+textCanvas.imageSmoothingEnabled = false;
 						EarthBoundText.preload_assets();
 							EarthBoundText.render({
                     canvas: textCanvas,
