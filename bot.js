@@ -294,7 +294,7 @@ textCanvas.imageSmoothingEnabled = false;
 						var Text = message.cleanContent.substring(5);
 						message.channel.send( {embed: {
 							image: {
-								url: 'https://www.demirramon.com/gen/undertale_box.png?text=' + encodeURI(text);
+								url: 'https://www.demirramon.com/gen/undertale_box.png?text=' + encodeURI(text)
 							}
 							}
 						});
@@ -305,7 +305,7 @@ textCanvas.imageSmoothingEnabled = false;
 						var Text = message.cleanContent.substring(message.cleanContent.search(/\W/gm)+1);
 						message.channel.send( {embed: {
 							image: {
-								url: 'https://www.demirramon.com/gen/undertale_box.png?character='+encodeURI(character)+'&text=' + encodeURI(text);
+								url: 'https://www.demirramon.com/gen/undertale_box.png?character='+encodeURI(character)+'&text=' + encodeURI(text)
 							}
 							}
 						});
