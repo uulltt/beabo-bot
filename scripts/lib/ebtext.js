@@ -144,6 +144,7 @@ module.exports = {
       };
       this.create_encoder();
       this.encoder.on('end', () =>{
+		  console.log('fuck');
 		  console.log(this.file.getContents());
 		  this.message.channel.send({
 files: [{
