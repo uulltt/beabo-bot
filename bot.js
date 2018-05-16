@@ -249,7 +249,7 @@ client.on('message', message => {
 		if (new RegExp(/!eb(n|m|s|b|p)\W/gm).test(beaboMessage.substring(0, 5))) {
 			const flavors = ['plain', 'mint', 'strawberry', 'banana', 'peanut'];
 			const flavorstring = 'nmsbp'
-			var Flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(3))];
+			var Flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(3).toLowerCase())];
 						var Text = message.cleanContent.substring(6);
 var textCanvas = new Canvas(608, 256);
 console.log(textCanvas.toBuffer());
