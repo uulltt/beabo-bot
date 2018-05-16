@@ -256,8 +256,8 @@ client.on('message', message => {
 						var Text = message.cleanContent.substring(7);
 var textCanvas = new Canvas(608, 256);
 console.log(textCanvas.toBuffer());
-						EarthBoundText(message).preload_assets();
-							EarthBoundText(message).render({
+						EarthBoundText.preload_assets();
+							EarthBoundText.render({
                     canvas: textCanvas,
                     flavor: Flavor,
                     speed: Speed,
