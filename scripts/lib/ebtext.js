@@ -146,9 +146,15 @@ module.exports = {
       this.encoder.on('end', () =>{
 		  console.log('fuck');
 		  console.log(this.file.getContents());
+		   this.message.channel.send({
+files: [{
+attachment: this.canvas.toBuffer(),
+name: 'eb.png'
+					}]
+				});
 		  this.message.channel.send({
 files: [{
-attachment: this.file.getContents(),
+attachment: this.file.getContentsAsString(),
 name: 'eb.gif'
 					}]
 				});
@@ -360,12 +366,12 @@ console.log(this.file.getContents());
       }
 		//console.log(this.get_context());
       // Add the frame to the encoder
-	  this.message.channel.send({
+	  /*this.message.channel.send({
 files: [{
 attachment: this.canvas.toBuffer(),
 name: 'eb.png'
 					}]
-				});
+				});*/
       this.encoder.addFrame(this.get_context().getImageData(0, 0, this.dialog_width, this.dialog_height));
 	  this.encoder.setDelay(this.text_state.delay);
     },
