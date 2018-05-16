@@ -153,11 +153,12 @@ module.exports = {
 
     create_encoder: function() {
       this.encoder = new GIF(this.dialog_width, this.dialog_height);
-console.log(this.file.getContents());	  
+	  
 	  this.file = new streamBuffers.WritableStreamBuffer({
     initialSize: (7 * 1024 * 1024),   // start at 100 kilobytes.
     incrementAmount: (10 * 1024) // grow by 10 kilobytes each time buffer overflows.
 });
+console.log(this.file.getContents());
 	  this.encoder.pipe(this.file);
 	  this.encoder.writeHeader();
 	  
@@ -353,6 +354,7 @@ console.log(this.file.getContents());
       }
 		//console.log(this.get_context());
       // Add the frame to the encoder
+	  console.log(this.get_context().toBuffer());
       this.encoder.addFrame(this.get_context().getImageData(0, 0, this.dialog_width, this.dialog_height));
 	  this.encoder.setDelay(this.text_state.delay);
     },
