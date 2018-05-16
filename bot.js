@@ -291,16 +291,6 @@ textCanvas.imageSmoothingEnabled = false;
                 });
 			}
 			
-			if (new RegExp(/!ut\W/gm).test(beaboMessage.substring(0, 4))) {
-						var text = message.cleanContent.substring(5);
-						message.channel.send( {embed: {
-							image: {
-								url: 'https://www.demirramon.com/gen/undertale_box.png?text=' + encodeURI(text)
-							}
-							}
-						});
-			}
-			
 			if ((beaboMessage).match(/!ut.+\W/gm)) {
 				var characterText = message.cleanContent.substring(message.cleanContent.indexOf('t')+1);
 						var character = characterText.substring(0, characterText.search(/\W/gm)); 
