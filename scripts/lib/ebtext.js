@@ -165,9 +165,14 @@ module.exports = {
     create_encoder: function() {
       this.encoder = new GIF(this.dialog_width, this.dialog_height);
 console.log(stream);	  
-	  this.file = require('fs').createWriteStream('img.gif');
+	  this.file = stream.WritableBufferStream();
 	  this.encoder.pipe(this.file);
 	  this.encoder.writeHeader();
+	  this.file.on('finish', () => {
+  // console log pdf as bas64 string
+  console.log('done');
+  console.log(writeStream.toBuffer().toString('base64'));
+});
 //console.log("creating encoder");
 //console.log(this.encoder);	  
     },
