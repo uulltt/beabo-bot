@@ -1,6 +1,7 @@
 var fs = require('fs');
 var GIF = require('gif-encoder');
 var Canvas = require('canvas');
+const Discord = require('discord.js');
 var Image = Canvas.Image;
 module.exports = {
 
@@ -143,6 +144,9 @@ module.exports = {
       this.create_encoder();
       this.encoder.on('end', () =>{
 		  console.log(file);
+		  file.end();
+		  console.log(file);
+		  console.log(fs.readFileSync('img.gif'));
 		  this.message.channel.send('hello');
 	  });
     },
