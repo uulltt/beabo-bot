@@ -152,12 +152,12 @@ attachment: this.canvas.toBuffer(),
 name: 'eb.png'
 					}]
 				});
-		  this.message.channel.send({
+		  /*this.message.channel.send({
 files: [{
 attachment: this.file.getContentsAsString(),
 name: 'eb.gif'
 					}]
-				});
+				});*/
 		 
 		  //this.message.channel.send('hello');
 	  });
@@ -323,7 +323,7 @@ console.log(this.file.getContents());
 		//console.log('hey!');
 	//console.log(this.canvas.toBuffer());
       pause = pause || false;
-      this.get_context().fillStyle = "rgba(0,255,0,1)";  
+      this.get_context().fillStyle = "rgba(0,0,0,0)";  
       this.get_context().fillRect(0,0,this.canvas.width, this.canvas.height);
 
       // Get the last three lines of the text state, that's all we're going to draw in this frame
