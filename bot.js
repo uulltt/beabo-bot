@@ -301,7 +301,7 @@ textCanvas.imageSmoothingEnabled = false;
 						});
 			}
 			
-			if (new RegExp(/!ut.+\W/gm).test(beaboMessage.substring(0, 6))) {
+			if ((beaboMessage).match(/!ut.+\W/gm)) {
 						var character = beaboMessage.substring(3, beaboMessage.search(/\W/gm)); 
 						var text = message.cleanContent.substring(message.cleanContent.search(/\W/gm)+1);
 						message.channel.send( {embed: {
