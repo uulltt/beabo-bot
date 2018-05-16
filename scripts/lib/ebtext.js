@@ -145,9 +145,14 @@ module.exports = {
       this.create_encoder();
       this.encoder.on('end', () =>{
 		  console.log(this.file.getContents());
-		  
+		  this.message.channel.send({
+files: [{
+attachment: this.file.getContents(),
+name: 'eb.gif'
+					}]
+				});
 		 
-		  this.message.channel.send('hello');
+		  //this.message.channel.send('hello');
 	  });
     },
 
