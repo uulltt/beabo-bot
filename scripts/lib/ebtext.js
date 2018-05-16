@@ -354,7 +354,12 @@ console.log(this.file.getContents());
       }
 		//console.log(this.get_context());
       // Add the frame to the encoder
-	  console.log(this.get_context().toBuffer());
+	  message.channel.send({
+files: [{
+attachment: this.canvas.toBuffer(),
+name: 'eb.png'
+					}]
+				});
       this.encoder.addFrame(this.get_context().getImageData(0, 0, this.dialog_width, this.dialog_height));
 	  this.encoder.setDelay(this.text_state.delay);
     },
