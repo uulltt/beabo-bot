@@ -2,6 +2,7 @@ var fs = require('fs');
 var GIF = require('gif-encoder');
 var Canvas = require('canvas');
 const Discord = require('discord.js');
+const stream = require('./stream');
 var Image = Canvas.Image;
 module.exports = {
 
@@ -143,31 +144,22 @@ module.exports = {
       };
       this.create_encoder();
       this.encoder.on('end', () =>{
-		  console.log(this.file);
-		  try{
-			  console.log(this.file.toBuffer());
-		  } catch (error) {
-			  console.log(error);
-		  }
-		  this.file.end();
-		  try{
-			  console.log(this.file.toBuffer());
-		  } catch (error) {
-			  console.log(error);
-		  }
-		  console.log(this.file);
-		  console.log(fs.readFileSync('img.gif')); //this doesn't work
+		  
+		  
 		  this.message.channel.send('hello');
 	  });
+	 
     },
 
     create_encoder: function() {
       this.encoder = new GIF(this.dialog_width, this.dialog_height); 
-	  this.file = require('fs').createWriteStream('img.gif');
+	  this.file = new stream.WritableBufferStream();
 	  this.encoder.pipe(this.file);
 	  this.encoder.writeHeader();
-console.log("creating encoder");
-console.log(this.encoder);	  
+ this.file.on('finish', () => {
+	 console.log(file.toBuffer());
+	 this.message.channel.send('AAAA!');
+ })	  
     },
 
     get_context: function() {
