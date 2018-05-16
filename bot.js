@@ -119,6 +119,7 @@ function helpMessage(message) {
 					value: 'To find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
 					'\nfont!gamename your text here - creates image of your text in the game\'s font\nb(u/d)(two digits)!game your text here to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size. also works for speech bubbles.\n'
 					 + 'Custom Fonts: font!crash, font!ms (metal slug), font!mario64, font!wario (warioware), font!puyo (Puyo Puyo), font!mk2 (mortal kombat 2)\nb!eb your text here - creates EarthBound-style text box.\nb!eb(n,m,s,b,or p) - creates text box in that specific style. default is n.'
+					 + '\nb!ut text - creates Undertale text box\nb!utcharactername text - creates Undertale text box with that character (i.e. b!utsans Hey guys it\'s me Sans Undertale'
 				}, {
 					name: 'Google Maps Commands',
 					value: 'b!dir \"origin\" \"destination\" - prints directions from origin to destination\nb!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n'
@@ -291,7 +292,7 @@ textCanvas.imageSmoothingEnabled = false;
 			}
 			
 			if (new RegExp(/!ut\W/gm).test(beaboMessage.substring(0, 4))) {
-						var Text = message.cleanContent.substring(5);
+						var text = message.cleanContent.substring(5);
 						message.channel.send( {embed: {
 							image: {
 								url: 'https://www.demirramon.com/gen/undertale_box.png?text=' + encodeURI(text)
@@ -302,7 +303,7 @@ textCanvas.imageSmoothingEnabled = false;
 			
 			if (new RegExp(/!ut.+\W/gm).test(beaboMessage.substring(0, 6))) {
 						var character = beaboMessage.substring(3, beaboMessage.search(/\W/gm)); 
-						var Text = message.cleanContent.substring(message.cleanContent.search(/\W/gm)+1);
+						var text = message.cleanContent.substring(message.cleanContent.search(/\W/gm)+1);
 						message.channel.send( {embed: {
 							image: {
 								url: 'https://www.demirramon.com/gen/undertale_box.png?character='+encodeURI(character)+'&text=' + encodeURI(text)
