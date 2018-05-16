@@ -302,8 +302,9 @@ textCanvas.imageSmoothingEnabled = false;
 			}
 			
 			if ((beaboMessage).match(/!ut.+\W/gm)) {
-						var character = beaboMessage.substring(3, beaboMessage.search(/\W/gm)); 
-						var text = message.cleanContent.substring(message.cleanContent.search(/\W/gm)+1);
+				var characterText = message.cleanContent.substring(message.cleanContent.indexOf('t')+1);
+						var character = characterText.substring(0, characterText.search(/\W/gm)); 
+						var text = characterText.substring(characterText.search(/\W/gm)+1);
 						message.channel.send( {embed: {
 							image: {
 								url: 'https://www.demirramon.com/gen/undertale_box.png?character='+encodeURI(character)+'&text=' + encodeURI(text)
@@ -316,7 +317,7 @@ textCanvas.imageSmoothingEnabled = false;
 				var command = '**' + beaboMessage.substring(8) + '**';
 				command = command.replace(/1/gm, ':arrow_lower_left:').replace(/2/gm, ':arrow_down:').replace(/3/gm, ':arrow_lower_right:').replace(/4/gm, ':arrow_left:')
 					.replace(/7/gm, ':arrow_upper_left:').replace(/8/gm, ':arrow_up:').replace(/9/gm, ':arrow_upper_right:').replace(/6/gm, ':arrow_right:').replace(/5/gm, ' neutral ')
-					.replace(/j\./gm, ' jumping ');
+					.replace(/j\./gm, ' jumping ').replace(/c\./gm, ' crouching ');
 				message.channel.send(command);
 			}
 			if (beaboMessage.substring(0, 8) === '!ZiV-id ') {
