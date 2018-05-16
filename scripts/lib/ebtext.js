@@ -168,10 +168,8 @@ console.log(this.encoder);
       this.initialize(opts);
       this.preprocess_text();
       this.render_dialog();
-	  console.log(file);
       this.encoder.finish();
-	  console.log(this.encoder);
-	  console.log(file);
+	  
     },
 
     preprocess_text_simple: function() {
@@ -299,7 +297,7 @@ console.log(this.encoder);
 
     draw_frame: function(pause) {
 		console.log('hey!');
-	console.log(this.canvas.toBuffer());
+	//console.log(this.canvas.toBuffer());
       pause = pause || false;
       this.get_context().fillStyle = "rgba(0,255,0,1)";  
       this.get_context().fillRect(0,0,this.canvas.width, this.canvas.height);
@@ -342,7 +340,7 @@ console.log(this.encoder);
           this.get_context().drawImage(this.asset('arrowsm'), this.dialog_width - 64, this.dialog_height - 32, 64, 32);
         }
       }
-		console.log(this.get_context());
+		//console.log(this.get_context());
       // Add the frame to the encoder
       this.encoder.addFrame(this.get_context().getImageData(0, 0, this.dialog_width, this.dialog_height));
 	  this.encoder.setDelay(this.text_state.delay);
