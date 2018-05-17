@@ -303,14 +303,25 @@ textCanvas.imageSmoothingEnabled = false;
 			
 			if ((beaboMessage).match(/!ut.+\W/gm)) {
 				var characterText = message.cleanContent.substring(message.cleanContent.indexOf('t')+1);
-						var character = characterText.substring(0, characterText.search(/\W/gm)); 
+						var characterexp = characterText.substring(0, characterText.search(/\W/gm)).split(',');
+						var character = characterexp[0];
 						var text = characterText.substring(characterText.search(/\W/gm)+1);
+						if (characterexp.length <= 1){
 						message.channel.send( {embed: {
 							image: {
 								url: 'https://www.demirramon.com/gen/undertale_box.png?character='+encodeURI(character)+'&text=' + encodeURI(text)
 							}
 							}
 						});
+						} else {
+							var expression = characterexp[1];
+							message.channel.send( {embed: {
+							image: {
+								url: 'https://www.demirramon.com/gen/undertale_box.png?character='+encodeURI(character)+'&expression='+encodeURI(expression)+'&text=' + encodeURI(text)
+							}
+							}
+						});
+						}
 			}
 			}
 
