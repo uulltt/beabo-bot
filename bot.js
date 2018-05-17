@@ -18,7 +18,7 @@ const {
 var concat = require('concat-image');
 
 const herokupg = new Client({
-		connectionString: process.env.DATABASE_URL,
+		connectionString: 'postgres://zagxxzmhzwvqlf:a107491b969c9fd1f44b023e4f95d7bcb5875d14129af0d1539b86d4931762b3@ec2-54-235-132-202.compute-1.amazonaws.com:5432/d59vopnhopjluj',//process.env.DATABASE_URL,
 		ssl: true,
 	});
 
