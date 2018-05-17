@@ -247,7 +247,7 @@ client.on('message', message => {
 					if (res.rows.length > 0){
 					localcityTime(message, res.rows[0].city_name);
 					} else {
-						message.channel.send('Bee bee! (error. could not find local time for <@' + id + '>');
+						message.channel.send('Bee bee! (error. could not find local time for <@' + id + '>)');
 					}
 				} else
 					console.log(err);
