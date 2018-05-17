@@ -241,7 +241,11 @@ client.on('message', message => {
 			herokupg.query('SELECT city_name FROM localtimes WHERE user_id = \'' + id + '\';', (err, res) => {
 				if (!err) {
 					console.log(res);
+					if (res.rows.length > 0){
 					localcityTime(message, res.rows[0].city_name);
+					} else {
+						message.channel.send('Bee bee! (error. could not find local time for <@' + id + '>');
+					}
 				} else
 					console.log(err);
 			});
@@ -303,7 +307,7 @@ textCanvas.imageSmoothingEnabled = false;
 			
 			if ((beaboMessage).match(/!ut.+\W/gm)) {
 				var characterText = message.cleanContent.substring(message.cleanContent.indexOf('t')+1);
-						var characterexp = characterText.substring(0, characterText.search(/\W/gm)).split(',');
+						var characterexp = characterText.substring(0, characterText.search(/\W/gm)).split('_');
 						var character = characterexp[0];
 						var text = characterText.substring(characterText.search(/\W/gm)+1);
 						if (characterexp.length <= 1){
