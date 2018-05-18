@@ -334,9 +334,11 @@ textCanvas.imageSmoothingEnabled = false;
 
 			if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
 				var command = '**' + beaboMessage.substring(8) + '**';
-				command = command.replace(/1/gm, ':arrow_lower_left:').replace(/2/gm, ':arrow_down:').replace(/3/gm, ':arrow_lower_right:').replace(/4/gm, ':arrow_left:')
+				command = command.replace(/(2)([a-zA-Z\W])/gm, function (match) {
+  return "crouching " + match.substring(1)  ;
+}).replace(/1/gm, ':arrow_lower_left:').replace(/2/gm, ':arrow_down:').replace(/3/gm, ':arrow_lower_right:').replace(/4/gm, ':arrow_left:')
 					.replace(/7/gm, ':arrow_upper_left:').replace(/8/gm, ':arrow_up:').replace(/9/gm, ':arrow_upper_right:').replace(/6/gm, ':arrow_right:').replace(/5/gm, ' neutral ')
-					.replace(/j\./gm, ' jumping ').replace(/c\./gm, ' crouching ');
+					.replace(/j((u|m|p)?)\./gm, ' jumping ').replace(/c(r?)\./gm, ' crouching ').replace(/cl\./gm, ' close ');
 				message.channel.send(command);
 			}
 			if (beaboMessage.substring(0, 8) === '!ZiV-id ') {
