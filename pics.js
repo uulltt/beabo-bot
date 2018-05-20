@@ -63,7 +63,7 @@ encoding: null
 					message.channel.send('Error: ' + error.message);
 					else {
 						var propValue;
-						const propholders = [exifData.image, exifData.thumbnail, exifData.exif, exifData.gps, exifdata.interoperability];
+						const propholders = [exifData.image, exifData.thumbnail, exifData.exif, exifData.gps, exifData.interoperability];
 						for(var i = 0; i < 5; i++){
 						for (var propName in propholders[i]) {
 							propValue = propholders[i][propName];
