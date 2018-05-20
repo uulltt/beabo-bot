@@ -14,7 +14,7 @@ function gbwiki(json, query) {
 		for(var j = 0; j < 4; j++){
 	if (query === queries[j]) {
 		for (var i = 0; i < gameInfo[j].length; i++) {
-			if ((embedString + '**•[' + gameInfo[j][i].name + '](' + gameInfo[j]i].site_detail_url + ')**\n').length < 2048)
+			if ((embedString + '**•[' + gameInfo[j][i].name + '](' + gameInfo[j][i].site_detail_url + ')**\n').length < 2048)
 				embedString += '**•[' + gameInfo[j][i].name + '](' + gameInfo[j][i].site_detail_url + ')**\n';
 		}
 	}
