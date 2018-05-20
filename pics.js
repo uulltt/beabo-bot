@@ -16,7 +16,7 @@ var tweeter = new Twitter({
 module.exports = (message, content) => {
 	if (content.startsWith('📷 ') || content.startsWith('!pics ')) { //all the camera commands go in here
 	if (content.includes('twitter.com/') && content.includes('/status/')) {
-		var tweetId = content.substring(content.indexOf('/status/') + ('/status/').length).match(/[0-9]+/gm)[0];
+		var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
 		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
 			if (!error) {
 				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
@@ -28,7 +28,14 @@ module.exports = (message, content) => {
 		});
 	}
 	if (content.includes('imgur.com/') && content.includes('/a/')) {
-		var theAlbum = content.substring(content.indexOf('/a/') + ('/a/').length).match(/[0-9a-zA-Z]+/gm)[0];
+		var theAlbum = content.substring(content.indexOf('/a/') + 3).match(/[0-9a-zA-Z]+/gm)[0];
+		imgur.getAlbumInfo(theAlbum)
+		.then(function (json) {
+			for (var i = 0; i < Math.min(json.data.images.length, 10); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }));
+		}).catch(function (err) { message.channel.send(err.message); });
+	}
+	if (content.includes('imgur.com/') && content.includes('/gallery/')) {
+		var theAlbum = content.substring(content.indexOf('/gallery/') + 9).match(/[0-9a-zA-Z]+/gm)[0];
 		imgur.getAlbumInfo(theAlbum)
 		.then(function (json) {
 			for (var i = 0; i < Math.min(json.data.images.length, 10); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }));
@@ -37,7 +44,7 @@ module.exports = (message, content) => {
 	if (content.includes('tumblr.com/post/')) {
 		var hasBlogId = content.substring(0, content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
 		var blogId = hasBlogId[hasBlogId.length - 1];
-		var postId = parseInt(content.substring(content.indexOf('/post/') + ('/post/').length).match(/[0-9]+/gm)[0]);
+		var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
 			if (json.total_posts > 0 && json.posts[0].type === 'photo') {
 				for (var i = 1; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
@@ -56,16 +63,19 @@ encoding: null
 					message.channel.send('Error: ' + error.message);
 					else {
 						var propValue;
-						for (var propName in exifData.image) {
-							propValue = exifData.image[propName];
+						const propholders = [exifData.image, exifData.thumbnail, exifData.exif, exifData.gps, exifdata.interoperability];
+						for(var i = 0; i < 5; i++){
+						for (var propName in propholders[i]) {
+							propValue = propholders[i][propName];
 							if (typeof propValue !== "undefined") {
 								var field = propName.toString() + ": " + propValue.toString() + "\n";
 								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
 								exifString += field;
 							}
 						}
-						for (var propName in exifData.thumbnail) {
-							propValue = exifData.image[propName];
+						}
+						/*for (var propName in exifData.thumbnail) {
+							propValue = exifData.thumbnail[propName];
 							if (typeof propValue !== "undefined") {
 								var field = propName.toString() + ": " + propValue.toString() + "\n";
 								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
@@ -97,7 +107,7 @@ encoding: null
 								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
 								exifString += field;
 							}
-						}
+						}*/
 						if (exifString.length > 2000) {
 							message.channel.send(exifString.substring(0, 2000));
 						} else {
