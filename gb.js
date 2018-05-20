@@ -49,18 +49,32 @@ function gbWiki(json2, query, message, g) {
 		var embedTitle = Name + ' ';
 		var embedString = '';
 		embedString += gbwiki(json2, queries[q]);
-		//var embedImage = json2.results.image.original_url;
 		if (queries[q] === 'info' && g === 0) {
-			//console.log(json2.results.original_release_date);
-
-
 			var platforms = '';
 			var genres = '';
 			var themes = '';
 			var developers = '';
 			var publishers = ''
-				var dlcs = ''
-				for (var i = 0; i < json2.results.developers.length; i++) {
+			var dlcs = ''
+			const gameInfo = [json2.results.platforms, json2.results.developers, json2.results.publishers, json2.results.genres, json2.results.themes, json2.results.dlcs];
+			var gameValues = ['', '', '', '', '', ''];
+			for(var j = 0; j < 6; j++){
+				
+				if (gameInfo[j] !== undefined && gameInfo[j]  !== null && typeof gameInfo[j]  !== undefined && typeof gameInfo[j]  !== null) {
+					for (var i = 0; i < gameInfo[j].length; i++) {
+
+						if ((gameValues[j] + ', [' + gameInfo[j][i].name + '](' + gameInfo[j][i].site_detail_url + ')').length < 2048 && !gameValues[j].includes('[' + gameInfo[j][i].name + '](' + gameInfo[j][i].site_detail_url + ')')) {
+							if (i > 0) {
+								gameValues[j] += ', ';
+							}
+							gameValues[j] += '[' + gameInfo[j][i].name + '](' + gameInfo[j][i].site_detail_url + ')';
+						}
+					}
+				} else {
+					gameValues[j] = 'None';
+				}
+			}
+				/*for (var i = 0; i < json2.results.developers.length; i++) {
 
 					if ((developers + ', [' + json2.results.developers[i].name + '](' + json2.results.developers[i].site_detail_url + ')').length < 2048) {
 						if (i > 0) {
@@ -77,19 +91,6 @@ function gbWiki(json2, query, message, g) {
 						publishers += '[' + json2.results.publishers[i].name + '](' + json2.results.publishers[i].site_detail_url + ')';
 					}
 				}
-				if (json2.results.dlcs !== undefined && json2.results.dlcs !== null && typeof json2.results.dlcs !== undefined && typeof json2.results.dlcs !== null) {
-					for (var i = 0; i < json2.results.dlcs.length; i++) {
-
-						if ((dlcs + ', [' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')').length < 2048 && !dlcs.includes('[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')')) {
-							if (i > 0) {
-								dlcs += ', ';
-							}
-							dlcs += '[' + json2.results.dlcs[i].name + '](' + json2.results.dlcs[i].site_detail_url + ')';
-						}
-					}
-				} else {
-					dlcs = 'None';
-				}
 				for (var i = 0; i < json2.results.platforms.length; i++) {
 
 					if ((platforms + ', [' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')').length < 2048) {
@@ -99,7 +100,6 @@ function gbWiki(json2, query, message, g) {
 						platforms += '[' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')';
 					}
 				}
-
 				if (json2.results.genres !== undefined && json2.results.genres !== null && typeof json2.results.genres !== undefined && typeof json2.results.genres !== null) {
 					for (var i = 0; i < json2.results.genres.length; i++) {
 
@@ -125,7 +125,7 @@ function gbWiki(json2, query, message, g) {
 					}
 				} else {
 					themes = 'None';
-				}
+				}*/
 				var ord = 'Coming Soon';
 			if (json2.results.original_release_date !== undefined && json2.results.original_release_date !== null && typeof json2.results.original_release_date !== undefined && typeof json2.results.original_release_date !== null)
 				ord = json2.results.original_release_date.substring(0, json2.results.original_release_date.indexOf(' '));
@@ -148,32 +148,31 @@ function gbWiki(json2, query, message, g) {
 							inline: true
 						}, {
 							name: "Platforms",
-							value: platforms,
+							value: gameValues[0],
 							inline: true
 						}, {
 							name: "Developers",
-							value: developers,
+							value: gameValues[1],
 							inline: true
 						}, {
 							name: "Publishers",
-							value: publishers,
+							value: gameValues[2],
 							inline: true
 						}, {
 							name: "Genres",
-							value: genres,
+							value: gameValues[3],
 							inline: true
 						}, {
 							name: "Themes",
-							value: themes,
+							value: gameValues[4],
 							inline: true
 						}, {
 							name: "DLCs",
-							value: dlcs
+							value: gameValues[5]
 						},
 					]
 				}
 			});
-
 		} else {
 			if (queries[q] === 'info' && g === 1) {
 
@@ -186,10 +185,8 @@ function gbWiki(json2, query, message, g) {
 			}
 			if (queries[q] === 'info' && (g === 2 || g === 6)) {
 				embedString += '**First Appearance: [' + json2.results.first_appeared_in_game.name + '](' + json2.results.first_appeared_in_game.site_detail_url + ')**';
-
 			}
 			if (queries[q] === 'info' && g === 5) {
-
 				if (json2.results.first_credited_game !== null) {
 					embedString += '**•First Credited Game: [' + json2.results.first_credited_game.name + '](' + json2.results.first_credited_game.site_detail_url + ')**\n';
 				}
@@ -199,7 +196,6 @@ function gbWiki(json2, query, message, g) {
 					embedString += '**•Birthday: ' + json2.results.birth_date + '**\n';
 				}
 			}
-
 			if (queries[q] === 'concepts') {
 				embedTitle += 'Concepts';
 			}
@@ -221,7 +217,6 @@ function gbWiki(json2, query, message, g) {
 					}
 				}
 			} else {
-
 				if (queries[q] === 'friends') {
 					embedTitle += 'Friends';
 					for (var i = 0; i < json2.results.friends.length; i++) {
@@ -229,7 +224,6 @@ function gbWiki(json2, query, message, g) {
 							embedString += '**•[' + json2.results.friends[i].name + '](' + json2.results.friends[i].site_detail_url + ')**\n';
 					}
 				}
-
 				if (queries[q] === 'enemies') {
 					embedTitle += 'Enemies';
 					for (var i = 0; i < json2.results.enemies.length; i++) {
@@ -280,7 +274,6 @@ function gbWiki(json2, query, message, g) {
 						embedString += '**•[' + json2.results.games[i].name + '](' + json2.results.games[i].site_detail_url + ')**\n';
 				}
 			}
-
 			if (embedString.length > 2048) {
 				embedString = embedString.substring(0, 2048);
 			}
