@@ -278,15 +278,8 @@ textCanvas.imageSmoothingEnabled = false;
 							EarthBoundText.render({
                     canvas: textCanvas,
                     flavor: 'plain',
-                    speed: 15,
                     text: Text,
-					Message: message,
-                    on_render: function(blob) {
-						//console.log("holy fuck it worked?");
-						//console.log(EarthBoundText.file);
-                        //console.log(blob);
-						//console.log(textCanvas.toBuffer());
-                    }
+					Message: message
                 });
 			}
 			
