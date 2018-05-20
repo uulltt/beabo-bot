@@ -306,7 +306,7 @@ module.exports = (message) => {
 		}
 	}
 	if (new RegExp(/[Ff]ont!ecco\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10) {
-		var text = message.cleanContent.substring(10).toLowerCase().replace(/[^a-z\.\n,:\?! ]/gm, '') + ' ';
+		var text = message.cleanContent.substring(10).toLowerCase().replace(/[^a-z\.\n,:\?!' ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		for (var t = 0; t < Math.min(texts.length, 5); t++) {
 			var paths = [];
