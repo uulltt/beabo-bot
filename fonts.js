@@ -22,6 +22,7 @@ const mario64String = '1234567890' + alphabet + ' ?\'\".,%&!⭐:';
 const wariowareString = alphabet.toUpperCase() + '0123456789 ?+-=#✏$^<%&⭐>/' + alphabet + ',.:;\'\"()!';
 const puyoString = '0123456789' + alphabet + '. ';
 const mk2String = '**1234567890 -\'' + alphabet + '!.,';
+const eccoString = alphabet + ' .:,!?\'';
 
 function font(message) {
 	var arg = ' ';
@@ -262,7 +263,6 @@ module.exports = (message) => {
 					});
 				});
 			}
-
 		}
 	}
 	if (new RegExp(/[Ff]ont!mk2\W/gm).test(message.cleanContent.substring(0, 9)) && message.cleanContent.length > 9) {
@@ -283,7 +283,6 @@ module.exports = (message) => {
 					});
 				});
 			}
-
 		}
 	}
 	if (new RegExp(/[Ff]ont!puyo\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10) {
@@ -304,7 +303,26 @@ module.exports = (message) => {
 					});
 				});
 			}
-
+		}
+	}
+	if (new RegExp(/[Ff]ont!ecco\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10) {
+		var text = message.cleanContent.substring(10).toLowerCase().replace(/[^a-z\.\n,:\?! ]/gm, '') + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		for (var t = 0; t < Math.min(texts.length, 5); t++) {
+			var paths = [];
+			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace(/\n/gm, '');
+			var cursor = 0;
+			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./ecco/ecco_' + (eccoString.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
+			if (cursor === texts[t].length) {
+				concat({
+					images: paths, margin: 0 // optional, in px, defaults to 10px
+				}, function (err, canvas) {
+					message.channel.send({
+						files: [{attachment: canvas.toBuffer(),name: 'ecco.png'}]
+					});
+				});
+			}
 		}
 	}
 	if (new RegExp(/[Ff]ont!doom\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10) {
@@ -331,7 +349,6 @@ module.exports = (message) => {
 					});
 				});
 			}
-
 		}
 	}
 }
