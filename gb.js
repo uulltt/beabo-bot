@@ -19,28 +19,8 @@ function gbwiki(json, query) {
 		}
 	}
 	}
-	/*if (query === 'objects') {
-		for (var i = 0; i < json.results.objects.length; i++) {
-			if ((embedString + '**•[' + json.results.objects[i].name + '](' + json.results.objects[i].site_detail_url + ')**\n').length < 2048)
-				embedString += '**•[' + json.results.objects[i].name + '](' + json.results.objects[i].site_detail_url + ')**\n';
-		}
-	}
-	
-	if (query === 'concepts') {
-		for (var i = 0; i < json.results.concepts.length; i++) {
-			if ((embedString + '**•[' + json.results.concepts[i].name + '](' + json.results.concepts[i].site_detail_url + ')**\n').length < 2048)
-				embedString += '**•[' + json.results.concepts[i].name + '](' + json.results.concepts[i].site_detail_url + ')**\n';
-		}
-	}
-	if (query === 'people') {
-		for (var i = 0; i < json.results.people.length; i++) {
-			if ((embedString + '**•[' + json.results.people[i].name + '](' + json.results.people[i].site_detail_url + ')**\n').length < 2048)
-				embedString += '**•[' + json.results.people[i].name + '](' + json.results.people[i].site_detail_url + ')**\n';
-		}
-	}*/
 	}
 	return embedString;
-
 }
 
 function gbWiki(json2, query, message, g) {
@@ -189,33 +169,36 @@ function gbWiki(json2, query, message, g) {
 						embedString += '**•[' + json2.results.companies[i].name + '](' + json2.results.companies[i].site_detail_url + ')**\n';
 				}
 			}
-			if (queries[q] === 'developed' && g === 4) {
+			if (g === 4){
+			if (queries[q] === 'developed') {
 				embedTitle += 'Developed Games';
 				for (var i = 0; i < json2.results.developed_games.length; i++) {
 					if ((embedString + '**•[' + json2.results.developed_games[i].name + '](' + json2.results.developed_games[i].site_detail_url + ')**\n').length < 2048)
 						embedString += '**•[' + json2.results.developed_games[i].name + '](' + json2.results.developed_games[i].site_detail_url + ')**\n';
 				}
 			}
-			if (queries[q] === 'published' && g === 4) {
+			if (queries[q] === 'published') {
 				embedTitle += 'Published Games';
 				for (var i = 0; i < json2.results.published_games.length; i++) {
 					if ((embedString + '**•[' + json2.results.published_games[i].name + '](' + json2.results.published_games[i].site_detail_url + ')**\n').length < 2048)
 						embedString += '**•[' + json2.results.published_games[i].name + '](' + json2.results.published_games[i].site_detail_url + ')**\n';
 				}
 			}
-			if (queries[q] === 'franchises' && g !== 3 && g !== 4) {
+			} else {
+			if (queries[q] === 'franchises' && g !== 3) {
 				embedTitle += 'Franchises';
 				for (var i = 0; i < json2.results.franchises.length; i++) {
 					if ((embedString + '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n').length < 2048)
 						embedString += '**•[' + json2.results.franchises[i].name + '](' + json2.results.franchises[i].site_detail_url + ')**\n';
 				}
 			}
-			if (queries[q] === 'games' && g !== 0 && g !== 4) {
+			if (queries[q] === 'games' && g !== 0) {
 				embedTitle += 'Games';
 				for (var i = 0; i < json2.results.games.length; i++) {
 					if ((embedString + '**•[' + json2.results.games[i].name + '](' + json2.results.games[i].site_detail_url + ')**\n').length < 2048)
 						embedString += '**•[' + json2.results.games[i].name + '](' + json2.results.games[i].site_detail_url + ')**\n';
 				}
+			}
 			}
 			if (embedString.length > 2048) {
 				embedString = embedString.substring(0, 2048);
