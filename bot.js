@@ -15,7 +15,6 @@ var EarthBoundText = require('./scripts/lib/ebtext.js');
 const {
 	Client
 } = require('pg');
-var concat = require('concat-image');
 
 const herokupg = new Client({
 		connectionString: process.env.DATABASE_URL,
@@ -266,15 +265,8 @@ textCanvas.imageSmoothingEnabled = false;
 							EarthBoundText.render({
                     canvas: textCanvas,
                     flavor: Flavor,
-                    speed: 15,
                     text: Text,
-					Message: message,
-                    on_render: function(blob) {
-						console.log("holy fuck it worked?");
-						console.log(EarthBoundText.file);
-                        console.log(blob);
-						console.log(textCanvas.toBuffer());
-                    }
+					Message: message
                 });
 			}
 			
