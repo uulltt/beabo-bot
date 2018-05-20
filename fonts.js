@@ -193,15 +193,10 @@ module.exports = (message) => {
 			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./crashfont/crashfont_' + (crashfontString.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
 			if (cursor === texts[t].length) {
 				concat({
-					images: paths,
-					margin: 0 // optional, in px, defaults to 10px
+					images: paths, margin: 0 // optional, in px, defaults to 10px
 				}, function (err, canvas) {
 					message.channel.send({
-						files: [{
-								attachment: canvas.toBuffer(),
-								name: 'crash.png'
-							}
-						]
+						files: [{ attachment: canvas.toBuffer(), name: 'crash.png'}]
 					});
 				});
 			}
@@ -220,15 +215,10 @@ module.exports = (message) => {
 			}
 			if (cursor === texts[t].length) {
 				concat({
-					images: paths,
-					margin: 0 // optional, in px, defaults to 10px
+					images: paths, margin: 0 // optional, in px, defaults to 10px
 				}, function (err, canvas) {
 					message.channel.send({
-						files: [{
-								attachment: canvas.toBuffer(),
-								name: 'warioware.png'
-							}
-						]
+						files: [{attachment: canvas.toBuffer(),name: 'warioware.png'}]
 					});
 				});
 			}
@@ -245,15 +235,10 @@ module.exports = (message) => {
 			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./mario64/mario64_' + (mario64String.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
 			if (cursor === texts[t].length) {
 				concat({
-					images: paths,
-					margin: 0 // optional, in px, defaults to 10px
+					images: paths, margin: 0 // optional, in px, defaults to 10px
 				}, function (err, canvas) {
 					message.channel.send({
-						files: [{
-								attachment: canvas.toBuffer(),
-								name: 'mario64.png'
-							}
-						]
+						files: [{attachment: canvas.toBuffer(),name: 'mario64.png'}]
 					});
 				});
 			}
@@ -270,15 +255,10 @@ module.exports = (message) => {
 			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./metalslug/metalslug_' + (metalslugString.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
 			if (cursor === texts[t].length) {
 				concat({
-					images: paths,
-					margin: 0 // optional, in px, defaults to 10px
+					images: paths, margin: 0 // optional, in px, defaults to 10px
 				}, function (err, canvas) {
 					message.channel.send({
-						files: [{
-								attachment: canvas.toBuffer(),
-								name: 'metalslug.png'
-							}
-						]
+						files: [{attachment: canvas.toBuffer(),name: 'metalslug.png'}]
 					});
 				});
 			}
@@ -296,15 +276,10 @@ module.exports = (message) => {
 			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./mk2/mk2_' + (mk2String.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
 			if (cursor === texts[t].length) {
 				concat({
-					images: paths,
-					margin: 0 // optional, in px, defaults to 10px
+					images: paths, margin: 0 // optional, in px, defaults to 10px
 				}, function (err, canvas) {
 					message.channel.send({
-						files: [{
-								attachment: canvas.toBuffer(),
-								name: 'mk2.png'
-							}
-						]
+						files: [{attachment: canvas.toBuffer(),name: 'mk2.png'}]
 					});
 				});
 			}
@@ -322,15 +297,10 @@ module.exports = (message) => {
 			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./puyo/puyo_' + (puyoString.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
 			if (cursor === texts[t].length) {
 				concat({
-					images: paths,
-					margin: 0 // optional, in px, defaults to 10px
+					images: paths, margin: 0 // optional, in px, defaults to 10px
 				}, function (err, canvas) {
 					message.channel.send({
-						files: [{
-								attachment: canvas.toBuffer(),
-								name: 'puyo.png'
-							}
-						]
+						files: [{attachment: canvas.toBuffer(),name: 'puyo.png'}]
 					});
 				});
 			}
@@ -354,15 +324,10 @@ module.exports = (message) => {
 			}
 			if (cursor === texts[t].length) {
 				concat({
-					images: paths,
-					margin: 0 // optional, in px, defaults to 10px
+					images: paths, margin: 0 // optional, in px, defaults to 10px
 				}, function (err, canvas) {
 					message.channel.send({
-						files: [{
-								attachment: canvas.toBuffer(),
-								name: 'doom.png'
-							}
-						]
+						files: [{ attachment: canvas.toBuffer(), name: 'doom.png' }]
 					});
 				});
 			}
