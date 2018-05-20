@@ -56,7 +56,7 @@ module.exports = (message, content) => {
 encoding: null
 		});
 		request.get(encodeURI(content.substring(content.startsWith('!pics ') ? 6 : 3).replace(/ /gm, '')), function (err, res, body) {
-			var exifString = ':frame_photo: EXIF data:\n';
+			var exifString = '';
 			try {
 				new ExifImage({ image: body }, function (error, exifData) {
 					if (error)
@@ -74,45 +74,11 @@ encoding: null
 							}
 						}
 						}
-						/*for (var propName in exifData.thumbnail) {
-							propValue = exifData.thumbnail[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-								exifString += field;
-							}
-						}
-						for (var propName in exifData.exif) {
-							propValue = exifData.exif[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-								exifString += field;
-							}
-						}
-						for (var propName in exifData.gps) {
-							propValue = exifData.gps[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-								exifString += field;
-							}
-						}
-						for (var propName in exifData.interoperability) {
-							propValue = exifData.interoperability[propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-								exifString += field;
-							}
-						}*/
-						if (exifString.length > 2000) {
-							message.channel.send(exifString.substring(0, 2000));
-						} else {
-							message.channel.send(exifString, { embed: { image: { url: encodeURI(content.substring(content.startsWith('!pics ') ? 6 : 3).replace(/ /gm, ''))}}});
-						}
+							message.channel.send({ 
+							embed: { 
+							title:  ':frame_photo: EXIF data:\n',
+							description: (exifString.length > 2048 ? exifString.substring(0, 2048) : exifString),
+							image: { url: encodeURI(content.substring(content.startsWith('!pics ') ? 6 : 3).replace(/ /gm, ''))}}});
 					}
 				});
 			} catch (error) {
