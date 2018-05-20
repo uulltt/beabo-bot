@@ -12,6 +12,7 @@ const giantbomb = require('./gb.js');
 var Canvas = require('canvas');
 var Image = Canvas.Image;
 var EarthBoundText = require('./scripts/lib/ebtext.js');
+var timestuff = require('./timestuff.js');
 const {
 	Client
 } = require('pg');
@@ -212,9 +213,7 @@ client.on('message', message => {
 		movies(message, beaboMessage);
 		pics(message, beaboMessage);
 
-		if (beaboMessage.substring(0, 6) === '!time ') {
-			cityTime(message);
-		}
+		
 		if (beaboMessage.substring(0, 4) === '!gb ') {
 			giantbomb(message, beaboMessage);
 		}
@@ -226,7 +225,8 @@ client.on('message', message => {
 					console.log(err);
 			});
 		}
-		if (beaboMessage.toLowerCase().substring(0, 9) === '!settime ' && beaboMessage.length > 9) {
+		
+		/*if (beaboMessage.toLowerCase().substring(0, 9) === '!settime ' && beaboMessage.length > 9) {
 			var city = beaboMessage.substring(9);
 			console.log('INSERT INTO localtimes(user_id, city_name) VALUES (\'' + message.author.id + '\',\'' + city + '\')ON CONFLICT (user_id) DO UPDATE SET city_name = EXCLUDED.city_name;');
 			herokupg.query('INSERT INTO localtimes(user_id, city_name) VALUES (\'' + message.author.id + '\',\'' + city + '\')ON CONFLICT (user_id) DO UPDATE SET city_name = EXCLUDED.city_name;', (err, res) => {
@@ -252,6 +252,11 @@ client.on('message', message => {
 					console.log(err);
 			});
 		}
+		
+		if (beaboMessage.substring(0, 6) === '!time ') {
+			cityTime(message);
+		}*/
+		timestuff(message, beaboMessage, herokupg);
 
 		if (new RegExp(/!eb(n|m|s|b|p|N|M|S|B|P)\W/gm).test(beaboMessage.substring(0, 5))) {
 			const flavors = ['plain', 'mint', 'strawberry', 'banana', 'peanut'];
