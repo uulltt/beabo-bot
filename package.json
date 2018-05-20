@@ -1,7 +1,7 @@
 {
   "name": "beabo",
   "description": "the cutest discord bot!",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js"
@@ -22,9 +22,7 @@
 	"rt-scraper": "1.0.5",
 	"pg": "7.4.3",
 	"lodash": "^4.17.4",
-	"gif-encoder": "0.6.1",
-	"canvas": "^1.1.3",
-	"stream-buffers": "3.0.1"
+	"canvas": "^1.1.3"
   },
     "devDependencies": {
         "mocha": "^3.2.0"

@@ -1,18 +1,9 @@
-var fs = require('fs');
-var GIF = require('gif-encoder');
 var Canvas = require('canvas');
 const Discord = require('discord.js');
-var streamBuffers = require('stream-buffers');
 var Image = Canvas.Image;
 module.exports = {
 
     // Encoder configuration
-    encoder:            null,
-    encoder_workers:    10,
-    encoder_quality:    10,
-    encoder_background: '#000',
-    encoder_transparent: 0x00FF00,
-	file:			 null,
 	message: null,
     // Flavor information
     flavors:         ['plain','mint','strawberry','banana','peanut'],
@@ -142,38 +133,11 @@ module.exports = {
         lines: [[]],
         delay: this.print_delay
       };
-      this.create_encoder();
-      this.encoder.on('end', () =>{
-		  //console.log('fuck');
-		  //console.log(this.file.getContents());
-		  //const buff = this.file.getContents();
-		 // console.log(buff);
-		  
-		  /*this.message.channel.send({
-files: [{
-attachment: buff,
-name: 'eb.gif'
-					}]
-				});*/
-		 
-		  //this.message.channel.send('hello');
-	  });
+     
+      
     },
 
-    create_encoder: function() {
-      this.encoder = new GIF(this.dialog_width, this.dialog_height);
-	  
-	  /*this.file = new streamBuffers.WritableStreamBuffer({
-    initialSize: (7 * 1024 * 1024),   // start at 100 kilobytes.
-    incrementAmount: (10 * 1024) // grow by 10 kilobytes each time buffer overflows.
-});*/
-//console.log(this.file.getContents());
-	  //this.encoder.pipe(this.file);
-	  //this.encoder.writeHeader();
-	  
-//console.log("creating encoder");
-//console.log(this.encoder);	  
-    },
+  
 
     get_context: function() {
       if (!this.context) {
@@ -322,16 +286,12 @@ name: 'eb.png'
     },
 
     draw_frame: function(pause) {
-		//console.log('hey!');
-	//console.log(this.canvas.toBuffer());
       pause = pause || false;
       this.get_context().fillStyle = "rgba(0,0,0,0)";  
       this.get_context().fillRect(0,0,this.canvas.width, this.canvas.height);
 
       // Get the last three lines of the text state, that's all we're going to draw in this frame
       var lines = this.text_state.lines.slice(-3);
-	  //console.log(this.get_context());
-	 // console.log(this.asset('dialog'));
       // Draw the text box
       this.get_context().drawImage(
         this.asset('dialog'),
@@ -366,16 +326,8 @@ name: 'eb.png'
           this.get_context().drawImage(this.asset('arrowsm'), this.dialog_width - 64, this.dialog_height - 32, 64, 32);
         }
       }
-		//console.log(this.get_context());
       // Add the frame to the encoder
-	  /*this.message.channel.send({
-files: [{
-attachment: this.canvas.toBuffer(),
-name: 'eb.png'
-					}]
-				});*/
-     // this.encoder.addFrame(this.get_context().getImageData(0, 0, this.dialog_width, this.dialog_height));
-	  //this.encoder.setDelay(this.text_state.delay);
+	 
     },
 
     add_line: function() {
@@ -454,7 +406,6 @@ name: 'eb.png'
    preload_image: function(url) {
       var image = new Image();
       image.src = url;
-	 // console.log(image);
       return image;
     },
 
