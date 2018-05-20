@@ -316,7 +316,7 @@ module.exports = (message) => {
 			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./ecco/ecco_' + (eccoString.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
 			if (cursor === texts[t].length) {
 				concat({
-					images: paths, margin: 0 // optional, in px, defaults to 10px
+					images: paths, margin: 4 // optional, in px, defaults to 10px
 				}, function (err, canvas) {
 					message.channel.send({
 						files: [{attachment: canvas.toBuffer(),name: 'ecco.png'}]
