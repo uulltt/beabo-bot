@@ -6,36 +6,38 @@ const Discord = require('discord.js');
 
 function gbwiki(json, query) {
 	var embedString = '';
-	if (query === 'locations') {
-		//embedTitle += 'Locations';
-		for (var i = 0; i < json.results.locations.length; i++) {
-			if ((embedString + '**•[' + json.results.locations[i].name + '](' + json.results.locations[i].site_detail_url + ')**\n').length < 2048)
-				embedString += '**•[' + json.results.locations[i].name + '](' + json.results.locations[i].site_detail_url + ')**\n';
+	const queries = ['concepts', 'locations', 'objects', 'people'];
+	const gameInfo = [json.results.concepts, json.results.locations, json.results.objects, json.results.people];
+	if (query === 'info') {
+		embedString += json.results.deck + '\n';
+	} else {
+		for(var j = 0; j < 4; j++){
+	if (query === queries[j]) {
+		for (var i = 0; i < gameInfo[j].length; i++) {
+			if ((embedString + '**•[' + gameInfo[j][i].name + '](' + gameInfo[j]i].site_detail_url + ')**\n').length < 2048)
+				embedString += '**•[' + gameInfo[j][i].name + '](' + gameInfo[j][i].site_detail_url + ')**\n';
 		}
 	}
-	if (query === 'objects') {
-		//embedTitle += 'Objects';
+	}
+	/*if (query === 'objects') {
 		for (var i = 0; i < json.results.objects.length; i++) {
 			if ((embedString + '**•[' + json.results.objects[i].name + '](' + json.results.objects[i].site_detail_url + ')**\n').length < 2048)
 				embedString += '**•[' + json.results.objects[i].name + '](' + json.results.objects[i].site_detail_url + ')**\n';
 		}
 	}
-	if (query === 'info') {
-		embedString += json.results.deck + '\n';
-	}
+	
 	if (query === 'concepts') {
-		//embedTitle += 'Concepts';
 		for (var i = 0; i < json.results.concepts.length; i++) {
 			if ((embedString + '**•[' + json.results.concepts[i].name + '](' + json.results.concepts[i].site_detail_url + ')**\n').length < 2048)
 				embedString += '**•[' + json.results.concepts[i].name + '](' + json.results.concepts[i].site_detail_url + ')**\n';
 		}
 	}
 	if (query === 'people') {
-		//embedTitle += 'Concepts';
 		for (var i = 0; i < json.results.people.length; i++) {
 			if ((embedString + '**•[' + json.results.people[i].name + '](' + json.results.people[i].site_detail_url + ')**\n').length < 2048)
 				embedString += '**•[' + json.results.people[i].name + '](' + json.results.people[i].site_detail_url + ')**\n';
 		}
+	}*/
 	}
 	return embedString;
 
@@ -50,16 +52,9 @@ function gbWiki(json2, query, message, g) {
 		var embedString = '';
 		embedString += gbwiki(json2, queries[q]);
 		if (queries[q] === 'info' && g === 0) {
-			var platforms = '';
-			var genres = '';
-			var themes = '';
-			var developers = '';
-			var publishers = ''
-			var dlcs = ''
 			const gameInfo = [json2.results.platforms, json2.results.developers, json2.results.publishers, json2.results.genres, json2.results.themes, json2.results.dlcs];
 			var gameValues = ['', '', '', '', '', ''];
-			for(var j = 0; j < 6; j++){
-				
+			for(var j = 0; j < 6; j++){	
 				if (gameInfo[j] !== undefined && gameInfo[j]  !== null && typeof gameInfo[j]  !== undefined && typeof gameInfo[j]  !== null) {
 					for (var i = 0; i < gameInfo[j].length; i++) {
 
@@ -74,58 +69,6 @@ function gbWiki(json2, query, message, g) {
 					gameValues[j] = 'None';
 				}
 			}
-				/*for (var i = 0; i < json2.results.developers.length; i++) {
-
-					if ((developers + ', [' + json2.results.developers[i].name + '](' + json2.results.developers[i].site_detail_url + ')').length < 2048) {
-						if (i > 0) {
-							developers += ', ';
-						}
-						developers += '[' + json2.results.developers[i].name + '](' + json2.results.developers[i].site_detail_url + ')';
-					}
-				}
-				for (var i = 0; i < json2.results.publishers.length; i++) {
-					if ((publishers + ', [' + json2.results.publishers[i].name + '](' + json2.results.publishers[i].site_detail_url + ')').length < 2048) {
-						if (i > 0) {
-							publishers += ', ';
-						}
-						publishers += '[' + json2.results.publishers[i].name + '](' + json2.results.publishers[i].site_detail_url + ')';
-					}
-				}
-				for (var i = 0; i < json2.results.platforms.length; i++) {
-
-					if ((platforms + ', [' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')').length < 2048) {
-						if (i > 0) {
-							platforms += ', ';
-						}
-						platforms += '[' + json2.results.platforms[i].name + '](' + json2.results.platforms[i].site_detail_url + ')';
-					}
-				}
-				if (json2.results.genres !== undefined && json2.results.genres !== null && typeof json2.results.genres !== undefined && typeof json2.results.genres !== null) {
-					for (var i = 0; i < json2.results.genres.length; i++) {
-
-						if ((genres + ', [' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')').length < 2048) {
-							if (i > 0) {
-								genres += ', ';
-							}
-							genres += '[' + json2.results.genres[i].name + '](' + json2.results.genres[i].site_detail_url + ')';
-						}
-					}
-				} else {
-					genres = 'None';
-				}
-				if (json2.results.themes !== undefined && json2.results.themes !== null && typeof json2.results.themes !== undefined && typeof json2.results.themes !== null) {
-					for (var i = 0; i < json2.results.themes.length; i++) {
-
-						if ((themes + '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')').length < 2048) {
-							if (i > 0) {
-								themes += ', ';
-							}
-							themes += '[' + json2.results.themes[i].name + '](' + json2.results.themes[i].site_detail_url + ')';
-						}
-					}
-				} else {
-					themes = 'None';
-				}*/
 				var ord = 'Coming Soon';
 			if (json2.results.original_release_date !== undefined && json2.results.original_release_date !== null && typeof json2.results.original_release_date !== undefined && typeof json2.results.original_release_date !== null)
 				ord = json2.results.original_release_date.substring(0, json2.results.original_release_date.indexOf(' '));
