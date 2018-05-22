@@ -99,6 +99,9 @@ const steamlink = 'https://store.steampowered.com/app/';
 const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', '598640'];
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 client.on('message', message => {
+	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().includes("beeb") || message.cleanContent.toLowerCase().includes("bii")){
+		message.channel.send("biiiiiiii! biiiiiiiiiiii!!! :two_hearts:");
+	} else {
 	if (message.isMentioned(client.user)) {
 
 		if (message.cleanContent.toLowerCase().match(/I ((l(o|u)v(e?))|(<3)) ((yo)?)u/gm) || message.cleanContent.toLowerCase().includes("cute") || message.cleanContent.toLowerCase().includes("valid")){
@@ -108,10 +111,9 @@ client.on('message', message => {
 		} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vidya)?( )?((ga([me]{2}))|vidya)(\?)?/gm)) {
 			message.channel.send(favegames[(Math.floor(Math.random() * (message.content.toLowerCase().includes("steam") ? 7 : 8)))] + '/');
 		} else {
-			console.log(client.user.id);
-			console.log(message.user.id);
 			message.channel.send(beeb()).then(console.log).catch(console.error);
 		}
+	}
 	}
 	fonts(message);
 	movies(message, message.content);
