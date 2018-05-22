@@ -101,7 +101,9 @@ const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamli
 client.on('message', message => {
 	if (message.isMentioned(client.user)) {
 
-		if (message.content.toLowerCase().includes("help")) {
+		if (message.cleanContent.toLowerCase().match(/I ((l(o|u)v(e?))|(<3)) ((yo)?)u/gm) || message.cleanContent.toLowerCase().includes("cute") || message.cleanContent.toLowerCase().includes("valid")){
+			message.channel.send("bee bee biiiii! :heart:");
+		} else if (message.content.toLowerCase().includes("help")) {
 			helpMessage(message);
 		} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vidya)?( )?((ga([me]{2}))|vidya)(\?)?/gm)) {
 			message.channel.send(favegames[(Math.floor(Math.random() * (message.content.toLowerCase().includes("steam") ? 7 : 8)))] + '/');
