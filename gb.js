@@ -203,6 +203,7 @@ function gbWiki(json2, query, message, g) {
 			if (embedString.length > 2048) {
 				embedString = embedString.substring(0, 2048);
 			}
+			if (embedString.length > 0){
 			message.channel.send({
 				embed: {
 					title: embedTitle,
@@ -217,6 +218,7 @@ function gbWiki(json2, query, message, g) {
 					},
 				}
 			});
+			}
 		}
 	}
 }
