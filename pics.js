@@ -122,7 +122,6 @@ encoding: null
 		var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
 		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
 			if (!error) {
-				
 				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media') && tweet.extended_entities.media[0].hasOwnProperty('video_info')) {
 					var qualities = tweet.extended_entities.media[0].video_info.variants.length;
 					message.channel.send(tweet.extended_entities.media[0].video_info.variants[qualities-1].url);
@@ -140,6 +139,9 @@ encoding: null
 			
 			if (json.total_posts > 0 && json.posts[0].type === 'video') {
 				message.channel.send(json.posts[0].video_url);
+			}
+			if (json.total_posts > 0 && json.posts[0].type === 'audio') {
+				message.channel.send(json.posts[0]);
 			}
 		});
 	}
