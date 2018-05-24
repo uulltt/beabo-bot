@@ -144,12 +144,15 @@ encoding: null
 				var request = require('request').defaults({
 encoding: null
 		});
-		request.get(json.posts[0].audio_source_url, function (err, res, body) {
-			console.log(body);
-			/*message.channel.send({
-						files: [{attachment: body,name: json.posts[0].summary + '.mp3'}]
-					});*/
-		});
+		var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
+  console.log(r.uri.href);
+  console.log(res.request.uri.href);
+
+  // Mikael doesn't mention getting the uri using 'this' so maybe it's best to avoid it
+  // please add a comment if you know why this might be bad
+  console.log(this.uri.href);
+});
+		
 			}
 		});
 	}
