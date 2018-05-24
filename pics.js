@@ -110,13 +110,21 @@ encoding: null
 	}
 }
 if (content.startsWith('!vids ')){
-	if (content.includes('watch?v=') || content.includes('youtu.be/')){
+	/*if (content.includes('watch?v=') || content.includes('youtu.be/')){ //backup if youtubemp3api ever goes down
 		var request = require('request').defaults({
 encoding: null
 		});
 		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
 			message.channel.send(JSON.parse(body.toString())[0].url);
 		});
+	}*/
+	if (content.includes('watch?v=')){	
+var videocode = content.substring(content.indexOf('v=')+2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+message.channel.send('https://youtubemp3api.com/@api/button/videos/'+videocode);
+	}
+	if (content.includes('youtu.be/')){	
+var videocode = content.substring(content.indexOf('.be/')+4).match(/[0-9a-zA-Z_\-]+/gm)[0];
+message.channel.send('https://youtubemp3api.com/@api/button/videos/'+videocode);
 	}
 	if (content.includes('twitter.com/') && content.includes('/status/')) {
 		var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
