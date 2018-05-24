@@ -146,7 +146,7 @@ encoding: null
 		});
 		var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
   request.get(r.uri.href, function(err2, res2, body2) {
-	  message.channel.send({files: [{attachment: body2,name: json.posts[0].summary + '.mp3'}]});
+	  message.channel.send({files: [{attachment: body2,name: json.posts[0].track_name + '.mp3'}]}).then(console.log).catch(console.error);
   });
   
 });
