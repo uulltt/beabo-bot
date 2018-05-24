@@ -141,7 +141,14 @@ encoding: null
 				message.channel.send(json.posts[0].video_url);
 			}
 			if (json.total_posts > 0 && json.posts[0].type === 'audio') {
-				message.channel.send(json.posts[0].audio_source_url + '.mp3');
+				var request = require('request').defaults({
+encoding: null
+		});
+		request.get(json.posts[0].audio_source_url, function (err, res, body) {
+			message.channel.send({
+						files: [{attachment: body,name: json.posts[0].summary + '.mp3'}]
+					});
+		});
 			}
 		});
 	}
