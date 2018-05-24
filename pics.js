@@ -141,7 +141,7 @@ encoding: null
 				message.channel.send(json.posts[0].video_url);
 			}
 			if (json.total_posts > 0 && json.posts[0].type === 'audio') {
-				message.channel.send(json.posts[0]);
+				console.log(json.posts[0]);
 			}
 		});
 	}
