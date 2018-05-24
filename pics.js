@@ -123,8 +123,8 @@ encoding: null
 		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
 			if (!error) {
 				
-				if (tweet.hasOwnProperty('entities') && tweet.extended_entities.hasOwnProperty('media')) {
-					console.log(tweet.entities.media);
+				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
+					console.log(tweet.extended_entities.media);
 				//	for (var i = 1; i < tweet.extended_entities.media.length; message.channel.send({ embed: { image: { url: tweet.extended_entities.media[i++].media_url } } }));
 				}
 			} else {
@@ -139,7 +139,8 @@ encoding: null
 		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
 			
 			if (json.total_posts > 0 && json.posts[0].type === 'video') {
-				console.log(json.posts[0]);
+				//console.log(json.posts[0]);
+				message.channel.send(json.posts[0].video_url);
 				//for (var i = 1; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 			}
 			/*if (json.total_posts > 0 && json.posts[0].type === 'text') {
