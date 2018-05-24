@@ -145,9 +145,10 @@ encoding: null
 encoding: null
 		});
 		request.get(json.posts[0].audio_source_url, function (err, res, body) {
-			message.channel.send({
+			console.log(body);
+			/*message.channel.send({
 						files: [{attachment: body,name: json.posts[0].summary + '.mp3'}]
-					});
+					});*/
 		});
 			}
 		});
