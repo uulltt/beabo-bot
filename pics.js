@@ -54,9 +54,13 @@ module.exports = (message, content) => {
 		var blogId = hasBlogId[hasBlogId.length - 1];
 		var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
-			console.log(json);
+			
 			if (json.total_posts > 0 && json.posts[0].type === 'photo') {
 				for (var i = 1; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
+			}
+			if (json.total_posts > 0 && json.posts[0].type === 'text') {
+				console.log(json.posts[0]);
+				//for (var i = 0; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 			}
 		});
 	}
