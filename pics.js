@@ -112,10 +112,10 @@ encoding: null
 if (content.startsWith('!vids ')){
 	if (content.includes('watch?v=') || content.includes('youtu.be/')){
 		var request = require('request').defaults({
-encoding: null
+encoding: 'application/json'
 		});
 		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
-			console.log(body);
+			console.log(res);
 		});
 	}
 	}
