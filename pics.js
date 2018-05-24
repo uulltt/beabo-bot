@@ -122,10 +122,8 @@ encoding: null
 		var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
 		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
 			if (!error) {
-				
 				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media') && tweet.extended_entities.media[0].hasOwnProperty('video_info')) {
 					message.channel.send(tweet.extended_entities.media[0].video_info.variants[3].url);
-				//	for (var i = 1; i < tweet.extended_entities.media.length; message.channel.send({ embed: { image: { url: tweet.extended_entities.media[i++].media_url } } }));
 				}
 			} else {
 				message.channel.send(error);
@@ -139,13 +137,8 @@ encoding: null
 		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
 			
 			if (json.total_posts > 0 && json.posts[0].type === 'video') {
-				//console.log(json.posts[0]);
 				message.channel.send(json.posts[0].video_url);
-				//for (var i = 1; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 			}
-			/*if (json.total_posts > 0 && json.posts[0].type === 'text') {
-				//for (var i = 0; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
-			}*/
 		});
 	}
 	}
