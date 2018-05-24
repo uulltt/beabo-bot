@@ -14,7 +14,7 @@ var tweeter = new Twitter({
 });
 
 module.exports = (message, content) => {
-	if (content.startsWith('📷 ') || content.startsWith('!pics ')) { //all the camera commands go in here
+	if (content.startsWith('!pics ')) { //all the camera commands go in here
 	if (content.includes('twitter.com/') && content.includes('/status/')) {
 		var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
 		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
@@ -29,16 +29,24 @@ module.exports = (message, content) => {
 	}
 	if (content.includes('imgur.com/') && content.includes('/a/')) {
 		var theAlbum = content.substring(content.indexOf('/a/') + 3).match(/[0-9a-zA-Z]+/gm)[0];
+		var limit = 10;
+		if (content.charAt(6) >= '0' && content.charAt(6) <= '9'){
+			limit = Math.min(50, parseInt(content.substring(6, content.substring(6).indexOf(' ')+6)));
+		}
 		imgur.getAlbumInfo(theAlbum)
 		.then(function (json) {
-			for (var i = 0; i < Math.min(json.data.images.length, 10); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }));
+			for (var i = 0; i < Math.min(json.data.images.length, limit); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }));
 		}).catch(function (err) { message.channel.send(err.message); });
 	}
 	if (content.includes('imgur.com/') && content.includes('/gallery/')) {
 		var theAlbum = content.substring(content.indexOf('/gallery/') + 9).match(/[0-9a-zA-Z]+/gm)[0];
+		var limit = 10;
+		if (content.charAt(6) >= '0' && content.charAt(6) <= '9'){
+			limit = Math.min(50, parseInt(content.substring(6, content.substring(6).indexOf(' ')+6)));
+		}
 		imgur.getAlbumInfo(theAlbum)
 		.then(function (json) {
-			for (var i = 0; i < Math.min(json.data.images.length, 10); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }));
+			for (var i = 0; i < Math.min(json.data.images.length, limit); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }));
 		}).catch(function (err) { message.channel.send(err.message); });
 	}
 	if (content.includes('tumblr.com/post/')) {
