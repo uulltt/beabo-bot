@@ -114,10 +114,8 @@ if (content.startsWith('!vids ')){
 		var request = require('request').defaults({
 encoding: null
 		});
-		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function(response) {
-    console.log(response.statusCode) // 200
-    console.log(response.headers['content-type']) // 'image/png'
-	console.log(response);
+		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
+			console.log(res);
 		});
 	}
 	}
