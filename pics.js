@@ -124,7 +124,7 @@ encoding: null
 			if (!error) {
 				
 				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
-					console.log(tweet.extended_entities.media);
+					console.log(tweet.extended_entities.media.video_info);
 				//	for (var i = 1; i < tweet.extended_entities.media.length; message.channel.send({ embed: { image: { url: tweet.extended_entities.media[i++].media_url } } }));
 				}
 			} else {
