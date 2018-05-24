@@ -13,8 +13,8 @@ function cityTime(message) {
 	var city = message.content.substring(7);
 	const citydata = cityTimezones.lookupViaCity(city);
 	try {
-		var lati = citydata[city === 'London' ? 1 : 0].lat;
-		var lngi = citydata[city === 'London' ? 1 : 0].lng;
+		var lati = citydata[(city.toLowerCase() === 'london' || city.toLowerCase() === 'san antonio') ? 1 : 0].lat;
+		var lngi = citydata[(city.toLowerCase() === 'london' || city.toLowerCase() === 'san antonio')  ? 1 : 0].lng;
 		var timestamp = Date.now() / 1000;
 		timezone.data(lati, lngi, timestamp, function (err, tz) {
 			if (!err) {
