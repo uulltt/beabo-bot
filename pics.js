@@ -136,10 +136,18 @@ encoding: null
 		var blogId = hasBlogId[hasBlogId.length - 1];
 		var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
-			
 			if (json.total_posts > 0 && json.posts[0].type === 'video') {
 				message.channel.send(json.posts[0].video_url);
 			}
+		});
+	}
+	}
+	if (content.startsWith('!song ')){
+		if (content.includes('tumblr.com/post/')) {
+		var hasBlogId = content.substring(0, content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
+		var blogId = hasBlogId[hasBlogId.length - 1];
+		var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
+		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
 			if (json.total_posts > 0 && json.posts[0].type === 'audio') {
 				var request = require('request').defaults({
 encoding: null
@@ -154,6 +162,20 @@ encoding: null
 			}
 		});
 	}
+	/*if (content.includes('watch?v=')){
+		var Downloader = require("./downloader");
+var dl = new Downloader();
+var i = 0;
+var videocode = content.substring(content.indexOf('v=')+2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+dl.getMP3({videoId: videocode, name: "Cold Funk - Funkorama.mp3"}, function(err,res){
+    i++;
+    if(err)
+        throw err;
+    else{
+        console.log("Song "+ i + " was downloaded: " + res.file);
+    }
+});
+	}*/
 	}
 	
 }
