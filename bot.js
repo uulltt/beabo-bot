@@ -191,7 +191,6 @@ client.on('message', message => {
 						var Text = message.cleanContent.substring(6);
 var textCanvas = new Canvas(608, 256);
 textCanvas.imageSmoothingEnabled = false;
-//console.log(textCanvas.toBuffer());
 						EarthBoundText.preload_assets();
 							EarthBoundText.render({
                     canvas: textCanvas,
@@ -223,7 +222,6 @@ textCanvas.imageSmoothingEnabled = false;
 							}
 						});
 			} else {
-			
 			if ((beaboMessage).match(/!ut.+\W/gm)) {
 				var characterText = message.cleanContent.substring(message.cleanContent.indexOf('t')+1);
 						var characterexp = characterText.substring(0, characterText.search(/\W/gm)).split('_');
