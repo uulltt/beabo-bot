@@ -115,8 +115,7 @@ if (content.startsWith('!vids ')){
 encoding: null
 		});
 		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
-			console.log(res);
-			console.log(JSON.parse(body.toString()));
+			message.channel.send(JSON.parse(body.toString())[0].url);
 		});
 	}
 	}
