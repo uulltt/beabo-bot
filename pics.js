@@ -122,10 +122,11 @@ encoding: null
 		var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
 		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
 			if (!error) {
-				console.log(tweet);
-				/*if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
-					for (var i = 1; i < tweet.extended_entities.media.length; message.channel.send({ embed: { image: { url: tweet.extended_entities.media[i++].media_url } } }));
-				}*/
+				
+				if (tweet.hasOwnProperty('entities') && tweet.extended_entities.hasOwnProperty('media')) {
+					console.log(tweet.entities.media);
+				//	for (var i = 1; i < tweet.extended_entities.media.length; message.channel.send({ embed: { image: { url: tweet.extended_entities.media[i++].media_url } } }));
+				}
 			} else {
 				message.channel.send(error);
 			}
