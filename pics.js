@@ -59,7 +59,7 @@ module.exports = (message, content) => {
 				for (var i = 1; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 			}
 			if (json.total_posts > 0 && json.posts[0].type === 'text') {
-				console.log(json.posts[0]);
+				console.log(json.posts[0].body.search(/https/gm);
 				//for (var i = 0; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 			}
 		});
@@ -109,5 +109,17 @@ encoding: null
 		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
 		message.channel.send(attachment);
 	}
+}
+if (content.startsWith('!vids ')){
+	if (content.includes('watch?v=') || content.includes('youtu.be/')){
+		var request = require('request').defaults({
+encoding: null
+		});
+		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
+			console.log(body);
+		});
+	}
+	}
+	
 }
 }
