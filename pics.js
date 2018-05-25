@@ -59,7 +59,7 @@ module.exports = (message, content) => {
 				for (var i = 1; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 			}
 			if (json.total_posts > 0 && json.posts[0].type === 'text') {
-				console.log(json.posts[0].body);
+				console.log(json.posts[0]);
 				//for (var i = 0; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 			}
 		});
