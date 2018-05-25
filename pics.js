@@ -59,7 +59,12 @@ module.exports = (message, content) => {
 				for (var i = 1; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 			}
 			if (json.total_posts > 0 && json.posts[0].type === 'text') {
-				console.log(json.posts[0].body.split('img src=\"'));
+				var images = json.posts[0].body.split('img src=\"');
+				for(var i = 0; i < images; length; i++){
+					if (images[i].charAt(0) === 'h'){
+						message.channel.send({embed: {image: {url: images[i].substring(0, images[i].indexOf('\"'))}}});
+					}
+				}
 				//for (var i = 0; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 			}
 		});
@@ -158,6 +163,12 @@ message.channel.send('https://youtubemp3api.com/@api/button/videos/'+videocode);
 		var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
 			if (json.total_posts > 0 && json.posts[0].type === 'audio') {
+				var images = json.posts[0].body.split('img src=\"');
+				for(var i = 0; i < images; length; i++){
+					if (images[i].charAt(0) === 'h'){
+						message.channel.send({embed: {image: {url: images[i].substring(0, images[i].indexOf('\"'))}}});
+					}
+				}
 				var request = require('request').defaults({
 encoding: null
 		});
