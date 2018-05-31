@@ -79,10 +79,10 @@ function helpMessage(message) {
 				}, {
 					name: 'Local Time Commands',
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
-				}, {
+				/*}, {
 					name: 'Giant Bomb Wiki Commands',
 					value: 'b!gb game/character/company/etc. info/characters/concepts/locations/people/etc. name of thing - returns the info searched for relating to a game/character/company/etc.'
-				}, {
+				*/}, {
 					name: ':camera: Commands (:camera: or b!pics followed by)',
 					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'
 				}, {
@@ -108,7 +108,7 @@ client.on('message', message => {
 			message.channel.send("bee bee biiiii! :heart:");
 		} else if (message.content.toLowerCase().includes("help")) {
 			helpMessage(message);
-		} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vidya)?( )?((ga([me]{2}))|vidya)(\?)?/gm)) {
+		} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)(\?)?/gm)) {
 			message.channel.send(favegames[(Math.floor(Math.random() * (message.content.toLowerCase().includes("steam") ? 7 : 8)))] + '/');
 		} else {
 			message.channel.send(beeb()).then(console.log).catch(console.error);
