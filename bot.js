@@ -115,6 +115,16 @@ client.on('message', message => {
 		}
 	}
 	}
+	if (message.channel.guild.id === '439555383313301514'){
+		let role = message.guild.roles.array().filter(function(item) {
+		return item.name === "Reader";	
+		});
+		if (role.length > 0){
+		message.member.addRole(role[0]).then(console.log).catch(console.error);
+		} else {
+			message.channel.send("Beaboooooooo! (Error. There is no \"Reader\" role.)");
+		}
+	}
 	fonts(message);
 	movies(message, message.content);
 	pics(message, message.content);
