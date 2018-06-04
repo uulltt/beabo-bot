@@ -115,7 +115,7 @@ client.on('message', message => {
 		}
 	}
 	}
-	if (message.channel.guild.id === '439555383313301514' && message.channel.id === '450169522561875979'){
+	if (message.channel.guild.id === '439555383313301514' && message.channel.id === '450169522561875979' && !message.author.bot){
 		let role = message.guild.roles.array().filter(function(item) {
 		return item.name === "Reader";	
 		});
