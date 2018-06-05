@@ -189,8 +189,9 @@ encoding: null
 		request.get(encodeURI('https://api.datamuse.com/words?rel_rhy=' + beaboMessage.substring(beaboMessage.indexOf(' ')+1).replace(/ /gm, '')), function (err, res, body) {
 			var json = JSON.parse(body.toString());
 			var rhymes = '';
-			for(var i = 0; i < json.length; i++){
-				rhymes += '• ' + json[i].word + '\n';
+			for(var i = 0; i < json.length; rhymes += json[i++].word){
+				if (i > 0)
+					rhymes += ', ';
 			}
 			if (rhymes.length > 2048)
 				rhymes = rhymes.substring(0, 2048);
