@@ -194,7 +194,9 @@ encoding: null
 			}
 			if (rhymes.length > 2048)
 				rhymes = rhymes.substring(0, 2048);
-			message.channel.send({embed : {title: 'Words that Rhyme with ' + beaboMessage.substring(beaboMessage.indexOf(' ')+1), description: rhymes}});
+			message.channel.send({embed : {title: 'Words that Rhyme with ' + beaboMessage.substring(beaboMessage.indexOf(' ')+1), description: rhymes, footer: {
+						text: 'From RhymeZone/Datamuse API'
+					}}});
 		});
 		}
 		
