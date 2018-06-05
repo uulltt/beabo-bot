@@ -181,11 +181,26 @@ client.on('message', message => {
 		}
 		movies(message, beaboMessage);
 		pics(message, beaboMessage);
-
-		
-		if (beaboMessage.substring(0, 4) === '!gb ') {
-			giantbomb(message, beaboMessage);
+if (beaboMessage.startsWith("!rhyme ")) {
+			
+		var request = require('request').defaults({
+encoding: null
+		});
+		request.get(encodeURI('https://api.datamuse.com/words?rel_rhy=' + beaboMessage.substring(beaboMessage.indexOf(' ')+1).replace(/ /gm, '')), function (err, res, body) {
+			var json = JSON.parse(body.toString());
+			var rhymes = '';
+			for(var i = 0; i < json.length; i++){
+				rhymes += '• ' + json[i].word + '\n';
+			}
+			if (rhymes.length > 2048)
+				rhymes = rhymes.substring(0, 2048);
+			message.channel.send({embed : {title: 'Words that Rhyme with ' + beaboMessage.substring(beaboMessage.indexOf(' ')+1), description: rhymes}});
+		});
 		}
+		
+		/*if (beaboMessage.substring(0, 4) === '!gb ') {
+			giantbomb(message, beaboMessage);
+		}*/
 		if (beaboMessage.substring(0, 4) === '!pg ' && message.author.id === process.env.BOT_ADMIN) {
 			herokupg.query(beaboMessage.substring(4), (err, res) => {
 				if (!err)
