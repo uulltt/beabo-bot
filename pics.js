@@ -192,22 +192,5 @@ var videocode = content.substring(content.indexOf('.be/')+4).match(/[0-9a-zA-Z_\
 message.channel.send('https://youtubemp3api.com/@api/button/mp3/'+videocode);
 	}
 	}
-	if (content.startsWith('!results ')){
-	
-	if (content.includes('twitter.com/') && content.includes('/status/')) {
-		var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
-		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
-			if (!error) {
-				console.log(tweet);
-				/*if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media') && tweet.extended_entities.media[0].hasOwnProperty('video_info')) {
-					var qualities = tweet.extended_entities.media[0].video_info.variants.length;
-					message.channel.send(tweet.extended_entities.media[0].video_info.variants[qualities-1].url);
-				}*/
-			} else {
-				message.channel.send(error);
-			}
-		});
-	}
-	}
 	
 }
