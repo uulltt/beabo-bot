@@ -206,4 +206,12 @@ message.channel.send('https://youtubemp3api.com/@api/button/mp3/'+videocode);
 	}
 	}
 	
+	if (content.startsWith('!thread ')){
+		
+	if (content.includes('twitter.com/') && content.includes('/status/')) {
+		var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
+		message.channel.send('https://threadreaderapp.com/thread/'+tweetId+'.html');
+	}
+	}
+	
 }
