@@ -105,13 +105,13 @@ client.on('message', message => {
 	} else {
 	if (message.isMentioned(client.user)) {
 
-		if ((!message.cleanContent.toLowerCase().includes("not")) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) ((yo)?)u/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("valid"))){
+		if ((!message.cleanContent.toLowerCase().includes("not")) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) ((yo)?)u/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))){
 			message.channel.send("bee bee biiiii! :heart:");
 		} else if (message.content.toLowerCase().includes("help")) {
 			helpMessage(message);
-		} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)(\?)?/gm)) {
+		} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)(s?) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)(\?)?/gm)) {
 			message.channel.send(favegames[(Math.floor(Math.random() * (message.content.toLowerCase().includes("steam") ? 7 : 8)))] + '/');
-		} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)s (yo)?ur fav((e|orite)?) ((web(( |(\-))?))?)(comic)(\?)?/gm)) {
+		} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)(s?) (yo)?ur fav((e|orite)?) ((web(( |(\-))?))?)(comic)(\?)?/gm)) {
 			message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
 		} else {
 			message.channel.send(beeb()).then(console.log).catch(console.error);
