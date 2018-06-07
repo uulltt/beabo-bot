@@ -69,7 +69,7 @@ module.exports = (message, content) => {
 				
 			}
 			
-				for(var j = 1; j < Math.min(json.posts[0].trail.length, 10); j++){
+				for(var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++){
 			var img = json.posts[0].trail[j].content_raw.split('img src=\"');
 				for(var i = 0; i < Math.min(img.length, 10); i++){
 					if (img[i].charAt(0) === 'h'){
