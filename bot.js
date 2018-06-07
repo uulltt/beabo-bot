@@ -83,12 +83,12 @@ function helpMessage(message) {
 					name: 'Giant Bomb Wiki Commands',
 					value: 'b!gb game/character/company/etc. info/characters/concepts/locations/people/etc. name of thing - returns the info searched for relating to a game/character/company/etc.'
 				*/}, {
-					name: ':camera: Commands (:camera: or b!pics followed by)',
+					name: ':camera: Commands (b!pics followed by)',
 					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'
 				}, {
 					name: 'Other Commands',
 					value: ':tomato: or b!rt movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\nb!hex#hexCode - displays image of a color pertaining to the hex code' +
-					'\nb!numpad command - turns fighting game numpad notation into emoji\nb!list or b!todo your list here - separates a discord message into a list based on either line breaks or commas'
+					'\nb!rhyme word - find words that rhyme with a given word\nb!numpad command - turns fighting game numpad notation into emoji\nb!list or b!todo your list here - separates a discord message into a list based on either line breaks or commas'
 				}
 			]
 		}

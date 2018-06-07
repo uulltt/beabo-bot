@@ -25,7 +25,6 @@ module.exports = (message, content) => {
 			} else {
 				message.channel.send(error);
 			}
-			console.log(tweet);
 		});
 	}
 	if (content.includes('imgur.com/') && content.includes('/a/')) {
