@@ -68,6 +68,12 @@ module.exports = (message, content) => {
 				//for (var i = 0; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 				
 			}
+			var img = json.posts[0].trail[0].content_raw.split('img src=\"');
+				for(var i = 0; i < Math.min(img.length, 10); i++){
+					if (img[i].charAt(0) === 'h'){
+						message.channel.send({embed: {image: {url: img[i].substring(0, img[i].indexOf('\"'))}}});
+					}
+				}
 			console.log(json.posts[0]);
 			}
 			
