@@ -68,17 +68,17 @@ module.exports = (message, content) => {
 				//for (var i = 0; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 				
 			}
-			if (json.posts[0].trail.length > 0){
-			var img = json.posts[0].trail[1].content_raw.split('img src=\"');
+			
+				for(var j = 1; j < Math.min(json.posts[0].trail.length, 10); j++){
+			var img = json.posts[0].trail[j].content_raw.split('img src=\"');
 				for(var i = 0; i < Math.min(img.length, 10); i++){
 					if (img[i].charAt(0) === 'h'){
 						message.channel.send({embed: {image: {url: img[i].substring(0, img[i].indexOf('\"'))}}});
 					}
 				}
+				}
 			console.log(json.posts[0]);
 			}
-			}
-			
 		});
 	}
 	if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
