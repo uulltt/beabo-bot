@@ -54,11 +54,11 @@ module.exports = (message, content) => {
 		var blogId = hasBlogId[hasBlogId.length - 1];
 		var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
-			
-			if (json.total_posts > 0 && json.posts[0].type === 'photo') {
+			if (json.total_posts > 0){
+			if (json.posts[0].type === 'photo') {
 				for (var i = 1; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
 			}
-			if (json.total_posts > 0 && json.posts[0].type === 'text') {
+			if (json.posts[0].type === 'text') {
 				var images = json.posts[0].body.split('img src=\"');
 				for(var i = 0; i < Math.min(images.length, 10); i++){
 					if (images[i].charAt(0) === 'h'){
@@ -66,7 +66,11 @@ module.exports = (message, content) => {
 					}
 				}
 				//for (var i = 0; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
+				
 			}
+			console.log(json.posts[0]);
+			}
+			
 		});
 	}
 	if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
