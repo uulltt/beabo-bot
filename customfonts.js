@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 var fs = require('fs');
-var concat = require('concat-image');
+var concat = require('./concat.js');
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const crashfontString = alphabet + '0123456789.:! ';
