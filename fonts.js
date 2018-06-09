@@ -8,11 +8,18 @@ function gameText(game, style, size, text) {
 	if (text.charAt(text.length - 1) === '\n') {
 		text = text.substring(0, text.length - 1);
 	}
+	 return new Promise(function (resolve, reject) {
+	
 	
 		request.get('https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(text + '\u200B'), function (err, res, body) {
 			console.log(body);
-			return body;
+			 if (!error && res.statusCode == 200) {
+        resolve(body);
+      } else {
+        reject(error);
+      }
 		});
+	 });
 }
 
 function bubbleText(game, dir, pos, style, size, text) {
@@ -68,13 +75,9 @@ function font(message, discordMessage) {
 	var count = 0;
 	if (new RegExp(/[a-zA-Z0-9]+/gm).test(game)) {
 		for (var i = 0; i < args.length; i++) {
-			if (args[i].charAt(args[i].length - 1) === '\n') {
-		args[i] = args[i].substring(0, args[i].length - 1);
-	}
+			urls[i] = await gameText(game, style, size, args[i]);
 	
-		request.get('https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i] + '\u200B'), function (err, res, body) {
-			urls[count] = body;
-			count++;
+		
 			if (urls.length === args.length){
 	concat.v({
 					images: urls, margin: 0 
@@ -84,14 +87,13 @@ function font(message, discordMessage) {
 					});
 				});
 	}
-		});
-			
+		
+	}
 		}
 	}
 	
 	
 
-}
 
 function bubble(message) {
 	var arg = ' ';
