@@ -48,7 +48,7 @@ module.exports = (message) => {
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
 		var i = 0;
-		for (var t = 0; t < Math.min(texts.length, 5); t++) {
+		for (var t = 0; t < texts.length; t++) {
 			var paths = [];
 			texts[t] = ' ' + texts[t];
 			texts[t] = texts[t].replace(/\n/gm, '');
@@ -81,7 +81,7 @@ module.exports = (message) => {
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
 		var i = 0;
-		for (var t = 0; t < Math.min(texts.length, 5); t++) {
+		for (var t = 0; t < texts.length; t++) {
 			var paths = [];
 			texts[t] = ' ' + texts[t];
 			texts[t] = texts[t].replace(/\n/gm, '');
@@ -227,7 +227,7 @@ module.exports = (message) => {
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
 		var i = 0;
-		for (var t = 0; t < Math.min(texts.length, 5); t++) {
+		for (var t = 0; t < texts.length; t++) {
 			var paths = [];
 			texts[t] = ' ' + texts[t];
 			texts[t] = texts[t].replace(/\n/gm, '');
