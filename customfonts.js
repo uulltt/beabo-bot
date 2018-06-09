@@ -113,7 +113,9 @@ module.exports = (message) => {
 	if (new RegExp(/[Ff]ont!ms\W/gm).test(message.cleanContent.substring(0, 8)) && message.cleanContent.length > 8) {
 		var text = message.cleanContent.substring(8).toLowerCase().replace(/[^a-z0-9\?!\n\. ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
-		for (var t = 0; t < Math.min(texts.length, 5); t++) {
+		var textImages = [];
+		var i = 0;
+		for (var t = 0; t < texts.length; t++) {
 			var paths = [];
 			texts[t] = ' ' + texts[t];
 			texts[t] = texts[t].replace(/\n/gm, '');
@@ -123,11 +125,24 @@ module.exports = (message) => {
 				concat({
 					images: paths, margin: 0 // optional, in px, defaults to 10px
 				}, function (err, canvas) {
-					message.channel.send({
+					/*message.channel.send({
 						files: [{attachment: canvas.toBuffer(),name: 'metalslug.png'}]
+					});*/
+					textImages[i] = canvas.toBuffer();
+					i++;
+					if (textImages.length === texts.length) {
+				concat.v({
+					images: textImages, margin: 0 // optional, in px, defaults to 10px
+				}, function (err2, canvas2) {
+					message.channel.send({
+						files: [{attachment: canvas2.toBuffer(),name: 'metalslug.png'}]
 					});
 				});
 			}
+				});
+			}
+			
+			
 		}
 	}
 	if (new RegExp(/[Ff]ont!mk2\W/gm).test(message.cleanContent.substring(0, 9)) && message.cleanContent.length > 9) {
