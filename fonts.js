@@ -12,7 +12,7 @@ function gameText(game, style, size, text) {
 	
 	
 		request.get('https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(text + '\u200B'), function (err, res, body) {
-			console.log(body);
+			//console.log(body);
 			 if (!err && res.statusCode == 200) {
         resolve(body);
       } else {
