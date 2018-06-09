@@ -22,7 +22,7 @@ function bubbleText(game, dir, pos, style, size, text) {
 	return 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(text + '\u200B');
 }
 
-function font(message) {
+function font(message, discordMessage) {
 	var arg = ' ';
 	var game = ' ';
 	var style = '0';
@@ -79,7 +79,7 @@ function font(message) {
 	concat.v({
 					images: urls, margin: 0 
 				}, function (err2, canvas2) {
-					message.channel.send({
+					discordMessage.channel.send({
 						files: [{attachment: canvas2.toBuffer(),name: 'gamefont.png'}]
 					});
 				});
@@ -149,7 +149,7 @@ function bubble(message) {
 
 module.exports = (message) => {
 	if (new RegExp(/[Ff]ont!/gm).test(message.cleanContent.substring(0, 5)) && !(new RegExp(/[Ff]ont!(mk2)\W/gm).test(message.cleanContent.substring(0, 9))) && !(new RegExp(/[Ff]ont!(ecco|puyo|doom)\W/gm).test(message.cleanContent.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Ff]ont!(crash|wario)\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.cleanContent.substring(0, 8)))) {
-		font(message.cleanContent);
+		font(message.cleanContent, message);
 		/*for (var i = 0; i < Math.min(urls.length, 5); i++) {
 			if (urls[i].length > 0)
 				message.channel.send({
