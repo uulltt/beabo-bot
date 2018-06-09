@@ -12,26 +12,6 @@ const mk2String = '**1234567890 -\'' + alphabet + '!.,';
 const eccoString = alphabet + ' .:,!?\'';
 
 module.exports = (message) => {
-	
-	if (new RegExp(/[Bb][ud][0-9][0-9]!kof97\W/gm).test(message.cleanContent.substring(0, 11))) {
-		var arg = message.cleanContent.substring(11) + '\u200B';
-		var dir = message.cleanContent.charAt(1);
-		var pos = message.cleanContent.substring(2, 4);
-		var args = arg.match(/.{1,24}\W/gm);
-		for (var i = 0; i < Math.min(args.length, 5); i++) {
-			if (args[i].charAt(args[i].length - 1) === '\n') {
-				args[i] = args[i].substring(0, args[i].length - 1);
-			}
-			if (args[i].length > 0)
-				message.channel.send({
-					embed: {
-						image: {
-							url: 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + 'y-kof97/z-0/dbl-2/x-' + encodeURI(args[i] + '\u200B')
-						}
-					}
-				})
-		}
-	}
 	if (new RegExp(/[Ff]ont!crash\W/gm).test(message.cleanContent.substring(0, 11)) && message.cleanContent.length > 11) {
 		var text = message.cleanContent.substring(11).toLowerCase().replace(/[^a-z0-9\.!\:\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);

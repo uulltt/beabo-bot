@@ -80,7 +80,7 @@ async function font(message, discordMessage) {
 		
 			if (urls.length === args.length){
 	concat.v({
-					images: urls, margin: 0 
+					images: urls, margin: 2 
 				}, function (err2, canvas2) {
 					discordMessage.channel.send({
 						files: [{attachment: canvas2.toBuffer(),name: 'gamefont.png'}]
