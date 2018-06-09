@@ -29,7 +29,7 @@ function bubbleText(game, dir, pos, style, size, text) {
 	return 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(text + '\u200B');
 }
 
-function font(message, discordMessage) {
+async function font(message, discordMessage) {
 	var arg = ' ';
 	var game = ' ';
 	var style = '0';
