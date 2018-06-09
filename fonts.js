@@ -1,13 +1,14 @@
 const Discord = require('discord.js');
 const customfonts = require('./customfonts.js')
 var concat = require('./concat.js');
+var request = require('request').defaults({
+encoding: null
+		});
 function gameText(game, style, size, text) {
 	if (text.charAt(text.length - 1) === '\n') {
 		text = text.substring(0, text.length - 1);
 	}
-	var request = require('request').defaults({
-encoding: null
-		});
+	
 		request.get('https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(text + '\u200B'), function (err, res, body) {
 			console.log(body);
 			return body;
@@ -64,12 +65,17 @@ function font(message) {
 		args = arg.match(/.{1,34}\W/gm);
 	if (game === 'sfz3' || game === 'vict' || game === 'moma')
 		args = arg.match(/.{1,23}\W/gm);
+	var count = 0;
 	if (new RegExp(/[a-zA-Z0-9]+/gm).test(game)) {
 		for (var i = 0; i < args.length; i++) {
-			urls[i] = gameText(game, style, size, args[i]);
-		}
+			if (args[i].charAt(args[i].length - 1) === '\n') {
+		args[i] = args[i].substring(0, args[i].length - 1);
 	}
-	if (urls.length === args.length){
+	
+		request.get('https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(args[i] + '\u200B'), function (err, res, body) {
+			urls[count] = body;
+			count++;
+			if (urls.length === args.length){
 	concat.v({
 					images: urls, margin: 0 
 				}, function (err2, canvas2) {
@@ -78,6 +84,11 @@ function font(message) {
 					});
 				});
 	}
+		});
+			
+		}
+	}
+	
 	
 
 }
