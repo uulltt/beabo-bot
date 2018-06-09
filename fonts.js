@@ -9,6 +9,7 @@ function gameText(game, style, size, text) {
 encoding: null
 		});
 		request.get('https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(text + '\u200B'), function (err, res, body) {
+			console.log(body);
 			return body;
 		});
 }
