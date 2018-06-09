@@ -212,7 +212,14 @@ encoding: null
 					console.log(err);
 			});
 		}
-		
+		if (new RegExp(/!wof\W/gm).test(beaboMessage.substring(0, 5))){
+			var text = message.cleanContent.substring(6).split('\n');
+			var ln = ['','','','',''];
+			for(var i = 0; i < math.min(5, text.length); i++){
+				ln[i] = encodeURI(text[i]);
+			}
+			message.channel.send({embed: {image: {url : 'https://www.thewordfinder.com/wof-puzzle-generator/puzzle-thumb.php?bg=1&ln1='+ln[0]+'&ln2='+ln[1]+'&ln3='+ln[2]+'FORTUNE&ln4='+ln[3]+'&cat='+ln[4]+'&'}}});
+		}
 		timestuff(message, beaboMessage, herokupg);
 
 		if (new RegExp(/!eb(n|m|s|b|p|N|M|S|B|P)\W/gm).test(beaboMessage.substring(0, 5))) {
