@@ -1,11 +1,16 @@
 const Discord = require('discord.js');
 const customfonts = require('./customfonts.js')
-
+var concat = require('./concat.js');
 function gameText(game, style, size, text) {
 	if (text.charAt(text.length - 1) === '\n') {
 		text = text.substring(0, text.length - 1);
 	}
-	return 'https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(text + '\u200B');
+	var request = require('request').defaults({
+encoding: null
+		});
+		request.get('https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(text + '\u200B'), function (err, res, body) {
+			return body;
+		});
 }
 
 function bubbleText(game, dir, pos, style, size, text) {
@@ -83,6 +88,11 @@ function bubble(message) {
 			break;
 		}
 	}
+	if (game === 'kof'){
+		game = 'kof97';
+		style = '0';
+		size = '2';
+	}
 	if (game === 'ddr')
 		game = 'DDR';
 	if (game === 'kof2k')
@@ -102,8 +112,8 @@ function bubble(message) {
 		args = arg.match(/.{1,34}\W/gm);
 	if (game === 'sfz3' || game === 'vict' || game === 'moma')
 		args = arg.match(/.{1,23}\W/gm);
-	if (game !== 'kof' && new RegExp(/[a-zA-Z0-9]+/gm).test(game)) {
-		for (var i = 0; i < Math.min(args.length, 5); i++) {
+	if (new RegExp(/[a-zA-Z0-9]+/gm).test(game)) {
+		for (var i = 0; i < args.length; i++) {
 			urls[i] = bubbleText(game, dir, pos, style, size, args[i]);
 		}
 	}
@@ -112,9 +122,9 @@ function bubble(message) {
 }
 
 module.exports = (message) => {
-	if (new RegExp(/[Ff]ont!/gm).test(message.cleanContent.substring(0, 5)) && !(new RegExp(/[Ff]ont!(mk2)\W/gm).test(message.cleanContent.substring(0, 9))) && !(new RegExp(/[Ff]ont!(ecco|puyo|doom)\W/gm).test(message.cleanContent.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Ff]ont!(kof97|crash|wario)\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.cleanContent.substring(0, 8)))) {
+	if (new RegExp(/[Ff]ont!/gm).test(message.cleanContent.substring(0, 5)) && !(new RegExp(/[Ff]ont!(mk2)\W/gm).test(message.cleanContent.substring(0, 9))) && !(new RegExp(/[Ff]ont!(ecco|puyo|doom)\W/gm).test(message.cleanContent.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Ff]ont!(crash|wario)\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.cleanContent.substring(0, 8)))) {
 		var urls = font(message.cleanContent);
-		for (var i = 0; i < Math.min(urls.length, 5); i++) {
+		/*for (var i = 0; i < Math.min(urls.length, 5); i++) {
 			if (urls[i].length > 0)
 				message.channel.send({
 					embed: {
@@ -123,8 +133,19 @@ module.exports = (message) => {
 						}
 					}
 				});
-		}
+		}*/
+		
+				concat.v({
+					images: urls, margin: 0 
+				}, function (err2, canvas2) {
+					message.channel.send({
+						files: [{attachment: canvas2.toBuffer(),name: 'gamefont.png'}]
+					});
+				});
+			
 	}
+	
+	
 	if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.cleanContent.substring(0, 5)) && !(new RegExp(/[Bb][du][0-9][0-9]!kof97\W/gm).test(message.cleanContent.substring(0, 11)))) {
 		var urls = bubble(message.cleanContent);
 		for (var i = 0; i < Math.min(urls.length, 5); i++) {
