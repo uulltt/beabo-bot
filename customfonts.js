@@ -131,7 +131,7 @@ module.exports = (message) => {
 					i++;
 					if (textImages.length === Math.min(texts.length, 2)) {
 				concat.v({
-					images: textImages, margin: 0 
+					images: textImages, margin: 32 
 				}, function (err2, canvas2) {
 					concat({ images: [fs.readFileSync('./pkmn/pokemon-blank.png')], margin: 0}, function (err, canvas3){
 						var img = new Image;
