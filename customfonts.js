@@ -162,7 +162,7 @@ ctx.drawImage(img, 32, 32);
 			var cursor = 0;
 			for (; cursor < texts[t].length; cursor++) {
 				var code = parseInt(texts[t].charCodeAt(cursor)) - 31;
-				if (code >= 1 && code <= 59) {
+				if (code >= 1 && code <= 65) {
 					paths[cursor] = fs.readFileSync('./sb/sb_' + (code).toString() + '.png');
 				} else {
 					paths[cursor] = fs.readFileSync('./sb/sb_1.png');
