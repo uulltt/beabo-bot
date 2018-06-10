@@ -211,6 +211,11 @@ encoding: null
 	return item.name;
 }));
 		}
+if (beaboMessage.startsWith('!members ') && message.author.id === process.env.BOT_ADMIN) {
+			console.log(client.guilds.array()[parseInt(beaboMessage.substring(9))].members.array().map(function (item) {
+	return item.user.username;
+}));
+		}
 		if (beaboMessage.substring(0, 4) === '!pg ' && message.author.id === process.env.BOT_ADMIN) {
 			herokupg.query(beaboMessage.substring(4), (err, res) => {
 				if (!err)
