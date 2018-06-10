@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 var fs = require('fs');
 var concat = require('./concat.js');
+var Canvas = require('canvas');
+var Image  = Canvas.Image;
 
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const crashfontString = alphabet + '0123456789.:! ';
@@ -10,6 +12,7 @@ const wariowareString = alphabet.toUpperCase() + '0123456789 ?+-=#✏$^<%&⭐>/'
 const puyoString = '0123456789' + alphabet + '. ';
 const mk2String = '**1234567890 -\'' + alphabet + '!.,';
 const eccoString = alphabet + ' .:,!?\'';
+const pkmnString = alphabet.toUpperCase() + '():;[]' + alphabet + '0123456789 \'?!./,'
 
 module.exports = (message) => {
 	if (new RegExp(/[Ff]ont!crash\W/gm).test(message.cleanContent.substring(0, 11)) && message.cleanContent.length > 11) {
@@ -105,6 +108,46 @@ module.exports = (message) => {
 			}
 				});
 			}
+		}
+	}
+	
+	if (new RegExp(/[Bb]!pkmn\W/gm).test(message.cleanContent.substring(0, 7)) && message.cleanContent.length > 7) {
+		var text = message.cleanContent.substring(7).toLowerCase().replace(/[^a-z0-9\?!\n\. ]/gm, '') + ' ';
+		var texts = text.match(/.{1,18}\W/gm);
+		var textImages = [];
+		var i = 0;
+		for (var t = 0; t < Math.min(texts.length, 2); t++) {
+			var paths = [];
+			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace(/\n/gm, '');
+			var cursor = 0;
+			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./pkmn/pkmn_' + (pkmnString.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
+			if (cursor === texts[t].length) {
+				concat({
+					images: paths, margin: 0 
+				}, function (err, canvas) {
+					
+					textImages[i] = canvas.toBuffer();
+					i++;
+					if (textImages.length === Math.min(texts.length, 2)) {
+				concat.v({
+					images: textImages, margin: 0 
+				}, function (err2, canvas2) {
+					concat({ images: [fs.readFileSync('./pkmn/pokemon-blank.png')], margin: 0}, function (err, canvas3){
+						var img = new Image;
+img.src = canvas2.toBuffer();
+var ctx = canvas3.getContext('2d');
+ctx.drawImage(img, 28, 28);
+					message.channel.send({
+						files: [{attachment: canvas3.toBuffer(),name: 'pkmn.png'}]
+					});
+					});
+				});
+			}
+				});
+			}
+			
+			
 		}
 	}
 	if (new RegExp(/[Ff]ont!ms\W/gm).test(message.cleanContent.substring(0, 8)) && message.cleanContent.length > 8) {

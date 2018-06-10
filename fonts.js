@@ -29,6 +29,24 @@ function bubbleText(game, dir, pos, style, size, text) {
 	return 'https://nfggames.com/system/arcade/arcade.php/b-' + dir + '/bp-' + pos + '/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(text + '\u200B');
 }
 
+function changeGame(game){
+	if (game === 'kof2k')
+		game = 'KoF2k';
+	if (game.substring(0, 5) === 'kof2k')
+		game = 'KoF2k' + game.charAt(5);
+	if (game === 'ketsui')
+		game = 'KETSUI';
+	if (game === 'ddr')
+		game = 'DDR';
+	if (game === 'njgd')
+		game = 'niga';
+	if (game === 'sfa3')
+		game = 'sfz3';
+	if (game === 'smb3')
+		game = 'smar';
+	return game;
+}
+
 async function font(message, discordMessage) {
 	var arg = ' ';
 	var game = ' ';
@@ -53,20 +71,7 @@ async function font(message, discordMessage) {
 		style = '0';
 		size = '2';
 	}
-	if (game === 'kof2k')
-		game = 'KoF2k';
-	if (game.substring(0, 5) === 'kof2k')
-		game = 'KoF2k' + game.charAt(5);
-	if (game === 'ketsui')
-		game = 'KETSUI';
-	if (game === 'ddr')
-		game = 'DDR';
-	if (game === 'njgd')
-		game = 'niga';
-	if (game === 'sfa3')
-		game = 'sfz3';
-	if (game === 'smb3')
-		game = 'smar';
+	game = changeGame(game);
 	args = arg.match(/.{1,24}\W/gm);
 	if (game === 'pubu')
 		args = arg.match(/.{1,34}\W/gm);
@@ -92,8 +97,6 @@ async function font(message, discordMessage) {
 		}
 	}
 	
-	
-
 
 function bubble(message) {
 	var arg = ' ';
@@ -121,20 +124,7 @@ function bubble(message) {
 		style = '0';
 		size = '2';
 	}
-	if (game === 'ddr')
-		game = 'DDR';
-	if (game === 'kof2k')
-		game = 'KoF2k';
-	if (game.substring(0, 5) === 'kof2k')
-		game = 'KoF2k' + game.charAt(5);
-	if (game === 'ketsui')
-		game = 'KETSUI';
-	if (game === 'njgd')
-		game = 'niga';
-	if (game === 'sfa3')
-		game = 'sfz3';
-	if (game === 'smb3')
-		game = 'smar';
+	game = changeGame(game);
 	args = arg.match(/.{1,24}\W/gm);
 	if (game === 'pubu')
 		args = arg.match(/.{1,34}\W/gm);
@@ -161,16 +151,13 @@ module.exports = (message) => {
 						}
 					}
 				});
-		}*/
-		
-				
-			
+		}*/		
 	}
 	
 	
 	if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.cleanContent.substring(0, 5))) {
 		var urls = bubble(message.cleanContent);
-		for (var i = 0; i < Math.min(urls.length, 5); i++) {
+		for (var i = 0; i < Math.min(urls.length, 1); i++) {
 			if (urls[i].length > 0)
 				message.channel.send({
 					embed: {
