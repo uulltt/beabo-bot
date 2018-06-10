@@ -182,7 +182,7 @@ module.exports = (message) => {
 			texts[t] = texts[t].replace(/\n/gm, '');
 			var cursor = 0;
 			for (; cursor < texts[t].length; cursor++) {
-				var code = parseInt(texts[t].charCodeAt(cursor)) - 31;
+				var code = parseInt(texts[t].charCodeAt(cursor)) - 32;
 				if (code >= 1 && code <= 90) {
 					paths[cursor] = fs.readFileSync('./wh2/wh2_' + (code).toString() + '.png');
 				} else {
