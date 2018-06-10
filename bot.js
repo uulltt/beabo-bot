@@ -105,7 +105,7 @@ client.on('message', message => {
 	} else {
 	if (message.isMentioned(client.user) && (!message.cleanContent.toLowerCase().includes("fuck") && !message.cleanContent.toLowerCase().includes("suck") && !message.cleanContent.toLowerCase().includes("hate"))) {
 
-		if ((!message.cleanContent.toLowerCase().includes("not")) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) ((yo)?)u/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))){
+		if ((!message.cleanContent.toLowerCase().includes("not")) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))){
 			message.channel.send("bee bee biiiii! :heart:");
 		} else if (message.content.toLowerCase().includes("help")) {
 			helpMessage(message);
