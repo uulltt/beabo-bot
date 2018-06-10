@@ -98,7 +98,7 @@ module.exports = (message, content) => {
 						var images = json.posts[0].body.split('img src=\"').filter(function(item){
 							return item.startsWith('http');
 						}).map(function(item){
-							return item.substring(0, item.indexOf('\"');
+							return item.substring(0, item.indexOf('\"'));
 						});
 						for (var i = 0; i < Math.min(images.length, 10); i++) {
 								message.channel.send({
@@ -115,7 +115,7 @@ module.exports = (message, content) => {
 						var img = json.posts[0].trail[j].content_raw.split('img src=\"').filter(function(item){
 							return item.startsWith('http');
 						}).map(function(item){
-							return item.substring(0, item.indexOf('\"');
+							return item.substring(0, item.indexOf('\"'));
 						});
 						for (var i = 0; i < Math.min(img.length, 10); i++) {
 								message.channel.send({
@@ -232,7 +232,7 @@ module.exports = (message, content) => {
 					var images = json.posts[0].caption.split('img src=\"').filter(function(item){
 							return item.startsWith('http');
 						}).map(function(item){
-							return item.substring(0, item.indexOf('\"');
+							return item.substring(0, item.indexOf('\"'));
 						});
 					for (var i = 0; i < Math.min(images.length, 10); i++) {
 							message.channel.send({
