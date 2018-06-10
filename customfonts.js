@@ -152,7 +152,7 @@ ctx.drawImage(img, 32, 32);
 	}
 	if (new RegExp(/[Bb]!sb\W/gm).test(message.cleanContent.substring(0, 5)) && message.cleanContent.length > 5) {
 		var text = message.cleanContent.substring(5).toUpperCase() + ' ';
-		var texts = text.match(/.{1,24}\W/gm);
+		var texts = text.match(/.{1,25}\W/gm);
 		var textImages = [];
 		var i = 0;
 		for (var t = 0; t < Math.min(texts.length, 3); t++) {
@@ -177,7 +177,7 @@ ctx.drawImage(img, 32, 32);
 					i++;
 					if (textImages.length === Math.min(texts.length, 3)) {
 				concat.v({
-					images: textImages, margin: 38 
+					images: textImages, margin: 30 
 				}, function (err2, canvas2) {
 					concat({ images: [fs.readFileSync('./sb/sign.png')], margin: 0}, function (err, canvas3){
 						var img = new Image;
