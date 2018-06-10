@@ -155,7 +155,7 @@ ctx.drawImage(img, 32, 32);
 		var texts = text.match(/.{1,25}\W/gm);
 		var textImages = [];
 		var i = 0;
-		for (var t = 0; t < Math.min(texts.length, 3); t++) {
+		for (var t = 0; t < Math.min(texts.length, 4); t++) {
 			var paths = [];
 			texts[t] = texts[t];
 			texts[t] = texts[t].replace(/\n/gm, '');
@@ -170,14 +170,14 @@ ctx.drawImage(img, 32, 32);
 			}
 			if (cursor === texts[t].length) {
 				concat({
-					images: paths, margin: 0 
+					images: paths, margin: 4 
 				}, function (err, canvas) {
 					
 					textImages[i] = canvas.toBuffer();
 					i++;
-					if (textImages.length === Math.min(texts.length, 3)) {
+					if (textImages.length === Math.min(texts.length, 4)) {
 				concat.v({
-					images: textImages, margin: 30 
+					images: textImages, margin: 8 
 				}, function (err2, canvas2) {
 					concat({ images: [fs.readFileSync('./sb/sign.png')], margin: 0}, function (err, canvas3){
 						var img = new Image;
