@@ -63,6 +63,12 @@ function helpMessage(message) {
 	message.channel.send('http://uulltt.tumblr.com/beabo', {
 		embed: {
 			fields: [{
+					name: ':camera: Commands (b!pics followed by)',
+					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'
+				}, {
+					name: 'Other Media Commands',
+					value: 'b!song (tumblr post) - embeds the audio from that tumblr post\nb!vids (tumblr post) - embeds the video from that tumblr post'
+				}, {
 					name: 'Font Commands',
 					value: 'To find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
 					'\nfont!gamename your text here - creates image of your text in the game\'s font\nb(u/d)(two digits)!game your text here to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size. also works for speech bubbles.\n'
@@ -82,12 +88,9 @@ function helpMessage(message) {
 					value: 'b!gb game/character/company/etc. info/characters/concepts/locations/people/etc. name of thing - returns the info searched for relating to a game/character/company/etc.'
 					 */
 				}, {
-					name: ':camera: Commands (b!pics followed by)',
-					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'
-				}, {
 					name: 'Other Commands',
 					value: ':tomato: or b!rt movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\nb!hex#hexCode - displays image of a color pertaining to the hex code' +
-					'\nb!rhyme word - find words that rhyme with a given word\nb!numpad command - turns fighting game numpad notation into emoji\nb!list or b!todo your list here - separates a discord message into a list based on either line breaks or commas'
+					'\nb!rhyme word - find words that rhyme with a given word\nb!numpad command - turns fighting game numpad notation into emoji\nb!wof - makes a wheel of fortune meme\nb!hex# - gets color for that specific hex'
 				}
 			]
 		}
@@ -167,12 +170,11 @@ client.on('message', message => {
 			direction({
 				origin: ori,
 				destination: dest
-			}).then(function (result) {
-				var dirTitle = ':motorway: **' + ori + '** to **' + dest + '**'
+			}).then(function (result) { 
 					var dir = getDirections(result);
 				message.channel.send({
 					embed: {
-						title: dirTitle,
+						title: ':motorway: **' + ori + '** to **' + dest + '**',
 						description: dir.length <= 2048 ? dir : 'Too many directions. Just Google it.'
 					}
 				});
