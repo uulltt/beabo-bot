@@ -181,20 +181,19 @@ client.on('message', message => {
 		movies(message, beaboMessage);
 		pics(message, beaboMessage);
 		if (beaboMessage.startsWith("!rhyme ")) {
-
+var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1);
 			var request = require('request').defaults({
 					encoding: null
 				});
-			request.get(encodeURI('https://api.datamuse.com/words?rel_rhy=' + beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/ /gm, '')), function (err, res, body) {
-				var json = JSON.parse(body.toString());
-				var rhymes = '';
-				rhymes = json.map(function (item) {
+			request.get(encodeURI('https://api.datamuse.com/words?rel_rhy=' + word.replace(/ /gm, '')), function (err, res, body) {
+				var json = ;
+				var rhymes = JSON.parse(body.toString()).map(function (item) {
 						return ' ' + item.word;
 					}).toString();
 
 				message.channel.send({
 					embed: {
-						title: 'Words that Rhyme with ' + beaboMessage.substring(beaboMessage.indexOf(' ') + 1),
+						title: 'Words that Rhyme with ' + word,
 						description: rhymes.length > 2048 ? rhymes.substring(0, 2048) : rhymes,
 						footer: {
 							text: 'From RhymeZone/Datamuse API'
