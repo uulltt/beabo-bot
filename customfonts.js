@@ -47,7 +47,7 @@ module.exports = (message) => {
 		}
 	}
 	if (new RegExp(/[Ff]ont!wario\W/gm).test(message.cleanContent.substring(0, 11)) && message.cleanContent.length > 11) {
-		var text = message.cleanContent.substring(11).replace(/[^A-Za-z0-9\.!\:\n\?'",\+\-= %&;:\(\)⭐✏]/gm, '') + ' ';
+		var text = message.cleanContent.substring(11).replace(/[^A-Za-z0-9\.!\n\?'",\+\-= %&;:\(\)⭐✏]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
 		var i = 0;
@@ -112,13 +112,13 @@ module.exports = (message) => {
 	}
 	
 	if (new RegExp(/[Bb]!pkmn\W/gm).test(message.cleanContent.substring(0, 7)) && message.cleanContent.length > 7) {
-		var text = message.cleanContent.substring(7).toLowerCase().replace(/[^a-z0-9\?!\n\. ]/gm, '') + ' ';
+		var text = message.cleanContent.substring(7).replace(/[^A-Za-z0-9\.!\:\n\?',\- ;:\/\(\)\[\]]/gm, '') + ' ';
 		var texts = text.match(/.{1,18}\W/gm);
 		var textImages = [];
 		var i = 0;
 		for (var t = 0; t < Math.min(texts.length, 2); t++) {
 			var paths = [];
-			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t];
 			texts[t] = texts[t].replace(/\n/gm, '');
 			var cursor = 0;
 			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./pkmn/pkmn_' + (pkmnString.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
