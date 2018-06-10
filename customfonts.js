@@ -152,7 +152,7 @@ ctx.drawImage(img, 32, 32);
 	}
 	if (new RegExp(/[Bb]!sb\W/gm).test(message.cleanContent.substring(0, 5)) && message.cleanContent.length > 5) {
 		var text = message.cleanContent.substring(5).toUpperCase() + ' ';
-		var texts = text.match(/.{1,23}\W/gm);
+		var texts = text.match(/.{1,22}\W/gm);
 		var textImages = [];
 		var i = 0;
 		for (var t = 0; t < Math.min(texts.length, 4); t++) {
