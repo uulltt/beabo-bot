@@ -171,6 +171,44 @@ module.exports = (message) => {
 			}
 		}
 	}
+	if (new RegExp(/[Ff]ont!wh2\W/gm).test(message.cleanContent.substring(0, 9)) && message.cleanContent.length > 9) {
+		var text = message.cleanContent.substring(9) + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		var textImages = [];
+		var i = 0;
+		for (var t = 0; t < texts.length; t++) {
+			var paths = [];
+			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace(/\n/gm, '');
+			var cursor = 0;
+			for (; cursor < texts[t].length; cursor++) {
+				var code = parseInt(texts[t].charCodeAt(cursor)) + 31;
+				if (code > 31 && code < 122) {
+					paths[cursor] = fs.readFileSync('./wh2/wh2_' + (code).toString() + '.png');
+				} else {
+					paths[cursor] = fs.readFileSync('./wh2/wh2_1.png');
+				}
+			}
+			if (cursor === texts[t].length) {
+				concat({
+					images: paths, margin: 0 
+				}, function (err, canvas) {
+					
+					textImages[i] = canvas.toBuffer();
+					i++;
+					if (textImages.length === texts.length) {
+				concat.v({
+					images: textImages, margin: 0 
+				}, function (err2, canvas2) {
+					message.channel.send({
+						files: [{attachment: canvas2.toBuffer(),name: 'wh2.png'}]
+					});
+				});
+			}
+				});
+			}
+		}
+	}
 	/*if (new RegExp(/[Ff]ont!puyo\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10) {
 		var text = message.cleanContent.substring(10).toLowerCase().replace(/[^a-z0-9\.\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
