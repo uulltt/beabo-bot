@@ -206,6 +206,9 @@ encoding: null
 		/*if (beaboMessage.substring(0, 4) === '!gb ') {
 			giantbomb(message, beaboMessage);
 		}*/
+		if (beaboMessage === '!guilds' && message.author.id === process.env.BOT_ADMIN) {
+			console.log(client.guilds);
+		}
 		if (beaboMessage.substring(0, 4) === '!pg ' && message.author.id === process.env.BOT_ADMIN) {
 			herokupg.query(beaboMessage.substring(4), (err, res) => {
 				if (!err)
