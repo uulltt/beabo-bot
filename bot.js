@@ -181,12 +181,11 @@ client.on('message', message => {
 		movies(message, beaboMessage);
 		pics(message, beaboMessage);
 		if (beaboMessage.startsWith("!rhyme ")) {
-var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1);
+var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm, '');
 			var request = require('request').defaults({
 					encoding: null
 				});
-			request.get(encodeURI('https://api.datamuse.com/words?rel_rhy=' + word.replace(/ /gm, '')), function (err, res, body) {
-				var json = ;
+			request.get(encodeURI('https://api.datamuse.com/words?rel_rhy=' + word), function (err, res, body) {
 				var rhymes = JSON.parse(body.toString()).map(function (item) {
 						return ' ' + item.word;
 					}).toString();
