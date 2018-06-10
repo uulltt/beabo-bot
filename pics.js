@@ -95,32 +95,36 @@ module.exports = (message, content) => {
 							}));
 					}
 					if (json.posts[0].type === 'text') {
-						var images = json.posts[0].body.split('img src=\"');
+						var images = json.posts[0].body.split('img src=\"').filter(function(item){
+							return item.startsWith('http');
+						}).map(function(item){
+							return item.substring(0, item.indexOf('\"');
+						});
 						for (var i = 0; i < Math.min(images.length, 10); i++) {
-							if (images[i].charAt(0) === 'h') {
 								message.channel.send({
 									embed: {
 										image: {
-											url: images[i].substring(0, images[i].indexOf('\"'))
+											url: images[i]
 										}
 									}
 								});
-							}
 						}
 					}
 
 					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
-						var img = json.posts[0].trail[j].content_raw.split('img src=\"');
+						var img = json.posts[0].trail[j].content_raw.split('img src=\"').filter(function(item){
+							return item.startsWith('http');
+						}).map(function(item){
+							return item.substring(0, item.indexOf('\"');
+						});
 						for (var i = 0; i < Math.min(img.length, 10); i++) {
-							if (img[i].charAt(0) === 'h') {
 								message.channel.send({
 									embed: {
 										image: {
-											url: img[i].substring(0, img[i].indexOf('\"'))
+											url: img[i]
 										}
 									}
 								});
-							}
 						}
 					}
 				}
@@ -225,17 +229,19 @@ module.exports = (message, content) => {
 				id: postId
 			}, function (err, json) {
 				if (json.total_posts > 0 && json.posts[0].type === 'audio') {
-					var images = json.posts[0].caption.split('img src=\"');
+					var images = json.posts[0].caption.split('img src=\"').filter(function(item){
+							return item.startsWith('http');
+						}).map(function(item){
+							return item.substring(0, item.indexOf('\"');
+						});
 					for (var i = 0; i < Math.min(images.length, 10); i++) {
-						if (images[i].charAt(0) === 'h') {
 							message.channel.send({
 								embed: {
 									image: {
-										url: images[i].substring(0, images[i].indexOf('\"'))
+										url: images[i]
 									}
 								}
 							});
-						}
 					}
 					var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
 							request.get(r.uri.href, function (err2, res2, body2) {
