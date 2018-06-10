@@ -137,7 +137,7 @@ module.exports = (message) => {
 						var img = new Image;
 img.src = canvas2.toBuffer();
 var ctx = canvas3.getContext('2d');
-ctx.drawImage(img, 28, 28);
+ctx.drawImage(img, 32, 32);
 					message.channel.send({
 						files: [{attachment: canvas3.toBuffer(),name: 'pkmn.png'}]
 					});
