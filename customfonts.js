@@ -251,7 +251,7 @@ module.exports = (message) => {
 		var text = message.cleanContent.substring(11).toUpperCase() + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
-		console.log(message.cleanContent.charAt(9);
+		console.log(message.cleanContent.charAt(9));
 		var style = parseInt(message.cleanContent.charAt(9));
 		console.log(text);
 		console.log(style);
