@@ -251,7 +251,10 @@ module.exports = (message) => {
 		var text = message.cleanContent.substring(11).toUpperCase() + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
+		console.log(message.cleanContent.charAt(9);
 		var style = parseInt(message.cleanContent.charAt(9));
+		console.log(text);
+		console.log(style);
 		var i = 0;
 		for (var t = 0; t < texts.length; t++) {
 			var paths = [];
@@ -262,6 +265,7 @@ module.exports = (message) => {
 				var code = parseInt(texts[t].charCodeAt(cursor)) - 31;
 				if (code >= 1 && code <= 59) {
 					var codeStyle = code + (59*style);
+					console.log(codeStyle);
 					paths[cursor] = fs.readFileSync('./ddp/ddp_' + (codeStyle).toString() + '.png');
 				} else {
 					paths[cursor] = fs.readFileSync('./ddp/ddp_1.png');

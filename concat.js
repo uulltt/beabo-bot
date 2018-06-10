@@ -102,7 +102,7 @@ function drawV(images, options) {
 
   for (var i = 0; i < images.length; i++) {
     currentLeftMargin = (currentLeftMargin === 0) ? currentLeftMargin : currentLeftMargin + margin;
-    ctx.drawImage(images[i], 0, currentLeftMargin);
+    ctx.drawImage(images[i], 0, 0);
     currentLeftMargin += images[i].height;
   };
 
