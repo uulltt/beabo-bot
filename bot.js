@@ -189,7 +189,7 @@ client.on('message', message => {
 				var json = JSON.parse(body.toString());
 				var rhymes = '';
 				rhymes = json.map(function (item) {
-						return item.word;
+						return ' ' + item.word;
 					}).toString();
 
 				message.channel.send({
