@@ -209,7 +209,85 @@ module.exports = (message) => {
 			}
 		}
 	}
-	/*if (new RegExp(/[Ff]ont!puyo\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10) {
+	if (new RegExp(/[Ff]ont!ddpt\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10) {
+		var text = message.cleanContent.substring(10).toUpperCase() + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		var textImages = [];
+		var i = 0;
+		for (var t = 0; t < texts.length; t++) {
+			var paths = [];
+			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace(/\n/gm, '');
+			var cursor = 0;
+			for (; cursor < texts[t].length; cursor++) {
+				var code = parseInt(texts[t].charCodeAt(cursor)) - 31;
+				if (code >= 1 && code <= 59) {
+					paths[cursor] = fs.readFileSync('./ddp/ddp_' + (code).toString() + '.png');
+				} else {
+					paths[cursor] = fs.readFileSync('./ddp/ddp_1.png');
+				}
+			}
+			if (cursor === texts[t].length) {
+				concat({
+					images: paths, margin: 0 
+				}, function (err, canvas) {
+					
+					textImages[i] = canvas.toBuffer();
+					i++;
+					if (textImages.length === texts.length) {
+				concat.v({
+					images: textImages, margin: 0 
+				}, function (err2, canvas2) {
+					message.channel.send({
+						files: [{attachment: canvas2.toBuffer(),name: 'ddp.png'}]
+					});
+				});
+			}
+				});
+			}
+		}
+	}
+	if (new RegExp(/[Ff]ont!ddpt[0-2]\W/gm).test(message.cleanContent.substring(0, 11)) && message.cleanContent.length > 11) {
+		var text = message.cleanContent.substring(11).toUpperCase() + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		var textImages = [];
+		var style = parseInt(message.cleanContent.charAt(9));
+		var i = 0;
+		for (var t = 0; t < texts.length; t++) {
+			var paths = [];
+			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace(/\n/gm, '');
+			var cursor = 0;
+			for (; cursor < texts[t].length; cursor++) {
+				var code = parseInt(texts[t].charCodeAt(cursor)) - 31;
+				if (code >= 1 && code <= 59) {
+					var codeStyle = code + (59*style);
+					paths[cursor] = fs.readFileSync('./ddp/ddp_' + (codeStyle).toString() + '.png');
+				} else {
+					paths[cursor] = fs.readFileSync('./ddp/ddp_1.png');
+				}
+			}
+			if (cursor === texts[t].length) {
+				concat({
+					images: paths, margin: 0 
+				}, function (err, canvas) {
+					
+					textImages[i] = canvas.toBuffer();
+					i++;
+					if (textImages.length === texts.length) {
+				concat.v({
+					images: textImages, margin: 0 
+				}, function (err2, canvas2) {
+					message.channel.send({
+						files: [{attachment: canvas2.toBuffer(),name: 'ddp.png'}]
+					});
+				});
+			}
+				});
+			}
+		}
+	}
+	if (new RegExp(/[Ff]ont!puyo\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10) {
 		var text = message.cleanContent.substring(10).toLowerCase().replace(/[^a-z0-9\.\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		for (var t = 0; t < Math.min(texts.length, 5); t++) {
@@ -228,7 +306,7 @@ module.exports = (message) => {
 				});
 			}
 		}
-	}*/
+	}
 	if (new RegExp(/[Ff]ont!ecco\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10) {
 		var text = message.cleanContent.substring(10).toLowerCase().replace(/[^a-z\.\n,:\?!' ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
