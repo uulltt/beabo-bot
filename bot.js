@@ -31,7 +31,6 @@ client.on('ready', () => {
 	});
 });
 
-
 var lines = [" beabo", " bee", " bii", " be", " beeb"];
 
 function beeb() {
@@ -51,7 +50,6 @@ function beeb() {
 	return sentence + "!";
 
 }
-
 
 function getDirections(result) {
 	var dir = '';
@@ -79,10 +77,11 @@ function helpMessage(message) {
 				}, {
 					name: 'Local Time Commands',
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
-				/*}, {
+					/*}, {
 					name: 'Giant Bomb Wiki Commands',
 					value: 'b!gb game/character/company/etc. info/characters/concepts/locations/people/etc. name of thing - returns the info searched for relating to a game/character/company/etc.'
-				*/}, {
+					 */
+				}, {
 					name: ':camera: Commands (b!pics followed by)',
 					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'
 				}, {
@@ -100,30 +99,30 @@ const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', 
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumblr.com', 'http://www.monster-lands.com'];
 client.on('message', message => {
-	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().includes("beeb") || message.cleanContent.toLowerCase().includes("bii")) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]/gm)){
+	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().includes("beeb") || message.cleanContent.toLowerCase().includes("bii")) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]/gm)) {
 		message.channel.send("Biii!!!!! biiiiiii!! :two_hearts:");
 	} else {
-	if (message.isMentioned(client.user) && (!message.cleanContent.toLowerCase().includes("fuck") && !message.cleanContent.toLowerCase().includes("suck") && !message.cleanContent.toLowerCase().includes("hate"))) {
+		if (message.isMentioned(client.user) && (!message.cleanContent.toLowerCase().includes("fuck") && !message.cleanContent.toLowerCase().includes("suck") && !message.cleanContent.toLowerCase().includes("hate"))) {
 
-		if ((!message.cleanContent.toLowerCase().includes("not")) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))){
-			message.channel.send("bee bee biiiii! :heart:");
-		} else if (message.content.toLowerCase().includes("help")) {
-			helpMessage(message);
-		} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)(s?) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)(\?)?/gm)) {
-			message.channel.send(favegames[(Math.floor(Math.random() * (message.content.toLowerCase().includes("steam") ? 7 : 8)))] + '/');
-		} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)(s?) (yo)?ur fav((e|orite)?) ((web(( |(\-))?))?)(comic)(\?)?/gm)) {
-			message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
-		} else {
-			message.channel.send(beeb()).then(console.log).catch(console.error);
+			if ((!message.cleanContent.toLowerCase().includes("not")) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
+				message.channel.send("bee bee biiiii! :heart:");
+			} else if (message.content.toLowerCase().includes("help")) {
+				helpMessage(message);
+			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)(s?) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)(\?)?/gm)) {
+				message.channel.send(favegames[(Math.floor(Math.random() * (message.content.toLowerCase().includes("steam") ? 7 : 8)))] + '/');
+			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)(s?) (yo)?ur fav((e|orite)?) ((web(( |(\-))?))?)(comic)(\?)?/gm)) {
+				message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
+			} else {
+				message.channel.send(beeb()).then(console.log).catch(console.error);
+			}
 		}
 	}
-	}
-	if (message.hasOwnProperty('channel') && message.channel.hasOwnProperty('guild') && message.channel.guild.hasOwnProperty('id') && message.channel.guild.id === '439555383313301514' && message.channel.id === '450169522561875979' && !message.author.bot){
-		let role = message.guild.roles.array().filter(function(item) {
-		return item.name === "Reader";	
-		});
-		if (role.length > 0){
-		message.member.addRole(role[0]).then(console.log).catch(console.error);
+	if (message.hasOwnProperty('channel') && message.channel.hasOwnProperty('guild') && message.channel.guild.hasOwnProperty('id') && message.channel.guild.id === '439555383313301514' && message.channel.id === '450169522561875979' && !message.author.bot) {
+		let role = message.guild.roles.array().filter(function (item) {
+				return item.name === "Reader";
+			});
+		if (role.length > 0) {
+			message.member.addRole(role[0]).then(console.log).catch(console.error);
 		} else {
 			message.channel.send("Beaboooooooo! (Error. There is no \"Reader\" role.)");
 		}
@@ -181,32 +180,34 @@ client.on('message', message => {
 		}
 		movies(message, beaboMessage);
 		pics(message, beaboMessage);
-if (beaboMessage.startsWith("!rhyme ")) {
-			
-		var request = require('request').defaults({
-encoding: null
-		});
-		request.get(encodeURI('https://api.datamuse.com/words?rel_rhy=' + beaboMessage.substring(beaboMessage.indexOf(' ')+1).replace(/ /gm, '')), function (err, res, body) {
-			var json = JSON.parse(body.toString());
-			var rhymes = '';
-			for(var i = 0; i < json.length; rhymes += json[i++].word){
-				if (i > 0)
-					rhymes += ', ';
-			}
-			if (rhymes.length > 2048)
-				rhymes = rhymes.substring(0, 2048);
-			message.channel.send({embed : {title: 'Words that Rhyme with ' + beaboMessage.substring(beaboMessage.indexOf(' ')+1), description: rhymes, footer: {
-						text: 'From RhymeZone/Datamuse API'
-					}}});
-		});
+		if (beaboMessage.startsWith("!rhyme ")) {
+
+			var request = require('request').defaults({
+					encoding: null
+				});
+			request.get(encodeURI('https://api.datamuse.com/words?rel_rhy=' + beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/ /gm, '')), function (err, res, body) {
+				var json = JSON.parse(body.toString());
+				var rhymes = '';
+				rhymes = json.map(function (item) {
+						return item.word;
+					}).toString();
+
+				message.channel.send({
+					embed: {
+						title: 'Words that Rhyme with ' + beaboMessage.substring(beaboMessage.indexOf(' ') + 1),
+						description: rhymes.length > 2048 ? rhymes.substring(0, 2048) : rhymes,
+						footer: {
+							text: 'From RhymeZone/Datamuse API'
+						}
+					}
+				});
+			});
 		}
-		
-		
-		
+
 		/*if (beaboMessage.substring(0, 4) === '!gb ') {
-			giantbomb(message, beaboMessage);
+		giantbomb(message, beaboMessage);
 		}*/
-	
+
 		if (beaboMessage.substring(0, 4) === '!pg ' && message.author.id === process.env.BOT_ADMIN) {
 			herokupg.query(beaboMessage.substring(4), (err, res) => {
 				if (!err)
@@ -215,98 +216,107 @@ encoding: null
 					console.log(err);
 			});
 		}
-		if (new RegExp(/!wof\W/gm).test(beaboMessage.substring(0, 5))){
+		if (new RegExp(/!wof\W/gm).test(beaboMessage.substring(0, 5))) {
 			var text = message.cleanContent.substring(6).split('\n');
-			var ln = ['','','','',''];
-			for(var i = 0; i < Math.min(5, text.length); i++){
+			var ln = ['', '', '', '', ''];
+			for (var i = 0; i < Math.min(5, text.length); i++) {
 				ln[i] = encodeURI(text[i]);
 			}
-			message.channel.send({embed: {image: {url : 'https://www.thewordfinder.com/wof-puzzle-generator/puzzle-thumb.php?bg=1&ln1='+ln[0]+'&ln2='+ln[1]+'&ln3='+ln[2]+'&ln4='+ln[3]+'&cat='+ln[4]+'&'}}});
+			message.channel.send({
+				embed: {
+					image: {
+						url: 'https://www.thewordfinder.com/wof-puzzle-generator/puzzle-thumb.php?bg=1&ln1=' + ln[0] + '&ln2=' + ln[1] + '&ln3=' + ln[2] + '&ln4=' + ln[3] + '&cat=' + ln[4] + '&'
+					}
+				}
+			});
 		}
 		timestuff(message, beaboMessage, herokupg);
 
 		if (new RegExp(/!eb(n|m|s|b|p|N|M|S|B|P)\W/gm).test(beaboMessage.substring(0, 5))) {
 			const flavors = ['plain', 'mint', 'strawberry', 'banana', 'peanut'];
 			const flavorstring = 'nmsbp'
-			var Flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(3).toLowerCase())];
-						var Text = message.cleanContent.substring(6);
-var textCanvas = new Canvas(608, 256);
-textCanvas.imageSmoothingEnabled = false;
-						EarthBoundText.preload_assets();
-							EarthBoundText.render({
-                    canvas: textCanvas,
-                    flavor: Flavor,
-                    text: Text,
-					Message: message
-                });
-			}
-			
-			if (new RegExp(/!eb\W/gm).test(beaboMessage.substring(0, 4))) {
-						var Text = message.cleanContent.substring(5);
-var textCanvas = new Canvas(608, 256);
-textCanvas.imageSmoothingEnabled = false;
-						EarthBoundText.preload_assets();
-							EarthBoundText.render({
-                    canvas: textCanvas,
-                    flavor: 'plain',
-                    text: Text,
-					Message: message
-                });
-			}
-			
-			if (new RegExp(/!ut\W/gm).test(beaboMessage.substring(0, 4))) {
-						var text = message.cleanContent.substring(5);
-						message.channel.send( {embed: {
-							image: {
-								url: 'https://www.demirramon.com/gen/undertale_box.png?text=' + encodeURI(text)
-							}
-							}
-						});
-			} else {
+				var Flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(3).toLowerCase())];
+			var Text = message.cleanContent.substring(6);
+			var textCanvas = new Canvas(608, 256);
+			textCanvas.imageSmoothingEnabled = false;
+			EarthBoundText.preload_assets();
+			EarthBoundText.render({
+				canvas: textCanvas,
+				flavor: Flavor,
+				text: Text,
+				Message: message
+			});
+		}
+
+		if (new RegExp(/!eb\W/gm).test(beaboMessage.substring(0, 4))) {
+			var Text = message.cleanContent.substring(5);
+			var textCanvas = new Canvas(608, 256);
+			textCanvas.imageSmoothingEnabled = false;
+			EarthBoundText.preload_assets();
+			EarthBoundText.render({
+				canvas: textCanvas,
+				flavor: 'plain',
+				text: Text,
+				Message: message
+			});
+		}
+
+		if (new RegExp(/!ut\W/gm).test(beaboMessage.substring(0, 4))) {
+			var text = message.cleanContent.substring(5);
+			message.channel.send({
+				embed: {
+					image: {
+						url: 'https://www.demirramon.com/gen/undertale_box.png?text=' + encodeURI(text)
+					}
+				}
+			});
+		} else {
 			if ((beaboMessage).match(/!ut.+\W/gm)) {
-				var characterText = message.cleanContent.substring(message.cleanContent.indexOf('t')+1);
-						var characterexp = characterText.substring(0, characterText.search(/\W/gm)).split('_');
-						var character = characterexp[0];
-						var text = characterText.substring(characterText.search(/\W/gm)+1);
-						if (characterexp.length <= 1){
-						message.channel.send( {embed: {
+				var characterText = message.cleanContent.substring(message.cleanContent.indexOf('t') + 1);
+				var characterexp = characterText.substring(0, characterText.search(/\W/gm)).split('_');
+				var character = characterexp[0];
+				var text = characterText.substring(characterText.search(/\W/gm) + 1);
+				if (characterexp.length <= 1) {
+					message.channel.send({
+						embed: {
 							image: {
-								url: 'https://www.demirramon.com/gen/undertale_box.png?character='+encodeURI(character)+'&text=' + encodeURI(text)
+								url: 'https://www.demirramon.com/gen/undertale_box.png?character=' + encodeURI(character) + '&text=' + encodeURI(text)
 							}
-							}
-						});
-						} else {
-							var expression = characterexp[1];
-							message.channel.send( {embed: {
-							image: {
-								url: 'https://www.demirramon.com/gen/undertale_box.png?character='+encodeURI(character)+'&expression='+encodeURI(expression)+'&text=' + encodeURI(text)
-							}
-							}
-						});
 						}
-			}
-			}
-
-			if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
-				var command = '**' + beaboMessage.substring(8) + '**';
-				command = command.replace(/(2)([a-zA-Z\W])/gm, function (match) {
-  return "crouching " + match.substring(1)  ;
-}).replace(/1/gm, ':arrow_lower_left:').replace(/2/gm, ':arrow_down:').replace(/3/gm, ':arrow_lower_right:').replace(/4/gm, ':arrow_left:')
-					.replace(/7/gm, ':arrow_upper_left:').replace(/8/gm, ':arrow_up:').replace(/9/gm, ':arrow_upper_right:').replace(/6/gm, ':arrow_right:').replace(/5/gm, ' neutral ')
-					.replace(/j((u|m|p)?)\./gm, ' jumping ').replace(/cr\./gm, ' crouching ').replace(/cl\./gm, ' close ');
-				message.channel.send(command);
-			}
-			if (beaboMessage.substring(0, 8) === '!ZiV-id ') {
-				message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + beaboMessage.substring(8) + '#summary');
-			}
-
-			if (beaboMessage.substring(0, 11) === '!ZiV-random') {
-				message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000) + 2).toString() + '#summary');
-			}
-			if (beaboMessage.substring(0, 9) === '!commands' || beaboMessage.substring(0, 5) === '!help') {
-				helpMessage(message);
+					});
+				} else {
+					var expression = characterexp[1];
+					message.channel.send({
+						embed: {
+							image: {
+								url: 'https://www.demirramon.com/gen/undertale_box.png?character=' + encodeURI(character) + '&expression=' + encodeURI(expression) + '&text=' + encodeURI(text)
+							}
+						}
+					});
+				}
 			}
 		}
-	});
 
-	client.login(process.env.BOT_TOKEN);
+		if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
+			var command = '**' + beaboMessage.substring(8) + '**';
+			command = command.replace(/(2)([a-zA-Z\W])/gm, function (match) {
+					return "crouching " + match.substring(1);
+				}).replace(/1/gm, ':arrow_lower_left:').replace(/2/gm, ':arrow_down:').replace(/3/gm, ':arrow_lower_right:').replace(/4/gm, ':arrow_left:')
+				.replace(/7/gm, ':arrow_upper_left:').replace(/8/gm, ':arrow_up:').replace(/9/gm, ':arrow_upper_right:').replace(/6/gm, ':arrow_right:').replace(/5/gm, ' neutral ')
+				.replace(/j((u|m|p)?)\./gm, ' jumping ').replace(/cr\./gm, ' crouching ').replace(/cl\./gm, ' close ');
+			message.channel.send(command);
+		}
+		/*if (beaboMessage.substring(0, 8) === '!ZiV-id ') {
+		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + beaboMessage.substring(8) + '#summary');
+		}
+
+		if (beaboMessage.substring(0, 11) === '!ZiV-random') {
+		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000) + 2).toString() + '#summary');
+		}*/
+		if (beaboMessage.substring(0, 9) === '!commands' || beaboMessage.substring(0, 5) === '!help') {
+			helpMessage(message);
+		}
+	}
+});
+
+client.login(process.env.BOT_TOKEN);

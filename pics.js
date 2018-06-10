@@ -4,213 +4,270 @@ var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 const Discord = require('discord.js');
 var tumblr = new Tumblr({
-consumerKey: process.env.TUMBLR_CONSUMER_KEY,
-});
+		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
+	});
 var tweeter = new Twitter({
-	consumer_key: process.env.TWITTER_CONSUMER_KEY,
-	consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-	access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-	access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-});
+		consumer_key: process.env.TWITTER_CONSUMER_KEY,
+		consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+		access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+		access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+	});
+var request = require('request').defaults({
+		encoding: null
+	});
 
 module.exports = (message, content) => {
 	if (content.startsWith('!pics ')) { //all the camera commands go in here
-	if (content.includes('twitter.com/') && content.includes('/status/')) {
-		var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
-		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
-			if (!error) {
-				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
-					for (var i = 1; i < tweet.extended_entities.media.length; message.channel.send({ embed: { image: { url: tweet.extended_entities.media[i++].media_url } } }));
-				}
-			} else {
-				message.channel.send(error);
-			}
-		});
-	}
-	if (content.includes('imgur.com/') && content.includes('/a/')) {
-		var theAlbum = content.substring(content.indexOf('/a/') + 3).match(/[0-9a-zA-Z]+/gm)[0];
-		var limit = 10;
-		if (content.charAt(6) >= '0' && content.charAt(6) <= '9'){
-			limit = Math.min(50, parseInt(content.substring(6, content.substring(6).indexOf(' ')+6)));
-		}
-		imgur.getAlbumInfo(theAlbum)
-		.then(function (json) {
-			for (var i = 0; i < Math.min(json.data.images.length, limit); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }));
-		}).catch(function (err) { message.channel.send(err.message); });
-	}
-	if (content.includes('imgur.com/') && content.includes('/gallery/')) {
-		var theAlbum = content.substring(content.indexOf('/gallery/') + 9).match(/[0-9a-zA-Z]+/gm)[0];
-		var limit = 10;
-		if (content.charAt(6) >= '0' && content.charAt(6) <= '9'){
-			limit = Math.min(50, parseInt(content.substring(6, content.substring(6).indexOf(' ')+6)));
-		}
-		imgur.getAlbumInfo(theAlbum)
-		.then(function (json) {
-			for (var i = 0; i < Math.min(json.data.images.length, limit); message.channel.send({ embed: { image: { url: json.data.images[i++].link } } }));
-		}).catch(function (err) { message.channel.send(err.message); });
-	}
-	if (content.includes('tumblr.com/post/')) {
-		var hasBlogId = content.substring(0, content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
-		var blogId = hasBlogId[hasBlogId.length - 1];
-		var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
-		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
-			if (json.total_posts > 0){
-			if (json.posts[0].type === 'photo') {
-				for (var i = 1; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
-			}
-			if (json.posts[0].type === 'text') {
-				var images = json.posts[0].body.split('img src=\"');
-				for(var i = 0; i < Math.min(images.length, 10); i++){
-					if (images[i].charAt(0) === 'h'){
-						message.channel.send({embed: {image: {url: images[i].substring(0, images[i].indexOf('\"'))}}});
+		if (content.includes('twitter.com/') && content.includes('/status/')) {
+			var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
+			tweeter.get('statuses/show/' + tweetId, {
+				tweet_mode: 'extended'
+			}, function (error, tweet, response) {
+				if (!error) {
+					if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
+						for (var i = 1; i < tweet.extended_entities.media.length; message.channel.send({
+								embed: {
+									image: {
+										url: tweet.extended_entities.media[i++].media_url
+									}
+								}
+							}));
 					}
+				} else {
+					message.channel.send(error);
 				}
-				//for (var i = 0; i < json.posts[0].photos.length; message.channel.send({ embed: { image: { url: json.posts[0].photos[i++].original_size.url } } }));
-				
+			});
+		}
+		if (content.includes('imgur.com/') && content.includes('/a/')) {
+			var theAlbum = content.substring(content.indexOf('/a/') + 3).match(/[0-9a-zA-Z]+/gm)[0];
+			var limit = 10;
+			if (content.charAt(6) >= '0' && content.charAt(6) <= '9') {
+				limit = Math.min(50, parseInt(content.substring(6, content.substring(6).indexOf(' ') + 6)));
 			}
-			
-				for(var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++){
-			var img = json.posts[0].trail[j].content_raw.split('img src=\"');
-				for(var i = 0; i < Math.min(img.length, 10); i++){
-					if (img[i].charAt(0) === 'h'){
-						message.channel.send({embed: {image: {url: img[i].substring(0, img[i].indexOf('\"'))}}});
-					}
-				}
-				}
-			console.log(json.posts[0]);
-			}
-		});
-	}
-	if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
-		var request = require('request').defaults({
-encoding: null
-		});
-		request.get(encodeURI(content.substring(content.startsWith('!pics ') ? 6 : 3).replace(/ /gm, '')), function (err, res, body) {
-			var exifString = '';
-			try {
-				new ExifImage({ image: body }, function (error, exifData) {
-					if (error)
-					message.channel.send('Error: ' + error.message);
-					else {
-						var propValue;
-						const propholders = [exifData.image, exifData.thumbnail, exifData.exif, exifData.gps, exifData.interoperability];
-						for(var i = 0; i < 5; i++){
-						for (var propName in propholders[i]) {
-							propValue = propholders[i][propName];
-							if (typeof propValue !== "undefined") {
-								var field = propName.toString() + ": " + propValue.toString() + "\n";
-								if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
-								exifString += field;
+			imgur.getAlbumInfo(theAlbum)
+			.then(function (json) {
+				for (var i = 0; i < Math.min(json.data.images.length, limit); message.channel.send({
+						embed: {
+							image: {
+								url: json.data.images[i++].link
 							}
 						}
+					}));
+			}).catch(function (err) {
+				message.channel.send(err.message);
+			});
+		}
+		if (content.includes('imgur.com/') && content.includes('/gallery/')) {
+			var theAlbum = content.substring(content.indexOf('/gallery/') + 9).match(/[0-9a-zA-Z]+/gm)[0];
+			var limit = 10;
+			if (content.charAt(6) >= '0' && content.charAt(6) <= '9') {
+				limit = Math.min(50, parseInt(content.substring(6, content.substring(6).indexOf(' ') + 6)));
+			}
+			imgur.getAlbumInfo(theAlbum)
+			.then(function (json) {
+				for (var i = 0; i < Math.min(json.data.images.length, limit); message.channel.send({
+						embed: {
+							image: {
+								url: json.data.images[i++].link
+							}
 						}
-							message.channel.send({ 
-							embed: { 
-							title:  ':frame_photo: EXIF data:\n',
-							description: (exifString.length > 2048 ? exifString.substring(0, 2048) : exifString),
-							image: { url: encodeURI(content.substring(content.startsWith('!pics ') ? 6 : 3).replace(/ /gm, ''))}}});
-					}
-				});
-			} catch (error) {
-				message.channel.send('Error: ' + error.message);
-			}
-		});
-	}
-	if (content.includes('watch?v=')){
-		var videocode = content.substring(content.indexOf('v=')+2).match(/[0-9a-zA-Z_\-]+/gm)[0];
-		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
-		message.channel.send(attachment);
-	}
-	if (content.includes('youtu.be/')){
-		var videocode = content.substring(content.indexOf('.be/')+4).match(/[0-9a-zA-Z_\-]+/gm)[0];
-		const attachment = new Discord.Attachment('https://i.ytimg.com/vi/'+videocode+'/maxresdefault.jpg');
-		message.channel.send(attachment);
-	}
-}
-if (content.startsWith('!vids ')){
-	/*if (content.includes('watch?v=') || content.includes('youtu.be/')){ //backup if youtubemp3api ever goes down
-		var request = require('request').defaults({
-encoding: null
-		});
-		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
-			message.channel.send(JSON.parse(body.toString())[0].url);
-		});
-	}*/
-	if (content.includes('watch?v=')){	
-var videocode = content.substring(content.indexOf('v=')+2).match(/[0-9a-zA-Z_\-]+/gm)[0];
-message.channel.send('https://youtubemp3api.com/@api/button/videos/'+videocode);
-	}
-	if (content.includes('youtu.be/')){	
-var videocode = content.substring(content.indexOf('.be/')+4).match(/[0-9a-zA-Z_\-]+/gm)[0];
-message.channel.send('https://youtubemp3api.com/@api/button/videos/'+videocode);
-	}
-	if (content.includes('twitter.com/') && content.includes('/status/')) {
-		var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
-		tweeter.get('statuses/show/' + tweetId, { tweet_mode: 'extended' }, function (error, tweet, response) {
-			if (!error) {
-				if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media') && tweet.extended_entities.media[0].hasOwnProperty('video_info')) {
-					var qualities = tweet.extended_entities.media[0].video_info.variants.length;
-					message.channel.send(tweet.extended_entities.media[0].video_info.variants[qualities-1].url);
-				}
-			} else {
-				message.channel.send(error);
-			}
-		});
-	}
-	if (content.includes('tumblr.com/post/')) {
-		var hasBlogId = content.substring(0, content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
-		var blogId = hasBlogId[hasBlogId.length - 1];
-		var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
-		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
-			if (json.total_posts > 0 && json.posts[0].type === 'video') {
-				message.channel.send(json.posts[0].video_url);
-			}
-		});
-	}
-	}
-	if (content.startsWith('!song ')){
+					}));
+			}).catch(function (err) {
+				message.channel.send(err.message);
+			});
+		}
 		if (content.includes('tumblr.com/post/')) {
-		var hasBlogId = content.substring(0, content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
-		var blogId = hasBlogId[hasBlogId.length - 1];
-		var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
-		tumblr.get('/posts', { hostname: blogId + '.tumblr.com', id: postId }, function (err, json) {
-			if (json.total_posts > 0 && json.posts[0].type === 'audio') {
-				var images = json.posts[0].caption.split('img src=\"');
-				for(var i = 0; i < Math.min(images.length, 10); i++){
-					if (images[i].charAt(0) === 'h'){
-						message.channel.send({embed: {image: {url: images[i].substring(0, images[i].indexOf('\"'))}}});
+			var hasBlogId = content.substring(0, content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
+			var blogId = hasBlogId[hasBlogId.length - 1];
+			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
+			tumblr.get('/posts', {
+				hostname: blogId + '.tumblr.com',
+				id: postId
+			}, function (err, json) {
+				if (json.total_posts > 0) {
+					if (json.posts[0].type === 'photo') {
+						for (var i = 1; i < json.posts[0].photos.length; message.channel.send({
+								embed: {
+									image: {
+										url: json.posts[0].photos[i++].original_size.url
+									}
+								}
+							}));
+					}
+					if (json.posts[0].type === 'text') {
+						var images = json.posts[0].body.split('img src=\"');
+						for (var i = 0; i < Math.min(images.length, 10); i++) {
+							if (images[i].charAt(0) === 'h') {
+								message.channel.send({
+									embed: {
+										image: {
+											url: images[i].substring(0, images[i].indexOf('\"'))
+										}
+									}
+								});
+							}
+						}
+					}
+
+					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
+						var img = json.posts[0].trail[j].content_raw.split('img src=\"');
+						for (var i = 0; i < Math.min(img.length, 10); i++) {
+							if (img[i].charAt(0) === 'h') {
+								message.channel.send({
+									embed: {
+										image: {
+											url: img[i].substring(0, img[i].indexOf('\"'))
+										}
+									}
+								});
+							}
+						}
 					}
 				}
-				var request = require('request').defaults({
-encoding: null
-		});
-		var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
-  request.get(r.uri.href, function(err2, res2, body2) {
-	  console.log(json.posts[0]);
-	  message.channel.send({files: [{attachment: body2,name: json.posts[0].track_name + '.mp3'}]}).then(console.log).catch(message.channel.send(r.uri.href));
-  });
-  
-});
-		
+			});
+		}
+		if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
+			request.get(encodeURI(content.substring(6).replace(/ /gm, '')), function (err, res, body) {
+				var exifString = '';
+				try {
+					new ExifImage({
+						image: body
+					}, function (error, exifData) {
+						if (error)
+							message.channel.send('Error: ' + error.message);
+						else {
+							var propValue;
+							const propholders = [exifData.image, exifData.thumbnail, exifData.exif, exifData.gps, exifData.interoperability];
+							for (var i = 0; i < 5; i++) {
+								for (var propName in propholders[i]) {
+									propValue = propholders[i][propName];
+									if (typeof propValue !== "undefined") {
+										var field = propName.toString() + ": " + propValue.toString() + "\n";
+										if (propValue.toString().length > 0 && !propValue.toString().includes("<buffer") && !(new RegExp(/\W+/gm).test(propValue.toString())))
+											exifString += field;
+									}
+								}
+							}
+							message.channel.send({
+								embed: {
+									title: ':frame_photo: EXIF data:\n',
+									description: (exifString.length > 2048 ? exifString.substring(0, 2048) : exifString),
+									image: {
+										url: encodeURI(content.substring(content.startsWith('!pics ') ? 6 : 3).replace(/ /gm, ''))
+									}
+								}
+							});
+						}
+					});
+				} catch (error) {
+					message.channel.send('Error: ' + error.message);
+				}
+			});
+		}
+		if (content.includes('watch?v=') || content.includes('youtu.be/')) {
+			var videocode = content.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			if (content.includes('youtu.be/')) {
+				videocode = content.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
 			}
+			const attachment = new Discord.Attachment('https://i.ytimg.com/vi/' + videocode + '/maxresdefault.jpg');
+			message.channel.send(attachment);
+		}
+	}
+	if (content.startsWith('!vids ')) {
+		/*if (content.includes('watch?v=') || content.includes('youtu.be/')){ //backup if youtubemp3api ever goes down
+		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
+		message.channel.send(JSON.parse(body.toString())[0].url);
 		});
+		}*/
+		if (content.includes('watch?v=') || content.includes('youtu.be/')) {
+			var videocode = content.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			if (content.includes('youtu.be/')){
+				videocode = content.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			}
+			message.channel.send('https://youtubemp3api.com/@api/button/videos/' + videocode);
+		}
+		if (content.includes('twitter.com/') && content.includes('/status/')) {
+			var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
+			tweeter.get('statuses/show/' + tweetId, {
+				tweet_mode: 'extended'
+			}, function (error, tweet, response) {
+				if (!error) {
+					if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media') && tweet.extended_entities.media[0].hasOwnProperty('video_info')) {
+						var qualities = tweet.extended_entities.media[0].video_info.variants.length;
+						message.channel.send(tweet.extended_entities.media[0].video_info.variants[qualities - 1].url);
+					}
+				} else {
+					message.channel.send(error);
+				}
+			});
+		}
+		if (content.includes('tumblr.com/post/')) {
+			var hasBlogId = content.substring(0, content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
+			var blogId = hasBlogId[hasBlogId.length - 1];
+			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
+			tumblr.get('/posts', {
+				hostname: blogId + '.tumblr.com',
+				id: postId
+			}, function (err, json) {
+				if (json.total_posts > 0 && json.posts[0].type === 'video') {
+					message.channel.send(json.posts[0].video_url);
+				}
+			});
+		}
 	}
-	if (content.includes('watch?v=')){	
-var videocode = content.substring(content.indexOf('v=')+2).match(/[0-9a-zA-Z_\-]+/gm)[0];
-message.channel.send('https://youtubemp3api.com/@api/button/mp3/'+videocode);
+	if (content.startsWith('!song ')) {
+		if (content.includes('tumblr.com/post/')) {
+			var hasBlogId = content.substring(0, content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
+			var blogId = hasBlogId[hasBlogId.length - 1];
+			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
+			tumblr.get('/posts', {
+				hostname: blogId + '.tumblr.com',
+				id: postId
+			}, function (err, json) {
+				if (json.total_posts > 0 && json.posts[0].type === 'audio') {
+					var images = json.posts[0].caption.split('img src=\"');
+					for (var i = 0; i < Math.min(images.length, 10); i++) {
+						if (images[i].charAt(0) === 'h') {
+							message.channel.send({
+								embed: {
+									image: {
+										url: images[i].substring(0, images[i].indexOf('\"'))
+									}
+								}
+							});
+						}
+					}
+					var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
+							request.get(r.uri.href, function (err2, res2, body2) {
+								console.log(json.posts[0]);
+								message.channel.send({
+									files: [{
+											attachment: body2,
+											name: json.posts[0].track_name + '.mp3'
+										}
+									]
+								}).then(console.log).catch(message.channel.send(r.uri.href));
+							});
+
+						});
+
+				}
+			});
+		}
+		if (content.includes('watch?v=') || content.includes('youtu.be/')) {
+			var videocode = content.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			if (content.includes('youtu.be/')){
+				videocode = content.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			}
+			message.channel.send('https://youtubemp3api.com/@api/button/mp3/' + videocode);
+		}
 	}
-	if (content.includes('youtu.be/')){	
-var videocode = content.substring(content.indexOf('.be/')+4).match(/[0-9a-zA-Z_\-]+/gm)[0];
-message.channel.send('https://youtubemp3api.com/@api/button/mp3/'+videocode);
+
+	if (content.startsWith('!thread ')) {
+		if (content.includes('twitter.com/') && content.includes('/status/')) {
+			var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
+			message.channel.send('https://threadreaderapp.com/thread/' + tweetId + '.html');
+		}
 	}
-	}
-	
-	if (content.startsWith('!thread ')){
-		
-	if (content.includes('twitter.com/') && content.includes('/status/')) {
-		var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
-		message.channel.send('https://threadreaderapp.com/thread/'+tweetId+'.html');
-	}
-	}
-	
+
 }

@@ -9,10 +9,7 @@ function gameText(game, style, size, text) {
 		text = text.substring(0, text.length - 1);
 	}
 	 return new Promise(function (resolve, reject) {
-	
-	
 		request.get('https://nfggames.com/system/arcade/arcade.php/y-' + game + '/z-' + style + '/dbl-' + size + '/x-' + encodeURI(text + '\u200B'), function (err, res, body) {
-			//console.log(body);
 			 if (!err && res.statusCode == 200) {
         resolve(body);
       } else {
@@ -47,6 +44,16 @@ function changeGame(game){
 	return game;
 }
 
+function splitString(arg){
+	var args = arg.match(/.{1,24}\W/gm);
+	if (game === 'pubu')
+		args = arg.match(/.{1,34}\W/gm);
+	if (game === 'sfz3' || game === 'vict' || game === 'moma')
+		args = arg.match(/.{1,23}\W/gm);
+	return args;
+	
+}
+
 async function font(message, discordMessage) {
 	var arg = ' ';
 	var game = ' ';
@@ -72,17 +79,11 @@ async function font(message, discordMessage) {
 		size = '2';
 	}
 	game = changeGame(game);
-	args = arg.match(/.{1,24}\W/gm);
-	if (game === 'pubu')
-		args = arg.match(/.{1,34}\W/gm);
-	if (game === 'sfz3' || game === 'vict' || game === 'moma')
-		args = arg.match(/.{1,23}\W/gm);
+	args = splitString(arg);
 	var count = 0;
 	if (new RegExp(/[a-zA-Z0-9]+/gm).test(game)) {
 		for (var i = 0; i < args.length; i++) {
 			urls[i] = await gameText(game, style, size, args[i]);
-	
-		
 			if (urls.length === args.length){
 	concat.v({
 					images: urls, margin: 2 
@@ -91,12 +92,10 @@ async function font(message, discordMessage) {
 						files: [{attachment: canvas2.toBuffer(),name: 'gamefont.png'}]
 					});
 				});
-	}
-		
+	}	
 	}
 		}
 	}
-	
 
 function bubble(message) {
 	var arg = ' ';
@@ -125,18 +124,13 @@ function bubble(message) {
 		size = '2';
 	}
 	game = changeGame(game);
-	args = arg.match(/.{1,24}\W/gm);
-	if (game === 'pubu')
-		args = arg.match(/.{1,34}\W/gm);
-	if (game === 'sfz3' || game === 'vict' || game === 'moma')
-		args = arg.match(/.{1,23}\W/gm);
+	args = splitString(arg);
 	if (new RegExp(/[a-zA-Z0-9]+/gm).test(game)) {
-		for (var i = 0; i < Math.min(args.length, 5); i++) {
+		for (var i = 0; i < Math.min(args.length, 1); i++) {
 			urls[i] = bubbleText(game, dir, pos, style, size, args[i]);
 		}
 	}
 	return urls;
-
 }
 
 module.exports = (message) => {
