@@ -44,7 +44,7 @@ function changeGame(game){
 	return game;
 }
 
-function splitString(arg){
+function splitString(arg, game){
 	var args = arg.match(/.{1,24}\W/gm);
 	if (game === 'pubu')
 		args = arg.match(/.{1,34}\W/gm);
@@ -79,7 +79,7 @@ async function font(message, discordMessage) {
 		size = '2';
 	}
 	game = changeGame(game);
-	args = splitString(arg);
+	args = splitString(arg, game);
 	var count = 0;
 	if (new RegExp(/[a-zA-Z0-9]+/gm).test(game)) {
 		for (var i = 0; i < args.length; i++) {
@@ -124,7 +124,7 @@ function bubble(message) {
 		size = '2';
 	}
 	game = changeGame(game);
-	args = splitString(arg);
+	args = splitString(arg, game);
 	if (new RegExp(/[a-zA-Z0-9]+/gm).test(game)) {
 		for (var i = 0; i < Math.min(args.length, 1); i++) {
 			urls[i] = bubbleText(game, dir, pos, style, size, args[i]);
