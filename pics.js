@@ -196,10 +196,13 @@ module.exports = (message, content) => {
 				tweet_mode: 'extended'
 			}, function (error, tweet, response) {
 				if (!error) {
-					console.log(tweet.entities);
+					//console.log(tweet.entities);
 					if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media') && tweet.extended_entities.media[0].hasOwnProperty('video_info')) {
 						var qualities = tweet.extended_entities.media[0].video_info.variants.length;
 						message.channel.send(tweet.extended_entities.media[0].video_info.variants[qualities - 1].url);
+					} else {
+						if (tweet.hasOwnProperty('entities') && tweet.entities.hasOwnProperty('urls') && tweet.entities.urls.length > 0)
+						message.channel.send(tweet.entities.urls[0].expanded_url);
 					}
 				} else {
 					message.channel.send(error);
