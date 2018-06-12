@@ -67,7 +67,7 @@ function helpMessage(message) {
 					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'
 				}, {
 					name: 'Other Media Commands',
-					value: 'b!song (tumblr post) - embeds the audio from that tumblr post\nb!vids (tumblr post) - embeds the video from that tumblr post'
+					value: 'b!song (tumblr or vocaroo post) - embeds the audio from that tumblr/vocaroo post\nb!vids (tumblr post) - embeds the video from that tumblr post'
 				}, {
 					name: 'Font Commands',
 					value: 'To find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
