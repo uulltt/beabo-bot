@@ -196,7 +196,7 @@ module.exports = (message, content) => {
 				tweet_mode: 'extended'
 			}, function (error, tweet, response) {
 				if (!error) {
-					console.log(tweet);
+					console.log(tweet.entities);
 					if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media') && tweet.extended_entities.media[0].hasOwnProperty('video_info')) {
 						var qualities = tweet.extended_entities.media[0].video_info.variants.length;
 						message.channel.send(tweet.extended_entities.media[0].video_info.variants[qualities - 1].url);
