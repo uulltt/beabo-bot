@@ -271,6 +271,19 @@ module.exports = (message, content) => {
 			}
 			message.channel.send('https://youtubemp3api.com/@api/button/mp3/' + videocode);
 		}
+		if (content.includes('twitter.com/') && content.includes('/status/')) {
+			var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
+			tweeter.get('statuses/show/' + tweetId, {
+				tweet_mode: 'extended'
+			}, function (error, tweet, response) {
+				if (!error) {
+						if (tweet.hasOwnProperty('entities') && tweet.entities.hasOwnProperty('urls') && tweet.entities.urls.length > 0)
+						message.channel.send(tweet.entities.urls[0].expanded_url);
+				} else {
+					message.channel.send(error);
+				}
+			});
+		}
 	}
 
 	if (content.startsWith('!thread ')) {
