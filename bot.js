@@ -11,6 +11,13 @@ const movies = require('./rotten.js');
 const giantbomb = require('./gb.js');
 var Canvas = require('canvas');
 var Image = Canvas.Image;
+var Font = Canvas.Font;
+var coopbl = new Font('cooper black', fontFile('COOPBL.ttf'));
+
+function fontFile(name) {
+  return path.join(__dirname, '../fonts', name);
+}
+
 var EarthBoundText = require('./scripts/lib/ebtext.js');
 var timestuff = require('./timestuff.js');
 const {
@@ -255,12 +262,13 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.fillstyle = "black";
 			ctx.rect(0, 0, 300, 150);
 			ctx.fill();
-			ctx.font = "30px Cooper Black";
+			ctx.addFont(coopbl);
+			ctx.font = '30 px cooper black';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
 			ctx.fillText("nirvanna", 150, 50);
 			ctx.fillText("the band", 150, 80);
-			ctx.fillText("the punishment", 150, 110);
+			ctx.fillText("the " + word, 150, 110);
 			message.channel.send({
 						files: [{attachment: textCanvas.toBuffer(),name: 'nirvanna.png'}]
 					});
