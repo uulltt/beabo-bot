@@ -12,6 +12,7 @@ const giantbomb = require('./gb.js');
 var Canvas = require('canvas');
 var Image = Canvas.Image;
 var Font = Canvas.Font;
+var path = require('path');
 var coopbl = new Font('cooper black', fontFile('COOPBL.ttf'));
 
 function fontFile(name) {
