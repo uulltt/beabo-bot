@@ -13,11 +13,8 @@ var Canvas = require('canvas');
 var Image = Canvas.Image;
 var Font = Canvas.Font;
 var path = require('path');
-var coopbl = new Font('cooper black', fontFile('COOPBL.ttf'));
+var coopbl = new Font('cooper black', ('./fonts/COOPBL.ttf'));
 
-function fontFile(name) {
-  return path.join(__dirname, '../fonts', name);
-}
 
 var EarthBoundText = require('./scripts/lib/ebtext.js');
 var timestuff = require('./timestuff.js');
