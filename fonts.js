@@ -61,7 +61,7 @@ async function font(message, discordMessage) {
 	var size = '2';
 	var args = [];
 	var urls = [];
-	for (var i = 0; i < 5; i++) {
+	for (var i = 0; i < 6; i++) {
 		if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm').test(message.substring(5, 8 + i)) || new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(5, 10 + i))) {
 			arg = message.substring(8 + i) + '\u200B';
 			game = message.substring(5, 7 + i);
@@ -106,7 +106,7 @@ function bubble(message) {
 	var urls = [];
 	var pos = message.substring(2, 4);
 	var dir = message.charAt(1);
-	for (var i = 0; i < 5; i++) {
+	for (var i = 0; i < 6; i++) {
 		if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm').test(message.substring(5, 8 + i)) || new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(5, 10 + i))) {
 			arg = message.substring(8 + i) + '\u200B';
 			game = message.substring(5, 7 + i);
