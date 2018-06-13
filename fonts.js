@@ -62,6 +62,7 @@ async function font(message, discordMessage) {
 	var args = [];
 	var urls = [];
 	for (var i = 0; i < 6; i++) {
+		console.log(message.substring(5, 8 + i));
 		if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm').test(message.substring(5, 8 + i)) || new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(5, 10 + i))) {
 			arg = message.substring(8 + i) + '\u200B';
 			game = message.substring(5, 7 + i);
@@ -136,6 +137,7 @@ function bubble(message) {
 
 module.exports = (message) => {
 	if (new RegExp(/[Ff]ont!/gm).test(message.cleanContent.substring(0, 5)) && !(new RegExp(/[Ff]ont!((mk|wh)2)\W/gm).test(message.cleanContent.substring(0, 9))) && !(new RegExp(/[Ff]ont!(ecco|puyo|doom|ddpt)\W/gm).test(message.cleanContent.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Ff]ont!(crash|wario|ddpt[0-2])\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms)\W/gm).test(message.cleanContent.substring(0, 8)))) {
+		console.log(message.cleanContent);
 		font(message.cleanContent, message);
 		/*for (var i = 0; i < Math.min(urls.length, 5); i++) {
 			if (urls[i].length > 0)
