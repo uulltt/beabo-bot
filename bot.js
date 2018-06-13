@@ -247,6 +247,24 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 				Message: message
 			});
 		}
+		
+		if (beaboMessage.startsWith("!nirvanna ")){
+			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).toLowerCase().match(/[a-z]+/gm)[0];
+			var textCanvas = new Canvas(300, 150);
+			var ctx = textCanvas.getContext("2d");
+			ctx.fillstyle = "black";
+			ctx.rect(0, 0, 300, 150);
+			ctx.fill();
+			ctx.font = "30px Cooper Black";
+			ctx.fillStyle = "white";
+			ctx.textAlign="center"; 
+			ctx.fillText("nirvanna", 150, 50);
+			ctx.fillText("the band", 150, 80);
+			ctx.fillText("the punishment", 150, 110);
+			message.channel.send({
+						files: [{attachment: textCanvas.toBuffer(),name: 'nirvanna.png'}]
+					});
+		}
 
 		if (new RegExp(/!eb\W/gm).test(beaboMessage.substring(0, 4))) {
 			var Text = message.cleanContent.substring(5);
