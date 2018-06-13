@@ -63,6 +63,8 @@ async function font(message, discordMessage) {
 	var urls = [];
 	for (var i = 0; i < 6; i++) {
 		console.log(message.substring(5, 8 + i));
+		console.log(new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm'));
+		console.log(new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm').test(message.substring(5, 8 + i)));
 		if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm').test(message.substring(5, 8 + i)) || new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(5, 10 + i))) {
 			arg = message.substring(8 + i) + '\u200B';
 			game = message.substring(5, 7 + i);
