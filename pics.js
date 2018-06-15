@@ -233,9 +233,9 @@ module.exports = (message, content) => {
 				id: postId
 			}, function (err, json) {
 				if (json.total_posts > 0 && json.posts[0].type === 'audio') {
-					console.log(json.posts[0]);
-					console.log(json.posts[0].caption);
-					console.log(json.posts[0].trail);
+					//console.log(json.posts[0]);
+					//console.log(json.posts[0].caption);
+					//console.log(json.posts[0].trail);
 					var images = json.posts[0].caption.split(' src=\"').filter(function(item){
 							return item.startsWith('http');
 						}).map(function(item){
@@ -275,7 +275,7 @@ module.exports = (message, content) => {
 											name: json.posts[0].track_name + '.mp3'
 										}
 									]
-								}).then(console.log).catch(message.channel.send(r.uri.href));
+								}).then().catch(message.channel.send(r.uri.href));
 							});
 
 						});
