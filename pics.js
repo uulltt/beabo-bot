@@ -233,6 +233,7 @@ module.exports = (message, content) => {
 				id: postId
 			}, function (err, json) {
 				if (json.total_posts > 0 && json.posts[0].type === 'audio') {
+					console.log(json.posts[0]);
 					var images = json.posts[0].caption.split('img src=\"').filter(function(item){
 							return item.startsWith('http');
 						}).map(function(item){
@@ -246,6 +247,22 @@ module.exports = (message, content) => {
 									}
 								}
 							});
+					}
+					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
+						var img = json.posts[0].trail[j].content_raw.split('img src=\"').filter(function(item){
+							return item.startsWith('http');
+						}).map(function(item){
+							return item.substring(0, item.indexOf('\"'));
+						});
+						for (var i = 0; i < Math.min(img.length, 10); i++) {
+								message.channel.send({
+									embed: {
+										image: {
+											url: img[i]
+										}
+									}
+								});
+						}
 					}
 					var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
 							request.get(r.uri.href, function (err2, res2, body2) {
