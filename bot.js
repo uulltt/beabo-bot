@@ -239,7 +239,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 		}
 		timestuff(message, beaboMessage, herokupg);
 		
-		if (beaboMessage.startsWith("!nirvanna ")){
+		if (beaboMessage.toLowerCase().startsWith("!nirvanna ")){
 			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).toLowerCase().match(/[a-z]+/gm)[0];
 			var textCanvas = new Canvas.createCanvas(600, 300);
 			var ctx = textCanvas.getContext("2d");
@@ -257,7 +257,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 					});
 		}
 		
-		if (beaboMessage.startsWith("!supreme ")){
+		if (beaboMessage.toLowerCase().startsWith("!supreme ")){
 			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).trim();
 			var textCanvas = new Canvas.createCanvas((90 * word.length)+140, 220);
 			var ctx = textCanvas.getContext("2d");
