@@ -238,6 +238,40 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			});
 		}
 		timestuff(message, beaboMessage, herokupg);
+		
+		if (beaboMessage.startsWith("!nirvanna ")){
+			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).toLowerCase().match(/[a-z]+/gm)[0];
+			var textCanvas = new Canvas.createCanvas(300, 150);
+			var ctx = textCanvas.getContext("2d");
+			ctx.fillstyle = "black";
+			ctx.rect(0, 0, 300, 150);
+			ctx.fill();
+			ctx.font = '30px "Cooper Black"';
+			ctx.fillStyle = "white";
+			ctx.textAlign="center"; 
+			ctx.fillText("nirvanna", 150, 50);
+			ctx.fillText("the band", 150, 80);
+			ctx.fillText("the " + word, 150, 110);
+			message.channel.send({
+						files: [{attachment: textCanvas.toBuffer(),name: 'nirvanna.png'}]
+					});
+		}
+		
+		if (beaboMessage.startsWith("!supreme ")){
+			var word = beaboMessage.substring(beaboMessage.indexOf(" "));
+			var textCanvas = new Canvas.createCanvas(120 * word.length, 276);
+			var ctx = textCanvas.getContext("2d");
+			ctx.fillstyle = "#DA2727";
+			ctx.rect(0, 0, 120*word.length, 276);
+			ctx.fill();
+			ctx.font = '100px "Supreme"';
+			ctx.fillStyle = "white";
+			ctx.textAlign="center"; 
+			ctx.fillText(word, 60 * word.length, 276/2);
+			message.channel.send({
+						files: [{attachment: textCanvas.toBuffer(),name: 'supreme.png'}]
+					});
+		}
 
 		if (new RegExp(/!eb(n|m|s|b|p|N|M|S|B|P)\W/gm).test(beaboMessage.substring(0, 5))) {
 			const flavors = ['plain', 'mint', 'strawberry', 'banana', 'peanut'];
@@ -255,45 +289,6 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			});
 		}
 		
-		if (beaboMessage.startsWith("!nirvanna ")){
-			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).toLowerCase().match(/[a-z]+/gm)[0];
-			var textCanvas = new Canvas.createCanvas(300, 150);
-			var ctx = textCanvas.getContext("2d");
-			ctx.fillstyle = "black";
-			ctx.rect(0, 0, 300, 150);
-			ctx.fill();
-			//ctx.addFont(coopbl);
-			ctx.font = '30px "Cooper Black"';
-			console.log(ctx.font);
-			console.log(ctx.font.src);
-			ctx.fillStyle = "white";
-			ctx.textAlign="center"; 
-			ctx.fillText("nirvanna", 150, 50);
-			ctx.fillText("the band", 150, 80);
-			ctx.fillText("the " + word, 150, 110);
-			message.channel.send({
-						files: [{attachment: textCanvas.toBuffer(),name: 'nirvanna.png'}]
-					});
-		}
-		
-		if (beaboMessage.startsWith("!supreme ")){
-			var word = beaboMessage.substring(beaboMessage.indexOf(" "));
-			var textCanvas = new Canvas.createCanvas(120 * word.length, 276);
-			var ctx = textCanvas.getContext("2d");
-			ctx.fillstyle = "#da2727";
-			ctx.rect(0, 0, 300, 150);
-			ctx.fill();
-			//ctx.addFont(coopbl);
-			ctx.font = '50px "Supreme"';
-			console.log(ctx.font);
-			console.log(ctx.font.src);
-			ctx.fillStyle = "white";
-			ctx.textAlign="center"; 
-			ctx.fillText(word, 60 * word.length, 276/2);
-			message.channel.send({
-						files: [{attachment: textCanvas.toBuffer(),name: 'supreme.png'}]
-					});
-		}
 
 		if (new RegExp(/!eb\W/gm).test(beaboMessage.substring(0, 4))) {
 			var Text = message.cleanContent.substring(5);
