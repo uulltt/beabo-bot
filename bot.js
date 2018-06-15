@@ -13,7 +13,6 @@ var Canvas = require('canvas');
 var Image = Canvas.Image;
 var Font = Canvas.Font;
 var path = require('path');
-console.log(process.platform);
 Canvas.registerFont(path.join(__dirname, `./fonts/COOPBL.TTF`), {family: 'cooper black'});
 
 //var coopbl = new Font('cooper black', ('./fonts/COOPBL.ttf'));
