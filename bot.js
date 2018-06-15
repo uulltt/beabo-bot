@@ -243,7 +243,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).toLowerCase().match(/[a-z]+/gm)[0];
 			var textCanvas = new Canvas.createCanvas(300, 150);
 			var ctx = textCanvas.getContext("2d");
-			ctx.fillstyle = "black";
+			ctx.fillStyle = "black";
 			ctx.rect(0, 0, 300, 150);
 			ctx.fill();
 			ctx.font = '30px "Cooper Black"';
@@ -261,7 +261,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).trim();
 			var textCanvas = new Canvas.createCanvas(120 * word.length, 276);
 			var ctx = textCanvas.getContext("2d");
-			ctx.fillstyle = 'red';
+			ctx.fillStyle = 'red';
 			console.log(ctx.fillStyle);
 			ctx.fillRect(0, 0, 120*word.length, 276);
 			//ctx.fill();
