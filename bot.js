@@ -249,6 +249,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.font = '60px "Cooper Black"';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
+			ctx.textBaseline = "middle";
 			ctx.fillText("nirvanna", 300, 90);
 			ctx.fillText("the band", 300, 150);
 			ctx.fillText("the " + word, 300, 210);
