@@ -263,7 +263,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.rect(0, 0, 300, 150);
 			ctx.fill();
 			//ctx.addFont(coopbl);
-			ctx.font = '30 px "Cooper Black"';
+			ctx.font = '30px "Cooper Black"';
 			console.log(ctx.font);
 			console.log(ctx.font.src);
 			ctx.fillStyle = "white";
