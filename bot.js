@@ -240,7 +240,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 		timestuff(message, beaboMessage, herokupg);
 		
 		if (beaboMessage.toLowerCase().startsWith("!nirvanna ")){
-			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).toLowerCase().match(/[a-z]+/gm)[0];
+			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).toLowerCase().trim();
 			var textCanvas = new Canvas.createCanvas(600, 300);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = "black";
