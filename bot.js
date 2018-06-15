@@ -244,7 +244,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			const flavorstring = 'nmsbp'
 				var Flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(3).toLowerCase())];
 			var Text = message.cleanContent.substring(6);
-			var textCanvas = new Canvas(608, 256);
+			var textCanvas = new Canvas.createCanvas(608, 256);
 			textCanvas.imageSmoothingEnabled = false;
 			EarthBoundText.preload_assets();
 			EarthBoundText.render({
@@ -276,7 +276,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 
 		if (new RegExp(/!eb\W/gm).test(beaboMessage.substring(0, 4))) {
 			var Text = message.cleanContent.substring(5);
-			var textCanvas = new Canvas(608, 256);
+			var textCanvas = new Canvas.createCanvas(608, 256);
 			textCanvas.imageSmoothingEnabled = false;
 			EarthBoundText.preload_assets();
 			EarthBoundText.render({

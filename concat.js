@@ -70,7 +70,7 @@ function draw(images, options) {
     maxHeight   = (images[i].height > maxHeight) ? images[i].height : maxHeight;
   };
 
-  var canvas = new Canvas(totalWidth, maxHeight);
+  var canvas = new Canvas.createCanvas(totalWidth, maxHeight);
   var ctx = canvas.getContext('2d');
   var currentLeftMargin = 0;
 
@@ -96,7 +96,7 @@ function drawV(images, options) {
     maxWidth   = (images[i].width > maxWidth) ? images[i].width : maxWidth;
   };
 
-  var canvas = new Canvas(maxWidth, totalHeight);
+  var canvas = new Canvas.createCanvas(maxWidth, totalHeight);
   var ctx = canvas.getContext('2d');
   var currentLeftMargin = 0;
 
