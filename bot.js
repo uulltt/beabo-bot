@@ -13,6 +13,8 @@ var Canvas = require('canvas');
 var Image = Canvas.Image;
 var Font = Canvas.Font;
 var path = require('path');
+Canvas.registerFont('./fonts/COOPBL.ttf', {family: 'cooper black'});
+
 //var coopbl = new Font('cooper black', ('./fonts/COOPBL.ttf'));
 
 
@@ -253,14 +255,14 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			});
 		}
 		
-		/*if (beaboMessage.startsWith("!nirvanna ")){
+		if (beaboMessage.startsWith("!nirvanna ")){
 			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).toLowerCase().match(/[a-z]+/gm)[0];
 			var textCanvas = new Canvas(300, 150);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillstyle = "black";
 			ctx.rect(0, 0, 300, 150);
 			ctx.fill();
-			ctx.addFont(coopbl);
+			//ctx.addFont(coopbl);
 			ctx.font = '30 px cooper black';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
@@ -270,7 +272,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			message.channel.send({
 						files: [{attachment: textCanvas.toBuffer(),name: 'nirvanna.png'}]
 					});
-		}*/
+		}
 
 		if (new RegExp(/!eb\W/gm).test(beaboMessage.substring(0, 4))) {
 			var Text = message.cleanContent.substring(5);
