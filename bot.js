@@ -261,10 +261,10 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).trim();
 			var textCanvas = new Canvas.createCanvas(120 * word.length, 276);
 			var ctx = textCanvas.getContext("2d");
-			ctx.fillstyle = "#DA2727";
+			ctx.fillstyle = "red";
 			ctx.rect(0, 0, 120*word.length, 276);
 			ctx.fill();
-			ctx.font = '120px "Supreme"';
+			ctx.font = '150px "Supreme"';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
 			ctx.fillText(word, 60 * word.length, 276/2);
