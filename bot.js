@@ -13,7 +13,7 @@ var Canvas = require('canvas');
 var Image = Canvas.Image;
 var Font = Canvas.Font;
 var path = require('path');
-Canvas.registerFont(path.join(__dirname, `./fonts/COOPBL.TTF`), {family: 'cooper black'});
+Canvas.registerFont('./fonts/COOPBL.TTF', {family: 'Cooper Black'});
 
 //var coopbl = new Font('cooper black', ('./fonts/COOPBL.ttf'));
 
@@ -263,7 +263,9 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.rect(0, 0, 300, 150);
 			ctx.fill();
 			//ctx.addFont(coopbl);
-			ctx.font = '30 px "cooper black"';
+			ctx.font = '30 px "Cooper Black"';
+			console.log(ctx.font);
+			console.log(ctx.font.src);
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
 			ctx.fillText("nirvanna", 150, 50);
