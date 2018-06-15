@@ -15,6 +15,7 @@ var Font = Canvas.Font;
 var path = require('path');
 Canvas.registerFont('./fonts/COOPBL.TTF', {family: 'Cooper Black'});
 Canvas.registerFont('./fonts/Futura Std Heavy Oblique.otf', {family: 'Supreme'});
+Canvas.registerFont('./fonts/Textile.ttf', {family: 'Textile'});
 //var coopbl = new Font('cooper black', ('./fonts/COOPBL.ttf'));
 
 
@@ -253,6 +254,27 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.fillText("nirvanna", 300, 90);
 			ctx.fillText("the band", 300, 150);
 			ctx.fillText("the " + word, 300, 210);
+			message.channel.send({
+						files: [{attachment: textCanvas.toBuffer(),name: 'nirvanna.png'}]
+					});
+		}
+		
+		if (beaboMessage.toLowerCase().startsWith("!sunny ") || beaboMessage.toLowerCase().startsWith("!iasip ")){
+			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).trim() + '\u200B';
+			var textCanvas = new Canvas.createCanvas(1280, 720);
+			var ctx = textCanvas.getContext("2d");
+			ctx.fillStyle = "black";
+			ctx.rect(0, 0, 1280, 720);
+			ctx.fill();
+			ctx.font = '60px "Textile"';
+			ctx.fillStyle = "white";
+			ctx.textAlign="center"; 
+			ctx.textBaseline = "middle";
+			var words = word.match(/.{1,36}\W/gm);
+			for(var i = 0; i < words.length; i++){
+			ctx.fillText(words[i], 640, (i*60) - ((words.length)*60) + 180);
+			}
+			
 			message.channel.send({
 						files: [{attachment: textCanvas.toBuffer(),name: 'nirvanna.png'}]
 					});
