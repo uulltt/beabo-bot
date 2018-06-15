@@ -265,10 +265,10 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			console.log(ctx.fillStyle);
 			ctx.fillRect(0, 0, 100*word.length, 220);
 			//ctx.fill();
-			ctx.font = '150px "Supreme"';
+			ctx.font = '200px "Supreme"';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
-			ctx.fillText(word, 50 * word.length, 165);
+			ctx.fillText(word, 50 * word.length, 110);
 			message.channel.send({
 						files: [{attachment: textCanvas.toBuffer(),name: 'supreme.png'}]
 					});
