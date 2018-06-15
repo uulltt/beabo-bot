@@ -241,17 +241,17 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 		
 		if (beaboMessage.startsWith("!nirvanna ")){
 			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).toLowerCase().match(/[a-z]+/gm)[0];
-			var textCanvas = new Canvas.createCanvas(300, 150);
+			var textCanvas = new Canvas.createCanvas(600, 300);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = "black";
-			ctx.rect(0, 0, 300, 150);
+			ctx.rect(0, 0, 600, 300);
 			ctx.fill();
-			ctx.font = '30px "Cooper Black"';
+			ctx.font = '60px "Cooper Black"';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
-			ctx.fillText("nirvanna", 150, 50);
-			ctx.fillText("the band", 150, 80);
-			ctx.fillText("the " + word, 150, 110);
+			ctx.fillText("nirvanna", 300, 90);
+			ctx.fillText("the band", 300, 150);
+			ctx.fillText("the " + word, 300, 210);
 			message.channel.send({
 						files: [{attachment: textCanvas.toBuffer(),name: 'nirvanna.png'}]
 					});
@@ -259,15 +259,15 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 		
 		if (beaboMessage.startsWith("!supreme ")){
 			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).trim();
-			var textCanvas = new Canvas.createCanvas(110 * word.length, 220);
+			var textCanvas = new Canvas.createCanvas((100 * word.length)+70, 220);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = '#DA2727';
-			ctx.fillRect(0, 0, 110*word.length, 220);
+			ctx.fillRect(0, 0, (100*word.length)+70, 220);
 			//ctx.fill();
 			ctx.font = '180px "Supreme"';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
-			ctx.fillText(word, 55 * word.length, 160);
+			ctx.fillText(word, (50 * word.length)+35, 160);
 			message.channel.send({
 						files: [{attachment: textCanvas.toBuffer(),name: 'supreme.png'}]
 					});
