@@ -263,7 +263,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.rect(0, 0, 300, 150);
 			ctx.fill();
 			//ctx.addFont(coopbl);
-			ctx.font = '30 px cooper black';
+			ctx.font = '30 px "cooper black"';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
 			ctx.fillText("nirvanna", 150, 50);
