@@ -262,12 +262,13 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			var textCanvas = new Canvas.createCanvas(120 * word.length, 276);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillstyle = "red";
+			console.log(ctx.fillStyle);
 			ctx.fillRect(0, 0, 120*word.length, 276);
 			//ctx.fill();
 			ctx.font = '150px "Supreme"';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
-			ctx.fillText(word, 60 * word.length, 276/2);
+			ctx.fillText(word, 60 * word.length, 276);
 			message.channel.send({
 						files: [{attachment: textCanvas.toBuffer(),name: 'supreme.png'}]
 					});
