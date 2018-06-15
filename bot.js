@@ -14,7 +14,7 @@ var Image = Canvas.Image;
 var Font = Canvas.Font;
 var path = require('path');
 Canvas.registerFont('./fonts/COOPBL.TTF', {family: 'Cooper Black'});
-
+Canvas.registerFont('./fonts/Futura Std Heavy Oblique.otf', {family: 'Supreme'});
 //var coopbl = new Font('cooper black', ('./fonts/COOPBL.ttf'));
 
 
@@ -273,6 +273,25 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.fillText("the " + word, 150, 110);
 			message.channel.send({
 						files: [{attachment: textCanvas.toBuffer(),name: 'nirvanna.png'}]
+					});
+		}
+		
+		if (beaboMessage.startsWith("!supreme ")){
+			var word = beaboMessage.substring(beaboMessage.indexOf(" "));
+			var textCanvas = new Canvas.createCanvas(120 * word.length, 276);
+			var ctx = textCanvas.getContext("2d");
+			ctx.fillstyle = "#da2727";
+			ctx.rect(0, 0, 300, 150);
+			ctx.fill();
+			//ctx.addFont(coopbl);
+			ctx.font = '50px "Supreme"';
+			console.log(ctx.font);
+			console.log(ctx.font.src);
+			ctx.fillStyle = "white";
+			ctx.textAlign="center"; 
+			ctx.fillText(word, 60 * word.length, 276/2);
+			message.channel.send({
+						files: [{attachment: textCanvas.toBuffer(),name: 'supreme.png'}]
 					});
 		}
 
