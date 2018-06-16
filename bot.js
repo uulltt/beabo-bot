@@ -270,10 +270,10 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
 			ctx.textBaseline = "middle";
-			var words = word.match(/.{1,36}\W/gm);
+			var words = word.match(/.{1,32}\W/gm);
 			
 			for(var i = 0; i < words.length; i++){
-			ctx.fillText(words[i], 640, (i*60) - ((words.length-1)*60) + 360);
+			ctx.fillText(words[i], 640, (i*90) - ((words.length-1)*90) + 360);
 			}
 			
 			message.channel.send({
