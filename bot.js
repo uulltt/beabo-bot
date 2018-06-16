@@ -282,7 +282,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			}
 			
 			message.channel.send({
-						files: [{attachment: textCanvas.toBuffer(),name: word + '.png'}]
+						files: [{attachment: textCanvas.toBuffer(),name: 'sunny.png'}]
 					});
 		}
 		
