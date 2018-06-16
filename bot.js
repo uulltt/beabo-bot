@@ -260,19 +260,20 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 		}
 		
 		if (beaboMessage.toLowerCase().startsWith("!sunny ") || beaboMessage.toLowerCase().startsWith("!iasip ")){
-			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).trim() + '\u200B';
+			var word = '\"' + beaboMessage.substring(beaboMessage.indexOf(" ")).trim() + '\"';
 			var textCanvas = new Canvas.createCanvas(1280, 720);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = "black";
 			ctx.rect(0, 0, 1280, 720);
 			ctx.fill();
-			ctx.font = '60px "Textile"';
+			ctx.font = '90px "Textile"';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
 			ctx.textBaseline = "middle";
 			var words = word.match(/.{1,36}\W/gm);
+			
 			for(var i = 0; i < words.length; i++){
-			ctx.fillText(words[i], 640, (i*60) - ((words.length)*60) + 180);
+			ctx.fillText(words[i], 640, (i*60) - ((words.length-1)*60) + 360);
 			}
 			
 			message.channel.send({
