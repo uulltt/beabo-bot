@@ -266,7 +266,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.fillStyle = "black";
 			ctx.rect(0, 0, 1280, 720);
 			ctx.fill();
-			ctx.font = '70px "Textile"';
+			ctx.font = '60px "Textile"';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
 			ctx.textBaseline = "middle";
