@@ -273,7 +273,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			var words = word.match(/.{1,36}\W/gm);
 			
 			for(var i = 0; i < words.length; i++){
-			ctx.fillText(words[i], 640, (i*120) - ((words.length-1)*120) + 360);
+			ctx.fillText(words[i], 640, (i*120) - ((words.length-1)*60) + 360);
 			}
 			
 			message.channel.send({
