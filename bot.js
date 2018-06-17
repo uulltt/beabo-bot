@@ -16,6 +16,7 @@ var path = require('path');
 Canvas.registerFont('./fonts/COOPBL.TTF', {family: 'Cooper Black'});
 Canvas.registerFont('./fonts/Futura Std Heavy Oblique.otf', {family: 'Supreme'});
 Canvas.registerFont('./fonts/Textile.ttf', {family: 'Textile'});
+Canvas.registerFont('./fonts/Korinna-Regular.otf', {family: 'Jeopardy'});
 //var coopbl = new Font('cooper black', ('./fonts/COOPBL.ttf'));
 
 
@@ -264,6 +265,31 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 					});
 		}
 		
+		if (beaboMessage.toLowerCase().startsWith("!jeopardy ")){
+			var word = '\"' + beaboMessage.substring(beaboMessage.indexOf(" ")).trim() + '\"';
+			var textCanvas = new Canvas.createCanvas(1280, 720);
+			var ctx = textCanvas.getContext("2d");
+			ctx.fillStyle = "blue";
+			ctx.rect(0, 0, 1280, 720);
+			ctx.fill();
+			ctx.font = '60px "Jeopardy"';
+			ctx.fillStyle = "white";
+			ctx.textAlign="center"; 
+			ctx.textBaseline = "middle";
+			
+ctx.shadowColor = "black";
+ctx.shadowOffsetX = 10; // integer
+ctx.shadowOffsetY = 10; // integer
+ctx.shadowBlur = 10; // integer
+			var words = word.match(/.{1,22}\W/gm);
+			
+			for(var i = 0; i < words.length; ctx.fillText(words[i], 640, (i*120) - ((words.length-1)*60) + 360), i++);
+			
+			message.channel.send({
+						files: [{attachment: textCanvas.toBuffer(),name: 'jeopardy.png'}]
+					});
+		}
+		
 		if (beaboMessage.toLowerCase().startsWith("!sunny ") || beaboMessage.toLowerCase().startsWith("!iasip ")){
 			var word = '\"' + beaboMessage.substring(beaboMessage.indexOf(" ")).trim() + '\"';
 			var textCanvas = new Canvas.createCanvas(1280, 720);
@@ -277,9 +303,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.textBaseline = "middle";
 			var words = word.match(/.{1,36}\W/gm);
 			
-			for(var i = 0; i < words.length; i++){
-			ctx.fillText(words[i], 640, (i*120) - ((words.length-1)*60) + 360);
-			}
+			for(var i = 0; i < words.length; ctx.fillText(words[i], 640, (i*120) - ((words.length-1)*60) + 360), i++);
 			
 			message.channel.send({
 						files: [{attachment: textCanvas.toBuffer(),name: 'sunny.png'}]
