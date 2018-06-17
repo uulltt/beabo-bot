@@ -16,7 +16,7 @@ var path = require('path');
 Canvas.registerFont('./fonts/COOPBL.TTF', {family: 'Cooper Black'});
 Canvas.registerFont('./fonts/Futura Std Heavy Oblique.otf', {family: 'Supreme'});
 Canvas.registerFont('./fonts/Textile.ttf', {family: 'Textile'});
-Canvas.registerFont('./fonts/Korinna-Regular.otf', {family: 'Jeopardy'});
+Canvas.registerFont('./fonts/Korinna Bold.ttf', {family: 'Jeopardy'});
 //var coopbl = new Font('cooper black', ('./fonts/COOPBL.ttf'));
 
 
