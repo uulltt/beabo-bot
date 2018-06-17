@@ -88,7 +88,7 @@ function helpMessage(message) {
 					 + '\nb!pkmn text - Pokemon Text box\nb!sb text - Skeleton Boomerang Text Box\nb!ut text - creates Undertale text box\nb!utcharactername text - creates Undertale text box with that character (i.e. b!utsans Hey guys it\'s me Sans Undertale\nb!utcharacter_expression text - same but uses a specific expression for that character (i.e. b!utundyne_funny)'
 				}, {
 					name: 'More Text Box Commands',
-					value: 'b!nirvanna word - nirvanna the band the word\nb!supreme word - supreme logo generator\nb!sunny or b!iasip sentence - always sunny title card generator\n'
+					value: 'b!jeopardy text - make Jeopardy clue screen\nb!nirvanna word - nirvanna the band the word\nb!supreme word - supreme logo generator\nb!sunny or b!iasip sentence - always sunny title card generator\n'
 
 				}, {
 					name: 'Google Maps Commands',
