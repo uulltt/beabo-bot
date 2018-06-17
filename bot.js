@@ -277,10 +277,10 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.textAlign="center"; 
 			ctx.textBaseline = "middle";
 			
-/*ctx.shadowColor = "black";
+ctx.shadowColor = "black";
 ctx.shadowOffsetX = 10; // integer
 ctx.shadowOffsetY = 10; // integer
-ctx.shadowBlur = 10; // integer*/
+ctx.shadowBlur = 10; // integer
 			var words = word.match(/.{1,22}\W/gm);
 			
 			for(var i = 0; i < words.length; ctx.fillText(words[i], 640, (i*90) - ((words.length-1)*90) + 360), i++);
