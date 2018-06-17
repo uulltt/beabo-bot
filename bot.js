@@ -272,7 +272,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 			ctx.fillStyle = "blue";
 			ctx.rect(0, 0, 1280, 720);
 			ctx.fill();
-			ctx.font = 'bold 90px "Jeopardy"';
+			ctx.font = '900 90px "Jeopardy"';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
 			ctx.textBaseline = "middle";
