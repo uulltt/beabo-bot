@@ -266,13 +266,13 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 		}
 		
 		if (beaboMessage.toLowerCase().startsWith("!jeopardy ")){
-			var word =  beaboMessage.substring(beaboMessage.indexOf(" ")).trim() + '\u200B';
+			var word =  beaboMessage.substring(beaboMessage.indexOf(" ")).trim().toUpperCase() + '\u200B';
 			var textCanvas = new Canvas.createCanvas(1280, 720);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = "blue";
 			ctx.rect(0, 0, 1280, 720);
 			ctx.fill();
-			ctx.font = '900 90px "Jeopardy"';
+			ctx.font = '80px "Jeopardy"';
 			ctx.fillStyle = "white";
 			ctx.textAlign="center"; 
 			ctx.textBaseline = "middle";
@@ -283,7 +283,7 @@ ctx.shadowOffsetY = 10; // integer
 ctx.shadowBlur = 10; // integer
 			var words = word.match(/.{1,22}\W/gm);
 			
-			for(var i = 0; i < words.length; ctx.fillText(words[i], 640, (i*120) - ((words.length-1)*60) + 360), i++);
+			for(var i = 0; i < words.length; ctx.fillText(words[i], 640, (i*120) - ((words.length-1)*40) + 360), i++);
 			
 			message.channel.send({
 						files: [{attachment: textCanvas.toBuffer(),name: 'jeopardy.png'}]

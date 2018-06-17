@@ -95,7 +95,7 @@ module.exports = (message, content) => {
 							}));
 					}
 					if (json.posts[0].type === 'text') {
-						var images = json.posts[0].body.split('img src=\"').filter(function(item){
+						var images = json.posts[0].body.split(' src=\"').filter(function(item){
 							return item.startsWith('http');
 						}).map(function(item){
 							return item.substring(0, item.indexOf('\"'));
@@ -112,7 +112,7 @@ module.exports = (message, content) => {
 					}
 
 					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
-						var img = json.posts[0].trail[j].content_raw.split('img src=\"').filter(function(item){
+						var img = json.posts[0].trail[j].content_raw.split(' src=\"').filter(function(item){
 							return item.startsWith('http');
 						}).map(function(item){
 							return item.substring(0, item.indexOf('\"'));
