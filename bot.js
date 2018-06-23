@@ -266,7 +266,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 		}
 		
 		if (beaboMessage.toLowerCase().startsWith("!jeopardy ")){
-			var word =  beaboMessage.substring(beaboMessage.indexOf(" ")).trim().toUpperCase() + '\u200B';
+			var word =  message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim().toUpperCase() + '\u200B';
 			var textCanvas = new Canvas.createCanvas(1280, 720);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = "blue";
