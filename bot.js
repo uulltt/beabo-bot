@@ -247,7 +247,7 @@ var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm,
 		timestuff(message, beaboMessage, herokupg);
 		
 		if (beaboMessage.toLowerCase().startsWith("!nirvanna ")){
-			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).toLowerCase().trim();
+			var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).toLowerCase().trim();
 			var textCanvas = new Canvas.createCanvas(600, 300);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = "black";
@@ -291,7 +291,7 @@ ctx.shadowBlur = 10; // integer
 		}
 		
 		if (beaboMessage.toLowerCase().startsWith("!sunny ") || beaboMessage.toLowerCase().startsWith("!iasip ")){
-			var word = '\"' + beaboMessage.substring(beaboMessage.indexOf(" ")).trim() + '\"';
+			var word = '\"' + message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim() + '\"';
 			var textCanvas = new Canvas.createCanvas(1280, 720);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = "black";
@@ -311,7 +311,7 @@ ctx.shadowBlur = 10; // integer
 		}
 		
 		if (beaboMessage.toLowerCase().startsWith("!supreme ")){
-			var word = beaboMessage.substring(beaboMessage.indexOf(" ")).trim();
+			var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim();
 			var textCanvas = new Canvas.createCanvas((80 * word.length)+210, 220);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = '#DA2727';

@@ -85,6 +85,7 @@ module.exports = (message, content) => {
 				id: postId
 			}, function (err, json) {
 				if (json.total_posts > 0) {
+					console.log(json.posts[0]);
 					if (json.posts[0].type === 'photo') {
 						for (var i = 1; i < json.posts[0].photos.length; message.channel.send({
 								embed: {
