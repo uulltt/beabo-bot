@@ -83,8 +83,7 @@ module.exports = (message, content) => {
 				hostname: blogId,
 				id: postId
 			}, function (err, json) {
-				if (json.total_posts > 0) {
-					
+				if (json.total_posts > 0) {	
 					if (json.posts[0].type === 'photo') {
 						for (var i = 1; i < json.posts[0].photos.length; message.channel.send({
 								embed: {
@@ -209,12 +208,11 @@ module.exports = (message, content) => {
 				}
 			});
 		}
-		if (content.includes('tumblr.com/post/')) {
-			var hasBlogId = content.substring(0, content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
-			var blogId = hasBlogId[hasBlogId.length - 1];
+		if (content.includes('://') && content.includes('/post/')) {
+			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
 			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 			tumblr.get('/posts', {
-				hostname: blogId + '.tumblr.com',
+				hostname: blogId,
 				id: postId
 			}, function (err, json) {
 				if (json.total_posts > 0 && json.posts[0].type === 'video') {
@@ -224,12 +222,11 @@ module.exports = (message, content) => {
 		}
 	}
 	if (content.startsWith('!song ')) {
-		if (content.includes('tumblr.com/post/')) {
-			var hasBlogId = content.substring(0, content.indexOf('.tumblr')).match(/[A-Za-z0-9\-]+/gm);
-			var blogId = hasBlogId[hasBlogId.length - 1];
+		if (content.includes('://') && content.includes('/post/')) {
+			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
 			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 			tumblr.get('/posts', {
-				hostname: blogId + '.tumblr.com',
+				hostname: blogId,
 				id: postId
 			}, function (err, json) {
 				if (json.total_posts > 0 && json.posts[0].type === 'audio') {
