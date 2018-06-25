@@ -116,10 +116,10 @@ const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', 
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumblr.com', 'http://www.monster-lands.com'];
 client.on('message', message => {
-	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().includes("beeb") || message.cleanContent.toLowerCase().includes("bii")) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]/gm)) {
+	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]/gm)) {
 		message.channel.send("Biii!!!!! biiiiiii!! :two_hearts:");
 	} else {
-		if (message.isMentioned(client.user) && !message.cleanContent.toLowerCase().includes('🖕') && ((!message.cleanContent.toLowerCase().includes("fuck") && !message.cleanContent.toLowerCase().includes("frick") && !message.cleanContent.toLowerCase().includes("suck") && !message.cleanContent.toLowerCase().includes("hate")) || (!message.cleanContent.toLowerCase.includes("you") && !message.cleanContent.toLowerCase().includes(' u')))) {
+		if (message.isMentioned(client.user) && !message.cleanContent.toLowerCase().includes('🖕') && !(message.cleanContent.toLowerCase().match(/((fuck)|(frick)|(hate)) (yo)?u/gm) || message.cleanContent.toLowerCase().match(/(yo)?u su([ck]{1,2})/gm))) {
 
 			if ((!message.cleanContent.toLowerCase().includes("not")) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
 				message.channel.send("bee bee biiiii! :heart:");
