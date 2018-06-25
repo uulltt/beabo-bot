@@ -119,7 +119,7 @@ client.on('message', message => {
 	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().includes("beeb") || message.cleanContent.toLowerCase().includes("bii")) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]/gm)) {
 		message.channel.send("Biii!!!!! biiiiiii!! :two_hearts:");
 	} else {
-		if (message.isMentioned(client.user) && (!message.cleanContent.toLowerCase().includes("fuck") && !message.cleanContent.toLowerCase().includes("suck") && !message.cleanContent.toLowerCase().includes("hate"))) {
+		if (message.isMentioned(client.user) && !message.cleanContent.toLowerCase().includes('🖕') && ((!message.cleanContent.toLowerCase().includes("fuck") && !message.cleanContent.toLowerCase().includes("frick") && !message.cleanContent.toLowerCase().includes("suck") && !message.cleanContent.toLowerCase().includes("hate")) || (!message.cleanContent.toLowerCase.includes("you") && !message.cleanContent.toLowerCase().includes(' u')))) {
 
 			if ((!message.cleanContent.toLowerCase().includes("not")) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
 				message.channel.send("bee bee biiiii! :heart:");
@@ -312,15 +312,15 @@ ctx.shadowBlur = 10; // integer
 		
 		if (beaboMessage.toLowerCase().startsWith("!supreme ")){
 			var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim();
-			var textCanvas = new Canvas.createCanvas((80 * word.length)+210, 220);
+			var textCanvas = new Canvas.createCanvas((110 * word.length), 220);
 			var ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = '#DA2727';
-			ctx.fillRect(0, 0, (80*word.length)+210, 220);
+			ctx.fillRect(0, 0, (110*word.length), 220);
 			//ctx.fill();
 			ctx.font = '180px "Supreme"';
 			ctx.fillStyle = "white";
-			ctx.textAlign="center"; 
-			ctx.fillText(word, (40 * word.length)+105, 160);
+			ctx.textAlign="left"; 
+			ctx.fillText(word, (55 * word.length), 160);
 			message.channel.send({
 						files: [{attachment: textCanvas.toBuffer(),name: 'supreme.png'}]
 					});
