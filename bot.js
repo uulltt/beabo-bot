@@ -124,6 +124,15 @@ const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', 
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumblr.com', 'http://www.monster-lands.com'];
 client.on('message', message => {
+	if (message.content.includes('@everyone')){
+		var chance = Math.floor(Math.random() * 100);
+		if (chance > 0){
+			message.channel.send('BEEEEEEEEEEEE!!!', files: [{
+      attachment: './everyone.png',
+      name: 'everyone.png'
+   }]).then(console.log).catch(console.error);
+		}
+	}
 	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]/gm)) {
 		message.channel.send("Biii!!!!! biiiiiii!! :two_hearts:");
 	} else {
@@ -143,6 +152,8 @@ client.on('message', message => {
 							}
 						}
 					}
+					
+					
 					if (message.hasOwnProperty('channel') && message.channel.hasOwnProperty('guild') && message.channel.guild.hasOwnProperty('id') && message.channel.guild.id === '439555383313301514' && message.channel.id === '450169522561875979' && !message.author.bot) {
 						let role = message.guild.roles.array().filter(function (item) {
 								return item.name === "Reader";
