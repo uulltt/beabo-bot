@@ -127,10 +127,19 @@ client.on('message', message => {
 	if (message.content.includes('@everyone')){
 		var chance = Math.floor(Math.random() * 100);
 		if (chance > 0){
-			message.channel.send('BEEEEEEEEEEEE!!!', files: [{
+			message.channel.send('BEEEEEEEEEEEE!!!', {files: [{
       attachment: './everyone.png',
       name: 'everyone.png'
-   }]).then(console.log).catch(console.error);
+			}]}).then(console.log).catch(console.error);
+		}
+	}
+	if (message.content.toLowerCase().includes('despacito 2')){
+		var chance = Math.floor(Math.random() * 20);
+		if (chance > 0){
+			message.channel.send({files: [{
+      attachment: './despabeabo2.png',
+      name: 'despabeabo2.png'
+			}]}).then(console.log).catch(console.error);
 		}
 	}
 	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]/gm)) {
