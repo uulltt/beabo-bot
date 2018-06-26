@@ -126,8 +126,8 @@ const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumbl
 client.on('message', message => {
 	if (message.content.includes('@everyone')){
 		var chance = Math.floor(Math.random() * 100);
-		if (chance > 0){
-			message.channel.send('BEEEEEEEEEEEE!!!', {files: [{
+		if (chance === 0){
+			message.channel.send('***BEEEEEEEEEEEE!!!***', {files: [{
       attachment: './everyone.png',
       name: 'everyone.png'
 			}]}).then(console.log).catch(console.error);
@@ -135,7 +135,7 @@ client.on('message', message => {
 	}
 	if (message.content.toLowerCase().includes('despacito 2')){
 		var chance = Math.floor(Math.random() * 20);
-		if (chance > 0){
+		if (chance === 0){
 			message.channel.send({files: [{
       attachment: './despabeabo2.png',
       name: 'despabeabo2.png'
