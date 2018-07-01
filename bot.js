@@ -48,7 +48,7 @@ client.on('ready', () => {
 	});
 });
 
-var lines = [" beabo", " bee", " bii", " be", " beeb", " biib", " biii"];
+var lines = [" beabo", " bee", " bii", " be", " beeb"];
 
 function beeb() {
 	var len = Math.floor(Math.random() * 6) + 1;
