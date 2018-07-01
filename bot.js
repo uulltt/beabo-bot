@@ -40,7 +40,7 @@ const herokupg = new Client({
 	});
 
 client.on('ready', () => {
-	console.log('I am ready!');
+	console.log('Beabo!');
 	herokupg.connect();
 	client.user.setUsername("Beabo");
 	client.user.setActivity('type b!help for commands', {
@@ -48,7 +48,7 @@ client.on('ready', () => {
 	});
 });
 
-var lines = [" beabo", " bee", " bii", " be", " beeb"];
+var lines = [" beabo", " bee", " bii", " be", " beeb", " biib", "biii"];
 
 function beeb() {
 	var len = Math.floor(Math.random() * 6) + 1;
@@ -141,6 +141,16 @@ client.on('message', message => {
       name: 'despabeabo2.png'
 			}]}).then(console.log).catch(console.error);
 		}
+	}
+	
+	if (message.content.toLowerCase() === "right about now" || message.content.toLowerCase() === "check it out now"){
+			message.channel.send('\"the funk soul brother\"').then(console.log).catch(console.error);
+	}
+	if (message.content.toLowerCase() === "right about now, the funk soul brother"){
+			message.channel.send('\"check it out now, the funk soul brother\"').then(console.log).catch(console.error);
+	}
+	if (message.content.toLowerCase() === "check it out now, the funk soul brother"){
+			message.channel.send('\"right about now, the funk soul brother\"').then(console.log).catch(console.error);
 	}
 	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]/gm)) {
 		message.channel.send("Biii!!!!! biiiiiii!! :revolving_hearts:");
