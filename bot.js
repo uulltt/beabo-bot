@@ -371,7 +371,7 @@ client.on('message', message => {
 								ctx.font = '180px "Supreme"';
 								ctx.fillStyle = "white";
 								ctx.textAlign = "left";
-								ctx.fillText(word, 0, 160);
+								ctx.fillText(word, 55, 160);
 								message.channel.send({
 									files: [{
 											attachment: textCanvas.toBuffer(),
