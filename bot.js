@@ -408,9 +408,6 @@ client.on('message', message => {
 									text: Text,
 									Message: message
 								});
-								if(message.content.toLowerCase().charAt(0) === 'd'){
-								message.delete();
-							}
 							}
 
 							if (new RegExp(/!ut\W/gm).test(beaboMessage.substring(0, 4))) {
@@ -422,9 +419,6 @@ client.on('message', message => {
 										}
 									}
 								});
-								if(message.content.toLowerCase().charAt(0) === 'd'){
-								message.delete();
-							}
 							} else {
 								if ((beaboMessage).match(/!ut.+\W/gm)) {
 									var characterText = message.cleanContent.substring(message.cleanContent.indexOf('t') + 1);
@@ -439,9 +433,6 @@ client.on('message', message => {
 												}
 											}
 										});
-										if(message.content.toLowerCase().charAt(0) === 'd'){
-								message.delete();
-							}
 									} else {
 										var expression = characterexp[1];
 										message.channel.send({
@@ -451,9 +442,6 @@ client.on('message', message => {
 												}
 											}
 										});
-										if(message.content.toLowerCase().charAt(0) === 'd'){
-								message.delete();
-							}
 									}
 								}
 							}
@@ -466,9 +454,6 @@ client.on('message', message => {
 									.replace(/7/gm, ':arrow_upper_left:').replace(/8/gm, ':arrow_up:').replace(/9/gm, ':arrow_upper_right:').replace(/6/gm, ':arrow_right:').replace(/5/gm, ' neutral ')
 									.replace(/j((u|m|p)?)\./gm, ' jumping ').replace(/cr\./gm, ' crouching ').replace(/cl\./gm, ' close ');
 								message.channel.send(command);
-								if(message.content.toLowerCase().charAt(0) === 'd'){
-								message.delete();
-							}
 							}
 							/*if (beaboMessage.substring(0, 8) === '!ZiV-id ') {
 							message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + beaboMessage.substring(8) + '#summary');
@@ -479,9 +464,6 @@ client.on('message', message => {
 							}*/
 							if (beaboMessage.substring(0, 9) === '!commands' || beaboMessage.substring(0, 5) === '!help') {
 								helpMessage(message);
-								if(message.content.toLowerCase().charAt(0) === 'd'){
-								message.delete();
-							}
 							}
 							
 						}
