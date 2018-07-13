@@ -77,7 +77,7 @@ function getDirections(result) {
 }
 
 function helpMessage(message) {
-	message.channel.send('http://uulltt.tumblr.com/beabo', {
+	message.channel.send('http://ultdev.tumblr.com/beabo', {
 		embed: {
 			fields: [{
 					name: ':camera: Commands (b!pics followed by)',
