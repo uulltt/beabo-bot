@@ -134,7 +134,7 @@ function bubble(message) {
 }
 
 module.exports = (message) => {
-	if (new RegExp(/[Ff]ont!/gm).test(message.cleanContent.substring(0, 5)) && !(new RegExp(/[Ff]ont!((mk|wh)2)\W/gm).test(message.cleanContent.substring(0, 9))) && !(new RegExp(/[Ff]ont!(ecco|puyo|doom|ddpt)\W/gm).test(message.cleanContent.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Ff]ont!(crash|wario|ddpt[0-2])\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms|rr)\W/gm).test(message.cleanContent.substring(0, 8)))) {
+	if (new RegExp(/[Ff]ont!/gm).test(message.cleanContent.substring(0, 5)) && !(new RegExp(/[Ff]ont!(((mk|wh)2)|(mvc))\W/gm).test(message.cleanContent.substring(0, 9))) && !(new RegExp(/[Ff]ont!(ecco|puyo|doom|ddpt)\W/gm).test(message.cleanContent.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Ff]ont!(crash|wario|ddpt[0-2])\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms|rr)\W/gm).test(message.cleanContent.substring(0, 8)))) {
 		font(message.cleanContent, message);
 		/*for (var i = 0; i < Math.min(urls.length, 5); i++) {
 			if (urls[i].length > 0)

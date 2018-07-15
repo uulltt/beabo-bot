@@ -14,6 +14,7 @@ const mk2String = '**1234567890 -\'' + alphabet + '!.,';
 const eccoString = alphabet + ' .:,!?\'';
 const pkmnString = alphabet.toUpperCase() + '():;[]' + alphabet + '0123456789 \'?!./,'
 const rrString = '0123456789' + alphabet + ' ?!,.;:$()+-\"\'';
+const mvcString = alphabet + '0123456789!?.-_&❤ ';
 
 module.exports = (message) => {
 	if (new RegExp(/[Ff]ont!crash\W/gm).test(message.cleanContent.substring(0, 11)) && message.cleanContent.length > 11) {
@@ -287,6 +288,37 @@ ctx.drawImage(img, 32, 23*2);
 				}, function (err2, canvas2) {
 					message.channel.send({
 						files: [{attachment: canvas2.toBuffer(),name: 'mk2.png'}]
+					});
+				});
+			}
+				});
+			}
+		}
+	}
+	if (new RegExp(/[Ff]ont!mvc\W/gm).test(message.cleanContent.substring(0, 9)) && message.cleanContent.length > 9) {
+		var text = message.cleanContent.substring(9).toLowerCase().replace(/[^a-z0-9\-\.\?\n❤!&_ ]/gm, '') + ' ';
+		var texts = text.match(/.{1,24}\W/gm);
+		var textImages = [];
+		var i = 0;
+		for (var t = 0; t < texts.length; t++) {
+			var paths = [];
+			texts[t] = ' ' + texts[t];
+			texts[t] = texts[t].replace(/\n/gm, '');
+			var cursor = 0;
+			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./mvc1/mvcfont_' + (mvctring.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
+			if (cursor === texts[t].length) {
+				concat({
+					images: paths, margin: 0 
+				}, function (err, canvas) {
+					
+					textImages[i] = canvas.toBuffer();
+					i++;
+					if (textImages.length === texts.length) {
+				concat.v({
+					images: textImages, margin: 0 
+				}, function (err2, canvas2) {
+					message.channel.send({
+						files: [{attachment: canvas2.toBuffer(),name: 'mvc.png'}]
 					});
 				});
 			}
