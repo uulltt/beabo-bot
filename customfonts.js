@@ -305,7 +305,7 @@ ctx.drawImage(img, 32, 23*2);
 			texts[t] = ' ' + texts[t];
 			texts[t] = texts[t].replace(/\n/gm, '');
 			var cursor = 0;
-			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./mvc1/mvcfont_' + (mvctring.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
+			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./mvc1/mvcfont_' + (mvcString.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
 			if (cursor === texts[t].length) {
 				concat({
 					images: paths, margin: 0 
