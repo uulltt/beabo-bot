@@ -172,6 +172,7 @@ module.exports = (message, content) => {
 			if (content.includes('youtu.be/')) {
 				videocode = content.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
 			}
+			console.log(videocode);
 			const attachment = new Discord.Attachment('https://i.ytimg.com/vi/' + videocode + '/maxresdefault.jpg');
 			message.channel.send(attachment);
 		}
