@@ -174,10 +174,7 @@ module.exports = (message, content) => {
 			}
 			console.log(videocode);
 			var attachment = new Discord.Attachment('https://i.ytimg.com/vi/' + videocode + '/maxresdefault.jpg');
-			message.channel.send(attachment).catch((error) =>{
-			attachment = new Discord.Attachment('https://img.youtube.com/vi/' + videocode + '/0.jpg');
-			message.channel.send(attachment);
-			});
+			message.channel.send(attachment).catch(err => message.channel.send(new Discord.Attachment('https://img.youtube.com/vi/' + videocode + '/0.jpg')));
 		}
 	}
 	if (content.startsWith('!vids ')) {
