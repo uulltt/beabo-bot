@@ -273,7 +273,7 @@ module.exports = (message, content) => {
 											name: json.posts[0].track_name + '.mp3'
 										}
 									]
-								}).then().catch(message.channel.send(r.uri.href));
+								}).then().catch(err => message.channel.send(r.uri.href));
 							});
 
 						});
@@ -311,7 +311,7 @@ module.exports = (message, content) => {
 											name: vocId + '.mp3'
 										}
 									]
-								}).then(console.log).catch(console.error);
+								}).then().catch(console.error);
 							});
 		}
 	}
