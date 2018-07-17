@@ -144,13 +144,13 @@ client.on('message', message => {
 	}
 	
 	if (message.content.toLowerCase() === "right about now" || message.content.toLowerCase() === "check it out now"){
-			message.channel.send('\"the funk soul brother\"').then(console.log).catch(console.error);
+			message.channel.send('\"the funk soul brother\"').then().catch(console.error);
 	}
 	if (message.content.toLowerCase() === "right about now, the funk soul brother"){
-			message.channel.send('\"check it out now, the funk soul brother\"').then(console.log).catch(console.error);
+			message.channel.send('\"check it out now, the funk soul brother\"').then().catch(console.error);
 	}
 	if (message.content.toLowerCase() === "check it out now, the funk soul brother"){
-			message.channel.send('\"right about now, the funk soul brother\"').then(console.log).catch(console.error);
+			message.channel.send('\"right about now, the funk soul brother\"').then().catch(console.error);
 	}
 	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]/gm)) {
 		message.channel.send("Biii!!!!! biiiiiii!! :revolving_hearts:");
@@ -167,7 +167,7 @@ client.on('message', message => {
 					} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)(s?) (yo)?ur fav((e|orite)?) ((web(( |(\-))?))?)(comic)(\?)?/gm)) {
 							message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
 						} else {
-								message.channel.send(beeb()).then(console.log).catch(console.error);
+								message.channel.send(beeb()).then().catch(console.error);
 							}
 						}
 					}
@@ -178,7 +178,7 @@ client.on('message', message => {
 								return item.name === "Reader";
 							});
 						if (role.length > 0) {
-							message.member.addRole(role[0]).then(console.log).catch(console.error);
+							message.member.addRole(role[0]).then().catch(console.error);
 						} else {
 							message.channel.send("Beaboooooooo! (Error. There is no \"Reader\" role.)");
 						}
