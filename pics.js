@@ -272,7 +272,7 @@ module.exports = (message, content) => {
 											name: json.posts[0].track_name + '.mp3'
 										}
 									]
-								}).then().catch(err => message.channel.send(r.uri.href));
+								}).then().catch(message.channel.send(r.uri.href));
 							});
 
 						});
