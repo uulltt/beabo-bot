@@ -235,6 +235,27 @@ client.on('message', message => {
 						}
 						movies(message, beaboMessage);
 						pics(message, beaboMessage);
+						if (beaboMessage.startsWith("!4ch ") && beaboMessage.includes('boards.4chan.org/')) {
+							var thread = beaboMessage.substring(beaboMessage.indexOf('.4cha') + 5);
+							var post = thread.match(/[0-9][0-9]+/gm)[0];
+							if (thread.contains('#p')){
+								post = thread.substring(thread.indexOf('#p')+2).match(/[0-9]+/gm)[0];
+								thread = thread.substring(0, thread.indexOf('#p'));
+								
+							}
+							var request = require('request').defaults({
+									encoding: null
+								});
+							request.get(encodeURI('https://a.4cd' + thread), function (err, res, body) {
+								var posts = JSON.parse(body.toString());
+								var jsonpost = posts.filter(function (item){
+									return item.no.toString() === post;
+								});
+								console.log(posts);
+								console.log(jsonpost);
+								
+							});
+						}
 						if (beaboMessage.startsWith("!rhyme ")) {
 							var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm, '');
 							var request = require('request').defaults({
@@ -445,6 +466,8 @@ client.on('message', message => {
 									}
 								}
 							}
+							
+							
 
 							if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
 								var command = '**' + beaboMessage.substring(8) + '**';
