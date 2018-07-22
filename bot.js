@@ -238,7 +238,7 @@ client.on('message', message => {
 						if (beaboMessage.startsWith("!4ch ") && beaboMessage.includes('boards.4chan.org/')) {
 							var thread = beaboMessage.substring(beaboMessage.indexOf('.4cha') + 5);
 							var post = thread.match(/[0-9][0-9]+/gm)[0];
-							if (thread.contains('#p')){
+							if (thread.includes('#p')){
 								post = thread.substring(thread.indexOf('#p')+2).match(/[0-9]+/gm)[0];
 								thread = thread.substring(0, thread.indexOf('#p'));
 								
