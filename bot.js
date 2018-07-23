@@ -256,7 +256,7 @@ client.on('message', message => {
 								board = board.substring(0, board.indexOf('/'));
 								if (jsonpost.hasOwnProperty('ext')){
 									var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
-									message.channel.send(embed: {
+									message.channel.send({embed: {
 										title: jsonpost.sub,
 										description: text,
 										timestamp: jsonpost.now,
@@ -264,14 +264,14 @@ client.on('message', message => {
 										image: {
 											url : fileUrl
 										}
-									});
+									}});
 								} else {
-									message.channel.send(embed: {
+									message.channel.send({embed: {
 										title: jsonpost.sub,
 										description: text,
 										timestamp: jsonpost.now,
 										url: thread
-									});
+									}});
 								}
 								
 								
