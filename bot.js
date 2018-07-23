@@ -259,7 +259,12 @@ client.on('message', message => {
 									message.channel.send({embed: {
 										title: jsonpost.sub,
 										description: text,
-										timestamp: jsonpost.now,
+										footer: {
+											text: jsonpost.now
+										},
+										author: {
+											name: jsonpost.name
+										},
 										url: thread,
 										image: {
 											url : fileUrl
@@ -269,7 +274,12 @@ client.on('message', message => {
 									message.channel.send({embed: {
 										title: jsonpost.sub,
 										description: text,
-										timestamp: jsonpost.now,
+										footer: {
+											text: jsonpost.now
+										},
+										author: {
+											name: jsonpost.name
+										},
 										url: thread
 									}});
 								}
