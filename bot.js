@@ -436,7 +436,7 @@ client.on('message', async message => {
 	  const dispatcher = connection.playFile('./sunny.mp3');
 	  dispatcher.setVolume(0.5); // half the volume
 
-dispatcher.on('finish', () => {
+dispatcher.on('end', () => {
   message.member.voiceChannel.leave();
 });
     }
