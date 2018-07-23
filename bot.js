@@ -533,17 +533,22 @@ client.on('message', message => {
 							if (beaboMessage.substring(0, 11) === '!ZiV-random') {
 							message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000) + 2).toString() + '#summary');
 							}*/
-							if (beaboMessage.substring(0, 5) === '!hook') {
-								const hook = new Discord.WebhookClient('webhook id', 'webhook token');
-
-// Send a message using the webhook
-hook.send('I am now alive!').then().catch(console.error);
-							}
+							
 							if (beaboMessage.substring(0, 9) === '!commands' || beaboMessage.substring(0, 5) === '!help') {
 								helpMessage(message);
 							}
 							
 						}
 					});
+					
+					client.on('guildMemberAdd', member => {
+  // Send the message to a designated channel on a server:
+  const channel = member.guild.channels.find('name', 'member-log');
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
+  // Send the message, mentioning the member
+  channel.send(`Beabo bee Beabo!!! (Welcome to the server, ${member})`);
+});
+
 
 					client.login(process.env.BOT_TOKEN);
