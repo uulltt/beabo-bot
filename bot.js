@@ -327,6 +327,8 @@ client.on('message', message => {
 						/*if (beaboMessage.substring(0, 4) === '!gb ') {
 						giantbomb(message, beaboMessage);
 						}*/
+						
+						
 
 						if (beaboMessage.substring(0, 4) === '!pg ' && message.author.id === process.env.BOT_ADMIN) {
 							herokupg.query(beaboMessage.substring(4), (err, res) => {
@@ -531,6 +533,12 @@ client.on('message', message => {
 							if (beaboMessage.substring(0, 11) === '!ZiV-random') {
 							message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000) + 2).toString() + '#summary');
 							}*/
+							if (beaboMessage.substring(0, 5) === '!hook') {
+								const hook = new Discord.WebhookClient('webhook id', 'webhook token');
+
+// Send a message using the webhook
+hook.send('I am now alive!');
+							}
 							if (beaboMessage.substring(0, 9) === '!commands' || beaboMessage.substring(0, 5) === '!help') {
 								helpMessage(message);
 							}
