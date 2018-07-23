@@ -265,7 +265,7 @@ client.on('message', message => {
 										author: {
 											name: jsonpost.name
 										},
-										url: thread,
+										url: 'https://boards.4cha' + thread,
 										image: {
 											url : fileUrl
 										}
@@ -280,7 +280,7 @@ client.on('message', message => {
 										author: {
 											name: jsonpost.name
 										},
-										url: thread
+										url: 'https://boards.4cha' + thread
 									}});
 								}
 								
