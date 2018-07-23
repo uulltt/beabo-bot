@@ -24,7 +24,9 @@
 	"lodash": "^4.17.4",
 	"canvas": "2.0.0-alpha.12",
 	"async": "^2.0.0",
-	"path": "0.12.7"
+	"path": "0.12.7",
+	"ffmpeg-binaries": "4.0.0",
+	"node-opus": "0.3.0"
   },
     "devDependencies": {
         "mocha": "^3.2.0"

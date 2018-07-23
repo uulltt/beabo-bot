@@ -431,7 +431,15 @@ client.on('message', message => {
 								var words = word.match(/.{1,36}\W/gm);
 
 								for (var i = 0; i < words.length; ctx.fillText(words[i], 640, (i * 120) - ((words.length - 1) * 60) + 360), i++);
+ if (message.member.voiceChannel) {
+      const connection = await message.member.voiceChannel.join();
+	  const dispatcher = connection.play('./sunny.mp3');
+	  dispatcher.setVolume(0.5); // half the volume
 
+dispatcher.on('finish', () => {
+  message.member.voiceChannel.leave();
+});
+    }
 								message.channel.send({
 									files: [{
 											attachment: textCanvas.toBuffer(),
@@ -551,6 +559,15 @@ client.on('message', message => {
 							
 						}
 					});
+					
+					/*client.on('guildMemberAdd', member => {
+  // Send the message to a designated channel on a server:
+  const channel = member.guild.channels.find('name', 'general');
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
+  // Send the message, mentioning the member
+  channel.send(`Beabo bee Beabo!!! (Welcome to the server, ${member})`).then().catch(console.error);
+});*/
 
 
 					client.login(process.env.BOT_TOKEN);
