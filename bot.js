@@ -250,9 +250,18 @@ client.on('message', message => {
 								var posts = JSON.parse(body.toString());
 								var jsonpost = posts.posts.filter(function (item){
 									return item.no.toString() === post;
-								});
-								console.log(posts);
-								console.log(jsonpost);
+								})[0];
+								var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/<a href="#p[0-9]+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/, '').replace(/<\/span>/gm, '');
+								var board = thread.substring(thread.indexOf('org/')+4);
+								board = board.substring(0, board.indexof('/'));
+								if (jsonpost.hasOwnProperty('ext')){
+									var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
+									console.log(text);
+									console.log(fileUrl);
+								} else {
+									console.log(text);
+								}
+								
 								
 							});
 						}
