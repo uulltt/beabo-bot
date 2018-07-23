@@ -251,15 +251,27 @@ client.on('message', message => {
 								var jsonpost = posts.posts.filter(function (item){
 									return item.no.toString() === post;
 								})[0];
-								var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/<a href="#p[0-9]+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/, '').replace(/<\/span>/gm, '');
+								var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/<a href="#p[0-9]+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
 								var board = thread.substring(thread.indexOf('org/')+4);
 								board = board.substring(0, board.indexOf('/'));
 								if (jsonpost.hasOwnProperty('ext')){
 									var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
-									console.log(text);
-									console.log(fileUrl);
+									message.channel.send(embed: {
+										title: jsonpost.sub,
+										description: text,
+										timestamp: jsonpost.now,
+										url: thread,
+										image: {
+											url : fileUrl
+										}
+									});
 								} else {
-									console.log(text);
+									message.channel.send(embed: {
+										title: jsonpost.sub,
+										description: text,
+										timestamp: jsonpost.now,
+										url: thread
+									});
 								}
 								
 								
