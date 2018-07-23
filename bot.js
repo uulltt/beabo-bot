@@ -128,7 +128,7 @@ client.on('message', message => {
 		message.channel.fetchMessages({ limit: 50 })
   .then(messages => message.channel.send(messages.array().map(function(item){
 		return '<@' + item.author.id  + '>';
-	  }).toString();
+	  }).toString()
 	  ))
   .catch(console.error);
 	}
