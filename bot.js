@@ -125,7 +125,7 @@ const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamli
 const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumblr.com', 'http://www.monster-lands.com'];
 client.on('message', message => {
 	if (message.content.includes('@y\'all')){
-		message.channel.fetchMessages({ limit: 50 })
+		message.channel.fetchMessages({ limit: 10 })
   .then(messages => message.channel.send(messages.array().map(function(item){
 		return '<@' + item.author.id  + '>';
 	  }).toString()
