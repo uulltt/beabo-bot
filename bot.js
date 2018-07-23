@@ -537,7 +537,7 @@ client.on('message', message => {
 								const hook = new Discord.WebhookClient('webhook id', 'webhook token');
 
 // Send a message using the webhook
-hook.send('I am now alive!');
+hook.send('I am now alive!').then().catch(console.error);
 							}
 							if (beaboMessage.substring(0, 9) === '!commands' || beaboMessage.substring(0, 5) === '!help') {
 								helpMessage(message);
