@@ -246,7 +246,7 @@ client.on('message', message => {
 							var request = require('request').defaults({
 									encoding: null
 								});
-							request.get(encodeURI('https://a.4cd' + thread), function (err, res, body) {
+							request.get(encodeURI('https://a.4cd' + thread + '.json'), function (err, res, body) {
 								var posts = JSON.parse(body.toString());
 								var jsonpost = posts.filter(function (item){
 									return item.no.toString() === post;
