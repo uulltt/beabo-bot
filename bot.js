@@ -141,7 +141,7 @@ client.on('message', message => {
 			message.channel.send('***BEEEEEEEEEEEE!!!***', {files: [{
       attachment: './everyone.png',
       name: 'everyone.png'
-			}]}).then(console.log).catch(console.error);
+			}]}).then().catch(console.error);
 		}
 	}
 	if (message.content.toLowerCase().includes('despacito 2')){
@@ -150,7 +150,7 @@ client.on('message', message => {
 			message.channel.send({files: [{
       attachment: './despabeabo2.png',
       name: 'despabeabo2.png'
-			}]}).then(console.log).catch(console.error);
+			}]}).then().catch(console.error);
 		}
 	}
 	
@@ -558,7 +558,7 @@ client.on('message', message => {
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
   // Send the message, mentioning the member
-  channel.send(`Beabo bee Beabo!!! (Welcome to the server, ${member})`);
+  channel.send(`Beabo bee Beabo!!! (Welcome to the server, ${member})`).then().catch(console.error);
 });
 
 
