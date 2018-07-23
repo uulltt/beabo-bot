@@ -128,8 +128,8 @@ client.on('message', message => {
 		message.channel.fetchMessages({ limit: 15 })
   .then(messages => message.channel.send(messages.array().map(function(item){
 		return '<@' + item.author.id  + '>';
-	  }).filter(function(item, pos) {
-    return a.indexOf(item) == pos;
+	  }).filter(function(item, pos, self) {
+    return self.indexOf(item) == pos;
 }).toString()
 	  ))
   .catch(console.error);
