@@ -235,7 +235,7 @@ client.on('message', message => {
 						}
 						movies(message, beaboMessage);
 						pics(message, beaboMessage);
-						if (beaboMessage.startsWith("!4ch ") && beaboMessage.includes('boards.4chan.org/')) {
+						if (beaboMessage.startsWith("!4chan ") && beaboMessage.includes('boards.4chan.org/')) {
 							var thread = beaboMessage.substring(beaboMessage.indexOf('.4cha') + 5);
 							var post = thread.match(/[0-9][0-9]+/gm)[0];
 							if (thread.includes('#p')){
