@@ -256,6 +256,20 @@ client.on('message', message => {
 								board = board.substring(0, board.indexOf('/'));
 								if (jsonpost.hasOwnProperty('ext')){
 									var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
+									if (jsonpost.ext.toLowerCase().charAt(1) === 'w'){
+										message.channel.send({embed: {
+										title: jsonpost.sub,
+										description: text,
+										footer: {
+											text: jsonpost.now
+										},
+										author: {
+											name: jsonpost.name
+										},
+										url: 'https://boards.4cha' + thread
+									}}).then(message.channel.send(fileUrl));
+									
+									} else {
 									message.channel.send({embed: {
 										title: jsonpost.sub,
 										description: text,
@@ -270,6 +284,7 @@ client.on('message', message => {
 											url : fileUrl
 										}
 									}});
+									}
 								} else {
 									message.channel.send({embed: {
 										title: jsonpost.sub,
