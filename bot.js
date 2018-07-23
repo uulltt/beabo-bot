@@ -431,11 +431,9 @@ client.on('message', async message => {
 								var words = word.match(/.{1,36}\W/gm);
 
 								for (var i = 0; i < words.length; ctx.fillText(words[i], 640, (i * 120) - ((words.length - 1) * 60) + 360), i++);
-								const ffffff = require('ffmpeg-binaries');
-	console.log(ffffff);
  if (message.member.voiceChannel) {
       const connection = await message.member.voiceChannel.join();
-	  const dispatcher = connection.play('./sunny.mp3');
+	  const dispatcher = connection.playFile('./sunny.mp3');
 	  dispatcher.setVolume(0.5); // half the volume
 
 dispatcher.on('finish', () => {
