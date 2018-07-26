@@ -124,7 +124,7 @@ const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', 
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumblr.com', 'http://www.monster-lands.com'];
 client.on('message', async message => {
-	if ((message.content.toLowerCase().includes('@y\'all') || message.content.toLowerCase().includes('@yall')) && !(new RegExp(/`[^`]*@y('?)all[^`]*`/gm)).test(message.content.toLowerCase())){
+	/*if ((message.content.toLowerCase().includes('@y\'all') || message.content.toLowerCase().includes('@yall')) && !(new RegExp(/`[^`]*@y('?)all[^`]*`/gm)).test(message.content.toLowerCase())){
 		message.channel.fetchMessages({ limit: 15 })
   .then(messages => message.channel.send(messages.array().map(function(item){
 		return '<@' + item.author.id  + '>';
@@ -133,7 +133,7 @@ client.on('message', async message => {
 }).toString()
 	  ))
   .catch(console.error);
-	}
+	}*/
 	
 	if (message.content.includes('@everyone')){
 		var chance = Math.floor(Math.random() * 100);
@@ -431,16 +431,6 @@ client.on('message', async message => {
 								var words = word.match(/.{1,36}\W/gm);
 
 								for (var i = 0; i < words.length; ctx.fillText(words[i], 640, (i * 120) - ((words.length - 1) * 60) + 360), i++);
- if (message.member.voiceChannel) {
-      const connection = await message.member.voiceChannel.join();
-	  const dispatcher = connection.playFile('./sunny.mp3');
-	  dispatcher.setVolume(0.5); // half the volume
-
-dispatcher.on('end', () => {
-  message.member.voiceChannel.leave();
-});
-    }
-	
 								message.channel.send({
 									files: [{
 											attachment: textCanvas.toBuffer(),
@@ -448,6 +438,17 @@ dispatcher.on('end', () => {
 										}
 									]
 								});
+ if (message.member.voiceChannel) {
+      const connection = await message.member.voiceChannel.join();
+	  const dispatcher = connection.playFile('./sunny.mp3');
+	  dispatcher.setVolume(0.4); // half the volume
+
+dispatcher.on('end', () => {
+  message.member.voiceChannel.leave();
+});
+    }
+	
+								
 							}
 
 							if (beaboMessage.toLowerCase().startsWith("!supreme ")) {
