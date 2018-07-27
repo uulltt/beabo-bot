@@ -84,11 +84,11 @@ function helpMessage(message) {
 					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'
 				}, {
 					name: 'Other Media Commands',
-					value: 'b!song (tumblr or vocaroo post) - embeds the audio from that tumblr/vocaroo post\nb!vids (tumblr post) - embeds the video from that tumblr post'
+					value: 'b!song (tumblr or vocaroo post) - embeds the audio from that tumblr/vocaroo post\nb!vids (tumblr post) - embeds the video from that tumblr post\nb!4chan (link to 4chan post) - embeds said 4chan post'
 				}, {
 					name: 'Font Commands',
 					value: 'To find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
-					'\nfont!gamename your text here - creates image of your text in the game\'s font\nb(u/d)(two digits)!game your text here to create a speech bubble going either up or down with the two digits determining the pointer position\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size. also works for speech bubbles.\n'
+					'\nfont!gamename your text here - creates image of your text in the game\'s font\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size.\n'
 					 + 'Custom Fonts: font!crash, font!ms (metal slug), font!mario64, font!wario (warioware), font!puyo (Puyo Puyo), font!mk2 (mortal kombat 2), font!doom, font!ecco, font!wh2 (world heroes 2), font!ddpt (dodonpachi tall font), font!rr (road rash font), font!mvc (marvel vs capcom 1)'
 				}, {
 					name: 'Text Box Commands',
@@ -96,9 +96,9 @@ function helpMessage(message) {
 					 + '\nb!pkmn text - Pokemon Text box\nb!sb text - Skeleton Boomerang Text Box\nb!ut text - creates Undertale text box\nb!utcharactername text - creates Undertale text box with that character (i.e. b!utsans Hey guys it\'s me Sans Undertale\nb!utcharacter_expression text - same but uses a specific expression for that character (i.e. b!utundyne_funny)'
 				}, {
 					name: 'More Text Box Commands',
-					value: 'b!jeopardy text - make Jeopardy clue screen\nb!nirvanna word - nirvanna the band the word\nb!supreme word - supreme logo generator\nb!sunny or b!iasip sentence - always sunny title card generator\n'
+					value: 'b!jeopardy text - make Jeopardy clue screen\nb!nirvanna word - nirvanna the band the word\nb!supreme word - supreme logo generator\nb!sunny or b!iasip sentence - always sunny title card generator\nb!wof - makes a wheel of fortune meme'
 
-				}, {
+				/*}, {
 					name: 'Google Maps Commands',
 					value: 'b!dir \"origin\" \"destination\" - prints directions from origin to destination\nb!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n'
 				}, {
@@ -107,13 +107,13 @@ function helpMessage(message) {
 					/*}, {
 					name: 'Giant Bomb Wiki Commands',
 					value: 'b!gb game/character/company/etc. info/characters/concepts/locations/people/etc. name of thing - returns the info searched for relating to a game/character/company/etc.'
-					 */
+					 
 
 				}, {
 					name: 'Other Commands',
 					value: ':tomato: or b!rt movietitle - gets RottenTomatoes movie name, description, and critic/audience scores for a movie. type coming soon, opening, or box office instead of a movie title and it will bring up the top lists for those\nb!hex#hexCode - displays image of a color pertaining to the hex code' +
-					'\nb!rhyme word - find words that rhyme with a given word\nb!numpad command - turns fighting game numpad notation into emoji\nb!wof - makes a wheel of fortune meme\nb!hex# - gets color for that specific hex'
-				}
+					'\nb!rhyme word - find words that rhyme with a given word\nb!numpad command - turns fighting game numpad notation into emoji\n\nb!hex# - gets color for that specific hex'
+				*/}
 			]
 		}
 	});
