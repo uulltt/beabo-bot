@@ -176,7 +176,7 @@ client.on('message', async message => {
 	  dispatcher.setVolume(0.2); // half the volume
 
 dispatcher.on('end', () => {
-  client.leaveVoiceChannel(message.member.voiceState.channelID);
+  client.leaveVoiceChannel(message.member.guild.voiceConnection.channel);
 });
     }
 			}
@@ -194,7 +194,7 @@ dispatcher.on('end', () => {
 	  dispatcher.setVolume(0.2); // half the volume
 
 dispatcher.on('end', () => {
-  client.leaveVoiceChannel(message.member.voiceState.channelID);
+  client.leaveVoiceChannel(message.member.guild.voiceConnection.channel);
 });
     }
 							}
@@ -462,7 +462,7 @@ dispatcher.on('end', () => {
 	  dispatcher.setVolume(0.2); // half the volume
 
 dispatcher.on('end', () => {
-  client.leaveVoiceChannel(message.member.voiceState.channelID);
+  client.leaveVoiceChannel(message.member.guild.voiceConnection.channel);
 });
     }
 	
