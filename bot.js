@@ -169,7 +169,7 @@ client.on('message', async message => {
 		if (message.isMentioned(client.user) && !message.cleanContent.toLowerCase().includes('🖕') && !(message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) && !(message.cleanContent.toLowerCase().match(/((f(u|(ri))([ck]{1,2}))|(hate)) (yo)?u/gm) || message.cleanContent.toLowerCase().match(/(yo)?u su([ck]{1,2})/gm))) {
 
 			if (!message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
-				message.channel.send("bee bee biiiii! :heart:");
+				
 				if (message.member.voiceChannel) {
       const connection = await message.member.voiceChannel.join();
 	  const dispatcher = connection.playFile('./beabo_'+(Math.floor(Math.random() * (7)))+'.mp3');
@@ -178,7 +178,9 @@ client.on('message', async message => {
 dispatcher.on('end', () => {
   message.guild.voiceConnection.channel.leave();
 });
-    }
+    } else {
+		message.channel.send("bee bee biiiii! :heart:");
+	}
 			}
 				else if (message.content.toLowerCase().includes("help")) {
 					helpMessage(message);
@@ -187,7 +189,7 @@ dispatcher.on('end', () => {
 					} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)(s?) (yo)?ur fav((e|orite)?) ((web(( |(\-))?))?)(comic)(\?)?/gm)) {
 							message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
 						} else {
-								message.channel.send(beeb()).then().catch(console.error);
+								
 								if (message.member.voiceChannel) {
       const connection = await message.member.voiceChannel.join();
 	  const dispatcher = connection.playFile('./beabo_'+(Math.floor(Math.random() * (7)))+'.mp3');
@@ -196,7 +198,9 @@ dispatcher.on('end', () => {
 dispatcher.on('end', () => {
   message.guild.voiceConnection.channel.leave();
 });
-    }
+    } else {
+		message.channel.send(beeb()).then().catch(console.error);
+	}
 							}
 						}
 					}
