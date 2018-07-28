@@ -170,6 +170,15 @@ client.on('message', async message => {
 
 			if (!message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
 				message.channel.send("bee bee biiiii! :heart:");
+				if (message.member.voiceChannel) {
+      const connection = await message.member.voiceChannel.join();
+	  const dispatcher = connection.playFile('./beabo_'+(Math.floor(Math.random() * (7)))+'.mp3');
+	  dispatcher.setVolume(0.2); // half the volume
+
+dispatcher.on('end', () => {
+  message.member.voiceChannel.leave();
+});
+    }
 			}
 				else if (message.content.toLowerCase().includes("help")) {
 					helpMessage(message);
@@ -179,6 +188,15 @@ client.on('message', async message => {
 							message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
 						} else {
 								message.channel.send(beeb()).then().catch(console.error);
+								if (message.member.voiceChannel) {
+      const connection = await message.member.voiceChannel.join();
+	  const dispatcher = connection.playFile('./beabo_'+(Math.floor(Math.random() * (7)))+'.mp3');
+	  dispatcher.setVolume(0.2); // half the volume
+
+dispatcher.on('end', () => {
+  message.member.voiceChannel.leave();
+});
+    }
 							}
 						}
 					}
@@ -441,7 +459,7 @@ client.on('message', async message => {
  if (message.member.voiceChannel) {
       const connection = await message.member.voiceChannel.join();
 	  const dispatcher = connection.playFile('./sunny.mp3');
-	  dispatcher.setVolume(0.4); // half the volume
+	  dispatcher.setVolume(0.2); // half the volume
 
 dispatcher.on('end', () => {
   message.member.voiceChannel.leave();
