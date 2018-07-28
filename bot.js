@@ -97,13 +97,13 @@ function helpMessage(message) {
 				}, {
 					name: 'More Text Box Commands',
 					value: 'b!jeopardy text - make Jeopardy clue screen\nb!nirvanna word - nirvanna the band the word\nb!supreme word - supreme logo generator\nb!sunny or b!iasip sentence - always sunny title card generator\nb!wof - makes a wheel of fortune meme'
-
-				/*}, {
-					name: 'Google Maps Commands',
-					value: 'b!dir \"origin\" \"destination\" - prints directions from origin to destination\nb!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n'
 				}, {
 					name: 'Local Time Commands',
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
+				/*}, {
+					name: 'Google Maps Commands',
+					value: 'b!dir \"origin\" \"destination\" - prints directions from origin to destination\nb!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n'
+				
 					/*}, {
 					name: 'Giant Bomb Wiki Commands',
 					value: 'b!gb game/character/company/etc. info/characters/concepts/locations/people/etc. name of thing - returns the info searched for relating to a game/character/company/etc.'
