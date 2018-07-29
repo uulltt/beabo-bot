@@ -213,7 +213,7 @@ dispatcher.on('end', () => {
 						} else {
 								
 								if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
-									herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {
+									herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function(err, res) {
 										if (res.rows[0].voice){
       const connection = await message.member.voiceChannel.join();
 	  const dispatcher = connection.playFile('./beabo_'+(Math.floor(Math.random() * (7)))+'.mp3');
