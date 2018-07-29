@@ -52,7 +52,7 @@ client.on('ready', () => {
 		return item.id;
 	});
 	for(var i = 0; i < guilds.length; i++){
-	herokupg.query("INSERT INTO permissions (guild_id, voice, picsglobal) VALUES (\'"+guilds[i].toString()+"\',true,false) ON CONFLICT (guild_id) DO NOTHING;", (err, res) => {
+	herokupg.query("INSERT INTO permissions (guild_id, voice, picsglobal) VALUES (\'"+guilds[i].toString()+"\',false,false) ON CONFLICT (guild_id) DO NOTHING;", (err, res) => {
 								if (!err)
 									console.log(res);
 									else
@@ -122,6 +122,9 @@ function helpMessage(message) {
 				}, {
 					name: 'Local Time Commands',
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
+					}, {
+					name: 'Admin Commands (b!set followed by)',
+					value: 'voice true/false - turns audio stuff on or off\npicsglobal true/false - automatically does pics command for any posted twitter/imgur/tumblr link if true'
 				/*}, {
 					name: 'Google Maps Commands',
 					value: 'b!dir \"origin\" \"destination\" - prints directions from origin to destination\nb!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n'
