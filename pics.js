@@ -187,7 +187,6 @@ module.exports = (message, content, herokupg) => {
 			message.channel.send(attachment).catch(err => message.channel.send(new Discord.Attachment('https://img.youtube.com/vi/' + videocode + '/0.jpg')));
 		}
 	}
-	});
 	if (content.startsWith('!vids ')) {
 		/*if (content.includes('watch?v=') || content.includes('youtu.be/')){ //backup if youtubemp3api ever goes down
 		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
