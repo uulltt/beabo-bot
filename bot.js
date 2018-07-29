@@ -252,7 +252,7 @@ dispatcher.on('end', () => {
 					}
 					fonts(message);
 					movies(message, message.content);
-					pics(message, message.content);
+					pics(message, message.content, herokupg);
 					if (message.content.toLowerCase().charAt(0) === 'b') {
 						var beaboMessage = message.content.substring(1);
 
@@ -291,7 +291,7 @@ dispatcher.on('end', () => {
 							}).catch(console.error);
 						}
 						movies(message, beaboMessage);
-						pics(message, beaboMessage);
+						pics(message, beaboMessage, herokupg);
 						if (beaboMessage.startsWith("!4chan ") && beaboMessage.includes('boards.4chan.org/')) {
 							var thread = beaboMessage.substring(beaboMessage.indexOf('.4cha') + 5);
 							var post = thread.match(/[0-9][0-9]+/gm)[0];

@@ -15,9 +15,8 @@ var tweeter = new Twitter({
 var request = require('request').defaults({
 		encoding: null
 	});
-
-module.exports = (message, content) => {
-	if (content.startsWith('!pics ')) { //all the camera commands go in here
+	
+	function TwitImgTumb(message, content) {
 		if (content.includes('twitter.com/') && content.includes('/status/')) {
 			var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
 			tweeter.get('statuses/show/' + tweetId, {
@@ -129,6 +128,18 @@ module.exports = (message, content) => {
 				}
 			});
 		}
+	}
+
+module.exports = (message, content, herokupg) => {
+	if (!(content.startsWith('!pics ')) && message.channel.hasOwnProperty('guild')){
+	herokupg.query("SELECT picsglobal FROM permissions WHERE guild_id = \'" + message.guild.id + "\';", (err, res) => {
+	if (res.rows[0].picsglobal){
+		TwitImgTumb(message, content);
+	}	
+	});
+	}
+	if (content.startsWith('!pics ')) { //all the camera commands go in here
+		TwitImgTumb(message, content);
 		if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
 			request.get(encodeURI(content.substring(6).replace(/ /gm, '')), function (err, res, body) {
 				var exifString = '';
@@ -176,6 +187,7 @@ module.exports = (message, content) => {
 			message.channel.send(attachment).catch(err => message.channel.send(new Discord.Attachment('https://img.youtube.com/vi/' + videocode + '/0.jpg')));
 		}
 	}
+	});
 	if (content.startsWith('!vids ')) {
 		/*if (content.includes('watch?v=') || content.includes('youtu.be/')){ //backup if youtubemp3api ever goes down
 		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
