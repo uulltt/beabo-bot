@@ -212,7 +212,9 @@ dispatcher.on('end', () => {
 							message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
 						} else {
 								
-								/*if (message.member.voiceChannel) {
+								if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
+									herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {
+										if (res.rows[0].voice){
       const connection = await message.member.voiceChannel.join();
 	  const dispatcher = connection.playFile('./beabo_'+(Math.floor(Math.random() * (7)))+'.mp3');
 	  dispatcher.setVolume(0.2); // half the volume
@@ -220,9 +222,13 @@ dispatcher.on('end', () => {
 dispatcher.on('end', () => {
   message.guild.voiceConnection.channel.leave();
 });
-    } else {*/
+										} else {
+											message.channel.send(beeb()).then().catch(console.error);
+										}
+									});
+    } else {
 		message.channel.send(beeb()).then().catch(console.error);
-	//}
+	}
 							}
 						}
 					}
@@ -382,8 +388,22 @@ dispatcher.on('end', () => {
 						/*if (beaboMessage.substring(0, 4) === '!gb ') {
 						giantbomb(message, beaboMessage);
 						}*/
-							if (message.channel.hasOwnProperty('guild') && beaboMessage.substring(0, 5) === '!set ' && message.member.hasPermission("ADMINISTRATOR")) {
+							if (message.channel.hasOwnProperty('guild') && (beaboMessage.startsWith('!set voice true') || beaboMessage.startsWith('!set voice false')) && message.member.hasPermission("ADMINISTRATOR")) {
+							herokupg.query("UPDATE permissions SET voice = " + beaboMessage.substring(11) + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res)){
+								if (!err)
+									console.log(res);
+									else
+										console.log(err);
+								});						
+							}
 							
+							if (message.channel.hasOwnProperty('guild') && (beaboMessage.startsWith('!set picsglobal true') || beaboMessage.startsWith('!set picsglobal false')) && message.member.hasPermission("ADMINISTRATOR")) {
+							herokupg.query("UPDATE permissions SET picsglobal = " + beaboMessage.substring(16) + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res)){
+								if (!err)
+									console.log(res);
+									else
+										console.log(err);
+								});						
 							}
 						
 
