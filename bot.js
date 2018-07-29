@@ -48,7 +48,7 @@ client.on('ready', () => {
 	client.user.setActivity('type b!help for commands', {
 		type: 'WATCHING'
 	});
-	var guilds = client.guilds.array().map(function(item){
+	/*var guilds = client.guilds.array().map(function(item){
 		return item.id;
 	});
 	for(var i = 0; i < guilds.length; i++){
@@ -58,7 +58,7 @@ client.on('ready', () => {
 									else
 										console.log(err);
 								});
-	}
+	}*/
 });
 
 client.on('guildCreate', (guild) =>{
@@ -196,7 +196,7 @@ client.on('message', async message => {
 										if (res.rows[0].voice){
       const connection = await message.member.voiceChannel.join();
 	  const dispatcher = connection.playFile('./beabo_'+(Math.floor(Math.random() * (7)))+'.mp3');
-	  dispatcher.setVolume(0.2); // half the volume
+	  dispatcher.setVolume(0.3); // half the volume
 
 dispatcher.on('end', () => {
   message.guild.voiceConnection.channel.leave();
@@ -223,7 +223,7 @@ dispatcher.on('end', () => {
 										if (res.rows[0].voice){
       const connection = await message.member.voiceChannel.join();
 	  const dispatcher = connection.playFile('./beabo_'+(Math.floor(Math.random() * (7)))+'.mp3');
-	  dispatcher.setVolume(0.2); // half the volume
+	  dispatcher.setVolume(0.3); // half the volume
 
 dispatcher.on('end', () => {
   message.guild.voiceConnection.channel.leave();
