@@ -39,6 +39,8 @@ const herokupg = new Client({
 		ssl: true,
 	});
 
+	
+
 client.on('ready', () => {
 	console.log('Beabo!');
 	herokupg.connect();
@@ -58,6 +60,15 @@ client.on('ready', () => {
 								});
 	}
 });
+
+client.on('guildCreate', (guild) =>){
+	herokupg.query("INSERT INTO permissions (guild_id, voice, picsglobal) VALUES (\'"+guild.id.toString()+"\',true,false) ON CONFLICT (guild_id) DO NOTHING;", (err, res) => {
+								if (!err)
+									console.log(res);
+									else
+										console.log(err);
+								});
+}
 
 var lines = [" beabo", " bee", " bii", " be", " beeb"];
 
