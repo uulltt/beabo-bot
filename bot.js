@@ -384,8 +384,9 @@ dispatcher.on('end', () => {
 						/*if (beaboMessage.substring(0, 4) === '!gb ') {
 						giantbomb(message, beaboMessage);
 						}*/
-							if (message.channel.hasOwnProperty('guild') && (beaboMessage.startsWith('!set voice true') || beaboMessage.startsWith('!set voice false')) && message.member.hasPermission("ADMINISTRATOR")) {
-							herokupg.query("UPDATE permissions SET voice = " + beaboMessage.substring(11) + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {
+							if (message.channel.hasOwnProperty('guild') && (new RegExp(/!set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
+							var fields = beaboMessage.split(' ');
+							herokupg.query("UPDATE permissions SET " + fields[1] + " = " + fields[2] + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {
 								if (!err)
 									console.log(res);
 									else
@@ -393,14 +394,7 @@ dispatcher.on('end', () => {
 								});						
 							}
 							
-							if (message.channel.hasOwnProperty('guild') && (beaboMessage.startsWith('!set picsglobal true') || beaboMessage.startsWith('!set picsglobal false')) && message.member.hasPermission("ADMINISTRATOR")) {
-							herokupg.query("UPDATE permissions SET picsglobal = " + beaboMessage.substring(16) + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {
-								if (!err)
-									console.log(res);
-									else
-										console.log(err);
-								});						
-							}
+							
 						
 
 						if (beaboMessage.substring(0, 4) === '!pg ' && message.author.id === process.env.BOT_ADMIN) {
