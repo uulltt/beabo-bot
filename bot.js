@@ -46,6 +46,17 @@ client.on('ready', () => {
 	client.user.setActivity('type b!help for commands', {
 		type: 'WATCHING'
 	});
+	var guilds = client.guilds.array().map(function(item){
+		return item.id;
+	});
+	for(var i = 0; i < guilds.length; i++){
+	herokupg.query("INSERT INTO permissions (guild_id, voice, picsglobal) VALUES (\'"+guilds[i].toString()+"\',true,false) ON CONFLICT (guild_id) DO NOTHING;", (err, res) => {
+								if (!err)
+									console.log(res);
+									else
+										console.log(err);
+								});
+	}
 });
 
 var lines = [" beabo", " bee", " bii", " be", " beeb"];
@@ -360,7 +371,9 @@ dispatcher.on('end', () => {
 						/*if (beaboMessage.substring(0, 4) === '!gb ') {
 						giantbomb(message, beaboMessage);
 						}*/
-						
+							if (message.channel.hasOwnProperty('guild') && beaboMessage.substring(0, 5) === '!set ' && message.member.hasPermission("ADMINISTRATOR")) {
+							
+							}
 						
 
 						if (beaboMessage.substring(0, 4) === '!pg ' && message.author.id === process.env.BOT_ADMIN) {
