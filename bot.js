@@ -295,7 +295,7 @@ client.on('message', async message => {
 		}
 		movies(message, beaboMessage);
 		pics(message, beaboMessage, herokupg);
-		if (beaboMessage.startsWith("!4chan ") && beaboMessage.includes('boards.4chan.org/')) {
+		if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
 			var thread = beaboMessage.substring(beaboMessage.indexOf('.4cha') + 5);
 			var post = thread.match(/[0-9][0-9]+/gm)[0];
 			if (thread.includes('#p')) {
@@ -314,7 +314,7 @@ client.on('message', async message => {
 				var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/<a href="#p[0-9]+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
 				var board = thread.substring(thread.indexOf('org/') + 4);
 				board = board.substring(0, board.indexOf('/'));
-				const embed = new Discord.RichEmbed().setTitle(jsonpost.sub).setFooter(jsonpost.now).setDescription(text).setUrl('https://boards.4cha' + thread).setAuthor(jsonpost.name);
+				const embed = new Discord.RichEmbed().setTitle(jsonpost.sub).setFooter(jsonpost.now).setDescription(text).setURL('https://boards.4cha' + thread).setAuthor(jsonpost.name);
 				if (jsonpost.hasOwnProperty('ext')) {
 					var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
 					if (jsonpost.ext.toLowerCase().charAt(1) === 'w') {
