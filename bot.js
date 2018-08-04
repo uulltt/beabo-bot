@@ -264,10 +264,11 @@ client.on('message', async message => {
 				post = thread.substring(thread.indexOf('#p') + 2).match(/[0-9]+/gm)[0];
 				thread = thread.substring(0, thread.indexOf('#p'));
 
-			} else {
-					thread = thread.match(/n\.org\/[3a-z]+\/thread\/[0-9]+/gm)[0];
 			}
+			thread = thread.match(/n\.org\/[3a-z]+\/thread\/[0-9]+/gm)[0];
 			console.log(thread);
+			var board = thread.substring(thread.indexOf('org/') + 4);
+				board = board.substring(0, board.indexOf('/'));
 			var request = require('request').defaults({
 					encoding: null
 				});
@@ -276,9 +277,8 @@ client.on('message', async message => {
 				var jsonpost = posts.posts.filter(function (item) {
 						return item.no.toString() === post;
 					})[0];
-				var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/<a href="#p[0-9]+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
-				var board = thread.substring(thread.indexOf('org/') + 4);
-				board = board.substring(0, board.indexOf('/'));
+				var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/<a href=".+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
+				
 				const embed = new Discord.RichEmbed().setTitle(jsonpost.sub).setFooter(jsonpost.now).setDescription(text).setURL('https://boards.4cha' + thread).setAuthor(jsonpost.name);
 				if (jsonpost.hasOwnProperty('ext')) {
 					var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
