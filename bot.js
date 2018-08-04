@@ -257,13 +257,15 @@ client.on('message', async message => {
 	movies(message, message.content);
 	pics(message, message.content, herokupg);
 	if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
-			var thread = message.content.substring(message.content.indexOf('.4cha') + 4);
+			var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
 			console.log(thread);
 			var post = thread.match(/[0-9][0-9]+/gm)[0];
 			if (thread.includes('#p')) {
 				post = thread.substring(thread.indexOf('#p') + 2).match(/[0-9]+/gm)[0];
 				thread = thread.substring(0, thread.indexOf('#p'));
 
+			} else {
+					thread = thread.match(/n\.org\/[3a-z]+\/thread\/[0-9]+/gm)[0];
 			}
 			console.log(thread);
 			var request = require('request').defaults({
