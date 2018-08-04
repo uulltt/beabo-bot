@@ -277,7 +277,7 @@ client.on('message', async message => {
 				var jsonpost = posts.posts.filter(function (item) {
 						return item.no.toString() === post;
 					})[0];
-				var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/<a href=".+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
+				var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/&lt;/gm, '<').replace(/&#039;/gm, '\'').replace(/<a href=".+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
 				
 				const embed = new Discord.RichEmbed().setTitle(jsonpost.sub).setFooter(jsonpost.now).setDescription(text).setURL('https://boards.4cha' + thread).setAuthor(jsonpost.name);
 				if (jsonpost.hasOwnProperty('ext')) {
