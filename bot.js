@@ -256,6 +256,41 @@ client.on('message', async message => {
 	fonts(message);
 	movies(message, message.content);
 	pics(message, message.content, herokupg);
+	if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
+			var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
+			var post = thread.match(/[0-9][0-9]+/gm)[0];
+			if (thread.includes('#p')) {
+				post = thread.substring(thread.indexOf('#p') + 2).match(/[0-9]+/gm)[0];
+				thread = thread.substring(0, thread.indexOf('#p'));
+
+			}
+			var request = require('request').defaults({
+					encoding: null
+				});
+			request.get(encodeURI('https://a.4cd' + thread + '.json'), function (err, res, body) {
+				var posts = JSON.parse(body.toString());
+				var jsonpost = posts.posts.filter(function (item) {
+						return item.no.toString() === post;
+					})[0];
+				var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/<a href="#p[0-9]+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
+				var board = thread.substring(thread.indexOf('org/') + 4);
+				board = board.substring(0, board.indexOf('/'));
+				const embed = new Discord.RichEmbed().setTitle(jsonpost.sub).setFooter(jsonpost.now).setDescription(text).setURL('https://boards.4cha' + thread).setAuthor(jsonpost.name);
+				if (jsonpost.hasOwnProperty('ext')) {
+					var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
+					if (jsonpost.ext.toLowerCase().charAt(1) === 'w') {
+						message.channel.send(embed).then(message.channel.send(fileUrl));
+
+					} else {
+						embed.setImage(fileUrl);
+						message.channel.send(embed);
+					}
+				} else {
+					message.channel.send(embed);
+				}
+
+			});
+		}
 	if (message.content.toLowerCase().charAt(0) === 'b') {
 		var beaboMessage = message.content.substring(1);
 
@@ -295,41 +330,7 @@ client.on('message', async message => {
 		}
 		movies(message, beaboMessage);
 		pics(message, beaboMessage, herokupg);
-		if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
-			var thread = beaboMessage.substring(beaboMessage.indexOf('.4cha') + 5);
-			var post = thread.match(/[0-9][0-9]+/gm)[0];
-			if (thread.includes('#p')) {
-				post = thread.substring(thread.indexOf('#p') + 2).match(/[0-9]+/gm)[0];
-				thread = thread.substring(0, thread.indexOf('#p'));
-
-			}
-			var request = require('request').defaults({
-					encoding: null
-				});
-			request.get(encodeURI('https://a.4cd' + thread + '.json'), function (err, res, body) {
-				var posts = JSON.parse(body.toString());
-				var jsonpost = posts.posts.filter(function (item) {
-						return item.no.toString() === post;
-					})[0];
-				var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/<a href="#p[0-9]+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
-				var board = thread.substring(thread.indexOf('org/') + 4);
-				board = board.substring(0, board.indexOf('/'));
-				const embed = new Discord.RichEmbed().setTitle(jsonpost.sub).setFooter(jsonpost.now).setDescription(text).setURL('https://boards.4cha' + thread).setAuthor(jsonpost.name);
-				if (jsonpost.hasOwnProperty('ext')) {
-					var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
-					if (jsonpost.ext.toLowerCase().charAt(1) === 'w') {
-						message.channel.send(embed).then(message.channel.send(fileUrl));
-
-					} else {
-						embed.setImage(fileUrl);
-						message.channel.send(embed);
-					}
-				} else {
-					message.channel.send(embed);
-				}
-
-			});
-		}
+		
 		if (beaboMessage.startsWith("!rhyme ")) {
 			var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm, '');
 			var request = require('request').defaults({
