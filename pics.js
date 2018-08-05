@@ -137,7 +137,6 @@ module.exports = (message, content, herokupg) => {
 		TwitImgTumb(message, content);
 	}	
 	});
-	} else {
 	if (content.startsWith('!pics ')) { //all the camera commands go in here
 		TwitImgTumb(message, content);
 		if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
@@ -186,7 +185,6 @@ module.exports = (message, content, herokupg) => {
 			var attachment = new Discord.Attachment('https://i.ytimg.com/vi/' + videocode + '/maxresdefault.jpg');
 			message.channel.send(attachment).catch(err => message.channel.send(new Discord.Attachment('https://img.youtube.com/vi/' + videocode + '/0.jpg')));
 		}
-	}
 	}
 	if (content.startsWith('!vids ')) {
 		/*if (content.includes('watch?v=') || content.includes('youtu.be/')){ //backup if youtubemp3api ever goes down
