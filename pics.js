@@ -76,7 +76,6 @@ var request = require('request').defaults({
 			});
 		}
 		if (content.includes('://') && content.includes('/post/')) {
-			console.log("tumblr");
 			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
 			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 			tumblr.get('/posts', {
@@ -132,7 +131,7 @@ var request = require('request').defaults({
 	}
 
 module.exports = (message, content, herokupg) => {
-	if (!(content.startsWith('!pics ')) && message.channel.hasOwnProperty('guild')){
+	if (!(content.startsWith('b!pics ')) && message.channel.hasOwnProperty('guild')){
 	herokupg.query("SELECT picsglobal FROM permissions WHERE guild_id = \'" + message.guild.id + "\';", (err, res) => {
 	if (res.rows[0].picsglobal){
 		console.log("AAAAA");
@@ -142,10 +141,10 @@ module.exports = (message, content, herokupg) => {
 	}
 	});
 	}
-	if (content.startsWith('!pics ')) { //all the camera commands go in here
+	if (content.startsWith('b!pics ')) { //all the camera commands go in here
 		TwitImgTumb(message, content);
 		if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
-			request.get(encodeURI(content.substring(6).replace(/ /gm, '')), function (err, res, body) {
+			request.get(encodeURI(content.substring(7).replace(/ /gm, '')), function (err, res, body) {
 				var exifString = '';
 				try {
 					new ExifImage({
@@ -191,7 +190,7 @@ module.exports = (message, content, herokupg) => {
 			message.channel.send(attachment).catch(err => message.channel.send(new Discord.Attachment('https://img.youtube.com/vi/' + videocode + '/0.jpg')));
 		}
 	}
-	if (content.startsWith('!vids ')) {
+	if (content.startsWith('b!vids ')) {
 		/*if (content.includes('watch?v=') || content.includes('youtu.be/')){ //backup if youtubemp3api ever goes down
 		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
 		message.channel.send(JSON.parse(body.toString())[0].url);
@@ -236,7 +235,7 @@ module.exports = (message, content, herokupg) => {
 			});
 		}
 	}
-	if (content.startsWith('!song ')) {
+	if (content.startsWith('b!song ')) {
 		if (content.includes('://') && content.includes('/post/')) {
 			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
 			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
@@ -330,7 +329,7 @@ module.exports = (message, content, herokupg) => {
 		}
 	}
 
-	if (content.startsWith('!thread ')) {
+	if (content.startsWith('b!thread ')) {
 		if (content.includes('twitter.com/') && content.includes('/status/')) {
 			var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
 			message.channel.send('https://threadreaderapp.com/thread/' + tweetId + '.html');

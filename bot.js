@@ -255,7 +255,7 @@ client.on('message', async message => {
 	}
 	fonts(message);
 	//movies(message, message.content);
-	//pics(message, message.content, herokupg);
+	pics(message, message.content, herokupg);
 	if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
 			var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
 			console.log(thread);
@@ -333,7 +333,7 @@ client.on('message', async message => {
 			}).catch(console.error);
 		}
 		movies(message, beaboMessage);
-		pics(message, beaboMessage, herokupg);
+		//pics(message, beaboMessage, herokupg);
 		
 		if (beaboMessage.startsWith("!rhyme ")) {
 			var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm, '');
