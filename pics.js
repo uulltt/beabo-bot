@@ -137,6 +137,7 @@ module.exports = (message, content, herokupg) => {
 		TwitImgTumb(message, content);
 	}	
 	});
+	}
 	if (content.startsWith('!pics ')) { //all the camera commands go in here
 		TwitImgTumb(message, content);
 		if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
