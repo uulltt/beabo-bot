@@ -60,7 +60,7 @@ client.on('ready', () => {
 });
 
 client.on('guildCreate', (guild) => {
-	herokupg.query("INSERT INTO permissions (guild_id, voice, picsglobal) VALUES (\'" + guild.id.toString() + "\',false,false) ON CONFLICT (guild_id) DO NOTHING;", (err, res) => {
+	herokupg.query("INSERT INTO permissions (guild_id, voice, picsglobal, greeting) VALUES (\'" + guild.id.toString() + "\',false,false,false) ON CONFLICT (guild_id) DO NOTHING;", (err, res) => {
 		if (!err)
 			console.log(res);
 		else
@@ -122,7 +122,7 @@ function helpMessage(message) {
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
 				}, {
 					name: 'Admin Commands (b!set followed by)',
-					value: 'voice true/false - turns audio stuff on or off\npicsglobal true/false - automatically does pics command for any posted twitter/imgur/tumblr link if true'
+					value: 'voice true/false - turns audio stuff on or off\npicsglobal true/false - automatically does pics command for any posted twitter/imgur/tumblr link if true\ngreeting true/false - does a server greeting for new members'
 					/*}, {
 					name: 'Google Maps Commands',
 					value: 'b!dir \"origin\" \"destination\" - prints directions from origin to destination\nb!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n'
@@ -592,13 +592,18 @@ client.on('message', async message => {
 	}
 });
 
-/*client.on('guildMemberAdd', member => {
-// Send the message to a designated channel on a server:
-const channel = member.guild.channels.find('name', 'general');
+client.on('guildMemberAdd', member => {
+herokupg.query("SELECT greeting FROM permissions WHERE guild_id = \'" + member.guild.id.toString() + "\';", async function (err, res) {
+						if (res.rows[0].greeting) {
+							const channel = member.guild.channels.find('name', 'general');
 // Do nothing if the channel wasn't found on this server
 if (!channel) return;
 // Send the message, mentioning the member
 channel.send(`Beabo bee Beabo!!! (Welcome to the server, ${member})`).then().catch(console.error);
-});*/
+						}
+					});
+// Send the message to a designated channel on a server:
+
+});
 
 client.login(process.env.BOT_TOKEN);
