@@ -254,8 +254,8 @@ client.on('message', async message => {
 		}
 	}
 	fonts(message);
-	movies(message, message.content);
-	pics(message, message.content, herokupg);
+	//movies(message, message.content);
+	//pics(message, message.content, herokupg);
 	if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
 			var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
 			console.log(thread);
