@@ -76,6 +76,7 @@ var request = require('request').defaults({
 			});
 		}
 		if (content.includes('://') && content.includes('/post/')) {
+			console.log("tumblr");
 			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
 			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 			tumblr.get('/posts', {
@@ -134,8 +135,11 @@ module.exports = (message, content, herokupg) => {
 	if (!(content.startsWith('!pics ')) && message.channel.hasOwnProperty('guild')){
 	herokupg.query("SELECT picsglobal FROM permissions WHERE guild_id = \'" + message.guild.id + "\';", (err, res) => {
 	if (res.rows[0].picsglobal){
+		console.log("AAAAA");
 		TwitImgTumb(message, content);
-	}	
+	} else {
+		console.log("BBBBB");
+	}
 	});
 	}
 	if (content.startsWith('!pics ')) { //all the camera commands go in here
