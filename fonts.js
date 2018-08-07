@@ -65,19 +65,19 @@ async function font(message, discordMessage) {
 	for (var i = 0; i < 7; i++) {
 		console.log(i);
 		console.log(new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm'));
-		console.log(message.substring(7, 9 + i));
-		if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm').test(message.substring(7, 9 + i)) || new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(7, 12 + i))) {
+		console.log(message.substring(7, 10 + i));
+		if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm').test(message.substring(7, 10 + i)) || new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(7, 13 + i))) {
 			arg = message.substring(10 + i) + '\u200B';
-			game = message.substring(7, 9 + i);
-			if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(7, 12 + i))) {
+			game = message.substring(7, 10 + i);
+			if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(7, 13 + i))) {
 				arg = arg.substring(2);
-				style = message.charAt(9 + i);
-				size = message.charAt(10 + i);
+				style = message.charAt(10 + i);
+				size = message.charAt(11 + i);
 			}
 			break;
 		}
 	}
-	console.log(arg + " " + game + " " + style + " " + size);
+	//console.log(arg + " " + game + " " + style + " " + size);
 	if (game === 'kof'){
 		game = 'kof97';
 		style = '0';
