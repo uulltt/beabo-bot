@@ -62,7 +62,7 @@ async function font(message, discordMessage) {
 	var args = [];
 	var urls = [];
 	for (var i = 0; i < 7; i++) {
-		if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm').test(message.substring(5, 8 + i)) || new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(5, 10 + i))) {
+		if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm').test(message.substring(7, 9 + i)) || new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(7, 12 + i))) {
 			arg = message.substring(8 + i) + '\u200B';
 			game = message.substring(5, 7 + i);
 			if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(5, 10 + i))) {
@@ -134,7 +134,7 @@ function bubble(message) {
 }
 
 module.exports = (message) => {
-	if (new RegExp(/[Ff]ont!/gm).test(message.cleanContent.substring(0, 5)) && !(new RegExp(/[Ff]ont!(((mk|wh)2)|(mvc))\W/gm).test(message.cleanContent.substring(0, 9))) && !(new RegExp(/[Ff]ont!(ecco|puyo|doom|ddpt)\W/gm).test(message.cleanContent.substring(0, 10))) && !(new RegExp(/[Ff]ont!(mario64)\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Ff]ont!(crash|wario|ddpt[0-2])\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Ff]ont!(ms|rr)\W/gm).test(message.cleanContent.substring(0, 8)))) {
+	if (new RegExp(/[Bb]![Ff]ont /gm).test(message.cleanContent.substring(0, 5)) && !(new RegExp(/[Bb]![Ff]ont (((mk|wh)2)|(mvc))\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Bb]![Ff]ont(ecco|puyo|doom|ddpt)\W/gm).test(message.cleanContent.substring(0, 12))) && !(new RegExp(/[Bb]![Ff]ont (mario64)\W/gm).test(message.cleanContent.substring(0, 15))) && !(new RegExp(/[Bb]![Ff]ont (crash|wario|ddpt[0-2])\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Bb]![Ff]ont (ms|rr)\W/gm).test(message.cleanContent.substring(0, 10)))) {
 		font(message.cleanContent, message);
 		/*for (var i = 0; i < Math.min(urls.length, 5); i++) {
 			if (urls[i].length > 0)
@@ -149,7 +149,7 @@ module.exports = (message) => {
 	}
 	
 	
-	if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.cleanContent.substring(0, 5))) {
+	/*if (new RegExp(/[Bb][du][0-9][0-9]!/gm).test(message.cleanContent.substring(0, 5))) {
 		var urls = bubble(message.cleanContent);
 		for (var i = 0; i < Math.min(urls.length, 1); i++) {
 			if (urls[i].length > 0)
@@ -161,6 +161,6 @@ module.exports = (message) => {
 					}
 				});
 		}
-	}
+	}*/
 	customfonts(message);
 }

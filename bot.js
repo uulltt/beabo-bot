@@ -295,7 +295,7 @@ client.on('message', async message => {
 
 			});
 		}
-	if (message.content.toLowerCase().charAt(0) === 'b') {
+	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(1);
 
 		if (beaboMessage.substring(0, 8) === '!places ') {
