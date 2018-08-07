@@ -61,6 +61,7 @@ async function font(message, discordMessage) {
 	var size = '2';
 	var args = [];
 	var urls = [];
+	console.log(message);
 	for (var i = 0; i < 7; i++) {
 		if (new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}\\W', 'gm').test(message.substring(7, 9 + i)) || new RegExp('[A-Za-z0-9]{' + (2 + i).toString() + '}[0-9]{2}\\W', 'gm').test(message.substring(7, 12 + i))) {
 			arg = message.substring(10 + i) + '\u200B';
@@ -73,6 +74,7 @@ async function font(message, discordMessage) {
 			break;
 		}
 	}
+	console.log(arg + " " + game + " " + style + " " + size);
 	if (game === 'kof'){
 		game = 'kof97';
 		style = '0';
