@@ -297,11 +297,7 @@ client.on('message', async message => {
 		}
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
-		if (beaboMessage.startsWith("guilds") && message.author.id === process.env.BOT_ADMIN){
-			console.log(client.guilds.array().map(function(item){
-				return item.name;
-			}));
-		}
+
 		
 		
 
