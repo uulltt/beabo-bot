@@ -296,71 +296,15 @@ client.on('message', async message => {
 			});
 		}
 	if (message.content.toLowerCase().startsWith('b!')) {
-		var beaboMessage = message.content.substring(1);
+		var beaboMessage = message.content.substring(2);
 
-		if (beaboMessage.substring(0, 8) === '!places ') {
-			parameters = {
-				query: beaboMessage.substring(8).split('\"')[1]
-			};
-			GPlaces.textSearch(parameters, function (error, response) {
-				if (error)
-					throw error;
-				for (var i = 0; i < Math.min(response.results.length, 5); i++) {
-					var open = '';
-					if (response.results[i].hasOwnProperty('opening_hours') && response.results[i].opening_hours.hasOwnProperty('open_now')) {
-						open = response.results[i].opening_hours.open_now ? ':large_blue_circle: ***OPEN NOW!***' : ':red_circle: Sorry, closed.';
-					}
-					message.channel.send('**' + response.results[i].name + '**\n`' + response.results[i].formatted_address + '`\n:star: ' + response.results[i].rating + '\n' + open);
-				}
-			});
-
-		}
-		if (beaboMessage.substring(0, 5) === '!dir ') {
-			var args = beaboMessage.substring(5).split('\"');
-			var ori = args[1];
-			var dest = args[3];
-			direction({
-				origin: ori,
-				destination: dest
-			}).then(function (result) {
-				var dir = getDirections(result);
-				message.channel.send({
-					embed: {
-						title: ':motorway: **' + ori + '** to **' + dest + '**',
-						description: dir.length <= 2048 ? dir : 'Too many directions. Just Google it.'
-					}
-				});
-			}).catch(console.error);
-		}
-		movies(message, beaboMessage);
-		//pics(message, beaboMessage, herokupg);
 		
-		if (beaboMessage.startsWith("!rhyme ")) {
-			var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm, '');
-			var request = require('request').defaults({
-					encoding: null
-				});
-			request.get(encodeURI('https://api.datamuse.com/words?rel_rhy=' + word), function (err, res, body) {
-				var rhymes = JSON.parse(body.toString()).map(function (item) {
-						return ' ' + item.word;
-					}).toString();
-
-				message.channel.send({
-					embed: {
-						title: 'Words that Rhyme with ' + word,
-						description: rhymes.length > 2048 ? rhymes.substring(0, 2048) : rhymes,
-						footer: {
-							text: 'From RhymeZone/Datamuse API'
-						}
-					}
-				});
-			});
-		}
+		
 
 		/*if (beaboMessage.substring(0, 4) === '!gb ') {
 		giantbomb(message, beaboMessage);
 		}*/
-		if (message.channel.hasOwnProperty('guild') && (new RegExp(/!set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
+		if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
 			var fields = beaboMessage.split(' ');
 			herokupg.query("UPDATE permissions SET " + fields[1] + " = " + fields[2] + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {
 				if (!err)
@@ -370,31 +314,18 @@ client.on('message', async message => {
 			});
 		}
 
-		if (beaboMessage.substring(0, 4) === '!pg ' && message.author.id === process.env.BOT_ADMIN) {
-			herokupg.query(beaboMessage.substring(4), (err, res) => {
+		if (beaboMessage.substring(0, 3) === 'pg ' && message.author.id === process.env.BOT_ADMIN) {
+			herokupg.query(beaboMessage.substring(3), (err, res) => {
 				if (!err)
 					console.log(res);
 				else
 					console.log(err);
 			});
 		}
-		/*if (new RegExp(/!wof\W/gm).test(beaboMessage.substring(0, 5))) {
-			var text = message.cleanContent.substring(6).split('\n');
-			var ln = ['', '', '', '', ''];
-			for (var i = 0; i < Math.min(5, text.length); i++) {
-				ln[i] = encodeURI(text[i]);
-			}
-			message.channel.send({
-				embed: {
-					image: {
-						url: 'https://www.thewordfinder.com/wof-puzzle-generator/puzzle-thumb.php?bg=1&ln1=' + ln[0] + '&ln2=' + ln[1] + '&ln3=' + ln[2] + '&ln4=' + ln[3] + '&cat=' + ln[4] + '&'
-					}
-				}
-			});
-		}*/
+		
 		timestuff(message, beaboMessage, herokupg);
 
-		if (beaboMessage.toLowerCase().startsWith("!nirvanna ")) {
+		if (beaboMessage.toLowerCase().startsWith("nirvanna ")) {
 			var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).toLowerCase().trim();
 			var textCanvas = new Canvas.createCanvas(600, 300);
 			var ctx = textCanvas.getContext("2d");
@@ -417,7 +348,7 @@ client.on('message', async message => {
 			});
 		}
 
-		if (beaboMessage.toLowerCase().startsWith("!jeopardy ")) {
+		if (beaboMessage.toLowerCase().startsWith("jeopardy ")) {
 			var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim().toUpperCase() + '\u200B';
 			var textCanvas = new Canvas.createCanvas(1280, 720);
 			var ctx = textCanvas.getContext("2d");
@@ -446,7 +377,7 @@ client.on('message', async message => {
 			});
 		}
 
-		if (beaboMessage.toLowerCase().startsWith("!sunny ") || beaboMessage.toLowerCase().startsWith("!iasip ")) {
+		if (beaboMessage.toLowerCase().startsWith("sunny ") || beaboMessage.toLowerCase().startsWith("iasip ")) {
 			var word = '\"' + message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim() + '\"';
 			var textCanvas = new Canvas.createCanvas(1280, 720);
 			var ctx = textCanvas.getContext("2d");
@@ -483,7 +414,7 @@ client.on('message', async message => {
 
 		}
 
-		if (beaboMessage.toLowerCase().startsWith("!supreme ")) {
+		if (beaboMessage.toLowerCase().startsWith("supreme ")) {
 			var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim();
 			var textCanvas = new Canvas.createCanvas((110 * word.length), 220);
 			var ctx = textCanvas.getContext("2d");
@@ -503,7 +434,7 @@ client.on('message', async message => {
 			});
 		}
 
-		if (new RegExp(/!eb(n|m|s|b|p|N|M|S|B|P)\W/gm).test(beaboMessage.substring(0, 5))) {
+		if (new RegExp(/eb(n|m|s|b|p|N|M|S|B|P)\W/gm).test(beaboMessage.substring(0, 4))) {
 			const flavors = ['plain', 'mint', 'strawberry', 'banana', 'peanut'];
 			const flavorstring = 'nmsbp'
 				var Flavor = flavors[flavorstring.indexOf(beaboMessage.charAt(3).toLowerCase())];
@@ -519,7 +450,7 @@ client.on('message', async message => {
 			});
 		}
 
-		if (new RegExp(/!eb\W/gm).test(beaboMessage.substring(0, 4))) {
+		if (new RegExp(/eb\W/gm).test(beaboMessage.substring(0, 3))) {
 			var Text = message.cleanContent.substring(5);
 			var textCanvas = new Canvas.createCanvas(608, 256);
 			textCanvas.imageSmoothingEnabled = false;
@@ -532,7 +463,7 @@ client.on('message', async message => {
 			});
 		}
 
-		if (new RegExp(/!ut\W/gm).test(beaboMessage.substring(0, 4))) {
+		if (new RegExp(/ut\W/gm).test(beaboMessage.substring(0, 3))) {
 			var text = message.cleanContent.substring(5);
 			message.channel.send({
 				embed: {
@@ -542,7 +473,7 @@ client.on('message', async message => {
 				}
 			});
 		} else {
-			if ((beaboMessage).match(/!ut.+\W/gm)) {
+			if ((beaboMessage).match(/ut.+\W/gm)) {
 				var characterText = message.cleanContent.substring(message.cleanContent.indexOf('t') + 1);
 				var characterexp = characterText.substring(0, characterText.search(/\W/gm)).split('_');
 				var character = characterexp[0];
@@ -568,24 +499,9 @@ client.on('message', async message => {
 			}
 		}
 
-		if (beaboMessage.substring(0, 8) === '!numpad ' && beaboMessage.length > 8) {
-			var command = '**' + beaboMessage.substring(8) + '**';
-			command = command.replace(/(2)([a-zA-Z\W])/gm, function (match) {
-					return "crouching " + match.substring(1);
-				}).replace(/1/gm, ':arrow_lower_left:').replace(/2/gm, ':arrow_down:').replace(/3/gm, ':arrow_lower_right:').replace(/4/gm, ':arrow_left:')
-				.replace(/7/gm, ':arrow_upper_left:').replace(/8/gm, ':arrow_up:').replace(/9/gm, ':arrow_upper_right:').replace(/6/gm, ':arrow_right:').replace(/5/gm, ' neutral ')
-				.replace(/j((u|m|p)?)\./gm, ' jumping ').replace(/cr\./gm, ' crouching ').replace(/cl\./gm, ' close ');
-			message.channel.send(command);
-		}
-		/*if (beaboMessage.substring(0, 8) === '!ZiV-id ') {
-		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + beaboMessage.substring(8) + '#summary');
-		}
+		
 
-		if (beaboMessage.substring(0, 11) === '!ZiV-random') {
-		message.channel.send('https://zenius-i-vanisher.com/v5.2/arcade.php?id=' + (Math.floor(Math.random() * 4000) + 2).toString() + '#summary');
-		}*/
-
-		if (beaboMessage.substring(0, 9) === '!commands' || beaboMessage.substring(0, 5) === '!help') {
+		if (beaboMessage.substring(0, 8) === 'commands' || beaboMessage.substring(0, 4) === 'help') {
 			helpMessage(message);
 		}
 

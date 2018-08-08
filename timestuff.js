@@ -53,8 +53,8 @@ function localcityTime(message, city) {
 }
 
 module.exports = (message, content, herokupg) => {
-	if (content.toLowerCase().substring(0, 9) === '!settime ' && content.length > 9) {
-			var city = content.substring(9).replace(/[^A-Za-z ]+/gm, '');
+	if (content.toLowerCase().substring(0, 8) === 'settime ' && content.length > 8) {
+			var city = content.substring(8).replace(/[^A-Za-z ]+/gm, '');
 			console.log('INSERT INTO localtimes(user_id, city_name) VALUES (\'' + message.author.id + '\',\'' + city + '\')ON CONFLICT (user_id) DO UPDATE SET city_name = EXCLUDED.city_name;');
 			herokupg.query('INSERT INTO localtimes(user_id, city_name) VALUES (\'' + message.author.id + '\',\'' + city + '\')ON CONFLICT (user_id) DO UPDATE SET city_name = EXCLUDED.city_name;', (err, res) => {
 				if (!err) {
@@ -65,8 +65,8 @@ module.exports = (message, content, herokupg) => {
 			});
 		}
 
-		if (content.substring(0, 11) === '!gettime <@' && content.length > 9) {
-			var id = content.substring(11).replace(/[^0-9]/gm, '');
+		if (content.substring(0, 10) === 'gettime <@' && content.length > 9) {
+			var id = content.substring(10).replace(/[^0-9]/gm, '');
 			herokupg.query('SELECT city_name FROM localtimes WHERE user_id = \'' + id + '\';', (err, res) => {
 				if (!err) {
 					console.log(res);
@@ -80,7 +80,7 @@ module.exports = (message, content, herokupg) => {
 			});
 		}
 		
-		if (content.substring(0, 6) === '!time ') {
+		if (content.substring(0, 5) === 'time ') {
 			cityTime(message);
 		}
 }

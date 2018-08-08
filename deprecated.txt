@@ -1,0 +1,84 @@
+if (beaboMessage.substring(0, 8) === '!places ') {
+			parameters = {
+				query: beaboMessage.substring(8).split('\"')[1]
+			};
+			GPlaces.textSearch(parameters, function (error, response) {
+				if (error)
+					throw error;
+				for (var i = 0; i < Math.min(response.results.length, 5); i++) {
+					var open = '';
+					if (response.results[i].hasOwnProperty('opening_hours') && response.results[i].opening_hours.hasOwnProperty('open_now')) {
+						open = response.results[i].opening_hours.open_now ? ':large_blue_circle: ***OPEN NOW!***' : ':red_circle: Sorry, closed.';
+					}
+					message.channel.send('**' + response.results[i].name + '**\n`' + response.results[i].formatted_address + '`\n:star: ' + response.results[i].rating + '\n' + open);
+				}
+			});
+
+		}
+		
+		if (beaboMessage.substring(0, 5) === '!dir ') {
+			var args = beaboMessage.substring(5).split('\"');
+			var ori = args[1];
+			var dest = args[3];
+			direction({
+				origin: ori,
+				destination: dest
+			}).then(function (result) {
+				var dir = getDirections(result);
+				message.channel.send({
+					embed: {
+						title: ':motorway: **' + ori + '** to **' + dest + '**',
+						description: dir.length <= 2048 ? dir : 'Too many directions. Just Google it.'
+					}
+				});
+			}).catch(console.error);
+		}
+		movies(message, beaboMessage);
+		//pics(message, beaboMessage, herokupg);
+		
+		if (beaboMessage.startsWith("!rhyme ")) {
+			var word = beaboMessage.substring(beaboMessage.indexOf(' ') + 1).replace(/\W/gm, '');
+			var request = require('request').defaults({
+					encoding: null
+				});
+			request.get(encodeURI('https://api.datamuse.com/words?rel_rhy=' + word), function (err, res, body) {
+				var rhymes = JSON.parse(body.toString()).map(function (item) {
+						return ' ' + item.word;
+					}).toString();
+
+				message.channel.send({
+					embed: {
+						title: 'Words that Rhyme with ' + word,
+						description: rhymes.length > 2048 ? rhymes.substring(0, 2048) : rhymes,
+						footer: {
+							text: 'From RhymeZone/Datamuse API'
+						}
+					}
+				});
+			});
+		}
+		
+		if (beaboMessage.substring(0, 7) === 'numpad ' && beaboMessage.length > 7) {
+			var command = '**' + beaboMessage.substring(8) + '**';
+			command = command.replace(/(2)([a-zA-Z\W])/gm, function (match) {
+					return "crouching " + match.substring(1);
+				}).replace(/1/gm, ':arrow_lower_left:').replace(/2/gm, ':arrow_down:').replace(/3/gm, ':arrow_lower_right:').replace(/4/gm, ':arrow_left:')
+				.replace(/7/gm, ':arrow_upper_left:').replace(/8/gm, ':arrow_up:').replace(/9/gm, ':arrow_upper_right:').replace(/6/gm, ':arrow_right:').replace(/5/gm, ' neutral ')
+				.replace(/j((u|m|p)?)\./gm, ' jumping ').replace(/cr\./gm, ' crouching ').replace(/cl\./gm, ' close ');
+			message.channel.send(command);
+		}
+		
+		/*if (new RegExp(/!wof\W/gm).test(beaboMessage.substring(0, 5))) {
+			var text = message.cleanContent.substring(6).split('\n');
+			var ln = ['', '', '', '', ''];
+			for (var i = 0; i < Math.min(5, text.length); i++) {
+				ln[i] = encodeURI(text[i]);
+			}
+			message.channel.send({
+				embed: {
+					image: {
+						url: 'https://www.thewordfinder.com/wof-puzzle-generator/puzzle-thumb.php?bg=1&ln1=' + ln[0] + '&ln2=' + ln[1] + '&ln3=' + ln[2] + '&ln4=' + ln[3] + '&cat=' + ln[4] + '&'
+					}
+				}
+			});
+		}*/
