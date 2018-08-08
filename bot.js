@@ -224,9 +224,9 @@ client.on('message', async message => {
 				}
 			} else if (message.content.toLowerCase().includes("help")) {
 				helpMessage(message);
-			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)(s?) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)(\?)?/gm)) {
-				message.channel.send(favegames[(Math.floor(Math.random() * (message.content.toLowerCase().includes("steam") ? 7 : 8)))] + '/');
-			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t('?)(s?) (yo)?ur fav((e|orite)?) ((web(( |(\-))?))?)(comic)(\?)?/gm)) {
+			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t((('?)s)|( is)) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a) should i (get|buy|play|dl|download|(is (yo)?ur fav((e|orite)?)))(\?)?/gm)) {
+				message.channel.send(favegames[(Math.floor(Math.random() * ((message.content.toLowerCase().includes("steam") || message.content.toLowerCase().includes("buy")) ? 7 : 8)))] + '/');
+			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t((('?)s)|( is)) (yo)?ur fav((e|orite)?) ((web(( |(\-))?))?)(comic)(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t ((web(( |\-)?))?)(comic) is (yo)?ur fav((e|orite)?)(\?)?/gm)) {
 				message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
 			} else {
 
