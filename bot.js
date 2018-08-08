@@ -111,19 +111,19 @@ function helpMessage(message) {
 					 + 'Custom Fonts: font!crash, font!ms (metal slug), font!mario64, font!wario (warioware), font!puyo (Puyo Puyo), font!mk2 (mortal kombat 2), font!doom, font!ecco, font!wh2 (world heroes 2), font!ddpt (dodonpachi tall font), font!rr (road rash font), font!mvc (marvel vs capcom 1)'
 				}, {
 					name: 'VG Text Box Commands (type the command followed by your message.)',
-					value: `'b!eb - creates EarthBound-style text box. Also available in all 5 flavors; Normal, mint, strawberry, banana, and peanut. 
+					value: `b!eb - creates EarthBound-style text box. Also available in all 5 flavors; Normal, mint, strawberry, banana, and peanut. 
 (Just add m,s,b,or p after b!eb with no spaces to flavor your textbox. the default is normal flavor.)
 b!pkmn - creates a pokemon styled text box.
 b!sb - creates a Skeleton Boomerang text box.
 b!ut - creates an Undertale text box.
 b!ut_[character name] - creates an Undertale text box with that character (i.e. b!utsans [Hey guys it's me Sans Undertale])
-b!ut_[character name]_[expression] - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)`;
+b!ut_[character name]_[expression] - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)`
 				}, {
 					name: 'More Text Box Commands',
 					value: `b!jeopardy - makes a Jeopardy answer screen with user input
 b!nirvanna - nirvanna the band the word 
 b!supreme - supreme logo generator
-b!sunny - generates an always sunny title card. also works with b!iasip`;
+b!sunny - generates an always sunny title card. also works with b!iasip`
 				}, {
 					name: 'Local Time Commands',
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
