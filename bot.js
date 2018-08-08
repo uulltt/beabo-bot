@@ -100,23 +100,30 @@ function helpMessage(message) {
 	message.channel.send('http://ultdev.tumblr.com/beabo', {
 		embed: {
 			fields: [{
-					name: ':camera: Commands (b!pics followed by)',
-					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na jpg image on the web - gets the EXIf data of that image\na link to a youtube vid - gets the thumbnail of that youtube vid'
+					name: 'Album Embedding (b!pics followed by)',
+					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na link to a youtube vid - gets the thumbnail of that youtube vid\na jpg image on the web - gets the EXIf data of that image'
 				}, {
-					name: 'Other Media Commands',
-					value: 'b!song (tumblr or vocaroo post) - embeds the audio from that tumblr/vocaroo post\nb!vids (tumblr post) - embeds the video from that tumblr post\nb!4chan (link to 4chan post) - embeds said 4chan post'
+					name: 'Other Embedding Commands',
+					value: 'b!vids (tumblr post) - embeds a video post from tumblr; b!song (tumblr or vocaroo post) - embeds an audio post from tumblr (with its album art) or vocaroo.\nlink to 4chan post - embeds said 4chan post. Be safe out there kids.'
 				}, {
-					name: 'Font Commands',
-					value: 'To find a font name, go to https://nfggames.com/games/fontmaker/, select the game you want, right click the text and hit view image, and what\'s next to the "y-" in the url is your game.' +
-					'\nfont!gamename your text here - creates image of your text in the game\'s font\nfont!game(two digits) your text here - that game with the first digit determining font style and second digit determining font size.\n'
+					name: 'Funny Fonts',
+					value: 'b!font [game name] [message] (without brackets) - allows you to have beabo pop out a funny message using the font of your favorite game.\n(Game list here: https://nfggames.com/games/fontmaker/ the text after the "y-" in the image url is what you input for [game name])\n'
 					 + 'Custom Fonts: font!crash, font!ms (metal slug), font!mario64, font!wario (warioware), font!puyo (Puyo Puyo), font!mk2 (mortal kombat 2), font!doom, font!ecco, font!wh2 (world heroes 2), font!ddpt (dodonpachi tall font), font!rr (road rash font), font!mvc (marvel vs capcom 1)'
 				}, {
-					name: 'Text Box Commands',
-					value: 'b!eb your text here - creates EarthBound-style text box.\nb!eb(n,m,s,b,or p) - creates text box in that specific style. default is n.'
-					 + '\nb!pkmn text - Pokemon Text box\nb!sb text - Skeleton Boomerang Text Box\nb!ut text - creates Undertale text box\nb!utcharactername text - creates Undertale text box with that character (i.e. b!utsans Hey guys it\'s me Sans Undertale\nb!utcharacter_expression text - same but uses a specific expression for that character (i.e. b!utundyne_funny)'
+					name: 'VG Text Box Commands (type the command followed by your message.)',
+					value: `'b!eb - creates EarthBound-style text box. Also available in all 5 flavors; Normal, mint, strawberry, banana, and peanut. 
+(Just add m,s,b,or p after b!eb with no spaces to flavor your textbox. the default is normal flavor.)
+b!pkmn - creates a pokemon styled text box.
+b!sb - creates a Skeleton Boomerang text box.
+b!ut - creates an Undertale text box.
+b!ut_[character name] - creates an Undertale text box with that character (i.e. b!utsans [Hey guys it's me Sans Undertale])
+b!ut_[character name]_[expression] - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)`;
 				}, {
 					name: 'More Text Box Commands',
-					value: 'b!jeopardy text - make Jeopardy clue screen\nb!nirvanna word - nirvanna the band the word\nb!supreme word - supreme logo generator\nb!sunny or b!iasip sentence - always sunny title card generator\nb!wof - makes a wheel of fortune meme'
+					value: `b!jeopardy - makes a Jeopardy answer screen with user input
+b!nirvanna - nirvanna the band the word 
+b!supreme - supreme logo generator
+b!sunny - generates an always sunny title card. also works with b!iasip`;
 				}, {
 					name: 'Local Time Commands',
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
@@ -473,8 +480,8 @@ client.on('message', async message => {
 				}
 			});
 		} else {
-			if ((beaboMessage).match(/ut.+\W/gm)) {
-				var characterText = message.cleanContent.substring(message.cleanContent.indexOf('t') + 1);
+			if ((beaboMessage).match(/ut_.+\W/gm)) {
+				var characterText = message.cleanContent.substring(message.cleanContent.indexOf('t') + 2);
 				var characterexp = characterText.substring(0, characterText.search(/\W/gm)).split('_');
 				var character = characterexp[0];
 				var text = characterText.substring(characterText.search(/\W/gm) + 1);
