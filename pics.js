@@ -133,7 +133,7 @@ var request = require('request').defaults({
 module.exports = (message, content, herokupg) => {
 	if (!(content.startsWith('b!pics ')) && message.channel.hasOwnProperty('guild')){
 	herokupg.query("SELECT picsglobal FROM permissions WHERE guild_id = \'" + message.guild.id + "\';", (err, res) => {
-	if (res.rows[0].picsglobal){
+	if (res.rows.length > 0 && res.rows[0].picsglobal){
 		TwitImgTumb(message, content);
 	}
 	});
