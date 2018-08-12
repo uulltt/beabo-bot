@@ -104,7 +104,7 @@ function helpMessage(message) {
 					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na link to a youtube vid - gets the thumbnail of that youtube vid\na jpg image on the web - gets the EXIf data of that image'
 				}, {
 					name: 'Other Embedding Commands',
-					value: 'b!vids (tumblr post) - embeds a video post from tumblr; b!song (tumblr or vocaroo post) - embeds an audio post from tumblr (with its album art) or vocaroo.\nlink to 4chan post - embeds said 4chan post. Be safe out there kids.'
+					value: 'b!vids (tumblr post) - embeds a video post from tumblr\nb!song (tumblr or vocaroo post) - embeds an audio post from tumblr (with its album art) or vocaroo.\nlink to 4chan post - embeds said 4chan post. Be safe out there kids.'
 				}, {
 					name: 'Funny Fonts',
 					value: 'b!font [game name] [message] (without brackets) - allows you to have beabo pop out a funny message using the font of your favorite game.\n(Game list here: https://nfggames.com/games/fontmaker/ the text after the "y-" in the image url is what you input for [game name])\n'
@@ -116,8 +116,7 @@ function helpMessage(message) {
 b!pkmn - creates a pokemon styled text box.
 b!sb - creates a Skeleton Boomerang text box.
 b!ut - creates an Undertale text box.
-b!ut_[character name] - creates an Undertale text box with that character (i.e. b!utsans [Hey guys it's me Sans Undertale])
-b!ut_[character name]_[expression] - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)`
+`+'`b!ut_[character name]` - creates an Undertale text box with that character (i.e. b!utsans [Hey guys it\'s me Sans Undertale])\n`b!ut_[character name]_[expression]` - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)'
 				}, {
 					name: 'More Text Box Commands',
 					value: `b!jeopardy - makes a Jeopardy answer screen with user input
