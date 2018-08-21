@@ -68,21 +68,6 @@ client.on('guildCreate', (guild) => {
 	});
 });
 
-client.on('presenceUpdate', (oldMember, newMember) => {
-	if (newMember.guild.id === '164877603755393035'){
-		let role = newMember.guild.roles.array().filter(function (item) {
-				return item.name === "LIVE";
-			});
-			if (role.length > 0){
-		if (newMember.presence.game != null && newMember.presence.game.type == 1){
-			newMember.addRole(role[0]).then().catch(console.error);
-		} else {
-			newMember.removeRole(role[0]).then().catch(console.error); 
-		}
-		}
-	}
-});
-
 var lines = [" beabo", " bee", " bii", " be", " beeb"];
 
 function beeb() {
