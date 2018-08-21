@@ -60,7 +60,7 @@ client.on('ready', () => {
 });
 
 client.on('guildCreate', (guild) => {
-	herokupg.query("INSERT INTO permissions (guild_id, voice, picsglobal, greeting) VALUES (\'" + guild.id.toString() + "\',false,false,false) ON CONFLICT (guild_id) DO NOTHING;", (err, res) => {
+	herokupg.query("INSERT INTO permissions (guild_id, voice, picsglobal, greeting) VALUES (\'" + guild.id + "\',false,false,false) ON CONFLICT (guild_id) DO NOTHING;", (err, res) => {
 		if (!err)
 			console.log(res);
 		else
@@ -68,8 +68,24 @@ client.on('guildCreate', (guild) => {
 	});
 });
 
-client.on('guildMemberUpdate', (member) => {
-	console.log(member.presence);
+client.on('presenceUpdate', (oldMember, newMember) => {
+	if (newMember.guild.id === '164877603755393035'){
+		if (newMember.presence.game.streaming){
+			let role = newMember.guild.roles.array().filter(function (item) {
+				return item.name === "LIVE";
+			});
+		if (role.length > 0) {
+			newMember.addRole(role[0]).then().catch(console.error);
+		} 
+		} else {
+			let role = newMember.guild.roles.array().filter(function (item) {
+				return item.name === "LIVE";
+			});
+		if (role.length > 0) {
+			newMember.removeRole(role[0]).then().catch(console.error);
+		} 
+		}
+	}
 });
 
 var lines = [" beabo", " bee", " bii", " be", " beeb"];
