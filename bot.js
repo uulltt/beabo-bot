@@ -70,7 +70,8 @@ client.on('guildCreate', (guild) => {
 
 client.on('presenceUpdate', (oldMember, newMember) => {
 	if (newMember.guild.id === '164877603755393035'){
-		if (newMember.presence.game.type.toLowerCase() === 'streaming'){
+		console.log(newMember.presence.game);
+		/*if (newMember.presence.game.type.toLowerCase() === 'streaming'){
 			let role = newMember.guild.roles.array().filter(function (item) {
 				return item.name === "LIVE";
 			});
@@ -84,7 +85,7 @@ client.on('presenceUpdate', (oldMember, newMember) => {
 		if (role.length > 0) {
 			newMember.removeRole(role[0]).then().catch(console.error);
 		} 
-		}
+		}*/
 	}
 });
 
