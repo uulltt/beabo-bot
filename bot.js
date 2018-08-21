@@ -70,7 +70,7 @@ client.on('guildCreate', (guild) => {
 
 client.on('presenceUpdate', (oldMember, newMember) => {
 	if (newMember.guild.id === '164877603755393035'){
-		console.log(newMember.presence.game);
+		console.log(newMember.presence);
 		/*if (newMember.presence.game.type.toLowerCase() === 'streaming'){
 			let role = newMember.guild.roles.array().filter(function (item) {
 				return item.name === "LIVE";
