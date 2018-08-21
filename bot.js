@@ -68,6 +68,10 @@ client.on('guildCreate', (guild) => {
 	});
 });
 
+client.on('guildMemberUpdate', (member) => {
+	console.log(member.presence);
+});
+
 var lines = [" beabo", " bee", " bii", " be", " beeb"];
 
 function beeb() {
