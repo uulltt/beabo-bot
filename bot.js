@@ -74,7 +74,7 @@ client.on('presenceUpdate', (oldMember, newMember) => {
 				return item.name === "LIVE";
 			});
 			if (role.length > 0){
-		if (newMember.presence.game.hasOwnProperty('type') && newMember.presence.game.type == 1){
+		if (newMember.presence.game != null && newMember.presence.game.type == 1){
 			newMember.addRole(role[0]).then().catch(console.error);
 		} else {
 			newMember.removeRole(role[0]).then().catch(console.error); 
