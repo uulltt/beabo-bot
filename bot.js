@@ -68,7 +68,7 @@ client.on('guildCreate', (guild) => {
 	});
 });
 
-var lines = [" beabo", " bee", " bii", " be", " beeb"];
+var lines = [" beabo", " bee", " bii", " be", " beeb", " bibi"];
 
 function beeb() {
 	var len = Math.floor(Math.random() * 6) + 1;
