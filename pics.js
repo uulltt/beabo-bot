@@ -131,14 +131,14 @@ var request = require('request').defaults({
 	}
 
 module.exports = (message, content, herokupg) => {
-	if (!(content.startsWith('b!pics ')) && message.channel.hasOwnProperty('guild')){
+	if (!(content.includes('b!pics')) && message.channel.hasOwnProperty('guild')){
 	herokupg.query("SELECT picsglobal FROM permissions WHERE guild_id = \'" + message.guild.id + "\';", (err, res) => {
 	if (res.rows.length > 0 && res.rows[0].picsglobal){
 		TwitImgTumb(message, content);
 	}
 	});
 	}
-	if (content.startsWith('b!pics ')) { //all the camera commands go in here
+	if (content.includes('b!pics')) { //all the camera commands go in here
 		TwitImgTumb(message, content);
 		if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
 			request.get(encodeURI(content.substring(7).replace(/ /gm, '')), function (err, res, body) {
@@ -187,7 +187,7 @@ module.exports = (message, content, herokupg) => {
 			message.channel.send(attachment).catch(err => message.channel.send(new Discord.Attachment('https://img.youtube.com/vi/' + videocode + '/0.jpg')));
 		}
 	}
-	if (content.startsWith('b!vids ')) {
+	if (content.includes('b!vids')) {
 		/*if (content.includes('watch?v=') || content.includes('youtu.be/')){ //backup if youtubemp3api ever goes down
 		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
 		message.channel.send(JSON.parse(body.toString())[0].url);
@@ -232,7 +232,7 @@ module.exports = (message, content, herokupg) => {
 			});
 		}
 	}
-	if (content.startsWith('b!song ')) {
+	if (content.includes('b!song')) {
 		if (content.includes('://') && content.includes('/post/')) {
 			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
 			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
