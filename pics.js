@@ -150,6 +150,7 @@ module.exports = (message, content, herokupg) => {
 						if (error)
 							message.channel.send('Error: ' + error.message);
 						else {
+							console.log(exifData);
 							var propValue;
 							const propholders = [exifData.image, exifData.thumbnail, exifData.exif, exifData.gps, exifData.interoperability];
 							for (var i = 0; i < 5; i++) {
