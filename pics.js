@@ -167,7 +167,7 @@ module.exports = (message, content, herokupg) => {
 									title: ':frame_photo: EXIF data:\n',
 									description: (exifString.length > 2048 ? exifString.substring(0, 2048) : exifString),
 									image: {
-										url: encodeURI(content.substring(content.startsWith('!pics ') ? 6 : 3).replace(/ /gm, ''))
+										url: encodeURI(content.substring(7).replace(/ /gm, ''));
 									}
 								}
 							});
