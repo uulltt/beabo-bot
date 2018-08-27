@@ -534,4 +534,4 @@ channel.send(`Beabo bee Beabo!!! (Welcome to the server, ${member})`).then().cat
 
 });
 
-client.login('NDM5NTM1OTg5ODIwNzUxODcz.DmX_nA.ixr8UFTkdLFkNPUTwLm_p5cS1CA');
+client.login('NDM5NTM1OTg5ODIwNzUxODcz.DmYBIQ.Kup82JqzQ8ogh-bHFhOPjg3tQ-4');
