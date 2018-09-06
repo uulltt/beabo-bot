@@ -1,8 +1,6 @@
 
 const Discord = require('discord.js');
-var direction = require('google-maps-direction');
 const client = new Discord.Client();
-var googlePlaces = require('googleplaces');
 var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
 var fs = require('fs');
 var fonts = require('./fonts.js');
