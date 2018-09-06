@@ -16,7 +16,7 @@ console.log(JSON.stringify(Player.getEvents()));
 							
 							});
 	}
-	if (content.startswith('b!makemidi')){
+	if (content.startsWith('b!makemidi')){
 		var track = new MidiWriter.Track();
  
 // Define an instrument (optional):
