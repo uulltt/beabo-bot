@@ -6,6 +6,7 @@ var googlePlaces = require('googleplaces');
 var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
 var fs = require('fs');
 var fonts = require('./fonts.js');
+var midi = require('./markov-midi.js');
 var pics = require('./pics.js');
 const movies = require('./rotten.js');
 const giantbomb = require('./gb.js');
@@ -15,7 +16,7 @@ var Font = Canvas.Font;
 var path = require('path');
 Canvas.registerFont('./fonts/COOPBL.TTF', {
 	family: 'Cooper Black'
-});
+	});
 Canvas.registerFont('./fonts/Futura Std Heavy Oblique.otf', {
 	family: 'Supreme'
 });
@@ -267,6 +268,7 @@ client.on('message', async message => {
 	fonts(message);
 	//movies(message, message.content);
 	pics(message, message.content, herokupg);
+	midi(message, message.content, herokupg);
 	if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
 		var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
 		console.log(thread);
