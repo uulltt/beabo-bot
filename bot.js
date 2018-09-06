@@ -9,6 +9,7 @@ var Canvas = require('canvas');
 var Image = Canvas.Image;
 var Font = Canvas.Font;
 var path = require('path');
+
 Canvas.registerFont('./fonts/COOPBL.TTF', {
 	family: 'Cooper Black'
 	});
@@ -21,8 +22,6 @@ Canvas.registerFont('./fonts/Textile.ttf', {
 Canvas.registerFont('./fonts/Korinna Bold.ttf', {
 	family: 'Jeopardy'
 });
-//var coopbl = new Font('cooper black', ('./fonts/COOPBL.ttf'));
-
 
 var EarthBoundText = require('./scripts/lib/ebtext.js');
 var timestuff = require('./timestuff.js');

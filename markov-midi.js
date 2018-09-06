@@ -11,10 +11,8 @@ module.exports = (message, content, herokupg) => {
 	if (message.attachments.array().length > 0 && message.attachments.array()[0].url.includes('.mid')){
 		request.get(message.attachments.array()[0].url, function (err, res, body) {
 							Player.loadArrayBuffer(body);
-							Player.on('fileLoaded', function() {
-    console.log(Player.getEvents());
-});
-console.log(Player.getEvents());
+console.log(JSON.stringify(Player.getEvents()).length);							
+console.log(JSON.stringify(Player.getEvents()));
 							
 							});
 	}
