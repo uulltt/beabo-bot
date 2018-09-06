@@ -186,6 +186,13 @@ module.exports = (message, content, herokupg) => {
 			var attachment = new Discord.Attachment('https://i.ytimg.com/vi/' + videocode + '/maxresdefault.jpg');
 			message.channel.send(attachment).catch(err => message.channel.send(new Discord.Attachment('https://img.youtube.com/vi/' + videocode + '/0.jpg')));
 		}
+		if (message.content.startsWith('b!pics') && message.mentions.users.array().length > 0){
+		var len = message.mentions.users.array().length
+			for(var i = 0; i < len; i++){
+			message.channel.send({embed: { image: { url: message.mentions.users.array()[i].avatarURL}}});
+			}
+			
+		}
 	}
 	if (content.includes('b!vids')) {
 		/*if (content.includes('watch?v=') || content.includes('youtu.be/')){ //backup if youtubemp3api ever goes down

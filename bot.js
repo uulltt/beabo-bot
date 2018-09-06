@@ -111,12 +111,12 @@ function helpMessage(message) {
 					 + 'Custom Fonts: font!crash, font!ms (metal slug), font!mario64, font!wario (warioware), font!puyo (Puyo Puyo), font!mk2 (mortal kombat 2), font!doom, font!ecco, font!wh2 (world heroes 2), font!ddpt (dodonpachi tall font), font!rr (road rash font), font!mvc (marvel vs capcom 1)'
 				}, {
 					name: 'VG Text Box Commands (type the command followed by your message.)',
-					value: `b!eb - creates EarthBound-style text box. Also available in all 5 flavors; Normal, mint, strawberry, banana, and peanut. 
+					value: `b!eb - creates EarthBound-style text box. Also available in all 5 flavors; Normal, mint, strawberry, banana, and peanut.
 (Just add m,s,b,or p after b!eb with no spaces to flavor your textbox. the default is normal flavor.)
 b!pkmn - creates a pokemon styled text box.
 b!sb - creates a Skeleton Boomerang text box.
 b!ut - creates an Undertale text box.
-`+'`b!ut_[character name]` - creates an Undertale text box with that character (i.e. b!utsans [Hey guys it\'s me Sans Undertale])\n`b!ut_[character name]_[expression]` - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)'
+					` + '`b!ut_[character name]` - creates an Undertale text box with that character (i.e. b!utsans [Hey guys it\'s me Sans Undertale])\n`b!ut_[character name]_[expression]` - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)'
 				}, {
 					name: 'More Text Box Commands',
 					value: `b!jeopardy - makes a Jeopardy answer screen with user input
@@ -154,16 +154,14 @@ const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', 
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumblr.com', 'http://www.monster-lands.com'];
 client.on('message', async message => {
-	if ((message.content.toLowerCase().includes('@y\'all') || message.content.toLowerCase().includes('@yall')) && !(new RegExp(/`[^`]*@y('?)all[^`]*`/gm)).test(message.content.toLowerCase())){
-	
-	if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
-	message.channel.send(message.member.voiceChannel.members.array().map(function(item){
-	return '<@' + item.id  + '>';
-	}).filter(function(item, pos, self) {
-	return self.indexOf(item) == pos;
-	}).toString()
-	)
-	}
+	if ((message.content.toLowerCase().includes('@y\'all') || message.content.toLowerCase().includes('@yall')) && !(new RegExp(/`[^`]*@y('?)all[^`]*`/gm)).test(message.content.toLowerCase())) {
+		if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
+			message.channel.send(message.member.voiceChannel.members.array().map(function (item) {
+					return '<@' + item.id + '>';
+				}).filter(function (item, pos, self) {
+					return self.indexOf(item) == pos;
+				}).toString())
+		}
 	}
 
 	if (message.content.includes('@everyone')) {
@@ -228,10 +226,10 @@ client.on('message', async message => {
 				message.channel.send(favegames[(Math.floor(Math.random() * ((message.content.toLowerCase().includes("steam") || message.content.toLowerCase().includes("buy")) ? 7 : 8)))] + '/');
 			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t ((are)|r) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)s(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)s ((should i (get|buy|play|dl|download))|((r|(are)) (yo)?ur fav((e|orite)?))|(do (yo)?u li([ek]{2})))(\?)?/gm)) {
 				var games = favegames[0] + '/\n' + favegames[3] + '/\n' + favegames[5] + '/\n' + favegames[6] + '/\n'
-				if (!message.content.toLowerCase().includes("steam") && !message.content.toLowerCase().includes("buy")){
-				games += favegames[7] + '/'
-				}
-				message.channel.send(games);
+					if (!message.content.toLowerCase().includes("steam") && !message.content.toLowerCase().includes("buy")) {
+						games += favegames[7] + '/'
+					}
+					message.channel.send(games);
 			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t((('?)s)|( is)) (yo)?ur fav((e|orite)?) ((web(( |(\-))?))?)(comic)(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t ((web(( |\-)?))?)(comic) is (yo)?ur fav((e|orite)?)(\?)?/gm)) {
 				message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
 			} else {
@@ -270,49 +268,46 @@ client.on('message', async message => {
 	//movies(message, message.content);
 	pics(message, message.content, herokupg);
 	if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
-			var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
-			console.log(thread);
-			var post = thread.match(/[0-9][0-9]+/gm)[0];
-			if (thread.includes('#p')) {
-				post = thread.substring(thread.indexOf('#p') + 2).match(/[0-9]+/gm)[0];
-				thread = thread.substring(0, thread.indexOf('#p'));
+		var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
+		console.log(thread);
+		var post = thread.match(/[0-9][0-9]+/gm)[0];
+		if (thread.includes('#p')) {
+			post = thread.substring(thread.indexOf('#p') + 2).match(/[0-9]+/gm)[0];
+			thread = thread.substring(0, thread.indexOf('#p'));
 
-			}
-			thread = thread.match(/n\.org\/[3a-z]+\/thread\/[0-9]+/gm)[0];
-			console.log(thread);
-			var board = thread.substring(thread.indexOf('org/') + 4);
-				board = board.substring(0, board.indexOf('/'));
-			var request = require('request').defaults({
-					encoding: null
-				});
-			request.get(encodeURI('https://a.4cd' + thread + '.json'), function (err, res, body) {
-				var posts = JSON.parse(body.toString());
-				var jsonpost = posts.posts.filter(function (item) {
-						return item.no.toString() === post;
-					})[0];
-				var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/&lt;/gm, '<').replace(/&#039;/gm, '\'').replace(/&quot;/gm, '\"').replace(/<a href=".+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
-				
-				const embed = new Discord.RichEmbed().setTitle(jsonpost.sub).setFooter(jsonpost.now).setDescription(text).setURL('https://boards.4cha' + thread).setAuthor(jsonpost.name);
-				if (jsonpost.hasOwnProperty('ext')) {
-					var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
-					if (jsonpost.ext.toLowerCase().charAt(1) === 'w') {
-						message.channel.send(embed).then(message.channel.send(fileUrl));
+		}
+		thread = thread.match(/n\.org\/[3a-z]+\/thread\/[0-9]+/gm)[0];
+		console.log(thread);
+		var board = thread.substring(thread.indexOf('org/') + 4);
+		board = board.substring(0, board.indexOf('/'));
+		var request = require('request').defaults({
+				encoding: null
+			});
+		request.get(encodeURI('https://a.4cd' + thread + '.json'), function (err, res, body) {
+			var posts = JSON.parse(body.toString());
+			var jsonpost = posts.posts.filter(function (item) {
+					return item.no.toString() === post;
+				})[0];
+			var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/&lt;/gm, '<').replace(/&#039;/gm, '\'').replace(/&quot;/gm, '\"').replace(/<a href=".+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
 
-					} else {
-						embed.setImage(fileUrl);
-						message.channel.send(embed);
-					}
+			const embed = new Discord.RichEmbed().setTitle(jsonpost.sub).setFooter(jsonpost.now).setDescription(text).setURL('https://boards.4cha' + thread).setAuthor(jsonpost.name);
+			if (jsonpost.hasOwnProperty('ext')) {
+				var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
+				if (jsonpost.ext.toLowerCase().charAt(1) === 'w') {
+					message.channel.send(embed).then(message.channel.send(fileUrl));
+
 				} else {
+					embed.setImage(fileUrl);
 					message.channel.send(embed);
 				}
+			} else {
+				message.channel.send(embed);
+			}
 
-			});
-		}
+		});
+	}
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
-
-		
-		
 
 		/*if (beaboMessage.substring(0, 4) === '!gb ') {
 		giantbomb(message, beaboMessage);
@@ -335,7 +330,7 @@ client.on('message', async message => {
 					console.log(err);
 			});
 		}
-		
+
 		timestuff(message, beaboMessage, herokupg);
 
 		if (beaboMessage.toLowerCase().startsWith("nirvanna ")) {
@@ -512,8 +507,6 @@ client.on('message', async message => {
 			}
 		}
 
-		
-
 		if (beaboMessage.substring(0, 8) === 'commands' || beaboMessage.substring(0, 4) === 'help') {
 			helpMessage(message);
 		}
@@ -522,16 +515,17 @@ client.on('message', async message => {
 });
 
 client.on('guildMemberAdd', member => {
-herokupg.query("SELECT greeting FROM permissions WHERE guild_id = \'" + member.guild.id.toString() + "\';", async function (err, res) {
-						if (res.rows[0].greeting) {
-							const channel = member.guild.channels.find('name', 'general');
-// Do nothing if the channel wasn't found on this server
-if (!channel) return;
-// Send the message, mentioning the member
-channel.send(`Beabo bee Beabo!!! (Welcome to the server, ${member})`).then().catch(console.error);
-						}
-					});
-// Send the message to a designated channel on a server:
+	herokupg.query("SELECT greeting FROM permissions WHERE guild_id = \'" + member.guild.id.toString() + "\';", async function (err, res) {
+		if (res.rows[0].greeting) {
+			const channel = member.guild.channels.find('name', 'general');
+			// Do nothing if the channel wasn't found on this server
+			if (!channel)
+				return;
+			// Send the message, mentioning the member
+			channel.send(`Beabo bee Beabo!!! (Welcome to the server, ${member})`).then().catch(console.error);
+		}
+	});
+	// Send the message to a designated channel on a server:
 
 });
 
