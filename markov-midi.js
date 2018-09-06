@@ -25,7 +25,7 @@ track.addEvent(new MidiWriter.ProgramChangeEvent({instrument : 1}));
 // Add some notes:
 var note = new MidiWriter.NoteEvent({pitch:['C4', 'D4', 'E4'], duration: '4'});
 track.addEvent(note);
- 
+track.addEvent(note);
 // Generate a data URI
 var write = new MidiWriter.Writer([track]);
 console.log(Buffer.from(write.buildFile()));
