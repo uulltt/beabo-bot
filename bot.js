@@ -1,7 +1,6 @@
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
-var GPlaces = new googlePlaces(process.env.PLACES_KEY, "json");
 var fs = require('fs');
 var fonts = require('./fonts.js');
 var midi = require('./markov-midi.js');
