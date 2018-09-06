@@ -20,7 +20,7 @@ console.log(JSON.stringify(Player.getEvents()));
 		var track = new MidiWriter.Track();
  
 // Define an instrument (optional):
-track.addEvent(new MidiWriter.ProgramChangeEvent({instrument : 1}));
+//track.addEvent(new MidiWriter.ProgramChangeEvent({instrument : 1}));
  
 // Add some notes:
 var note = new MidiWriter.NoteEvent({pitch:['C4', 'D4', 'E4'], duration: '4'});
