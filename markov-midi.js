@@ -28,7 +28,7 @@ track.addEvent(note);
  
 // Generate a data URI
 var write = new MidiWriter.Writer([track]);
-console.log(write.buildFile);
+console.log(write.buildFile());
 		
 	}
 }
