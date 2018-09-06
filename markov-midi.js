@@ -1,5 +1,5 @@
-const player = require('midi-player-js');
-const writer = require('midi-writer-js');
+const MidiPlayer = require('midi-player-js');
+const MidiWriter = require('midi-writer-js');
 const request = require('request').defaults({
 		encoding: null
 	});
