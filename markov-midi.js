@@ -28,7 +28,10 @@ track.addEvent(note);
  
 // Generate a data URI
 var write = new MidiWriter.Writer([track]);
-console.log(write.buildFile());
+console.log(Buffer.from(write.buildFile()));
+message.channel.send({
+						files: [{attachment: Buffer.from(write.buildFile()),name: 'test.mid'}]
+					});
 		
 	}
 }
