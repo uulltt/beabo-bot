@@ -96,7 +96,7 @@ function helpMessage(message) {
 		embed: {
 			fields: [{
 					name: 'Album Embedding (b!pics followed by)',
-					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na link to a youtube vid - gets the thumbnail of that youtube vid\na jpg image on the web - gets the EXIf data of that image'
+					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na link to a youtube vid - gets the thumbnail of that youtube vid\na jpg image on the web - gets the EXIf data of that image\nmention a user - get user\'s avatar image'
 				}, {
 					name: 'Other Embedding Commands',
 					value: 'b!vids (tumblr post) - embeds a video post from tumblr\nb!song (tumblr or vocaroo post) - embeds an audio post from tumblr (with its album art) or vocaroo.\nb!thread (twitter link) - links to threadreaderapp version of linked twitter thread\nlink to 4chan post - embeds said 4chan post. Be safe out there kids.'
