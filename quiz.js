@@ -35,7 +35,10 @@ const request = require('request').defaults({
 							time: 60000
 						});
 					collector.on('collect', message2 => {
-						if (message2.user === message.user && message2.channel === message.channel) {
+						if (message2.user === message.user && message2.channel === message.channel) {	
+							if (message2.cleanContent.toLowerCase().startsWith('b!quiz')){
+								collector.stop();
+							} else {
 							var a = message2.cleanContent.toLowerCase().replace(/[^ 0-9a-z]/gm, '');
 							if (a == answer){
 								message2.react('✅');
@@ -50,6 +53,7 @@ const request = require('request').defaults({
 							i++;
 							if (i < len){
 								testQuestion(message, content, quiz, i, len);
+							}
 							}
 							
 						}
