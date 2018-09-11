@@ -18,6 +18,7 @@ const request = require('request').defaults({
 		var quizID = content.match(/\/[0-9]+\//gm)[0].match(/[0-9]+/gm)[0];
 		request.get('https://api.quizlet.com/2.0/sets/'+quizID+'?client_id='+clientID+'&whitespace=1', function(err, res, body){
 			var quiz = JSON.parse(body.toString());
+			len = Math.min(len, quiz.terms.length);
 			testQuestion(message, content, quiz, 0, len)
 		});
 		}
