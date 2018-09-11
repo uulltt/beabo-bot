@@ -12,6 +12,15 @@ const request = require('request').defaults({
 			testQuestion(message, content, quiz, 0, 1)
 		});
 		}
+		if (content.match(/b!quiz[0-9]+\Whttps:\/\/quizlet\.com\/[0-9]+/gm)){
+		var len = parseInt(content.substring(6).match(/[0-9]+/gm)[0]);
+		console.log(len);
+		var quizID = content.match(/\/[0-9]+\//gm)[0].match(/[0-9]+/gm)[0];
+		request.get('https://api.quizlet.com/2.0/sets/'+quizID+'?client_id='+clientID+'&whitespace=1', function(err, res, body){
+			var quiz = JSON.parse(body.toString());
+			testQuestion(message, content, quiz, 0, len)
+		});
+		}
 		
 		
 	}
@@ -34,6 +43,10 @@ const request = require('request').defaults({
 								message2.react('❌');
 								message.channel.send('\"' + q.definition + '\"');
 								collector.stop();
+							}
+							i++;
+							if (i < len){
+								testQuestion(message, content, quiz, i, len);
 							}
 						}
 
