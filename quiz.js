@@ -38,16 +38,19 @@ const request = require('request').defaults({
 							var a = message2.cleanContent.toLowerCase().replace(/[^ 0-9a-z]/gm, '');
 							if (a == answer){
 								message2.react('✅');
-								collector.stop();
 							} else {
 								message2.react('❌');
 								message.channel.send('\"' + q.definition + '\"');
-								collector.stop();
 							}
+							collector.stop();
+							quiz.terms = quiz.terms.filter(function(item){
+							return item.term !== question;
+							});
 							i++;
 							if (i < len){
 								testQuestion(message, content, quiz, i, len);
 							}
+							
 						}
 
 					});
