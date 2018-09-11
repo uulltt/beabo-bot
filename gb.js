@@ -242,7 +242,7 @@ module.exports = (message, content) => {
 						}
 						message.channel.send('Which did you mean? Please Reply with a number.\n' + gamelist);
 					const collector = new Discord.MessageCollector(message.channel, m => m.author.id === message.author.id, {
-							time: 10000
+							time: 60000
 						});
 					collector.on('collect', message2 => {
 						if (message2.user === message.user && message2.channel === message.channel && parseInt(message2.content)) {
