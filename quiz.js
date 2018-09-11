@@ -31,7 +31,7 @@ const request = require('request').defaults({
 								message2.react('✅');
 								collector.stop();
 							} else {
-								message2.react('❎');
+								message2.react('❌');
 								message.channel.send('\"' + q.definition + '\"');
 								collector.stop();
 							}
