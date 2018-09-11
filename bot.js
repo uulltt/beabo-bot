@@ -9,7 +9,7 @@ var Canvas = require('canvas');
 var Image = Canvas.Image;
 var Font = Canvas.Font;
 var path = require('path');
-var quiz - require('./quiz.js');
+var quiz = require('./quiz.js');
 
 Canvas.registerFont('./fonts/COOPBL.TTF', {
 	family: 'Cooper Black'
