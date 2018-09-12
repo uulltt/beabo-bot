@@ -25,13 +25,21 @@ function play(connection, message) {
 			} else {
 				connection.disconnect();
 			}
-		}
+		});
 		} else if (link.includes('soundcloud.com/')) {
 			soundcloudDl.getSongDlByURL(link).then(function (song) {
 				console.log(song);
 				server.dispatcher = connection.playStream(song.http_mp3_128_url);
-				
-			} else if (link.match(/\/post\/[0-9]+/gm)) {
+				server.queue.shift();
+		server.dispatcher.on('end', function () {
+			if (server.queue[0]) {
+				play(connection, message);
+			} else {
+				connection.disconnect();
+			}
+		});
+			});
+		} else if (link.match(/\/post\/[0-9]+/gm)) {
 				var blogId = content.substring(content.indexOf('://') + 3, content.indexOf('/post/'));
 				var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 				tumblr.get('/posts', {
