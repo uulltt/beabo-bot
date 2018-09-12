@@ -69,10 +69,6 @@ function play(connection, message) {
 						connection.disconnect();
 					}
 				}
-
-				
-	});
-
 			}
 
 			module.exports = async function (client, message, content, herokupg) {
