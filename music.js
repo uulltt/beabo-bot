@@ -24,11 +24,11 @@ function play(connection, message) {
 				play(connection, message);
 			} else {
 			console.log("AAAAAA");
-				//connection.disconnect();
+			connection.disconnect();
 			}
 		});
 		} else if (link.includes('soundcloud.com/')) {
-			soundcloudDl.getSongDlByURL(link).then(function (song) {
+			soundcloud.getSongDlByURL(link).then(function (song) {
 				console.log(song);
 				server.dispatcher = connection.playStream(song.http_mp3_128_url);
 				server.queue.shift();
