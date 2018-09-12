@@ -9,7 +9,6 @@ const request = require('request').defaults({
 var tumblr = new Tumblr({
 		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 	});
-var youtubeStream = require('youtube-audio-stream')
 
 function play(connection, message) {
 	var server = servers[message.guild.id];
