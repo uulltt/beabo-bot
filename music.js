@@ -14,7 +14,7 @@ function play(connection, message) {
 	var server = servers[message.guild.id];
 	var link = server.queue[0];
 	if (link.includes('youtube.com/watch?v=') || link.includes('youtu.be/')) {
-		server.dispatcher = connection.play(ytdl(
+		server.dispatcher = connection.playStream(ytdl(
 					link, {
 					filter: 'audioonly'
 				}));
@@ -30,7 +30,7 @@ function play(connection, message) {
 		} else if (link.includes('soundcloud.com/')) {
 			soundcloudDl.getSongDlByURL(link).then(function (song) {
 				console.log(song);
-				server.dispatcher = connection.play(song.http_mp3_128_url);
+				server.dispatcher = connection.playStream(song.http_mp3_128_url);
 				server.queue.shift();
 		server.dispatcher.on('end', function () {
 			if (server.queue[0]) {
@@ -49,7 +49,7 @@ function play(connection, message) {
 				}, function (err, json) {
 					if (json.total_posts > 0 && json.posts[0].type === 'audio') {
 						var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
-								server.dispatcher = connection.play(r.uri.href);
+								server.dispatcher = connection.playStream(r.uri.href);
 								server.queue.shift();
 								server.dispatcher.on('end', function () {
 									if (server.queue[0]) {
@@ -72,7 +72,7 @@ function play(connection, message) {
 				}
 			}
 
-			module.exports = async function (client, message, content, herokupg) {
+			module.exports = function (client, message, content, herokupg) {
 				if (content.startsWith('b!play') && message.member.voiceChannel) {
 					var link = content.substring(6).trim();
 					console.log(link);
