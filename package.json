@@ -27,7 +27,6 @@
 	"soundcloud-dl": "1.0.3",
     "tumblrwks": "0.3.0",
     "twitter": "1.7.1",
-	"youtube-audio-player": "1.0.0",
 	"youtube-audio-stream": "0.2.0",
 	"ytdl-core": "^0.20.3"
   },
