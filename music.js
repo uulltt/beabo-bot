@@ -101,7 +101,7 @@ function play(connection, message) {
 						};
 					}
 					servers[message.guild.id].queue.push(link);
-					servers[message.guild.id].upnext = "Up Next:\n" + servers[message.guild.id].queue.map(function(item){
+					servers[message.guild.id].upnext = "Up Next:\n" + servers[message.guild.id].queue.map(async function(item){
 				if (item.includes('youtube.com/watch?v=') || item.includes('youtu.be/')){
 				return await getYTinfo(item);
 				} else {
