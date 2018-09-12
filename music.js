@@ -87,7 +87,11 @@ function play(connection, message) {
 					servers[message.guild.id].queue.push(link);
 					servers[message.guild.id].upnext = "Up Next:\n" + servers[message.guild.id].queue.map(function(item){
 				if (item.includes('youtube.com/watch?v=') || item.includes('youtu.be/')){
-				ytdl.getBasicInfo(item, function(err, info){
+				var videocode = item.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			if (content.includes('youtu.be/')) {
+				videocode = item.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			}
+				ytdl.getBasicInfo(videocode, function(err, info){
 					return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+info.title+'`\n';
 				});
 				} else {
