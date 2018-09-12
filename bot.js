@@ -301,8 +301,8 @@ client.on('message', async message => {
 		});
 	}
 	
-	if (content.includes('vocaroo.com/i/')){
-			var vocId = content.substring(content.indexOf('/i/')+3).match(/[A-Za-z0-9]+/gm)[0];
+	if (message.content.includes('vocaroo.com/i/')){
+			var vocId = message.content.substring(content.indexOf('/i/')+3).match(/[A-Za-z0-9]+/gm)[0];
 			request.get('https://vocaroo.com/media_command.php?media='+vocId+'&command=download_mp3', function (err, res, body) {
 								message.channel.send({
 									files: [{
