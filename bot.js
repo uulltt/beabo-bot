@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 var fs = require('fs');
 var fonts = require('./fonts.js');
-var midi = require('./markov-midi.js');
+var music = require('./music.js');
 var pics = require('./pics.js');
 var Canvas = require('canvas');
 var Image = Canvas.Image;
@@ -65,6 +65,8 @@ client.on('guildCreate', (guild) => {
 });
 
 var lines = [" beabo", " bee", " bii", " be", " beeb", " bibi"];
+
+var servers = {};
 
 function beeb() {
 	var len = Math.floor(Math.random() * 6) + 1;
@@ -223,7 +225,7 @@ client.on('message', async message => {
 				message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
 			} else {
 
-				if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
+				if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel && message.guild.voiceConnection == null) {
 					herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
 						if (res.rows[0].voice) {
 							const connection = await message.member.voiceChannel.join();
@@ -257,6 +259,7 @@ client.on('message', async message => {
 	//movies(message, message.content);
 	pics(message, message.content, herokupg);
 	quiz(message, message.content.toLowerCase());
+	music(client, message, message.content.toLowerCase(), herokupg);
 	//midi(message, message.content, herokupg);
 	if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
 		var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
@@ -397,7 +400,7 @@ client.on('message', async message => {
 					}
 				]
 			});
-			if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
+			if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel && message.guild.voiceConnection == null) {
 				herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
 					if (res.rows[0].voice) {
 						const connection = await message.member.voiceChannel.join();
