@@ -18,6 +18,7 @@ function play(connection, message) {
 		server.dispatcher = connection.playStream(ytdl(
   link,
   { filter: 'audioonly' }));
+  server.dispatcher.setVolume(0.3); // half the volume
 		server.queue.shift();
 		server.dispatcher.on('end', function () {
 			if (server.queue[0]) {
@@ -29,6 +30,7 @@ function play(connection, message) {
 		} else if (link.toLowerCase().includes('soundcloud.com/')) {
 			soundcloud.getSongDlByURL(link).then(function (song) {
 				server.dispatcher = connection.playStream(song.http_mp3_128_url);
+				server.dispatcher.setVolume(0.3); // half the volume
 				server.queue.shift();
 		server.dispatcher.on('end', function () {
 			if (server.queue[0]) {
@@ -49,6 +51,7 @@ function play(connection, message) {
 					if (json.total_posts > 0 && json.posts[0].type === 'audio') {
 						var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
 								server.dispatcher = connection.playStream(r.uri.href);
+								server.dispatcher.setVolume(0.3); // half the volume
 								server.queue.shift();
 								server.dispatcher.on('end', function () {
 									if (server.queue[0]) {
