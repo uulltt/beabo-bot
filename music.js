@@ -76,6 +76,19 @@ function play(connection, message) {
 					}
 				}
 			}
+			
+			async function getYTinfo(item){
+			var videocode = item.substring(item.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			if (item.includes('youtu.be/')) {
+				videocode = item.substring(item.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			}
+			console.log(videocode);
+				return new Promise(function (resolve, reject) {
+				ytdl.getBasicInfo(videocode, function(err, info){
+					resolve(info.title);//(servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+info.title+'`\n';
+				});
+				});
+			}
 
 			module.exports = async function (client, message, content, herokupg) {
 				if (content.toLowerCase().startsWith('b!play') && message.member.voiceChannel) {
@@ -90,15 +103,7 @@ function play(connection, message) {
 					servers[message.guild.id].queue.push(link);
 					servers[message.guild.id].upnext = "Up Next:\n" + servers[message.guild.id].queue.map(function(item){
 				if (item.includes('youtube.com/watch?v=') || item.includes('youtu.be/')){
-				var videocode = item.substring(item.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			if (item.includes('youtu.be/')) {
-				videocode = item.substring(item.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			}
-			console.log(videocode);
-				ytdl.getBasicInfo(videocode, function(err, info){
-				console.log(info);
-					return item;//(servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+info.title+'`\n';
-				});
+				return await getYTinfo(item);
 				} else {
 				return (servers[message.guild.id].queue.indexOf(item)).toString() + '.`'+item+'`\n';	
 				}
