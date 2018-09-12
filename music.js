@@ -20,7 +20,6 @@ function play(connection, message) {
   { filter: 'audioonly' }));
   server.dispatcher.setVolume(0.3); // half the volume
 		server.queue.shift();
-		
 		server.dispatcher.on('end', function () {
 			if (server.queue[0]) {
 				play(connection, message);
@@ -33,7 +32,6 @@ function play(connection, message) {
 				server.dispatcher = connection.playStream(song.http_mp3_128_url);
 				server.dispatcher.setVolume(0.3); // half the volume
 				server.queue.shift();
-				
 		server.dispatcher.on('end', function () {
 			if (server.queue[0]) {
 				play(connection, message);
@@ -55,7 +53,6 @@ function play(connection, message) {
 								server.dispatcher = connection.playStream(r.uri.href);
 								server.dispatcher.setVolume(0.3); // half the volume
 								server.queue.shift();
-								
 								server.dispatcher.on('end', function () {
 									if (server.queue[0]) {
 										play(connection, message);
@@ -76,41 +73,17 @@ function play(connection, message) {
 					}
 				}
 			}
-			
-			async function getYTinfo(item){
-			var videocode = item.substring(item.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			if (item.includes('youtu.be/')) {
-				videocode = item.substring(item.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			}
-			console.log(videocode);
-				return new Promise(function (resolve, reject) {
-				ytdl.getBasicInfo(videocode, function(err, info){
-				if (!err)
-					resolve(info.title);//(servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+info.title+'`\n';
-				else
-					reject(err);
-				});
-				});
-			}
 
-			module.exports = async function (client, message, content, herokupg) {
+			module.exports = function (client, message, content, herokupg) {
 				if (content.toLowerCase().startsWith('b!play') && message.member.voiceChannel) {
 					var link = content.substring(6).trim();
 					console.log(link);
 					if (!servers[message.guild.id]) {
 						servers[message.guild.id] = {
-							queue: [],
-							upnext: ""
+							queue: []
 						};
 					}
 					servers[message.guild.id].queue.push(link);
-					servers[message.guild.id].upnext = "Up Next:\n" + servers[message.guild.id].queue.map(async function(item){
-				if (item.includes('youtube.com/watch?v=') || item.includes('youtu.be/')){
-				return await getYTinfo(item);
-				} else {
-				return (servers[message.guild.id].queue.indexOf(item)).toString() + '.`'+item+'`\n';	
-				}
-				}).toString().replace(/,/gm, '');
 					message.react('✅');
 					console.log(servers[message.guild.id].queue);
 					if (message.guild.voiceConnection == null){
@@ -128,8 +101,9 @@ function play(connection, message) {
 				message.channel.send(server.nowplaying);
 				}
 				if (content.toLowerCase().startsWith('b!queue') && message.guild.voiceConnection != null){
-				var server = servers[message.guild.id];
-				message.channel.send(server.upnext);
+				message.channel.send("Up Next:\n" + servers[message.guild.id].queue.map(function(item){
+				return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+item+'`\n';	
+				}).toString().replace(/,/gm), '');
 				}
 
 			}
