@@ -85,8 +85,10 @@ function play(connection, message) {
 			console.log(videocode);
 				return new Promise(function (resolve, reject) {
 				ytdl.getBasicInfo(videocode, function(err, info){
-				console.log(info.title);
+				if (!err)
 					resolve(info.title);//(servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+info.title+'`\n';
+				else
+					reject(err);
 				});
 				});
 			}
