@@ -14,7 +14,7 @@ function play(connection, message) {
 	var server = servers[message.guild.id];
 	var link = server.queue[0];
 	servers[message.guild.id].nowplaying = link;
-	if (link.includes('youtube.com/watch?v=') || link.includes('youtu.be/')) {
+	if (link.toLowerCase().includes('youtube.com/watch?v=') || link.toLowerCase().includes('youtu.be/')) {
 		server.dispatcher = connection.playStream(ytdl(
   link,
   { filter: 'audioonly' }));
@@ -26,7 +26,7 @@ function play(connection, message) {
 			connection.disconnect();
 			}
 		});
-		} else if (link.includes('soundcloud.com/')) {
+		} else if (link.toLowerCase().includes('soundcloud.com/')) {
 			soundcloud.getSongDlByURL(link).then(function (song) {
 				server.dispatcher = connection.playStream(song.http_mp3_128_url);
 				server.queue.shift();
@@ -72,7 +72,7 @@ function play(connection, message) {
 			}
 
 			module.exports = function (client, message, content, herokupg) {
-				if (content.startsWith('b!play') && message.member.voiceChannel) {
+				if (content.toLowerCase().startsWith('b!play') && message.member.voiceChannel) {
 					var link = content.substring(6).trim();
 					console.log(link);
 					if (!servers[message.guild.id]) {
@@ -86,11 +86,11 @@ function play(connection, message) {
 					play(connection, message);
 					});
 				}
-				if (content.startsWith('b!skip') && message.member.voiceChannel){
+				if (content.toLowerCase().startsWith('b!skip') && message.member.voiceChannel){
 				var server = servers[message.guild.id];
 				if (server.dispatcher) server.dispatcher.end();
 				}
-				if (content.startsWith('b!nowplaying') && message.guild.voiceConnection != null){
+				if (content.toLowerCase().startsWith('b!nowplaying') && message.guild.voiceConnection != null){
 				var server = servers[message.guild.id];
 				message.channel.send(server.nowplaying);
 				}
