@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const ytdl = require('ytdl-core');
-const soundcloud = = require('soundcloud-dl');
+const soundcloud = require('soundcloud-dl');
 var Tumblr = require('tumblrwks');
 var servers = {};
 const request = require('request').defaults({
