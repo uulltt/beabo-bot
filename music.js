@@ -23,7 +23,7 @@ if (content.startsWith('b!play') && message.member.voiceChannel){
 	else if (link.includes('soundcloud.com/')){
 		soundcloudDl.getSongDlByURL(link).then(function(song){
 		console.log(song);
-    connection.play(song);
+    connection.play(song.http_mp3_128_url);
 });
 	}
 	else if (link.match(/\/post\/[0-9]+/gm)){
