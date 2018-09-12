@@ -14,7 +14,7 @@ function play(connection, message) {
 	var server = servers[message.guild.id];
 	var link = server.queue[0];
 	if (link.includes('youtube.com/watch?v=') || link.includes('youtu.be/')) {
-		server.dispatcher = connection.playStream(ytdl(
+		server.dispatcher = connection.play(ytdl(
 					link, {
 					filter: 'audioonly'
 				}));
