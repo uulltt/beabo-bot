@@ -56,7 +56,7 @@ function play(connection, message) {
 									} else {
 										connection.disconnect();
 									}
-								}
+								});
 								});
 						}
 					});
@@ -84,7 +84,7 @@ function play(connection, message) {
 							queue: []
 						};
 					}
-					queue[queue.length] = link;
+					server.queue.push(link);
 					const connection = await message.member.voiceChannel.join();
 					play(connection, message);
 				}
