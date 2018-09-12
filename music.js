@@ -84,6 +84,7 @@ function play(connection, message) {
 						};
 					}
 					servers[message.guild.id].queue.push(link);
+					message.react('✅');
 					console.log(servers[message.guild.id].queue);
 					if (message.guild.voiceConnection == null){
 					message.member.voiceChannel.join().then(function(connection){
@@ -102,7 +103,7 @@ function play(connection, message) {
 				if (content.toLowerCase().startsWith('b!queue') && message.guild.voiceConnection != null){
 				message.channel.send("Up Next:\n" + servers[message.guild.id].queue.map(function(item){
 				return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+item+'`\n';	
-				}).toString());
+				}).toString().replace(/,/gm), '');
 				}
 
 			}
