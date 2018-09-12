@@ -14,6 +14,7 @@ module.exports = (client, message, content, herokupg) => {
 if (content.startsWith('b!play') && message.member.voiceChannel){
 	var link = content.substring(6).trim();
 	console.log(link);
+	const connection = await message.member.voiceChannel.join();
 	if (link.includes('youtube.com/watch?v=') || link.includes('youtu.be/')){
 		connection.play(ytdl(
   link,
