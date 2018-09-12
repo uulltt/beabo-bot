@@ -14,7 +14,7 @@ function play(connection, message) {
 	var server = servers[message.guild.id];
 	var link = server.queue[0];
 	if (link.includes('youtube.com/watch?v=') || link.includes('youtu.be/')) {
-		server.dispatcher = connection.play(ytdl(
+		server.dispatcher = connection.playStream(ytdl(
 					link, {
 					filter: 'audioonly'
 				}));
@@ -23,7 +23,8 @@ function play(connection, message) {
 			if (server.queue[0]) {
 				play(connection, message);
 			} else {
-				connection.disconnect();
+			console.log("AAAAAA");
+				//connection.disconnect();
 			}
 		});
 		} else if (link.includes('soundcloud.com/')) {
@@ -81,7 +82,7 @@ function play(connection, message) {
 						};
 					}
 					servers[message.guild.id].queue.push(link);
-					console.log(queue);
+					console.log(servers[message.guild.id].queue);
 					message.member.voiceChannel.join().then(function(connection){
 					play(connection, message);
 					});
