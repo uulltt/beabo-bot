@@ -3,6 +3,7 @@ var imgur = require('imgur');
 var ExifImage = require('exif').ExifImage;
 var Tumblr = require('tumblrwks');
 const Discord = require('discord.js');
+const soundcloud = require('soundcloud-dl');
 var tumblr = new Tumblr({
 		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 	});
@@ -129,12 +130,85 @@ var request = require('request').defaults({
 			});
 		}
 	}
+	
+	
+	function tumblrsong(message, content){
+	var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
+			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
+			tumblr.get('/posts', {
+				hostname: blogId,
+				id: postId
+			}, function (err, json) {
+				if (json.total_posts > 0 && json.posts[0].type === 'audio') {
+					//console.log(json.posts[0]);
+					//console.log(json.posts[0].caption);
+					//console.log(json.posts[0].trail);
+					var images = json.posts[0].caption.split(' src=\"').filter(function(item){
+							return item.startsWith('http');
+						}).map(function(item){
+							return item.substring(0, item.indexOf('\"'));
+						});
+					for (var i = 0; i < Math.min(images.length, 10); i++) {
+							message.channel.send({
+								embed: {
+									image: {
+										url: images[i]
+									}
+								}
+							});
+					}
+					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
+						var img = json.posts[0].trail[j].content_raw.split(' src=\"').filter(function(item){
+							return item.startsWith('http');
+						}).map(function(item){
+							return item.substring(0, item.indexOf('\"'));
+						});
+						for (var i = 0; i < Math.min(img.length, 10); i++) {
+								message.channel.send({
+									embed: {
+										image: {
+											url: img[i]
+										}
+									}
+								});
+						}
+					}
+					var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
+							request.get(r.uri.href, function (err2, res2, body2) {
+								console.log(json.posts[0]);
+								message.channel.send({
+									files: [{
+											attachment: body2,
+											name: json.posts[0].track_name + '.mp3'
+										}
+									]
+								}).then().catch(message.channel.send(r.uri.href));
+							});
+
+						});
+
+				}
+			});
+	}
 
 module.exports = (message, content, herokupg) => {
-	if (!(content.includes('b!pics')) && message.channel.hasOwnProperty('guild')){
+	if (!content.includes('b!pics') && !content.includes('b!vids') && !content.includes('b!song') && message.channel.hasOwnProperty('guild')){
 	herokupg.query("SELECT picsglobal FROM permissions WHERE guild_id = \'" + message.guild.id + "\';", (err, res) => {
 	if (res.rows.length > 0 && res.rows[0].picsglobal){
 		TwitImgTumb(message, content);
+		tumblrsong(message, content);
+		if (content.includes('://') && content.includes('/post/')) {
+			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
+			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
+			tumblr.get('/posts', {
+				hostname: blogId,
+				id: postId
+			}, function (err, json) {
+				if (json.total_posts > 0 && json.posts[0].type === 'video') {
+					message.channel.send(json.posts[0].video_url);
+				}
+			});
+		}
 	}
 	});
 	}
@@ -200,13 +274,7 @@ module.exports = (message, content, herokupg) => {
 		message.channel.send(JSON.parse(body.toString())[0].url);
 		});
 		}*/
-		if (content.includes('watch?v=') || content.includes('youtu.be/')) {
-			var videocode = content.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			if (content.includes('youtu.be/')){
-				videocode = content.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			}
-			message.channel.send('https://youtubemp3api.com/@api/button/videos/' + videocode);
-		}
+		
 		if (content.includes('twitter.com/') && content.includes('/status/')) {
 			var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
 			tweeter.get('statuses/show/' + tweetId, {
@@ -241,69 +309,12 @@ module.exports = (message, content, herokupg) => {
 	}
 	if (content.includes('b!song')) {
 		if (content.includes('://') && content.includes('/post/')) {
-			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
-			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
-			tumblr.get('/posts', {
-				hostname: blogId,
-				id: postId
-			}, function (err, json) {
-				if (json.total_posts > 0 && json.posts[0].type === 'audio') {
-					//console.log(json.posts[0]);
-					//console.log(json.posts[0].caption);
-					//console.log(json.posts[0].trail);
-					var images = json.posts[0].caption.split(' src=\"').filter(function(item){
-							return item.startsWith('http');
-						}).map(function(item){
-							return item.substring(0, item.indexOf('\"'));
-						});
-					for (var i = 0; i < Math.min(images.length, 10); i++) {
-							message.channel.send({
-								embed: {
-									image: {
-										url: images[i]
-									}
-								}
-							});
-					}
-					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
-						var img = json.posts[0].trail[j].content_raw.split(' src=\"').filter(function(item){
-							return item.startsWith('http');
-						}).map(function(item){
-							return item.substring(0, item.indexOf('\"'));
-						});
-						for (var i = 0; i < Math.min(img.length, 10); i++) {
-								message.channel.send({
-									embed: {
-										image: {
-											url: img[i]
-										}
-									}
-								});
-						}
-					}
-					var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
-							request.get(r.uri.href, function (err2, res2, body2) {
-								console.log(json.posts[0]);
-								message.channel.send({
-									files: [{
-											attachment: body2,
-											name: json.posts[0].track_name + '.mp3'
-										}
-									]
-								}).then().catch(message.channel.send(r.uri.href));
-							});
-
-						});
-
-				}
-			});
+			tumblrsong(message, content);
 		}
-		if (content.includes('watch?v=') || content.includes('youtu.be/')) {
-			var videocode = content.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			if (content.includes('youtu.be/')){
-				videocode = content.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			}
-			message.channel.send('https://youtubemp3api.com/@api/button/mp3/' + videocode);
+		if (link.toLowerCase().includes('soundcloud.com/')) {
+			soundcloud.getSongDlById(content.substring(content.indexOf('soundcloud.com/') + 15).match(/[0-9]+/gm)[0]).then(function (song) {
+				message.channel.send(song.http_mp3_128_url);
+			});
 		}
 		if (content.includes('twitter.com/') && content.includes('/status/')) {
 			var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
@@ -319,18 +330,7 @@ module.exports = (message, content, herokupg) => {
 			});
 		}
 		
-		if (content.includes('vocaroo.com/i/')){
-			var vocId = content.substring(content.indexOf('/i/')+3).match(/[A-Za-z0-9]+/gm)[0];
-			request.get('https://vocaroo.com/media_command.php?media='+vocId+'&command=download_mp3', function (err, res, body) {
-								message.channel.send({
-									files: [{
-											attachment: body,
-											name: vocId + '.mp3'
-										}
-									]
-								}).then().catch(console.error);
-							});
-		}
+		
 	}
 
 	if (content.startsWith('b!thread ')) {

@@ -23,7 +23,9 @@ Canvas.registerFont('./fonts/Textile.ttf', {
 Canvas.registerFont('./fonts/Korinna Bold.ttf', {
 	family: 'Jeopardy'
 });
-
+var request = require('request').defaults({
+				encoding: null
+			});
 var EarthBoundText = require('./scripts/lib/ebtext.js');
 var timestuff = require('./timestuff.js');
 const {
@@ -274,9 +276,7 @@ client.on('message', async message => {
 		console.log(thread);
 		var board = thread.substring(thread.indexOf('org/') + 4);
 		board = board.substring(0, board.indexOf('/'));
-		var request = require('request').defaults({
-				encoding: null
-			});
+		
 		request.get(encodeURI('https://a.4cd' + thread + '.json'), function (err, res, body) {
 			var posts = JSON.parse(body.toString());
 			var jsonpost = posts.posts.filter(function (item) {
@@ -300,6 +300,20 @@ client.on('message', async message => {
 
 		});
 	}
+	
+	if (content.includes('vocaroo.com/i/')){
+			var vocId = content.substring(content.indexOf('/i/')+3).match(/[A-Za-z0-9]+/gm)[0];
+			request.get('https://vocaroo.com/media_command.php?media='+vocId+'&command=download_mp3', function (err, res, body) {
+								message.channel.send({
+									files: [{
+											attachment: body,
+											name: vocId + '.mp3'
+										}
+									]
+								}).then().catch(console.error);
+							});
+		}
+		
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
 
