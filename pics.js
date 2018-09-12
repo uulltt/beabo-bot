@@ -196,8 +196,8 @@ module.exports = (message, content, herokupg) => {
 	herokupg.query("SELECT picsglobal FROM permissions WHERE guild_id = \'" + message.guild.id + "\';", (err, res) => {
 	if (res.rows.length > 0 && res.rows[0].picsglobal){
 		TwitImgTumb(message, content);
-		tumblrsong(message, content);
 		if (content.includes('://') && content.includes('/post/')) {
+			tumblrsong(message, content);
 			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
 			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 			tumblr.get('/posts', {
