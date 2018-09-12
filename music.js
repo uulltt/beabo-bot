@@ -20,6 +20,20 @@ function play(connection, message) {
   { filter: 'audioonly' }));
   server.dispatcher.setVolume(0.3); // half the volume
 		server.queue.shift();
+		servers[message.guild.id].upnext = "Up Next:\n" + servers[message.guild.id].queue.map(function(item){
+				if (item.includes('youtube.com/watch?v=') || item.includes('youtu.be/')){
+				var videocode = item.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			if (content.includes('youtu.be/')) {
+				videocode = item.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			}
+			console.log(videocode);
+				ytdl.getBasicInfo(videocode, function(err, info){
+					return item;//(servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+info.title+'`\n';
+				});
+				} else {
+				return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+item+'`\n';	
+				}
+				}).toString().replace(/,/gm, '');
 		server.dispatcher.on('end', function () {
 			if (server.queue[0]) {
 				play(connection, message);
@@ -32,6 +46,20 @@ function play(connection, message) {
 				server.dispatcher = connection.playStream(song.http_mp3_128_url);
 				server.dispatcher.setVolume(0.3); // half the volume
 				server.queue.shift();
+				servers[message.guild.id].upnext = "Up Next:\n" + servers[message.guild.id].queue.map(function(item){
+				if (item.includes('youtube.com/watch?v=') || item.includes('youtu.be/')){
+				var videocode = item.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			if (content.includes('youtu.be/')) {
+				videocode = item.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			}
+			console.log(videocode);
+				ytdl.getBasicInfo(videocode, function(err, info){
+					return item;//(servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+info.title+'`\n';
+				});
+				} else {
+				return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+item+'`\n';	
+				}
+				}).toString().replace(/,/gm, '');
 		server.dispatcher.on('end', function () {
 			if (server.queue[0]) {
 				play(connection, message);
@@ -53,6 +81,20 @@ function play(connection, message) {
 								server.dispatcher = connection.playStream(r.uri.href);
 								server.dispatcher.setVolume(0.3); // half the volume
 								server.queue.shift();
+								servers[message.guild.id].upnext = "Up Next:\n" + servers[message.guild.id].queue.map(function(item){
+				if (item.includes('youtube.com/watch?v=') || item.includes('youtu.be/')){
+				var videocode = item.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			if (content.includes('youtu.be/')) {
+				videocode = item.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			}
+			console.log(videocode);
+				ytdl.getBasicInfo(videocode, function(err, info){
+					return item;//(servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+info.title+'`\n';
+				});
+				} else {
+				return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+item+'`\n';	
+				}
+				}).toString().replace(/,/gm, '');
 								server.dispatcher.on('end', function () {
 									if (server.queue[0]) {
 										play(connection, message);
@@ -85,19 +127,7 @@ function play(connection, message) {
 						};
 					}
 					servers[message.guild.id].queue.push(link);
-					servers[message.guild.id].upnext = "Up Next:\n" + servers[message.guild.id].queue.map(function(item){
-				if (item.includes('youtube.com/watch?v=') || item.includes('youtu.be/')){
-				var videocode = item.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			if (content.includes('youtu.be/')) {
-				videocode = item.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			}
-				ytdl.getBasicInfo(videocode, function(err, info){
-					return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+info.title+'`\n';
-				});
-				} else {
-				return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+item+'`\n';	
-				}
-				}).toString().replace(/,/gm, '');
+					
 					message.react('✅');
 					console.log(servers[message.guild.id].queue);
 					if (message.guild.voiceConnection == null){
