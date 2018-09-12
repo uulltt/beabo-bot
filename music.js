@@ -13,6 +13,7 @@ var tumblr = new Tumblr({
 function play(connection, message) {
 	var server = servers[message.guild.id];
 	var link = server.queue[0];
+	servers[message.guild.id].nowplaying = link;
 	if (link.includes('youtube.com/watch?v=') || link.includes('youtu.be/')) {
 		server.dispatcher = connection.playStream(ytdl(
 					link, {
@@ -23,13 +24,11 @@ function play(connection, message) {
 			if (server.queue[0]) {
 				play(connection, message);
 			} else {
-			console.log("AAAAAA");
 			connection.disconnect();
 			}
 		});
 		} else if (link.includes('soundcloud.com/')) {
 			soundcloud.getSongDlByURL(link).then(function (song) {
-				console.log(song);
 				server.dispatcher = connection.playStream(song.http_mp3_128_url);
 				server.queue.shift();
 		server.dispatcher.on('end', function () {
@@ -41,6 +40,7 @@ function play(connection, message) {
 		});
 			});
 		} else if (link.match(/\/post\/[0-9]+/gm)) {
+		var content = message.content;
 				var blogId = content.substring(content.indexOf('://') + 3, content.indexOf('/post/'));
 				var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 				tumblr.get('/posts', {
@@ -90,6 +90,10 @@ function play(connection, message) {
 				if (content.startsWith('b!skip') && message.member.voiceChannel){
 				var server = servers[message.guild.id];
 				if (server.dispatcher) server.dispatcher.end();
+				}
+				if (content.startsWith('b!nowplaying') && message.guild.voiceConnection != null){
+				var server = servers[message.guild.id];
+				message.channel.send(server.nowplaying);
 				}
 
 			}
