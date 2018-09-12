@@ -14,7 +14,7 @@ function play(connection, message) {
 	var server = servers[message.guild.id];
 	var link = server.queue[0];
 	if (link.includes('youtube.com/watch?v=') || link.includes('youtu.be/')) {
-		server.dispatcher = connection.playStream(ytdl(
+		server.dispatcher = connection.play(ytdl(
 					link, {
 					filter: 'audioonly'
 				}));
@@ -29,7 +29,7 @@ function play(connection, message) {
 		} else if (link.includes('soundcloud.com/')) {
 			soundcloudDl.getSongDlByURL(link).then(function (song) {
 				console.log(song);
-				server.dispatcher = connection.playStream(song.http_mp3_128_url);
+				server.dispatcher = connection.play(song.http_mp3_128_url);
 				server.queue.shift();
 		server.dispatcher.on('end', function () {
 			if (server.queue[0]) {
@@ -48,7 +48,7 @@ function play(connection, message) {
 				}, function (err, json) {
 					if (json.total_posts > 0 && json.posts[0].type === 'audio') {
 						var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
-								server.dispatcher = connection.playStream(r.uri.href);
+								server.dispatcher = connection.play(r.uri.href);
 								server.queue.shift();
 								server.dispatcher.on('end', function () {
 									if (server.queue[0]) {
@@ -81,6 +81,7 @@ function play(connection, message) {
 						};
 					}
 					servers[message.guild.id].queue.push(link);
+					console.log(queue);
 					message.member.voiceChannel.join().then(function(connection){
 					play(connection, message);
 					});
