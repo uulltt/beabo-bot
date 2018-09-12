@@ -16,7 +16,7 @@ function play(connection, message) {
 	servers[message.guild.id].nowplaying = link;
 	if (link.includes('youtube.com/watch?v=') || link.includes('youtu.be/')) {
 		server.dispatcher = connection.playStream(ytdl(
-  'https://www.youtube.com/watch?v=ZlAU_w7-Xp8',
+  link,
   { filter: 'audioonly' }));
 		server.queue.shift();
 		server.dispatcher.on('end', function () {
