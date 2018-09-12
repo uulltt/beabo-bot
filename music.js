@@ -102,7 +102,13 @@ function play(connection, message) {
 				}
 				if (content.toLowerCase().startsWith('b!queue') && message.guild.voiceConnection != null){
 				message.channel.send("Up Next:\n" + servers[message.guild.id].queue.map(function(item){
+				if (item.includes('youtube.com/watch?v=') || item.includes('youtu.be/')){
+				ytdl.getBasicInfo(item, function(err, info){
+					return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+info.title+'`\n';
+				}
+				} else {
 				return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+item+'`\n';	
+				}
 				}).toString().replace(/,/gm), '');
 				}
 
