@@ -18,7 +18,7 @@
 	"midi-player-js": "2.0.4",
 	"midi-writer-js": "1.5.2",
     "node-google-timezone": "0.1.1",
-    "node-opus": "0.3.0",
+    "opusscript": "0.0.6",
     "path": "0.12.7",
     "pg": "7.4.3",
     "request": "2.85.0",
