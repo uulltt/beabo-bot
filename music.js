@@ -90,9 +90,9 @@ function play(connection, message) {
 					servers[message.guild.id].queue.push(link);
 					servers[message.guild.id].upnext = "Up Next:\n" + servers[message.guild.id].queue.map(function(item){
 				if (item.includes('youtube.com/watch?v=') || item.includes('youtu.be/')){
-				var videocode = item.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			if (content.includes('youtu.be/')) {
-				videocode = item.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
+				var videocode = item.substring(item.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			if (item.includes('youtu.be/')) {
+				videocode = item.substring(item.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
 			}
 			console.log(videocode);
 				ytdl.getBasicInfo(videocode, function(err, info){
