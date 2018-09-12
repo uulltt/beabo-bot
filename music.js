@@ -105,7 +105,7 @@ function play(connection, message) {
 				if (item.includes('youtube.com/watch?v=') || item.includes('youtu.be/')){
 				ytdl.getBasicInfo(item, function(err, info){
 					return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+info.title+'`\n';
-				}
+				});
 				} else {
 				return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.`'+item+'`\n';	
 				}
