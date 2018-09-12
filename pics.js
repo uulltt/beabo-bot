@@ -134,7 +134,7 @@ var request = require('request').defaults({
 	
 	function tumblrsong(message, content){
 	var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
-			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
+			var postId = content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0];
 			tumblr.get('/posts', {
 				hostname: blogId,
 				id: postId
