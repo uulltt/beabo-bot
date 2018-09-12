@@ -10,7 +10,7 @@ var tumblr = new Tumblr({
 		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 	});
 	
-module.exports = (client, message, content, herokupg) => {
+module.exports = async function(client, message, content, herokupg) {
 if (content.startsWith('b!play') && message.member.voiceChannel){
 	var link = content.substring(6).trim();
 	console.log(link);
