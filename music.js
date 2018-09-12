@@ -9,16 +9,14 @@ const request = require('request').defaults({
 var tumblr = new Tumblr({
 		consumerKey: process.env.TUMBLR_CONSUMER_KEY,
 	});
+var youtubeStream = require('youtube-audio-stream')
 
 function play(connection, message) {
 	var server = servers[message.guild.id];
 	var link = server.queue[0];
 	servers[message.guild.id].nowplaying = link;
 	if (link.includes('youtube.com/watch?v=') || link.includes('youtu.be/')) {
-		server.dispatcher = connection.playStream(ytdl(
-					link, {
-					filter: 'audioonly'
-				}));
+		server.dispatcher = connection.playStream(youtubeStream(link));
 		server.queue.shift();
 		server.dispatcher.on('end', function () {
 			if (server.queue[0]) {
