@@ -80,7 +80,7 @@ function play(connection, message) {
 							queue: []
 						};
 					}
-					server.queue.push(link);
+					servers[message.guild.id].queue.push(link);
 					const connection = await message.member.voiceChannel.join();
 					play(connection, message);
 				}
