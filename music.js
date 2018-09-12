@@ -81,8 +81,9 @@ function play(connection, message) {
 						};
 					}
 					servers[message.guild.id].queue.push(link);
-					const connection = await message.member.voiceChannel.join();
+					message.member.voiceChannel.join().then(function(connection){
 					play(connection, message);
+					});
 				}
 				if (content.startsWith('b!skip') && message.member.voiceChannel){
 				var server = servers[message.guild.id];
