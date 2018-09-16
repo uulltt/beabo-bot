@@ -164,7 +164,7 @@ client.on('message', async message => {
 	}
 	}
 	if (message.content === "b!counter" && message.author.id == process.env.BOT_ADMIN){
-	message.channel.send(messageNum);
+	message.channel.send(messageNum.toString());
 	
 	}
 	if (message.content.includes('@everyone')) {
