@@ -163,6 +163,10 @@ client.on('message', async message => {
 		messageNum = 0;
 	}
 	}
+	if (message.content === "b!counter" && message.author.id == process.env.BOT_ADMIN){
+	message.channel.send(messageNum);
+	
+	}
 	if (message.content.includes('@everyone')) {
 		var chance = Math.floor(Math.random() * 100);
 		if (chance === 0) {
