@@ -100,7 +100,7 @@ function play(connection, message) {
 				var server = servers[message.guild.id];
 				message.channel.send(server.nowplaying);
 				}
-				if (content.toLowerCase().startsWith('b!queue') && message.guild.voiceConnection != null){
+				if (content.toLowerCase().startsWith('b!queue') && message.guild.voiceConnection != null && servers[message.guild.id].queue.length > 0){
 				message.channel.send("Up Next:\n" + servers[message.guild.id].queue.map(function(item){
 				return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.'+item+'\n';	
 				}).toString().replace(/\n,/gm), '\n');
