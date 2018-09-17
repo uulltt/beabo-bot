@@ -20,6 +20,9 @@ function play(connection, message) {
   { filter: 'audioonly' }));
   server.dispatcher.setVolume(0.3); // half the volume
 		server.queue.shift();
+		server.dispatcher.on('data', (chunk) => {
+  console.log(chunk);
+});
 		server.dispatcher.on('end', function () {
 			if (server.queue[0]) {
 				play(connection, message);
