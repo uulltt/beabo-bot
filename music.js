@@ -105,8 +105,8 @@ function play(connection, message) {
 				}
 				if (content.toLowerCase().startsWith('b!queue') && message.guild.voiceConnection != null && servers[message.guild.id].queue.length > 0){
 				message.channel.send("Up Next:\n" + servers[message.guild.id].queue.map(function(item){
-				return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.'+item+'\n';	
-				}).toString().replace(/\n,/gm), '\n');
+				return (servers[message.guild.id].queue.indexOf(item)+1).toString() + '.'+item.title+'\n';	
+				}).toString().replace(/\n,/gm, '\n'));
 				}
 
 			}
