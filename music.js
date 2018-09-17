@@ -17,7 +17,7 @@ function play(connection, message) {
 	if (link.toLowerCase().includes('youtube.com/watch?v=') || link.toLowerCase().includes('youtu.be/')) {
 		server.dispatcher = connection.playStream(ytdl(
   link,
-  { filter: 'audioonly' }));
+  { filter: 'audioonly' }).then(console.log).catch(console.error));
   server.dispatcher.setVolume(0.3); // half the volume
 		server.queue.shift();
 		server.dispatcher.on('end', function () {
