@@ -213,9 +213,9 @@ module.exports = (message, content, herokupg) => {
 	});
 	}
 	if (content.includes('b!pics')) { //all the camera commands go in here
-		TwitImgTumb(message, content);
-		if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
-			request.get(encodeURI(content.substring(7).replace(/ /gm, '')), function (err, res, body) {
+		TwitImgTumb(message, message.embeds[0].url);
+		if (message.embeds[0].url.toLowerCase().includes('.jpg') || message.embeds[0].url.toLowerCase().includes('.jpeg')) {
+			request.get(encodeURI(message.embeds[0].url.substring(7).replace(/ /gm, '')), function (err, res, body) {
 				var exifString = '';
 				try {
 					new ExifImage({
@@ -252,10 +252,10 @@ module.exports = (message, content, herokupg) => {
 				}
 			});
 		}
-		if (content.includes('watch?v=') || content.includes('youtu.be/')) {
-			var videocode = content.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
-			if (content.includes('youtu.be/')) {
-				videocode = content.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
+		if (message.embeds[0].url.includes('watch?v=') || message.embeds[0].url.includes('youtu.be/')) {
+			var videocode = content.substring(message.embeds[0].url.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+			if (message.embeds[0].url.includes('youtu.be/')) {
+				videocode = content.substring(message.embeds[0].url.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
 			}
 			var attachment = new Discord.Attachment('https://i.ytimg.com/vi/' + videocode + '/maxresdefault.jpg');
 			message.channel.send(attachment).catch(err => message.channel.send(new Discord.Attachment('https://img.youtube.com/vi/' + videocode + '/0.jpg')));
