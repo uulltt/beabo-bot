@@ -78,6 +78,7 @@ function play(connection, message) {
 				if (content.toLowerCase().startsWith('b!play') && message.member.voiceChannel) {
 					console.log(message.embeds);
 					console.log(message.embeds[0]);
+					console.log(message.embeds[0].url);
 					var song = {
 					link: message.embeds[0].url,
 					title: message.embeds[0].title
