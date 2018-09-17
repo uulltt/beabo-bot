@@ -15,7 +15,7 @@ function play(connection, message) {
 	var link = server.queue[0];
 	servers[message.guild.id].nowplaying = link;
 	if (link.toLowerCase().includes('youtube.com/watch?v=') || link.toLowerCase().includes('youtu.be/')) {
-	console.log(message.embeds);
+	
 		server.dispatcher = connection.playStream(ytdl(
   link,
   { filter: 'audioonly' }));
@@ -77,6 +77,8 @@ function play(connection, message) {
 
 			module.exports = function (client, message, content, herokupg) {
 				if (content.toLowerCase().startsWith('b!play') && message.member.voiceChannel) {
+				console.log(message);
+				console.log(message.embeds);
 					var link = content.substring(6).trim();
 					console.log(link);
 					if (!servers[message.guild.id]) {
