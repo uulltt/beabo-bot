@@ -339,8 +339,11 @@ client.on('message', async message => {
 					console.log(err);
 			});
 		}
-
-		if (beaboMessage.substring(0, 3) === 'pg ' && message.author.id === process.env.BOT_ADMIN) {
+if (beaboMessage.startsWith('day')){
+	message.channel.send('biiiii! 🎉 🎂');
+	
+}
+		if (beaboMessage.startsWith('pg ') && message.author.id === process.env.BOT_ADMIN) {
 			herokupg.query(beaboMessage.substring(3), (err, res) => {
 				if (!err)
 					console.log(res);
