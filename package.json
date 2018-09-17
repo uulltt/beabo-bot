@@ -27,7 +27,7 @@
 	"soundcloud-dl": "1.0.3",
     "tumblrwks": "0.3.0",
     "twitter": "1.7.1",
-	"ytdl-core": "0.25.0"
+	"ytdl-core": "0.25.2"
   },
   "devDependencies": {
     "mocha": "^3.2.0"
