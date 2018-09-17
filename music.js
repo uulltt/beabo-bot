@@ -77,8 +77,8 @@ function play(connection, message) {
 			module.exports = function (client, message, content, herokupg) {
 				if (content.toLowerCase().startsWith('b!play') && message.member.voiceChannel) {
 					var song = {
-					link: message.embeds[0].url;
-					title: message.embeds[0].title;
+					link: message.embeds[0].url,
+					title: message.embeds[0].title
 					}
 					console.log(link);
 					if (!servers[message.guild.id]) {
