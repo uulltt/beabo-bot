@@ -294,9 +294,9 @@ module.exports = (message, content, herokupg) => {
 				}
 			});
 		}
-		if (content.includes('://') && content.includes('/post/')) {
-			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
-			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
+		if (message.embeds[0].url.includes('://') && message.embeds[0].url.includes('/post/')) {
+			var blogId = message.embeds[0].url.substring(message.embeds[0].url.indexOf('://')+3, message.embeds[0].url.indexOf('/post/'));
+			var postId = parseInt(message.embeds[0].url.substring(message.embeds[0].url.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 			tumblr.get('/posts', {
 				hostname: blogId,
 				id: postId
@@ -309,15 +309,15 @@ module.exports = (message, content, herokupg) => {
 	}
 	if (content.includes('b!song')) {
 		if (content.includes('://') && content.includes('/post/')) {
-			tumblrsong(message, content);
+			tumblrsong(message, message.embeds[0].url);
 		}
-		if (link.toLowerCase().includes('soundcloud.com/')) {
-			soundcloud.getSongDlById(content.substring(content.indexOf('soundcloud.com/') + 15).match(/[0-9]+/gm)[0]).then(function (song) {
+		if (message.embeds[0].url.includes('soundcloud.com/')) {
+			soundcloud.getSongDlById(content.substring(message.embeds[0].url.indexOf('soundcloud.com/') + 15).match(/[0-9]+/gm)[0]).then(function (song) {
 				message.channel.send(song.http_mp3_128_url);
 			});
 		}
-		if (content.includes('twitter.com/') && content.includes('/status/')) {
-			var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
+		if (message.embeds[0].url.includes('twitter.com/') && message.embeds[0].url.includes('/status/')) {
+			var tweetId = message.embeds[0].url.substring(message.embeds[0].url.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
 			tweeter.get('statuses/show/' + tweetId, {
 				tweet_mode: 'extended'
 			}, function (error, tweet, response) {
