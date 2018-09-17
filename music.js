@@ -12,7 +12,7 @@ var tumblr = new Tumblr({
 
 function play(connection, message) {
 	var server = servers[message.guild.id];
-	var link = server.queue[0];
+	var link = server.queue[0].link;
 	servers[message.guild.id].nowplaying = link;
 	if (link.toLowerCase().includes('youtube.com/watch?v=') || link.toLowerCase().includes('youtu.be/')) {
 	
@@ -80,13 +80,14 @@ function play(connection, message) {
 				console.log(message);
 				console.log(message.embeds);
 					var link = content.substring(6).trim();
+					var title = embeds[0].title;
 					console.log(link);
 					if (!servers[message.guild.id]) {
 						servers[message.guild.id] = {
-							queue: []
+						queue: []							]
 						};
 					}
-					servers[message.guild.id].queue.push(link);
+					servers[message.guild.id].queue.push({link : link, title : title);
 					message.react('✅');
 					console.log(servers[message.guild.id].queue);
 					if (message.guild.voiceConnection == null){
