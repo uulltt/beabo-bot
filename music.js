@@ -12,10 +12,9 @@ var tumblr = new Tumblr({
 
 function play(connection, message) {
 	var server = servers[message.guild.id];
-	var link = server.queue[0].link;
+	var link = server.queue[0];
 	servers[message.guild.id].nowplaying = link;
 	if (link.toLowerCase().includes('youtube.com/watch?v=') || link.toLowerCase().includes('youtu.be/')) {
-	
 		server.dispatcher = connection.playStream(ytdl(
   link,
   { filter: 'audioonly' }));
@@ -77,17 +76,14 @@ function play(connection, message) {
 
 			module.exports = function (client, message, content, herokupg) {
 				if (content.toLowerCase().startsWith('b!play') && message.member.voiceChannel) {
-				console.log(message);
-				console.log(message.embeds);
 					var link = content.substring(6).trim();
-					var title = embeds[0].title;
 					console.log(link);
 					if (!servers[message.guild.id]) {
 						servers[message.guild.id] = {
-						queue: []							]
+							queue: []
 						};
 					}
-					servers[message.guild.id].queue.push({link : link, title : title);
+					servers[message.guild.id].queue.push(link);
 					message.react('✅');
 					console.log(servers[message.guild.id].queue);
 					if (message.guild.voiceConnection == null){
