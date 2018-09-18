@@ -214,8 +214,8 @@ module.exports = (message, content, herokupg) => {
 	}
 	if (content.includes('b!pics')) { //all the camera commands go in here
 		TwitImgTumb(message, message.embeds[0].url);
-		if (message.embeds[0].url.toLowerCase().includes('.jpg') || message.embeds[0].url.toLowerCase().includes('.jpeg')) {
-			request.get(encodeURI(message.embeds[0].url.substring(7).replace(/ /gm, '')), function (err, res, body) {
+		if (message.embeds[0].image.url.toLowerCase().includes('.jpg') || message.embeds[0].image.url.toLowerCase().includes('.jpeg')) {
+			request.get(encodeURI(message.embeds[0].image.url), function (err, res, body) {
 				var exifString = '';
 				try {
 					new ExifImage({
