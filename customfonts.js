@@ -445,6 +445,8 @@ ctx.drawImage(img, 32, 23*2);
 	if (new RegExp(/[Bb]![Ff]ont puyo\W/gm).test(message.cleanContent.substring(0, 12)) && message.cleanContent.length > 12) {
 		var text = message.cleanContent.substring(12).toLowerCase().replace(/[^a-z0-9\.\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
+		var textImages = [];
+		var i = 0;
 		for (var t = 0; t < Math.min(texts.length, 5); t++) {
 			var paths = [];
 			texts[t] = ' ' + texts[t];
@@ -453,11 +455,20 @@ ctx.drawImage(img, 32, 23*2);
 			for (; cursor < texts[t].length; paths[cursor] = fs.readFileSync('./puyo/puyo_' + (puyoString.indexOf(texts[t].charAt(cursor)) + 1).toString() + '.png'), cursor++);
 			if (cursor === texts[t].length) {
 				concat({
-					images: paths, margin: 0 // optional, in px, defaults to 10px
+					images: paths, margin: 0 
 				}, function (err, canvas) {
+					
+					textImages[i] = canvas.toBuffer();
+					i++;
+					if (textImages.length === texts.length) {
+				concat.v({
+					images: textImages, margin: 0 
+				}, function (err2, canvas2) {
 					message.channel.send({
-						files: [{attachment: canvas.toBuffer(),name: 'puyo.png'}]
+						files: [{attachment: canvas2.toBuffer(),name: 'roadrash.png'}]
 					});
+				});
+			}
 				});
 			}
 		}
