@@ -260,16 +260,7 @@ client.on('message', async message => {
 		}
 	}
 
-	if (message.hasOwnProperty('channel') && message.channel.hasOwnProperty('guild') && message.channel.guild.hasOwnProperty('id') && message.channel.guild.id === '439555383313301514' && message.channel.id === '450169522561875979' && !message.author.bot) {
-		let role = message.guild.roles.array().filter(function (item) {
-				return item.name === "Reader";
-			});
-		if (role.length > 0) {
-			message.member.addRole(role[0]).then().catch(console.error);
-		} else {
-			message.channel.send("Beaboooooooo! (Error. There is no \"Reader\" role.)");
-		}
-	}
+	
 	fonts(message);
 	//movies(message, message.content);
 	pics(message, message.content, herokupg);
