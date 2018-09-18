@@ -142,6 +142,7 @@ b!sunny - generates an always sunny title card. also works with b!iasip`
 	});
 }
 var messageNum = 0;
+var messageCount = 128;
 const steamlink = 'https://store.steampowered.com/app/';
 const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', '598640'];
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
@@ -158,9 +159,10 @@ client.on('message', async message => {
 	}
 	if (message.author.id !== client.user.id){
 	messageNum++;
-	if (messageNum >= 100){
+	if (messageNum >= messageCount){
 		message.channel.send(beeb()).then().catch(console.error);
-		messageNum = 0;
+		messageNum = 0; 
+		messageCount++;
 	}
 	}
 	if (message.content === "b!counter" && message.author.id == process.env.BOT_ADMIN){
