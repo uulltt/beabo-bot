@@ -12,7 +12,7 @@ var path = require('path');
 var quiz = require('./quiz.js');
 Canvas.registerFont('./fonts/COOPBL.TTF', {
 	family: 'Cooper Black'
-	});
+});
 Canvas.registerFont('./fonts/Futura Std Heavy Oblique.otf', {
 	family: 'Supreme'
 });
@@ -23,8 +23,8 @@ Canvas.registerFont('./fonts/Korinna Bold.ttf', {
 	family: 'Jeopardy'
 });
 var request = require('request').defaults({
-				encoding: null
-			});
+		encoding: null
+	});
 var EarthBoundText = require('./scripts/lib/ebtext.js');
 var timestuff = require('./timestuff.js');
 const {
@@ -87,7 +87,6 @@ function beeb() {
 
 }
 
-
 function helpMessage(message) {
 	message.channel.send('http://ultdev.tumblr.com/beabo', {
 		embed: {
@@ -141,7 +140,7 @@ b!sunny - generates an always sunny title card. also works with b!iasip`
 	});
 }
 var messageNum = 0;
-var messageCount = 128;
+var messageCount = 150;
 const steamlink = 'https://store.steampowered.com/app/';
 const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', '598640'];
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
@@ -156,17 +155,33 @@ client.on('message', async message => {
 				}).toString())
 		}
 	}
-	if (message.author.id !== client.user.id){
-	messageNum++;
-	if (messageNum >= messageCount){
-		message.channel.send(beeb()).then().catch(console.error);
-		messageNum = 0; 
-		messageCount++;
+	if (message.author.id !== client.user.id) {
+		messageNum++;
+		if (messageNum >= messageCount) {
+			if (Math.random() <= 0.33f) {
+				message.channel.send(beeb()).then().catch(console.error);
+				if (messageCount < 200)
+					messageCount += 10;
+
+			} else {
+				if (messageCount > 100)
+					messageCount -= 10;
+
+			}
+			messageNum = 0;
+		}
 	}
+
+	if (message.cleanContent.toLowerCase.startsWith("thanks") && message.cleanContent.match(/thanks(,?) (@?)beabo/gm)) {
+		if (Math.random() <= 0.6) {
+			message.channel.send('Beabo bii!^^:+1:');
+
+		}
+
 	}
-	if (message.content === "b!counter" && message.author.id == process.env.BOT_ADMIN){
-	message.channel.send(messageNum.toString());
-	
+	if (message.content === "b!counter" && message.author.id == process.env.BOT_ADMIN) {
+		message.channel.send(messageNum.toString());
+
 	}
 	if (message.content.includes('@everyone')) {
 		var chance = Math.floor(Math.random() * 100);
@@ -203,7 +218,7 @@ client.on('message', async message => {
 		message.channel.send('\"right about now, the funk soul brother\"').then().catch(console.error);
 	}
 	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && (!message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]/gm) || (message.cleanContent.toLowerCase().match(/:[cdfghjklmnpqrstuvwxyz]/gm) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]./gm)))) {
-		
+
 		message.channel.send("Biii!!!!! biiiiiii!! :revolving_hearts:");
 	} else {
 		if (message.isMentioned(client.user) && !message.cleanContent.toLowerCase().includes('🖕') && !(message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) && !(message.cleanContent.toLowerCase().match(/((f(u|(ri))([ck]{1,2}))|(hate)) (yo)?u/gm) || message.cleanContent.toLowerCase().match(/(yo)?u su([ck]{1,2})/gm))) {
@@ -259,7 +274,6 @@ client.on('message', async message => {
 		}
 	}
 
-	
 	fonts(message);
 	//movies(message, message.content);
 	pics(message, message.content, herokupg);
@@ -279,7 +293,7 @@ client.on('message', async message => {
 		console.log(thread);
 		var board = thread.substring(thread.indexOf('org/') + 4);
 		board = board.substring(0, board.indexOf('/'));
-		
+
 		request.get(encodeURI('https://a.4cd' + thread + '.json'), function (err, res, body) {
 			var posts = JSON.parse(body.toString());
 			var jsonpost = posts.posts.filter(function (item) {
@@ -303,20 +317,20 @@ client.on('message', async message => {
 
 		});
 	}
-	
-	if (message.content.includes('vocaroo.com/i/')){
-			var vocId = message.content.substring(content.indexOf('/i/')+3).match(/[A-Za-z0-9]+/gm)[0];
-			request.get('https://vocaroo.com/media_command.php?media='+vocId+'&command=download_mp3', function (err, res, body) {
-								message.channel.send({
-									files: [{
-											attachment: body,
-											name: vocId + '.mp3'
-										}
-									]
-								}).then().catch(console.error);
-							});
-		}
-		
+
+	if (message.content.includes('vocaroo.com/i/')) {
+		var vocId = message.content.substring(content.indexOf('/i/') + 3).match(/[A-Za-z0-9]+/gm)[0];
+		request.get('https://vocaroo.com/media_command.php?media=' + vocId + '&command=download_mp3', function (err, res, body) {
+			message.channel.send({
+				files: [{
+						attachment: body,
+						name: vocId + '.mp3'
+					}
+				]
+			}).then().catch(console.error);
+		});
+	}
+
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
 
@@ -332,10 +346,10 @@ client.on('message', async message => {
 					console.log(err);
 			});
 		}
-if (beaboMessage.startsWith('day')){
-	message.channel.send('biiiii! 🎉 🎂');
-	
-}
+		if (beaboMessage.startsWith('day')) {
+			message.channel.send('biiiii! 🎉 🎂');
+
+		}
 		if (beaboMessage.startsWith('pg ') && message.author.id === process.env.BOT_ADMIN) {
 			herokupg.query(beaboMessage.substring(3), (err, res) => {
 				if (!err)
