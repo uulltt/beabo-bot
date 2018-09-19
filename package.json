@@ -13,7 +13,6 @@
     "discord.js": "v11.4.2",
     "exif": "0.6.0",
     "ffmpeg-binaries": "^4.0.0",
-	"images": "3.0.1",
     "imgur": "0.2.1",
     "lodash": "^4.17.4",
 	"midi-player-js": "2.0.4",
