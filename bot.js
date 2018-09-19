@@ -158,7 +158,7 @@ client.on('message', async message => {
 	if (message.author.id !== client.user.id) {
 		messageNum++;
 		if (messageNum >= messageCount) {
-			if (Math.random() <= 0.33f) {
+			if (Math.random() <= 0.33) {
 				message.channel.send(beeb()).then().catch(console.error);
 				if (messageCount < 200)
 					messageCount += 10;
