@@ -10,7 +10,7 @@ var Image = Canvas.Image;
 var Font = Canvas.Font;
 var path = require('path');
 var quiz = require('./quiz.js');
-var gifyParse = require('gify-parse');
+var images = require("images");
 Canvas.registerFont('./fonts/COOPBL.TTF', {
 	family: 'Cooper Black'
 	});
@@ -323,7 +323,7 @@ client.on('message', async message => {
 if (beaboMessage.startsWith('gif')){
 	if (message.attachments.array().length > 0 && message.attachments.array()[0].url.includes('.gif')){
 		request.get(message.attachments.array()[0].url, function (err, res, body) {
-			console.log(gifyParse.getInfo(body));
+			console.log(images(body));
 	});
 	}
 	
