@@ -174,7 +174,7 @@ client.on('message', async message => {
 
 	if (message.cleanContent.toLowerCase().startsWith("thanks") && message.cleanContent.match(/thanks(,?) (@?)beabo/gm)) {
 		if (Math.random() <= 0.6) {
-			message.channel.send('Beabo bii!^^:+1:');
+			message.channel.send('Beabo bii! :+1:');
 
 		}
 
