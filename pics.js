@@ -270,10 +270,21 @@ module.exports = (message, content, herokupg) => {
 		});
 		}
 		if (message.embeds[0].url.includes("e621.net/post/show")){
+		request.get(message.embeds[0].thumbnail.url.replace(/\/preview/gm, ""), function(err, res, body) {
+		if (res.statusCode == 404){
 		message.channel.send({ embed: {
 			image: {
 			url: message.embeds[0].thumbnail.url.replace(/\/preview/gm, "").replace(/\.jpg/gm, ".png")
 			}
+		}
+		});
+		} else {
+		message.channel.send({ embed: {
+			image: {
+			url: message.embeds[0].thumbnail.url.replace(/\/preview/gm, "")
+			}
+		}
+		});
 		}
 		});
 		}
