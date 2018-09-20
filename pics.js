@@ -270,6 +270,7 @@ module.exports = (message, content, herokupg) => {
 		});
 		}
 		if (message.embeds[0].url.includes("e621.net/post/show")){
+		console.log(message.embeds[0].thumbnail.url.replace(/\/preview/gm, ""));
 		message.channel.send({ embed: {
 			image: {
 			url: message.embeds[0].thumbnail.url.replace(/\/preview/gm, "")
