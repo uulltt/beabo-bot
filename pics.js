@@ -262,7 +262,12 @@ module.exports = (message, content, herokupg) => {
 		}
 		
 		if (message.embeds[0].url.includes("gelbooru.com")){
-		console.log(message.embeds[0]);
+		message.channel.send({ embed: {
+			image: {
+			url: message.embeds[0].thumbnail.url
+			}
+		}
+		});
 		}
 		if (message.content.toLowerCase().startsWith('b!pics') && message.mentions.users.array().length > 0){
 		var len = message.mentions.users.array().length
