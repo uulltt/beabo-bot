@@ -261,7 +261,7 @@ module.exports = (message, content, herokupg) => {
 			message.channel.send(attachment).catch(err => message.channel.send(new Discord.Attachment('https://img.youtube.com/vi/' + videocode + '/0.jpg')));
 		}
 		
-		if (message.embeds[0].url.includes("gelbooru.com")){
+		if (message.embeds[0].url.includes("gelbooru.com/") || message.embeds[0].url.includes("e621.net/post/show")){
 		message.channel.send({ embed: {
 			image: {
 			url: message.embeds[0].thumbnail.url
