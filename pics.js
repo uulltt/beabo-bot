@@ -213,7 +213,7 @@ module.exports = (message, content, herokupg) => {
 	});
 	}
 	if (content.includes('b!pics')) { //all the camera commands go in here
-		TwitImgTumb(message, message.embeds[0].url);
+		TwitImgTumb(message, content);
 		if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
 			request.get(encodeURI(message.embeds[0].image.url), function (err, res, body) {
 				var exifString = '';
@@ -269,7 +269,7 @@ module.exports = (message, content, herokupg) => {
 		}
 		});
 		}
-		if (message.embeds[0].url.includes("e621.net/post/show")){
+		if (message.embeds[0].url.includes("e621.net/post/show") || message.embeds[0].url.includes("e926.net/post/show")){
 		request.get(message.embeds[0].thumbnail.url.replace(/\/preview/gm, ""), function(err, res, body) {
 		if (res.statusCode == 404){
 		message.channel.send({ embed: {
