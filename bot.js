@@ -173,15 +173,11 @@ client.on('message', async message => {
 	}
 
 	if ((message.cleanContent.toLowerCase().startsWith("thank") || message.cleanContent.toLowerCase().startsWith("thn")) && message.cleanContent.match(/th(a?)(n?)(x|(k(( (((yo)?)u|(ya(h?))))|s)))(,?) (@?)beabo/gm)) {
-		if (Math.random() <= 0.75) {
+		if (Math.random() <= 0.6) {
 		if (Math.random() <= 0.5){
 			message.channel.send('Beabo bii! :+1:');
 		} else {
-		if (Math.random() <= 0.25){
-		message.react('🅱').then(message.react('🇧').then(message.react('‼').then(message.react('👍'))));
-		} else {
 		message.react('👍');
-		}
 		}
 		}
 
