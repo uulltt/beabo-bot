@@ -237,11 +237,21 @@ client.on('message', async message => {
 								message.guild.voiceConnection.channel.leave();
 							});
 						} else {
+						if (Math.random() < 0.5f){
 							message.channel.send("bee bee biiiii! :heart:");
+						} else {
+						var hearts = '♥💕💞';
+						message.react(hearts.charAt(Math.floor(Math.random() * 3)));
+						}
 						}
 					});
 				} else {
-					message.channel.send("bee bee biiiii! :heart:");
+					if (Math.random() < 0.5f){
+							message.channel.send("bee bee biiiii! :heart:");
+						} else {
+						var hearts = '♥💕💞';
+						message.react(hearts.charAt(Math.floor(Math.random() * 3)));
+						}
 				}
 			} else if (message.content.toLowerCase().includes("help")) {
 				helpMessage(message);
