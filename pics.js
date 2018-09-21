@@ -93,7 +93,7 @@ var request = require('request').defaults({
 								}
 							}));
 					}
-					if (json.posts[0].type === 'text') {
+					if (json.posts[0].type === 'text' && message.content.toLowerCase().includes("b!pics")) {
 						var images = json.posts[0].body.split(' src=\"').filter(function(item){
 							return item.startsWith('http');
 						}).map(function(item){
@@ -109,6 +109,10 @@ var request = require('request').defaults({
 								});
 						}
 					}
+					
+					if (json.posts[0].type === 'video') {
+					message.channel.send(json.posts[0].video_url);
+				}
 
 					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
 						var img = json.posts[0].trail[j].content_raw.split(' src=\"').filter(function(item){
@@ -198,16 +202,6 @@ module.exports = (message, content, herokupg) => {
 		TwitImgTumb(message, content);
 		if (content.includes('://') && content.includes('/post/') && !content.includes('/show/')) {
 			tumblrsong(message, content);
-			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
-			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
-			tumblr.get('/posts', {
-				hostname: blogId,
-				id: postId
-			}, function (err, json) {
-				if (json.total_posts > 0 && json.posts[0].type === 'video') {
-					message.channel.send(json.posts[0].video_url);
-				}
-			});
 		}
 	}
 	});
