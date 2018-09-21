@@ -241,7 +241,7 @@ client.on('message', async message => {
 							message.channel.send("bee bee biiiii! :heart:");
 						} else {
 						var hearts = '♥💕💞';
-						message.react(hearts.charAt(Math.floor(Math.random() * 3)));
+						message.react('💕');
 						}
 						}
 					});
@@ -250,7 +250,7 @@ client.on('message', async message => {
 							message.channel.send("bee bee biiiii! :heart:");
 						} else {
 						var hearts = '♥💕💞';
-						message.react(hearts.charAt(Math.floor(Math.random() * 3)));
+						message.react('💕');
 						}
 				}
 			} else if (message.content.toLowerCase().includes("help")) {
