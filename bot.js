@@ -220,7 +220,7 @@ client.on('message', async message => {
 	if (message.content.toLowerCase() === "check it out now, the funk soul brother") {
 		message.channel.send('\"right about now, the funk soul brother\"').then().catch(console.error);
 	}
-	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && (!message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]/gm) || (message.cleanContent.toLowerCase().match(/:[cdfghjklmnpqrstuvwxyz]/gm) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz]./gm)))) {
+	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && (!message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]/gm) || (message.cleanContent.toLowerCase().match(/:[cdfghjklmnpqrstuvwxyz0-9]/gm) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]./gm)))) {
 
 		message.channel.send("Biii!!!!! biiiiiii!! :revolving_hearts:");
 	} else {
