@@ -246,15 +246,15 @@ module.exports = (message, content, herokupg) => {
 				}
 			});
 		}
-		if (message.embeds[0].url.includes('watch?v=') || message.embeds[0].url.includes('youtu.be/')) {
-			var videocode = content.substring(message.embeds[0].url.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
+		if (content.includes('watch?v=') || content.includes('youtu.be/')) {
+			var videocode = content.substring(content.indexOf('v=') + 2).match(/[0-9a-zA-Z_\-]+/gm)[0];
 			if (message.embeds[0].url.includes('youtu.be/')) {
-				videocode = content.substring(message.embeds[0].url.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
+				videocode = content.substring(content.indexOf('.be/') + 4).match(/[0-9a-zA-Z_\-]+/gm)[0];
 			}
 			var attachment = new Discord.Attachment('https://i.ytimg.com/vi/' + videocode + '/maxresdefault.jpg');
 			message.channel.send(attachment).catch(err => message.channel.send(new Discord.Attachment('https://img.youtube.com/vi/' + videocode + '/0.jpg')));
 		}
-		
+		if (message.embeds.length > 0){
 		if (message.embeds[0].url.includes("gelbooru.com/")){
 		message.channel.send({ embed: {
 			image: {
@@ -281,6 +281,7 @@ module.exports = (message, content, herokupg) => {
 		});
 		}
 		});
+		}
 		}
 		if (message.content.toLowerCase().startsWith('b!pics') && message.mentions.users.array().length > 0){
 		var len = message.mentions.users.array().length
