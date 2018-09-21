@@ -237,7 +237,7 @@ client.on('message', async message => {
 								message.guild.voiceConnection.channel.leave();
 							});
 						} else {
-						if (Math.random() < 0.5f){
+						if (Math.random() < 0.5){
 							message.channel.send("bee bee biiiii! :heart:");
 						} else {
 						var hearts = '♥💕💞';
@@ -246,7 +246,7 @@ client.on('message', async message => {
 						}
 					});
 				} else {
-					if (Math.random() < 0.5f){
+					if (Math.random() < 0.5){
 							message.channel.send("bee bee biiiii! :heart:");
 						} else {
 						var hearts = '♥💕💞';
