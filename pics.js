@@ -284,8 +284,17 @@ module.exports = (message, content, herokupg) => {
 		}
 		if (message.embeds[0].url.includes("booru.vineshroom.net/post/view")){
 		request.get(message.embeds[0].url, function(err, res, body) {
-		console.log(body);
-		console.log(body.toString());
+	var html = body.toString();
+	var theImage = "https://booru.vineshroom.net" + html.subString(html.indexOf("main image\" src=\"") + ("main image\" src=\"").length());
+	console.log(theImage);
+	theImage = theImage.substring(0, theImage.indexOf('\"'));
+	console.log(theImage);
+	message.channel.send( { embed: {
+		image : {
+			url: theImage
+		}
+	}
+	});
 		});
 		}
 		}
