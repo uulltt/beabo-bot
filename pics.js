@@ -309,7 +309,7 @@ module.exports = (message, content, herokupg) => {
 	message.channel.send({
 				files: [{
 						attachment: image,
-						name: theImage.substring(theImage.lastIndexOf('/')+1);
+						name: theImage.substring(theImage.lastIndexOf('/')+1)
 					}
 				]
 			});
