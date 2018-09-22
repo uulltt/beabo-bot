@@ -76,7 +76,7 @@ var request = require('request').defaults({
 				message.channel.send(err.message);
 			});
 		}
-		if (content.includes('://') && content.includes('/post/') && !content.includes('/show/')) {
+		if (content.includes('://') && content.match(/\/post\/[0-9]+/gm)) {
 			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
 			var postId = parseInt(content.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 			tumblr.get('/posts', {
@@ -200,7 +200,7 @@ module.exports = (message, content, herokupg) => {
 	herokupg.query("SELECT picsglobal FROM permissions WHERE guild_id = \'" + message.guild.id + "\';", (err, res) => {
 	if (res.rows.length > 0 && res.rows[0].picsglobal){
 		TwitImgTumb(message, content);
-		if (content.includes('://') && content.includes('/post/') && !content.includes('/show/')) {
+		if (content.includes('://') && content.match(/\/post\/[0-9]+/gm)) {
 			tumblrsong(message, content);
 		}
 	}
@@ -282,6 +282,12 @@ module.exports = (message, content, herokupg) => {
 		}
 		});
 		}
+		if (message.embeds[0].url.includes("booru.vineshroom.net/post/view")){
+		request.get(message.embeds[0].url, function(err, res, body) {
+		console.log(body);
+		console.log(body.toString());
+		});
+		}
 		}
 		if (message.content.toLowerCase().startsWith('b!pics') && message.mentions.users.array().length > 0){
 		var len = message.mentions.users.array().length
@@ -317,9 +323,9 @@ module.exports = (message, content, herokupg) => {
 				}
 			});
 		}
-		if (message.embeds[0].url.includes('://') && message.embeds[0].url.includes('/post/')) {
-			var blogId = message.embeds[0].url.substring(message.embeds[0].url.indexOf('://')+3, message.embeds[0].url.indexOf('/post/'));
-			var postId = parseInt(message.embeds[0].url.substring(message.embeds[0].url.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
+		if (content.includes('://') && content.match(/\/post\/[0-9]+/gm)) {
+			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
+			var postId = parseInt(message.embeds[0].url.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
 			tumblr.get('/posts', {
 				hostname: blogId,
 				id: postId
@@ -331,7 +337,7 @@ module.exports = (message, content, herokupg) => {
 		}
 	}
 	if (content.includes('b!song')) {
-		if (content.includes('://') && content.includes('/post/')) {
+		if (content.includes('://') && content.match(/\/post\/[0-9]+/gm)) {
 			tumblrsong(message, message.embeds[0].url);
 		}
 		if (message.embeds[0].url.includes('soundcloud.com/')) {
