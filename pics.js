@@ -285,7 +285,7 @@ module.exports = (message, content, herokupg) => {
 		if (message.embeds[0].url.includes("booru.vineshroom.net/post/view")){
 		request.get(message.embeds[0].url, function(err, res, body) {
 	var html = body.toString();
-	var theImage = "https://booru.vineshroom.net" + html.subString(html.indexOf("main image\" src=\"") + ("main image\" src=\"").length);
+	var theImage = "https://booru.vineshroom.net" + html.substring(html.indexOf("main image\" src=\"") + ("main image\" src=\"").length);
 	console.log(theImage);
 	theImage = theImage.substring(0, theImage.indexOf('\"'));
 	console.log(theImage);
@@ -301,7 +301,7 @@ module.exports = (message, content, herokupg) => {
 		if (message.embeds[0].url.includes("https://vidyart.booru.org/index.php?page=post&s=view&id=")){
 		request.get(message.embeds[0].url, function(err, res, body) {
 	var html = body.toString();
-	var theImage = html.subString(html.indexOf("https://img.booru.org/vidyart//images/"));
+	var theImage = html.substring(html.indexOf("https://img.booru.org/vidyart//images/"));
 	console.log(theImage);
 	theImage = theImage.substring(0, theImage.indexOf('\"'));
 	console.log(theImage);
