@@ -343,6 +343,10 @@ client.on('message', async message => {
 			}).then().catch(console.error);
 		});
 	}
+	
+	if (message.content == "b!c4"){
+	message.channel.send("g*join");
+	}
 
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
