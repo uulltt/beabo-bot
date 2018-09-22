@@ -299,7 +299,7 @@ module.exports = (message, content, herokupg) => {
 	});
 		});
 		}
-		var chanboorus = ["vidyart", "the-collection", "deviants-depository"];
+		var chanboorus = ["vidyart", "the-collection", "deviants-despository"];
 		for(var i = 0; i < 3; i++){
 		if (content.includes("https://"+chanboorus[i]+".booru.org/index.php?page=post&s=view&id=")){
 		request.get(content.substring(content.indexOf('https')), function(err, res, body) {
