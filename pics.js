@@ -285,7 +285,7 @@ module.exports = (message, content, herokupg) => {
 		if (message.embeds[0].url.includes("booru.vineshroom.net/post/view")){
 		request.get(message.embeds[0].url, function(err, res, body) {
 	var html = body.toString();
-	var theImage = "https://booru.vineshroom.net" + html.substring(html.indexOf("main image\" src=\"") + ("main image\" src=\"").length);
+	var theImage = "https://booru.vineshroom.net" + html.substring(html.indexOf("main image\' src=\'") + ("main image\' src=\'").length);
 	console.log(theImage);
 	theImage = theImage.substring(0, theImage.indexOf('\"'));
 	console.log(theImage);
@@ -297,11 +297,12 @@ module.exports = (message, content, herokupg) => {
 	});
 		});
 		}
-		
-		if (message.embeds[0].url.includes("https://vidyart.booru.org/index.php?page=post&s=view&id=")){
+		var chanboorus = ["vidyart", "the-collection"];
+		for(var i = 0; i < 2; i++){
+		if (message.embeds[0].url.includes("https://"+chanboorus[i]+".booru.org/index.php?page=post&s=view&id=")){
 		request.get(message.embeds[0].url, function(err, res, body) {
 	var html = body.toString();
-	var theImage = html.substring(html.indexOf("https://img.booru.org/vidyart//images/"));
+	var theImage = html.substring(html.indexOf("https://img.booru.org/"+chanboorus[i]+"//images/"));
 	console.log(theImage);
 	theImage = theImage.substring(0, theImage.indexOf('\"'));
 	console.log(theImage);
@@ -312,6 +313,7 @@ module.exports = (message, content, herokupg) => {
 	}
 	});
 		});
+		}
 		}
 		}
 		if (message.content.toLowerCase().startsWith('b!pics') && message.mentions.users.array().length > 0){
