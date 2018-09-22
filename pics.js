@@ -284,7 +284,7 @@ module.exports = (message, content, herokupg) => {
 		}
 		if (message.embeds[0].url.includes("booru.vineshroom.net/post/view")){
 		request.get(message.embeds[0].url, function(err, res, body) {
-	var html = body.toString();
+	var html = body.toString().substring(body.toString().indexOf('<head>'));
 	var theImage = "https://booru.vineshroom.net" + html.substring(html.indexOf("main image\' src=\'") + ("main image\' src=\'").length);
 	console.log(theImage);
 	theImage = theImage.substring(0, theImage.indexOf('\"'));
