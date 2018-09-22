@@ -301,7 +301,7 @@ module.exports = (message, content, herokupg) => {
 		for(var i = 0; i < 2; i++){
 		if (content.includes("https://"+chanboorus[i]+".booru.org/index.php?page=post&s=view&id=")){
 		request.get(content.substring(content.indexOf('https')), function(err, res, body) {
-	var html = body.toString().substring(body.toString().indexOf("https://img.booru.org/");
+	var html = body.toString().substring(body.toString().indexOf("https://img.booru.org/"));
 	
 	console.log(html);
 	var theImage = html.substring(0, html.indexOf('\"'));
