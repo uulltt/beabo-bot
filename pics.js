@@ -301,10 +301,10 @@ module.exports = (message, content, herokupg) => {
 		for(var i = 0; i < 2; i++){
 		if (content.includes("https://"+chanboorus[i]+".booru.org/index.php?page=post&s=view&id=")){
 		request.get(content.substring(content.indexOf('https')), function(err, res, body) {
-	var html = body.toString();
-	var theImage = html.substring(html.indexOf("https://img.booru.org/"+chanboorus[i]+"//images/"));
-	console.log(theImage);
-	theImage = theImage.substring(0, theImage.indexOf('\"'));
+	var html = body.toString().substring(body.toString().indexOf("https://img.booru.org/");
+	
+	console.log(html);
+	var theImage = html.substring(0, html.indexOf('\"'));
 	console.log(theImage);
 	message.channel.send( { embed: {
 		image : {
