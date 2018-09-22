@@ -299,8 +299,8 @@ module.exports = (message, content, herokupg) => {
 	});
 		});
 		}
-		var chanboorus = ["vidyart", "the-collection", "deviants-despository"];
-		for(var i = 0; i < 3; i++){
+		var chanboorus = ["vidyart", "the-collection", "deviants-despository", "grognard", "drawfriends"];
+		for(var i = 0; i < 5; i++){
 		if (content.includes("https://"+chanboorus[i]+".booru.org/index.php?page=post&s=view&id=")){
 		request.get(content.substring(content.indexOf('https')), function(err, res, body) {
 	var html = body.toString().substring(body.toString().indexOf("https://img.booru.org/"));
