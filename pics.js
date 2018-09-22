@@ -282,6 +282,8 @@ module.exports = (message, content, herokupg) => {
 		}
 		});
 		}
+		
+		}
 		if (content.includes("booru.vineshroom.net/post/view")){
 		request.get(content.substring(content.indexOf('https')), function(err, res, body) {
 	var html = body.toString().substring(body.toString().indexOf('main image'));
@@ -297,23 +299,22 @@ module.exports = (message, content, herokupg) => {
 	});
 		});
 		}
-		var chanboorus = ["vidyart", "the-collection"];
-		for(var i = 0; i < 2; i++){
+		var chanboorus = ["vidyart", "the-collection", "deviants-depository"];
+		for(var i = 0; i < 3; i++){
 		if (content.includes("https://"+chanboorus[i]+".booru.org/index.php?page=post&s=view&id=")){
 		request.get(content.substring(content.indexOf('https')), function(err, res, body) {
 	var html = body.toString().substring(body.toString().indexOf("https://img.booru.org/"));
-	
-	console.log(html);
 	var theImage = html.substring(0, html.indexOf('\"'));
-	console.log(theImage);
-	message.channel.send( { embed: {
-		image : {
-			url: theImage
-		}
-	}
+	request.get(theImage, function(error, response, image){
+	message.channel.send({
+				files: [{
+						attachment: image,
+						name: theImage.substring(theImage.lastIndexOf('/')+1);
+					}
+				]
+			});
 	});
-		});
-		}
+	});
 		}
 		}
 		if (message.content.toLowerCase().startsWith('b!pics') && message.mentions.users.array().length > 0){
