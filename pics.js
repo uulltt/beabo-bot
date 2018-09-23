@@ -85,7 +85,6 @@ var request = require('request').defaults({
 						});
 					for (var i = 0; i < Math.min(images.length, 10); urls += images[i++] + " ");
 						}
-					}
 					
 					if (json.posts[0].type === 'video') {
 					message.channel.send(json.posts[0].video_url);
@@ -100,7 +99,6 @@ var request = require('request').defaults({
 					for (var i = 0; i < Math.min(img.length, 10); urls += img[i++] + " ");
 						}
 						message.channel.send(urls);
-					}
 				}
 			});
 		}
