@@ -146,9 +146,10 @@ if (json.posts[0].type !== 'audio'){
 							return item.substring(0, item.indexOf('\"'));
 						});
 					for (var i = 0; i < Math.min(img.length, 10); urls += img[i++] + " ");
-					message.channel.send(urls);
-					}
 					
+					}
+					if (urls.length > 0)
+					message.channel.send(urls);
 
 				}
 			});
