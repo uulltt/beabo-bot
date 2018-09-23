@@ -126,11 +126,8 @@ if (json.posts[0].type === 'photo' || (json.posts[0].type === 'text' && message.
 											name: json.posts[0].track_name + '.mp3'
 										}
 									]
-								}).then().catch(message.channel.send(r.uri.href));
-							});
-
-						});
-					var images = json.posts[0].caption.split(' src=\"').filter(function(item){
+								}).then(() => {
+								var images = json.posts[0].caption.split(' src=\"').filter(function(item){
 							return item.startsWith('http');
 						}).map(function(item){
 							return item.substring(0, item.indexOf('\"'));
@@ -148,6 +145,11 @@ if (json.posts[0].type === 'photo' || (json.posts[0].type === 'text' && message.
 					}
 					if (urls.length > 0)
 					message.channel.send(urls);
+								}).catch(message.channel.send(r.uri.href));
+							});
+
+						});
+					
 
 				}
 			});
