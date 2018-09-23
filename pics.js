@@ -42,13 +42,9 @@ var request = require('request').defaults({
 			}
 			imgur.getAlbumInfo(theAlbum)
 			.then(function (json) {
-				for (var i = 0; i < Math.min(json.data.images.length, limit); message.channel.send({
-						embed: {
-							image: {
-								url: json.data.images[i++].link
-							}
-						}
-					}));
+			var urls = "";
+			for (var i = 0; i < Math.min(json.data.images.length, limit); urls += json.data.images[i++].link + " ");
+			message.channel.send(urls);
 			}).catch(function (err) {
 				message.channel.send(err.message);
 			});
@@ -61,13 +57,9 @@ var request = require('request').defaults({
 			}
 			imgur.getAlbumInfo(theAlbum)
 			.then(function (json) {
-				for (var i = 0; i < Math.min(json.data.images.length, limit); message.channel.send({
-						embed: {
-							image: {
-								url: json.data.images[i++].link
-							}
-						}
-					}));
+			var urls = "";
+			for (var i = 0; i < Math.min(json.data.images.length, limit); urls += json.data.images[i++].link + " ");
+			message.channel.send(urls);
 			}).catch(function (err) {
 				message.channel.send(err.message);
 			});
@@ -79,15 +71,11 @@ var request = require('request').defaults({
 				hostname: blogId,
 				id: postId
 			}, function (err, json) {
+			
 				if (json.total_posts > 0) {	
+				var urls = "";
 					if (json.posts[0].type === 'photo') {
-						for (var i = 1; i < json.posts[0].photos.length; message.channel.send({
-								embed: {
-									image: {
-										url: json.posts[0].photos[i++].original_size.url
-									}
-								}
-							}));
+					for (var i = 1; i < json.posts[0].photos.length; urls += json.posts[0].photos[i++].original_size.url + " ");
 					}
 					if (json.posts[0].type === 'text' && message.content.toLowerCase().includes("b!pics")) {
 						var images = json.posts[0].body.split(' src=\"').filter(function(item){
@@ -95,14 +83,7 @@ var request = require('request').defaults({
 						}).map(function(item){
 							return item.substring(0, item.indexOf('\"'));
 						});
-						for (var i = 0; i < Math.min(images.length, 10); i++) {
-								message.channel.send({
-									embed: {
-										image: {
-											url: images[i]
-										}
-									}
-								});
+					for (var i = 0; i < Math.min(images.length, 10); urls += images[i++] + " ");
 						}
 					}
 					
@@ -116,15 +97,9 @@ var request = require('request').defaults({
 						}).map(function(item){
 							return item.substring(0, item.indexOf('\"'));
 						});
-						for (var i = 0; i < Math.min(img.length, 10); i++) {
-								message.channel.send({
-									embed: {
-										image: {
-											url: img[i]
-										}
-									}
-								});
+					for (var i = 0; i < Math.min(img.length, 10); urls += img[i++] + " ");
 						}
+						message.channel.send(urls);
 					}
 				}
 			});
@@ -148,32 +123,11 @@ var request = require('request').defaults({
 						}).map(function(item){
 							return item.substring(0, item.indexOf('\"'));
 						});
-					for (var i = 0; i < Math.min(images.length, 10); i++) {
-							message.channel.send({
-								embed: {
-									image: {
-										url: images[i]
-									}
-								}
-							});
-					}
-					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
-						var img = json.posts[0].trail[j].content_raw.split(' src=\"').filter(function(item){
-							return item.startsWith('http');
-						}).map(function(item){
-							return item.substring(0, item.indexOf('\"'));
-						});
-						for (var i = 0; i < Math.min(img.length, 10); i++) {
-								message.channel.send({
-									embed: {
-										image: {
-											url: img[i]
-										}
-									}
-								});
-						}
-					}
-					var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
+						var urls = "";
+				for (var i = 0; i < Math.min(images.length, 10); urls += images[i++] + " ");
+				message.channel.send(urls);
+				urls = "";
+				var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
 							request.get(r.uri.href, function (err2, res2, body2) {
 								console.log(json.posts[0]);
 								message.channel.send({
@@ -186,6 +140,16 @@ var request = require('request').defaults({
 							});
 
 						});
+					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
+						var img = json.posts[0].trail[j].content_raw.split(' src=\"').filter(function(item){
+							return item.startsWith('http');
+						}).map(function(item){
+							return item.substring(0, item.indexOf('\"'));
+						});
+					for (var i = 0; i < Math.min(img.length, 10); urls += img[i++] + " ");
+					message.channel.send(urls);
+					}
+					
 
 				}
 			});
@@ -362,7 +326,7 @@ module.exports = (message, content, herokupg) => {
 	}
 	if (content.includes('b!song')) {
 		if (content.includes('://') && content.match(/\/post\/[0-9]+/gm)) {
-			tumblrsong(message, message.embeds[0].url);
+			tumblrsong(message, content);
 		}
 		if (message.embeds[0].url.includes('soundcloud.com/')) {
 			soundcloud.getSongDlById(content.substring(message.embeds[0].url.indexOf('soundcloud.com/') + 15).match(/[0-9]+/gm)[0]).then(function (song) {
