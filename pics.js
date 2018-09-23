@@ -24,14 +24,10 @@ var request = require('request').defaults({
 				tweet_mode: 'extended'
 			}, function (error, tweet, response) {
 				if (!error) {
+				var urls = "";
 					if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
-						for (var i = 1; i < tweet.extended_entities.media.length; message.channel.send({
-								embed: {
-									image: {
-										url: tweet.extended_entities.media[i++].media_url
-									}
-								}
-							}));
+						for (var i = 1; i < tweet.extended_entities.media.length; urls+= tweet.extended_entities.media[i++].media_url + " ");
+						message.channel.send(urls);
 					}
 				} else {
 					message.channel.send(error);
