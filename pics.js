@@ -117,16 +117,7 @@ if (json.posts[0].type !== 'audio'){
 					//console.log(json.posts[0]);
 					//console.log(json.posts[0].caption);
 					//console.log(json.posts[0].trail);
-					var images = json.posts[0].caption.split(' src=\"').filter(function(item){
-							return item.startsWith('http');
-						}).map(function(item){
-							return item.substring(0, item.indexOf('\"'));
-						});
-						var urls = "";
-				for (var i = 0; i < Math.min(images.length, 10); urls += images[i++] + " ");
-				message.channel.send(urls);
-				urls = "";
-				var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
+					var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
 							request.get(r.uri.href, function (err2, res2, body2) {
 								console.log(json.posts[0]);
 								message.channel.send({
@@ -139,6 +130,13 @@ if (json.posts[0].type !== 'audio'){
 							});
 
 						});
+					var images = json.posts[0].caption.split(' src=\"').filter(function(item){
+							return item.startsWith('http');
+						}).map(function(item){
+							return item.substring(0, item.indexOf('\"'));
+						});
+						var urls = "";
+				for (var i = 0; i < Math.min(images.length, 10); urls += images[i++] + " ");
 					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
 						var img = json.posts[0].trail[j].content_raw.split(' src=\"').filter(function(item){
 							return item.startsWith('http');
