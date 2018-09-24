@@ -43,8 +43,8 @@ var request = require('request').defaults({
 			imgur.getAlbumInfo(theAlbum)
 			.then(function (json) {
 			var urls = "";
-			for (var i = 0; i < Math.min(json.data.images.length, limit); urls += json.data.images[i++].link + " ");
-			message.channel.send(urls);
+			for (var i = 0; i < Math.min(json.data.images.length, limit); message.channel.send( {embed: {image : {url : json.data.images[i++].link }}}));
+			
 			}).catch(function (err) {
 				message.channel.send(err.message);
 			});
@@ -58,8 +58,7 @@ var request = require('request').defaults({
 			imgur.getAlbumInfo(theAlbum)
 			.then(function (json) {
 			var urls = "";
-			for (var i = 0; i < Math.min(json.data.images.length, limit); urls += json.data.images[i++].link + " ");
-			message.channel.send(urls);
+			for (var i = 0; i < Math.min(json.data.images.length, limit); message.channel.send( {embed: {image : {url : json.data.images[i++].link }}}));
 			}).catch(function (err) {
 				message.channel.send(err.message);
 			});
@@ -75,7 +74,7 @@ var request = require('request').defaults({
 				if (json.total_posts > 0) {	
 				var urls = "";
 					if (json.posts[0].type === 'photo') {
-					for (var i = 1; i < json.posts[0].photos.length; urls += json.posts[0].photos[i++].original_size.url + " ");
+					for (var i = 1; i < json.posts[0].photos.length; message.channel.send( {embed: {image : {url : json.posts[0].photos[i++].original_size.url }}}));
 					}
 					if (json.posts[0].type === 'text' && message.content.toLowerCase().includes("b!pics")) {
 						var images = json.posts[0].body.split(' src=\"').filter(function(item){
@@ -83,7 +82,7 @@ var request = require('request').defaults({
 						}).map(function(item){
 							return item.substring(0, item.indexOf('\"'));
 						});
-					for (var i = 0; i < Math.min(images.length, 10); urls += images[i++] + " ");
+						for (var i = 0; i < Math.min(images.length, 10); message.channel.send( {embed: {image : {url : images[i++] }}}));
 						}
 					
 					if (json.posts[0].type === 'video') {
@@ -96,10 +95,9 @@ if (json.posts[0].type === 'photo' || (json.posts[0].type === 'text' && message.
 						}).map(function(item){
 							return item.substring(0, item.indexOf('\"'));
 						});
-					for (var i = 0; i < Math.min(img.length, 10); urls += img[i++] + " ");
+						for (var i = 0; i < Math.min(img.length, 10); message.channel.send( {embed: {image : {url : img[i++] }}}));
 						}
 }
-						message.channel.send(urls);
 				}
 			});
 		}
@@ -119,7 +117,6 @@ if (json.posts[0].type === 'photo' || (json.posts[0].type === 'text' && message.
 					//console.log(json.posts[0].trail);
 					var r = request.get(json.posts[0].audio_source_url, function (err, res, body) {
 							request.get(r.uri.href, function (err2, res2, body2) {
-								console.log(json.posts[0]);
 								message.channel.send({
 									files: [{
 											attachment: body2,
@@ -133,18 +130,17 @@ if (json.posts[0].type === 'photo' || (json.posts[0].type === 'text' && message.
 							return item.substring(0, item.indexOf('\"'));
 						});
 						var urls = "";
-				for (var i = 0; i < Math.min(images.length, 10); urls += images[i++] + " ");
+				for (var i = 0; i < Math.min(images.length, 10); message.channel.send( {embed: {image : {url : images[i++] }}}));
 					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
 						var img = json.posts[0].trail[j].content_raw.split(' src=\"').filter(function(item){
 							return item.startsWith('http');
 						}).map(function(item){
 							return item.substring(0, item.indexOf('\"'));
 						});
-					for (var i = 0; i < Math.min(img.length, 10); urls += img[i++] + " ");
+						for (var i = 0; i < Math.min(img.length, 10); message.channel.send( {embed: {image : {url : img[i++] }}}));
 					
 					}
-					if (urls.length > 0)
-					message.channel.send(urls);
+					
 								}).catch(message.channel.send(r.uri.href));
 							});
 
