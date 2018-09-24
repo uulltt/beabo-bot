@@ -357,7 +357,7 @@ client.on('message', async message => {
 		concat({
 			images: [fs.readFileSync('./goosebumps.png')], margin: 0
 		}, function(err, canvas){
-		Var img2 = new Image;
+		var img2 = new Image;
 			img2.src = canvas.toBuffer();
 			var ctx = canvas.getContext('2d');
 			ctx.drawImage(img, 0, 240, 669, 630);
