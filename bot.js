@@ -351,7 +351,7 @@ client.on('message', async message => {
 		/*if (beaboMessage.substring(0, 4) === '!gb ') {
 		giantbomb(message, beaboMessage);
 		}*/
-		if (new RegExp(/goosebumps\W/gm).test(beaboMessage.toLowerCase().substring(0, 11)) && message.attachments.array().length > 0 && message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
+		if (new RegExp(/b!goosebumps/gm).test(message.content.toLowerCase().substring(0, 12)) && message.attachments.array().length > 0){
 		var img = new Image;
 		img.src = message.attachments.array[0].url;
 		concat({
