@@ -380,7 +380,7 @@ client.on('message', async message => {
 			ctx.shadowOffsetY = 10; // integer
 			ctx.shadowBlur = 10; // integer
 			var xOffset = Math.floor((Math.random() * 580)) + 20;
-			var yOffset - Math.floor((Math.random() * 500)) + 300;
+			var yOffset = Math.floor((Math.random() * 500)) + 300;
 			for(var i = 1; i < words.length; i++){
 			ctx.fillText(words[i], xOffset, yOffset + (i * 24));
 			}
