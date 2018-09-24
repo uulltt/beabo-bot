@@ -39,8 +39,8 @@ var request = require('request').defaults({
 			var limit = 10;
 			console.log(content)
 			console.log(content.charAt(6));
-			if (content.charAt(6) >= '0' && content.charAt(6) <= '9') {
-				limit = Math.min(50, parseInt(content.substring(6, content.substring(6).indexOf(' ') + 6)));
+			if (content.charAt(7) >= '0' && content.charAt(7) <= '9') {
+				limit = Math.min(50, parseInt(content.substring(7, content.substring(7).indexOf(' ') + 7)));
 			}
 			imgur.getAlbumInfo(theAlbum)
 			.then(function (json) {
@@ -55,8 +55,8 @@ var request = require('request').defaults({
 			var theAlbum = content.substring(content.indexOf('/gallery/') + 9).match(/[0-9a-zA-Z]+/gm)[0];
 			var limit = 10;
 			
-			if (content.charAt(6) >= '0' && content.charAt(6) <= '9') {
-				limit = Math.min(50, parseInt(content.substring(6, content.substring(6).indexOf(' ') + 6)));
+			if (content.charAt(7) >= '0' && content.charAt(7) <= '9') {
+				limit = Math.min(50, parseInt(content.substring(7, content.substring(7).indexOf(' ') + 7)));
 			}
 			imgur.getAlbumInfo(theAlbum)
 			.then(function (json) {
