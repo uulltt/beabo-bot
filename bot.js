@@ -353,7 +353,7 @@ client.on('message', async message => {
 		}*/
 		if (new RegExp(/b!goosebumps/gm).test(message.content.toLowerCase().substring(0, 12)) && message.attachments.array().length > 0){
 		var img = new Image;
-		img.src = message.attachments.array[0].url;
+		img.src = message.attachments.array()[0].url;
 		concat({
 			images: [fs.readFileSync('./goosebumps.png')], margin: 0
 		}, function(err, canvas){
