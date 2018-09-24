@@ -372,17 +372,18 @@ client.on('message', async message => {
 			ctx.fillStyle = "white";
 			ctx.textAlign = "center";
 			ctx.textBaseline = "Alphabetic";
-			var words = message.content.toLowerCase().substring(13).split('\n');
+			var words = message.content.toUpperCase().substring(13).split('\n');
 			ctx.fillText(words[0], 335, 910);
 			ctx.font = '24px "GooseBumps"';
-			ctx.shadowColor = "black";
-			ctx.shadowOffsetX = 10; // integer
-			ctx.shadowOffsetY = 10; // integer
-			ctx.shadowBlur = 10; // integer
+			ctx.fillStyle = "black"
 			var xOffset = Math.floor((Math.random() * 580)) + 20;
 			var yOffset = Math.floor((Math.random() * 500)) + 300;
 			for(var i = 1; i < words.length; i++){
 			ctx.fillText(words[i], xOffset, yOffset + (i * 24));
+			}
+			ctx.fillStyle = "white";
+			for(var i = 1; i < words.length; i++){
+			ctx.fillText(words[i], xOffset - 10, yOffset + (i * 24) - 10);
 			}
 			message.channel.send({
 						files: [{attachment: canvas.toBuffer(),name: 'goosebumps.png'}]
