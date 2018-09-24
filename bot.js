@@ -352,24 +352,23 @@ client.on('message', async message => {
 		giantbomb(message, beaboMessage);
 		}*/
 		if (new RegExp(/b!goosebumps/gm).test(message.content.toLowerCase().substring(0, 12)) && message.attachments.array().length > 0){
-		var img = new Image;
-		img.src = message.attachments.array()[0].url;
-		img.onload = function() {
+		request.get(message.attachments.array()[0].url, function(err, res, body){
+		var img = new Image
+		img.src = body;
+		
 		concat({
 			images: [fs.readFileSync('./goosebumps.png')], margin: 0
 		}, function(err, canvas){
 		var img2 = new Image;
 			img2.src = canvas.toBuffer();
-			img2.onload = function() {
 			var ctx = canvas.getContext('2d');
 			ctx.drawImage(img, 0, 240, 669, 630);
 			ctx.drawImage(img2, 0, 0, 669, 960);
 			message.channel.send({
 						files: [{attachment: canvas.toBuffer(),name: 'goosebumps.png'}]
 					});
-			}
 		});
-		}
+		});
 		}
 		if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
 			var fields = beaboMessage.split(' ');
