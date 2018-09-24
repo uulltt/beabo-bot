@@ -17,6 +17,10 @@ Canvas.registerFont('./fonts/COOPBL.TTF', {
 Canvas.registerFont('./fonts/Futura Std Heavy Oblique.otf', {
 	family: 'Supreme'
 });
+
+Canvas.registerFont('./fonts/Futura Condensed Medium.otf', {
+	family: 'GooseBumps'
+});
 Canvas.registerFont('./fonts/Textile.ttf', {
 	family: 'Textile'
 });
@@ -353,7 +357,7 @@ client.on('message', async message => {
 		}*/
 		if (new RegExp(/b!goosebumps/gm).test(message.content.toLowerCase().substring(0, 12)) && message.attachments.array().length > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
-		var img = new Image
+		var img = new Image;
 		img.src = body;
 		
 		concat({
@@ -364,6 +368,22 @@ client.on('message', async message => {
 			var ctx = canvas.getContext('2d');
 			ctx.drawImage(img, 0, 240, 669, 630);
 			ctx.drawImage(img2, 0, 0, 669, 960);
+			ctx.font = '60px "GooseBumps"';
+			ctx.fillStyle = "white";
+			ctx.textAlign = "center";
+			ctx.textBaseline = "Alphabetic";
+			var words = message.content.toLowerCase().substring(13).split('\n');
+			ctx.fillText(words[0], 335, 910);
+			ctx.font = '24px "GooseBumps"';
+			ctx.shadowColor = "black";
+			ctx.shadowOffsetX = 10; // integer
+			ctx.shadowOffsetY = 10; // integer
+			ctx.shadowBlur = 10; // integer
+			var xOffset = Math.floor((Math.random() * 580)) + 20;
+			var yOffset - Math.floor((Math.random() * 500)) + 300;
+			for(var i = 1; i < words.length; i++){
+			ctx.fillText(words[i], xOffset, yOffset + (i * 24));
+			}
 			message.channel.send({
 						files: [{attachment: canvas.toBuffer(),name: 'goosebumps.png'}]
 					});
