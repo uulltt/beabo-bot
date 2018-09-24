@@ -52,6 +52,7 @@ var request = require('request').defaults({
 		if (content.includes('imgur.com/') && content.includes('/gallery/')) {
 			var theAlbum = content.substring(content.indexOf('/gallery/') + 9).match(/[0-9a-zA-Z]+/gm)[0];
 			var limit = 10;
+			console.log(content.charAt(6));
 			if (content.charAt(6) >= '0' && content.charAt(6) <= '9') {
 				limit = Math.min(50, parseInt(content.substring(6, content.substring(6).indexOf(' ') + 6)));
 			}
