@@ -27,6 +27,7 @@ var request = require('request').defaults({
 				var urls = "";
 					if (tweet.hasOwnProperty('extended_entities') && tweet.extended_entities.hasOwnProperty('media')) {
 						for (var i = 1; i < tweet.extended_entities.media.length; urls+= tweet.extended_entities.media[i++].media_url + " ");
+						if (urls.length > 0)
 						message.channel.send(urls);
 					}
 				} else {
