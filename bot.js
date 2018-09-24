@@ -6,6 +6,7 @@ var fonts = require('./fonts.js');
 var music = require('./music.js');
 var pics = require('./pics.js');
 var Canvas = require('canvas');
+var concat = require('./concat.js');
 var Image = Canvas.Image;
 var Font = Canvas.Font;
 var path = require('path');
@@ -350,6 +351,22 @@ client.on('message', async message => {
 		/*if (beaboMessage.substring(0, 4) === '!gb ') {
 		giantbomb(message, beaboMessage);
 		}*/
+		if (new RegExp(/goosebumps\W/gm).test(beaboMessage.toLowerCase().substring(0, 11)) && message.attachments.array().length > 0 && message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
+		var img = new Image;
+		img.src = message.attachments.array[0].url;
+		concat({
+			images: [fs.readFileSync('./goosebumps.png')], margin: 0
+		}, function(err, canvas){
+		Var img2 = new Image;
+			img2.src = canvas.toBuffer();
+			var ctx = canvas.getContext('2d');
+			ctx.drawImage(img, 0, 240, 669, 630);
+			ctx.drawImage(img2, 0, 0, 669, 960);
+			message.channel.send({
+						files: [{attachment: canvas.toBuffer(),name: 'goosebumps.png'}]
+					});
+		});
+		}
 		if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
 			var fields = beaboMessage.split(' ');
 			herokupg.query("UPDATE permissions SET " + fields[1] + " = " + fields[2] + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {
