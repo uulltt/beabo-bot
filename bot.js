@@ -380,7 +380,7 @@ client.on('message', async message => {
 			var xOffset = Math.floor((Math.random() * 580)) + 20;
 			var yOffset = Math.floor((Math.random() * 500)) + 300;
 			for(var i = 1; i < words.length; i++){
-			ctx.fillText(words[i], xOffset + 5, yOffset + (i * 24) + 5);
+			ctx.fillText(words[i], xOffset + 2, yOffset + (i * 24) + 2);
 			}
 			ctx.fillStyle = "white";
 			for(var i = 1; i < words.length; i++){
