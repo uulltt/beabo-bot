@@ -389,10 +389,10 @@ client.on('message', async message => {
 			for(var i = 1; i < words.length; i++){
 			ctx.fillText(words[i], xOffset, yOffset + (i * 24));
 			}
+			}
 			message.channel.send({
 						files: [{attachment: canvas.toBuffer(),name: 'goosebumps.png'}]
 					});
-			}
 		});
 		});
 		}
