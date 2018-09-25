@@ -356,46 +356,7 @@ client.on('message', async message => {
 		/*if (beaboMessage.substring(0, 4) === '!gb ') {
 		giantbomb(message, beaboMessage);
 		}*/
-		if (new RegExp(/b!goosebumps/gm).test(message.content.toLowerCase().substring(0, 12)) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
-		request.get(message.attachments.array()[0].url, function(err, res, body){
-		var img = new Image;
-		img.src = body;
 		
-		concat({
-			images: [fs.readFileSync('./goosebumps'+Math.floor(Math.random() * 3).toString()+'.png')], margin: 0
-		}, function(err, canvas){
-		var img2 = new Image;
-			img2.src = canvas.toBuffer();
-			var ctx = canvas.getContext('2d');
-			ctx.drawImage(img, 0, 240, 669, 640);
-			ctx.drawImage(img2, 0, 0, 669, 960);
-			canvas.imageSmoothingEnabled = false;
-			ctx.font = '60px "GooseBumps"';
-			ctx.fillStyle = "white";
-			ctx.textAlign = "center";
-			ctx.textBaseline = "Alphabetic";
-			if (message.content.length > 13){
-			var words = message.content.substring(13).trim().split('\n');
-			words[0] = words[0].toUpperCase()
-			ctx.fillText(words[0], 335, 910);
-			ctx.font = '24px "GooseBumps"';
-			ctx.fillStyle = "black"
-			var xOffset = Math.floor((Math.random() * 580)) + 20;
-			var yOffset = Math.floor((Math.random() * 500)) + 300;
-			for(var i = 1; i < words.length; i++){
-			ctx.fillText(words[i], xOffset + 2, yOffset + (i * 24) + 2);
-			}
-			ctx.fillStyle = "white";
-			for(var i = 1; i < words.length; i++){
-			ctx.fillText(words[i], xOffset, yOffset + (i * 24));
-			}
-			}
-			message.channel.send({
-						files: [{attachment: canvas.toBuffer(),name: 'goosebumps.png'}]
-					});
-		});
-		});
-		}
 		if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
 			var fields = beaboMessage.split(' ');
 			herokupg.query("UPDATE permissions SET " + fields[1] + " = " + fields[2] + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {
@@ -527,6 +488,49 @@ client.on('message', async message => {
 					}
 				]
 			});
+		}
+		
+		if (new RegExp(/b!goosebumps/gm).test(message.content.toLowerCase().substring(0, 12)) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
+		request.get(message.attachments.array()[0].url, function(err, res, body){
+		var img = new Image;
+		img.src = body;
+		
+		concat({
+			images: [fs.readFileSync('./goosebumps'+Math.floor(Math.random() * 3).toString()+'.png')], margin: 0
+		}, function(err, canvas){
+		var img2 = new Image;
+			img2.src = canvas.toBuffer();
+			var ctx = canvas.getContext('2d');
+			ctx.drawImage(img, 0, 240, 669, 640);
+			ctx.drawImage(img2, 0, 0, 669, 960);
+			canvas.imageSmoothingEnabled = false;
+			ctx.font = '60px "GooseBumps"';
+			ctx.fillStyle = "white";
+			ctx.textAlign = "center";
+			ctx.textBaseline = "Alphabetic";
+			if (message.content.length > 13){
+			var words = message.content.substring(13).trim().split('\n');
+			words[0] = words[0].toUpperCase()
+			ctx.fillText(words[0], 335, 910);
+			ctx.fillStyle = "black"
+			ctx.fillText(message.member.displayName.toUpperCase(), 335, 75);
+			ctx.font = '24px "GooseBumps"';
+			
+			var xOffset = Math.floor((Math.random() * 580)) + 20;
+			var yOffset = Math.floor((Math.random() * 500)) + 300;
+			for(var i = 1; i < words.length; i++){
+			ctx.fillText(words[i], xOffset + 2, yOffset + (i * 24) + 2);
+			}
+			ctx.fillStyle = "white";
+			for(var i = 1; i < words.length; i++){
+			ctx.fillText(words[i], xOffset, yOffset + (i * 24));
+			}
+			}
+			message.channel.send({
+						files: [{attachment: canvas.toBuffer(),name: 'goosebumps.png'}]
+					});
+		});
+		});
 		}
 
 		if (new RegExp(/eb(n|m|s|b|p|N|M|S|B|P)\W/gm).test(beaboMessage.substring(0, 4))) {
