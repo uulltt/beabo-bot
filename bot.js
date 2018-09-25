@@ -97,10 +97,10 @@ function helpMessage(message) {
 		embed: {
 			fields: [{
 					name: 'Album Embedding (b!pics followed by)',
-					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na link to a youtube vid - gets the thumbnail of that youtube vid\na jpg image on the web - gets the EXIf data of that image\nmention a user - get user\'s avatar image'
+					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na link to a youtube vid - gets the thumbnail of that youtube vid\na jpg image on the web - gets the EXIf data of that image\nmention a user - get user\'s avatar image\ngelbooru/e621/e926/vinebooru/grognard/vidyart/etc. link - posts linked image from that booru'
 				}, {
 					name: 'Other Embedding Commands',
-					value: 'b!vids (tumblr post) - embeds a video post from tumblr\nb!song (tumblr or vocaroo post) - embeds an audio post from tumblr (with its album art) or vocaroo.\nb!thread (twitter link) - links to threadreaderapp version of linked twitter thread\nlink to 4chan post - embeds said 4chan post. Be safe out there kids.'
+					value: 'b!vids (tumblr post) - embeds a video post from tumblr\nb!song (tumblr post) - embeds an audio post from tumblr (with its album art)\nb!thread (twitter link) - links to threadreaderapp version of linked twitter thread\n'
 				}, {
 					name: 'Funny Fonts',
 					value: 'b!font [game name] [message] (without brackets) - allows you to have beabo pop out a funny message using the font of your favorite game.\n(Game list here: https://nfggames.com/games/fontmaker/ the text after the "y-" in the image url is what you input for [game name])\n'
@@ -118,7 +118,8 @@ b!ut - creates an Undertale text box.
 					value: `b!jeopardy - makes a Jeopardy answer screen with user input
 b!nirvanna - nirvanna the band the word 
 b!supreme - supreme logo generator
-b!sunny - generates an always sunny title card. also works with b!iasip`
+b!sunny - generates an always sunny title card. also works with b!iasip
+b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attached image. first typed line is the title, every line after is the tagline.`
 				}, {
 					name: 'Local Time Commands',
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
@@ -355,7 +356,7 @@ client.on('message', async message => {
 		/*if (beaboMessage.substring(0, 4) === '!gb ') {
 		giantbomb(message, beaboMessage);
 		}*/
-		if (new RegExp(/b!goosebumps/gm).test(message.content.toLowerCase().substring(0, 12)) && message.attachments.array().length > 0){
+		if (new RegExp(/b!goosebumps/gm).test(message.content.toLowerCase().substring(0, 12)) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		var img = new Image;
 		img.src = body;
