@@ -368,6 +368,7 @@ client.on('message', async message => {
 			var ctx = canvas.getContext('2d');
 			ctx.drawImage(img, 0, 232, 669, 640);
 			ctx.drawImage(img2, 0, 0, 669, 960);
+			ctx = canvas.getContext("2d", {alpha: false})
 			ctx.font = '60px "GooseBumps"';
 			ctx.fillStyle = "white";
 			ctx.textAlign = "center";
