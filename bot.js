@@ -374,6 +374,7 @@ client.on('message', async message => {
 			ctx.fillStyle = "white";
 			ctx.textAlign = "center";
 			ctx.textBaseline = "Alphabetic";
+			if (message.content.length > 13){
 			var words = message.content.substring(13).split('\n');
 			words[0] = words[0].toUpperCase()
 			ctx.fillText(words[0], 335, 910);
@@ -391,6 +392,7 @@ client.on('message', async message => {
 			message.channel.send({
 						files: [{attachment: canvas.toBuffer(),name: 'goosebumps.png'}]
 					});
+			}
 		});
 		});
 		}
