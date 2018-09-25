@@ -527,7 +527,7 @@ client.on('message', async message => {
 			}
 			}
 			message.channel.send({
-						files: [{attachment: canvas.toBuffer(),name: 'goosebumps - ' + words[0].toLowerCase() + '.png'}]
+						files: [{attachment: canvas.toBuffer(),name: 'goosebumps.png'}]
 					});
 		});
 		});
