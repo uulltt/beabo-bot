@@ -375,7 +375,7 @@ client.on('message', async message => {
 			ctx.textAlign = "center";
 			ctx.textBaseline = "Alphabetic";
 			if (message.content.length > 13){
-			var words = message.content.substring(13).split('\n');
+			var words = message.content.substring(13).trim().split('\n');
 			words[0] = words[0].toUpperCase()
 			ctx.fillText(words[0], 335, 910);
 			ctx.font = '24px "GooseBumps"';
