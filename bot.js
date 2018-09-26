@@ -59,6 +59,10 @@ client.on('ready', () => {
 	console.log(err);
 	});
 	}*/
+	/*var guilds = client.guilds.array();
+	for(var i = 0; i < guilds.length; i++){
+	client.guilds.array()[i].me.setNickname('Bea-boo');
+	}*/
 });
 
 client.on('guildCreate', (guild) => {
@@ -93,7 +97,8 @@ function beeb() {
 }
 
 function helpMessage(message) {
-	message.channel.send('http://ultdev.tumblr.com/beabo', {
+	message.author.createDM().then(chnl => {
+						    chnl.send('http://ultdev.tumblr.com/beabo', {
 		embed: {
 			fields: [{
 					name: 'Album Embedding (b!pics followed by)',
@@ -115,8 +120,7 @@ b!ut - creates an Undertale text box.
 					` + '`b!ut_[character name]` - creates an Undertale text box with that character (i.e. b!utsans [Hey guys it\'s me Sans Undertale])\n`b!ut_[character name]_[expression]` - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)'
 				}, {
 					name: 'More Text Box Commands',
-					value: `b!jeopardy - makes a Jeopardy answer screen with user input
-b!nirvanna - nirvanna the band the word 
+					value: `b!jeopardy - makes a Jeopardy answer screen with user input 
 b!supreme - supreme logo generator
 b!sunny - generates an always sunny title card. also works with b!iasip
 b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attached image. first typed line is the title, every line after is the tagline.`
@@ -143,6 +147,7 @@ b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attac
 				}
 			]
 		}
+	});
 	});
 }
 var messageNum = 0;
@@ -381,7 +386,7 @@ client.on('message', async message => {
 
 		timestuff(message, beaboMessage, herokupg);
 
-		if (beaboMessage.toLowerCase().startsWith("nirvanna ")) {
+		/*if (beaboMessage.toLowerCase().startsWith("nirvanna ")) {
 			var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).toLowerCase().trim();
 			var textCanvas = new Canvas.createCanvas(600, 300);
 			var ctx = textCanvas.getContext("2d");
@@ -402,7 +407,7 @@ client.on('message', async message => {
 					}
 				]
 			});
-		}
+		}*/
 
 		if (beaboMessage.toLowerCase().startsWith("jeopardy ")) {
 			var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim().toUpperCase() + '\u200B';
