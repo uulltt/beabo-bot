@@ -278,11 +278,9 @@ client.on('message', async message => {
 	}
 
 	fonts(message);
-	//movies(message, message.content);
 	pics(message, message.content, herokupg);
 	quiz(message, message.content.toLowerCase());
 	music(client, message, message.content, herokupg);
-	//midi(message, message.content, herokupg);
 	if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
 		var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
 		console.log(thread);
@@ -336,10 +334,6 @@ client.on('message', async message => {
 
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
-
-		/*if (beaboMessage.substring(0, 4) === '!gb ') {
-		giantbomb(message, beaboMessage);
-		}*/
 		
 		if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
 			var fields = beaboMessage.split(' ');
@@ -352,7 +346,6 @@ client.on('message', async message => {
 		}
 		if (beaboMessage.startsWith('day')) {
 			message.channel.send('biiiii! 🎉 🎂');
-
 		}
 		if (beaboMessage.startsWith('pg ') && message.author.id === process.env.BOT_ADMIN) {
 			herokupg.query(beaboMessage.substring(3), (err, res) => {
@@ -362,34 +355,8 @@ client.on('message', async message => {
 					console.log(err);
 			});
 		}
-
 		timestuff(message, beaboMessage, herokupg);
 		textboxes(message, beaboMessage);
-		/*if (beaboMessage.toLowerCase().startsWith("nirvanna ")) {
-			var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).toLowerCase().trim();
-			var textCanvas = new Canvas.createCanvas(600, 300);
-			var ctx = textCanvas.getContext("2d");
-			ctx.fillStyle = "black";
-			ctx.rect(0, 0, 600, 300);
-			ctx.fill();
-			ctx.font = '60px "Cooper Black"';
-			ctx.fillStyle = "white";
-			ctx.textAlign = "center";
-			ctx.textBaseline = "middle";
-			ctx.fillText("nirvanna", 300, 90);
-			ctx.fillText("the band", 300, 150);
-			ctx.fillText("the " + word, 300, 210);
-			message.channel.send({
-				files: [{
-						attachment: textCanvas.toBuffer(),
-						name: 'nirvanna.png'
-					}
-				]
-			});
-		}*/
-
-		
-
 		if (beaboMessage.substring(0, 8) === 'commands' || beaboMessage.substring(0, 4) === 'help') {
 			helpMessage(message);
 		}

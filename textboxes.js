@@ -1,5 +1,30 @@
+const Discord = require('discord.js');
+var fs = require('fs');
+var Canvas = require('canvas');
+var concat = require('./concat.js');
+var Image = Canvas.Image;
+var Font = Canvas.Font;
+var path = require('path');
+var EarthBoundText = require('./scripts/lib/ebtext.js');
+Canvas.registerFont('./fonts/COOPBL.TTF', {
+	family: 'Cooper Black'
+});
+Canvas.registerFont('./fonts/Futura Std Heavy Oblique.otf', {
+	family: 'Supreme'
+});
 
-
+Canvas.registerFont('./fonts/Futura Condensed Medium.otf', {
+	family: 'GooseBumps'
+});
+Canvas.registerFont('./fonts/Textile.ttf', {
+	family: 'Textile'
+});
+Canvas.registerFont('./fonts/Korinna Bold.ttf', {
+	family: 'Jeopardy'
+});
+var request = require('request').defaults({
+		encoding: null
+	});
 
 module.exports = (message, beaboMessage) => {
 	if (beaboMessage.toLowerCase().startsWith("jeopardy ")) {
