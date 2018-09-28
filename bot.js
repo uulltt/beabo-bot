@@ -349,7 +349,7 @@ client.on('message', async message => {
 		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		message.channel.send("(one moment please)");
-		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm){
+		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
 		if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gm)){
 		Tesseract.recognize(body, {lang: beaboMessage.toLowerCase().match(/-[a-z_]+/gm)[0].substring(1)})
          .progress(function  (p) { console.log('progress', p)    })
@@ -370,7 +370,7 @@ client.on('message', async message => {
 		 })
 		}	
 		}
-		if (message.attachments.array()[0].url.toLowerCase().match(/\.((mp3)|(wav))/gm){
+		if (message.attachments.array()[0].url.toLowerCase().match(/\.((mp3)|(wav))/gm)){
 		const audioBytes = body.toString('base64');
 
 // The audio file's encoding, sample rate in hertz, and BCP-47 language code
