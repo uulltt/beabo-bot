@@ -105,7 +105,7 @@ b!supreme - supreme logo generator
 b!sunny - generates an always sunny title card. also works with b!iasip
 b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attached image. first typed line is the title, every line after is the tagline.`
 				}, {
-					name: "Transcription commands"
+					name: "Transcription commands",
 					value: "b!transcribe or b!ocr or b!tesseract (w/ image attachment) - transcribes text from that image into plaintext"
 				}, {
 					name: 'Local Time Commands',
