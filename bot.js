@@ -339,7 +339,7 @@ client.on('message', async message => {
 
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
-		if ((beaboMessage.toLowerCase().startsWith("ocr") || beaboMessage.toLowerCase().startsWith("tesseract") || beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
+		if ((beaboMessage.toLowerCase().startsWith("ocr") || beaboMessage.toLowerCase().startsWith("tesseract") || beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0 && message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		message.channel.send("(one moment please)");
 		Tesseract.recognize(body)
