@@ -6,6 +6,7 @@ var music = require('./music.js');
 var pics = require('./pics.js');
 var quiz = require('./quiz.js');
 var textboxes = require('./textboxes.js');
+var Tesseract = require('tesseract.js')
 var request = require('request').defaults({
 		encoding: null
 	});
@@ -334,7 +335,14 @@ client.on('message', async message => {
 
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
+		if ((beaboMessage.toLowerCase().startsWith("ocr") || beaboMessage.toLowerCase().startsWith("tesseract")) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
+		request.get(message.attachments.array()[0].url, function(err, res, body){
+		Tesseract.recognize(body)
+         .progress(function  (p) { console.log('progress', p)    })
+         .then(function (result) { console.log('result', result) })
+		}
 		
+		}
 		if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
 			var fields = beaboMessage.split(' ');
 			herokupg.query("UPDATE permissions SET " + fields[1] + " = " + fields[2] + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {

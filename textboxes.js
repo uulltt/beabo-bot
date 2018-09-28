@@ -219,10 +219,5 @@ module.exports = (message, beaboMessage) => {
 					});
 				}
 			}
-		}
-	
-	
-	
-	
-	
+		}	
 }
