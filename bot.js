@@ -338,12 +338,16 @@ client.on('message', async message => {
 	}
 
 	if (message.content.toLowerCase().startsWith('b!')) {
+	if (beaboMessage.toLowerCase() == "test"){
+	message.channel.send("?en Hola");
+	
+	}
 		var beaboMessage = message.content.substring(2);
 		
 		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0 && message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		message.channel.send("(one moment please)");
-		if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gn)){
+		if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gm)){
 		Tesseract.recognize(body, {lang: beaboMessage.toLowerCase().match(/-[a-z_]+/gm)[0].substring(1)})
          .progress(function  (p) { console.log('progress', p)    })
          .then(function (result) { if (result.text.length > 2048){
