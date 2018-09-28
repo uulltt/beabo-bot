@@ -340,7 +340,7 @@ client.on('message', async message => {
 		Tesseract.recognize(body)
          .progress(function  (p) { console.log('progress', p)    })
          .then(function (result) { console.log('result', result) })
-		}
+		});
 		
 		}
 		if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {

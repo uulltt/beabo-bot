@@ -156,7 +156,7 @@ if (json.posts[0].type === 'photo' || (json.posts[0].type === 'text' && message.
 	}
 
 module.exports = (message, content, herokupg) => {
-	if (!content.includes('b!pics') && !content.includes('b!vids') && !content.includes('b!song') && message.channel.hasOwnProperty('guild')){
+	if (!content.toLowerCase().includes('b!pics') && !content.toLowerCase().includes('b!vids') && !content.toLowerCase().includes('b!song') && message.channel.hasOwnProperty('guild')){
 	herokupg.query("SELECT picsglobal FROM permissions WHERE guild_id = \'" + message.guild.id + "\';", (err, res) => {
 	if (res.rows.length > 0 && res.rows[0].picsglobal){
 		TwitImgTumb(message, content);
@@ -166,7 +166,7 @@ module.exports = (message, content, herokupg) => {
 	}
 	});
 	}
-	if (content.includes('b!pics')) { //all the camera commands go in here
+	if (content.toLowerCase().includes('b!pics')) { //all the camera commands go in here
 		TwitImgTumb(message, content);
 		if (content.toLowerCase().includes('.jpg') || content.toLowerCase().includes('.jpeg')) {
 			request.get(encodeURI(message.embeds[0].image.url), function (err, res, body) {
@@ -285,7 +285,7 @@ module.exports = (message, content, herokupg) => {
 			
 		}
 	}
-	if (content.includes('b!vids')) {
+	if (content.toLowerCase().includes('b!vids')) {
 		/*if (content.includes('watch?v=') || content.includes('youtu.be/')){ //backup if youtubemp3api ever goes down
 		request.get(encodeURI('https://you-link.herokuapp.com/?url=' + content.substring(6).replace(/ /gm, '')), function (err, res, body) {
 		message.channel.send(JSON.parse(body.toString())[0].url);
@@ -324,7 +324,7 @@ module.exports = (message, content, herokupg) => {
 			});
 		}
 	}
-	if (content.includes('b!song')) {
+	if (content.toLowerCase().includes('b!song')) {
 		if (content.includes('://') && content.match(/\/post\/[0-9]+/gm)) {
 			tumblrsong(message, content);
 		}
@@ -350,7 +350,7 @@ module.exports = (message, content, herokupg) => {
 		
 	}
 
-	if (content.startsWith('b!thread ')) {
+	if (content.toLowerCase().startsWith('b!thread ')) {
 		if (content.includes('twitter.com/') && content.includes('/status/')) {
 			var tweetId = content.substring(content.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
 			message.channel.send('https://threadreaderapp.com/thread/' + tweetId + '.html');
