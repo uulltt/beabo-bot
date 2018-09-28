@@ -338,12 +338,12 @@ client.on('message', async message => {
 	}
 
 	if (message.content.toLowerCase().startsWith('b!')) {
-	if (beaboMessage.toLowerCase() == "test"){
+	
+		var beaboMessage = message.content.substring(2);
+		if (beaboMessage.toLowerCase() == "test"){
 	message.channel.send("?en Hola");
 	
 	}
-		var beaboMessage = message.content.substring(2);
-		
 		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0 && message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		message.channel.send("(one moment please)");
