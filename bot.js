@@ -339,7 +339,7 @@ client.on('message', async message => {
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		Tesseract.recognize(body)
          .progress(function  (p) { console.log('progress', p)    })
-         .then(function (result) { console.log(result)})
+         .then(function (result) { console.log('result', Object.keys(result)) })
 		});
 		
 		}
