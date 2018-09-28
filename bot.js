@@ -335,11 +335,16 @@ client.on('message', async message => {
 
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
-		if ((beaboMessage.toLowerCase().startsWith("ocr") || beaboMessage.toLowerCase().startsWith("tesseract")) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
+		if ((beaboMessage.toLowerCase().startsWith("ocr") || beaboMessage.toLowerCase().startsWith("tesseract") || beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		Tesseract.recognize(body)
          .progress(function  (p) { console.log('progress', p)    })
-         .then(function (result) { console.log('result', result.text) })
+         .then(function (result) { if (result.text.length > 2048){
+			 message.channel.send( {embed : { description : result.text.substring(0, 2048) }});
+		 } else {
+		 message.channel.send ( {embed : {description: result.text }});
+		 }
+		 })
 		});
 		
 		}
