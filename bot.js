@@ -105,11 +105,15 @@ b!supreme - supreme logo generator
 b!sunny - generates an always sunny title card. also works with b!iasip
 b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attached image. first typed line is the title, every line after is the tagline.`
 				}, {
+					name: "Transcription commands"
+					value: "b!transcribe or b!ocr or b!tesseract (w/ image attachment) - transcribes text from that image into plaintext"
+				}, {
 					name: 'Local Time Commands',
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
 				}, {
 					name: 'Admin Commands (b!set followed by)',
 					value: 'voice true/false - turns audio stuff on or off\npicsglobal true/false - automatically does pics command for any posted twitter/imgur/tumblr link if true\ngreeting true/false - does a server greeting for new members'
+					
 					/*}, {
 					name: 'Google Maps Commands',
 					value: 'b!dir \"origin\" \"destination\" - prints directions from origin to destination\nb!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n'
@@ -337,6 +341,7 @@ client.on('message', async message => {
 		var beaboMessage = message.content.substring(2);
 		if ((beaboMessage.toLowerCase().startsWith("ocr") || beaboMessage.toLowerCase().startsWith("tesseract") || beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
+		message.channel.send("(one moment please)");
 		Tesseract.recognize(body)
          .progress(function  (p) { console.log('progress', p)    })
          .then(function (result) { if (result.text.length > 2048){
