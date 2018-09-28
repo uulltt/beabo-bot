@@ -348,7 +348,7 @@ client.on('message', async message => {
 		message.channel.send("(one moment please)");
 		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
 		if (message.attachments.array()[0].url.toLowerCase().match(/\/loss((_comic)?)\.((png)|(jp(e?)g))/gm)){
-		message.channel.send('```\n|\t||\n||\t|_\n```');
+		message.channel.send('```\n|\t||\n\n||\t|_\n```');
 		} else {
 		if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gm)){
 		Tesseract.recognize(body, {lang: beaboMessage.toLowerCase().match(/-[a-z_]+/gm)[0].substring(1)})
