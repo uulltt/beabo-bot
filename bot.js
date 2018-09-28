@@ -10,7 +10,9 @@ var Tesseract = require('tesseract.js')
 var request = require('request').defaults({
 		encoding: null
 	});
-
+const speech = require('@google-cloud/speech');
+const fs = require('fs');
+const speechclient = new speech.SpeechClient();
 var timestuff = require('./timestuff.js');
 const {
 	Client
@@ -344,9 +346,10 @@ client.on('message', async message => {
 	message.channel.send("?en Hola");
 	
 	}
-		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0 && message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
+		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		message.channel.send("(one moment please)");
+		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm){
 		if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gm)){
 		Tesseract.recognize(body, {lang: beaboMessage.toLowerCase().match(/-[a-z_]+/gm)[0].substring(1)})
          .progress(function  (p) { console.log('progress', p)    })
@@ -365,8 +368,41 @@ client.on('message', async message => {
 		 message.channel.send ( {embed : {description: result.text }});
 		 }
 		 })
-			
+		}	
 		}
+		if (message.attachments.array()[0].url.toLowerCase().match(/\.((mp3)|(wav))/gm){
+		const audioBytes = body.toString('base64');
+
+// The audio file's encoding, sample rate in hertz, and BCP-47 language code
+const audio = {
+  content: audioBytes,
+};
+const config = {
+  encoding: 'LINEAR16',
+  sampleRateHertz: 16000,
+  languageCode: 'en-US',
+};
+const request = {
+  audio: audio,
+  config: config,
+};
+
+// Detects speech in the audio file
+speechclient
+  .recognize(request)
+  .then(data => {
+    const response = data[0];
+    const transcription = response.results
+      .map(result => result.alternatives[0].transcript)
+      .join('\n');
+    console.log(`Transcription: ${transcription}`);
+  })
+  .catch(err => {
+    console.error('ERROR:', err);
+  });
+		
+		}
+		
 		});
 		
 		}
