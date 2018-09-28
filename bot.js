@@ -106,7 +106,7 @@ b!sunny - generates an always sunny title card. also works with b!iasip
 b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attached image. first typed line is the title, every line after is the tagline.`
 				}, {
 					name: "Transcription commands",
-					value: "b!transcribe or b!ocr or b!tesseract (w/ image attachment) - transcribes text from that image into plaintext"
+					value: "b!transcribe (w/ image attachment) - transcribes text from that image into english plaintext\nb!transcribe-(eng/spa/fra/por/jpn/kor/chi_sim/chi_tra) - transcribes text from image attachment into given language parameter"
 				}, {
 					name: 'Local Time Commands',
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
@@ -339,10 +339,12 @@ client.on('message', async message => {
 
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
-		if ((beaboMessage.toLowerCase().startsWith("ocr") || beaboMessage.toLowerCase().startsWith("tesseract") || beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0 && message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
+		
+		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0 && message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		message.channel.send("(one moment please)");
-		Tesseract.recognize(body)
+		if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gn)){
+		Tesseract.recognize(body, {lang: beaboMessage.toLowerCase().match(/-[a-z_]+/gm)[0].substring(1)})
          .progress(function  (p) { console.log('progress', p)    })
          .then(function (result) { if (result.text.length > 2048){
 			 message.channel.send( {embed : { description : result.text.substring(0, 2048) }});
@@ -350,6 +352,17 @@ client.on('message', async message => {
 		 message.channel.send ( {embed : {description: result.text }});
 		 }
 		 })
+		} else {
+			Tesseract.recognize(body)
+         .progress(function  (p) { console.log('progress', p)    })
+         .then(function (result) { if (result.text.length > 2048){
+			 message.channel.send( {embed : { description : result.text.substring(0, 2048) }});
+		 } else {
+		 message.channel.send ( {embed : {description: result.text }});
+		 }
+		 })
+			
+		}
 		});
 		
 		}
