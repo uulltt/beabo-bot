@@ -314,10 +314,13 @@ module.exports = (message, content, herokupg) => {
 		if (content.includes('://') && content.match(/\/post\/[0-9]+/gm)) {
 			var blogId = content.substring(content.indexOf('://')+3, content.indexOf('/post/'));
 			var postId = parseInt(message.embeds[0].url.substring(content.indexOf('/post/') + 6).match(/[0-9]+/gm)[0]);
+			console.log(blogId);
+			console.log(postId);
 			tumblr.get('/posts', {
 				hostname: blogId,
 				id: postId
 			}, function (err, json) {
+			console.log(json);
 				if (json.total_posts > 0 && json.posts[0].type === 'video') {
 					message.channel.send(json.posts[0].video_url);
 				}
