@@ -370,8 +370,10 @@ client.on('message', async message => {
 		 }
 		 })
 		}	
-		}
+		} 
 		});
+		}else {
+		message.channel.send('beabo? (error. image must be png or jp(e)g)');
 		}
 		});
 		
