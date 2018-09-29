@@ -25,6 +25,7 @@
     "rotten-movies": "0.1.1",
     "rt-scraper": "1.0.5",
 	"soundcloud-dl": "1.0.3",
+	"tensorflow2": "1.0.22",
 	"tesseract.js": "1.0.10",
     "tumblrwks": "0.3.0",
     "twitter": "1.7.1",
