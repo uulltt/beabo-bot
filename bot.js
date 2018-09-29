@@ -361,7 +361,7 @@ client.on('message', async message => {
 		 })
 		} else {
 			Tesseract.recognize(body)
-         .progress(function  (p) { m.edit('(status: ' + p.status + '. progress: ' +p.progress.toString()+ ')'   })
+         .progress(function  (p) { m.edit('(status: ' + p.status + '. progress: ' +p.progress.toString()+ ')'   )})
          .then(function (result) { if (result.text.length > 2048){
 			 m.edit( {embed : { description : result.text.substring(0, 2048) }});
 		 } else {
