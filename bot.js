@@ -345,14 +345,14 @@ client.on('message', async message => {
 	}
 		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
-		message.channel.send("(one moment please)").then( m => {;
+		message.channel.send("(one moment please)").then( m => {
 		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
 		if (message.attachments.array()[0].url.toLowerCase().match(/\/loss((_comic)?)\.((png)|(jp(e?)g))/gm)){
 		message.channel.send('```\n|\t||\n\n||\t|_\n```');
 		} else {
 		if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gm)){
 		Tesseract.recognize(body, {lang: beaboMessage.toLowerCase().match(/-[a-z_]+/gm)[0].substring(1)})
-         .progress(function  (p) { console.log('progress', p)    })
+         .progress(function  (p) { m.edit('(status: ' + p.status + '. progress: ' +p.progress.toString()+ ')' )})
          .then(function (result) { if (result.text.length > 1996){
 		 m.edit("?en " + result.text.substring(0, 1996));
 		 } else {
@@ -361,7 +361,7 @@ client.on('message', async message => {
 		 })
 		} else {
 			Tesseract.recognize(body)
-         .progress(function  (p) { console.log('progress', p)    })
+         .progress(function  (p) { m.edit('(status: ' + p.status + '. progress: ' +p.progress.toString()+ ')'   })
          .then(function (result) { if (result.text.length > 2048){
 			 m.edit( {embed : { description : result.text.substring(0, 2048) }});
 		 } else {
