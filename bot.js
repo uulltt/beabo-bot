@@ -361,10 +361,10 @@ client.on('message', async message => {
 		if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gm)){
 		Tesseract.recognize(body, {lang: beaboMessage.toLowerCase().match(/-[a-z_]+/gm)[0].substring(1)})
          .progress(function  (p) { console.log(JSON.stringify(p))})
-         .then(function (result) { if (result.text.length > 1996){
-		 m.edit("?en " + result.text.substring(0, 1996));
+         .then(function (result) { if (result.text.length > 2048){
+			 m.edit( {embed : { description : result.text.substring(0, 2048) }});
 		 } else {
-		 m.edit("?en " + result.text);
+		 m.edit( {embed : {description: result.text }});
 		 }
 		 })
 		} else {
