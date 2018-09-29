@@ -187,6 +187,8 @@ module.exports = (message, beaboMessage) => {
 
 		if (new RegExp(/ut\W/gm).test(beaboMessage.substring(0, 3))) {
 			var text = message.cleanContent.substring(5);
+			console.log(text);
+			console.log('https://www.demirramon.com/gen/undertale_box.png?text=' + encodeURI(text))
 			message.channel.send({
 				embed: {
 					image: {
