@@ -345,8 +345,9 @@ client.on('message', async message => {
 	}
 		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
-		message.channel.send("(one moment please)").then( m => {
 		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
+		message.channel.send("(one moment please)").then( m => {
+		
 		if (message.attachments.array()[0].url.toLowerCase().match(/\/loss((_comic)?)\.((png)|(jp(e?)g))/gm)){
 		m.edit('```\n|\t||\n\n||\t|_\n```');
 		} else {
@@ -370,8 +371,8 @@ client.on('message', async message => {
 		 })
 		}	
 		}
-		}
 		});
+		}
 		});
 		
 		}
