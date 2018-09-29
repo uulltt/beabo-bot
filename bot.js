@@ -355,7 +355,7 @@ client.on('message', async message => {
 		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
 		message.channel.send("(one moment please)").then( m => {
 		
-		if (message.attachments.array()[0].url.toLowerCase().match(/\/loss((_comic)?)\.((png)|(jp(e?)g))/gm)){
+		if (message.attachments.array()[0].url.toLowerCase().match(/\/loss((_comic)?)\.((png)|(jp(e?)g))/gm) || message.attachments.array()[0].url.includes('cad-20080602')){
 		m.edit('```\n|\t||\n\n||\t|_\n```');
 		} else {
 		if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gm)){
