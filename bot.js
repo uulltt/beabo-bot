@@ -176,6 +176,13 @@ client.on('message', async message => {
 		}
 
 	}
+	
+	if ((message.cleanContent.toLowerCase().startsWith("h")) && message.cleanContent.toLowerCase().match(/h((i((ya)?))|(ello))(( there)?)(,?) (@?)beabo/gm)) {
+		if (Math.random() <= 0.7) {
+		message.react('👋');
+		}
+
+	}
 	if (message.content === "b!counter" && message.author.id == process.env.BOT_ADMIN) {
 		message.channel.send(messageNum.toString());
 
