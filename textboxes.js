@@ -189,12 +189,10 @@ module.exports = (message, beaboMessage) => {
 			var text = message.cleanContent.substring(5);
 			console.log(text);
 			console.log('https://www.demirramon.com/gen/undertale_box.png?text=' + encodeURI(text))
-			message.channel.send({
-				embed: {
-					image: {
-						url: 'https://www.demirramon.com/gen/undertale_box.png?text=' + encodeURI(text)
-					}
-				}
+			request.get('https://www.demirramon.com/gen/undertale_box.png?text=' + encodeURI(text), function(err, res, body){
+				message.channel.send({
+						files: [{attachment: body,name: 'undertale.png'}]
+					});
 			});
 		} else {
 			if ((beaboMessage).match(/ut_.+\W/gm)) {
@@ -203,22 +201,19 @@ module.exports = (message, beaboMessage) => {
 				var character = characterexp[0];
 				var text = characterText.substring(characterText.search(/\W/gm) + 1);
 				if (characterexp.length <= 1) {
-					message.channel.send({
-						embed: {
-							image: {
-								url: 'https://www.demirramon.com/gen/undertale_box.png?character=' + encodeURI(character) + '&text=' + encodeURI(text)
-							}
-						}
+					request.get('https://www.demirramon.com/gen/undertale_box.png?character=' + encodeURI(character) + '&text=' + encodeURI(text), function(err, res, body){
+				message.channel.send({
+						files: [{attachment: body,name: 'undertale.png'}]
 					});
+			});
+					
 				} else {
 					var expression = characterexp[1];
-					message.channel.send({
-						embed: {
-							image: {
-								url: 'https://www.demirramon.com/gen/undertale_box.png?character=' + encodeURI(character) + '&expression=' + encodeURI(expression) + '&text=' + encodeURI(text)
-							}
-						}
+					request.get('https://www.demirramon.com/gen/undertale_box.png?character=' + encodeURI(character) + '&expression=' + encodeURI(expression) + '&text=' + encodeURI(text), function(err, res, body){
+				message.channel.send({
+						files: [{attachment: body,name: 'undertale.png'}]
 					});
+			});
 				}
 			}
 		}	
