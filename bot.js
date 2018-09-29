@@ -362,18 +362,18 @@ client.on('message', async message => {
 		Tesseract.recognize(body, {lang: beaboMessage.toLowerCase().match(/-[a-z_]+/gm)[0].substring(1)})
          .progress(function  (p) { console.log(JSON.stringify(p))})
          .then(function (result) { if (result.text.length > 2048){
-			 m.edit( {embed : { description : result.text.substring(0, 2048) }});
+			 m.edit( {embed : { description : result.text.substring(0, 2048), fields[{name: 'confidence', value: result.confidence.toString()}] }});
 		 } else {
-		 m.edit( {embed : {description: result.text }});
+		 m.edit( {embed : {description: result.text, fields[{name: 'confidence', value: result.confidence.toString()}] }});
 		 }
 		 })
 		} else {
 			Tesseract.recognize(body)
          .progress(function  (p) { console.log(JSON.stringify(p))})
          .then(function (result) { if (result.text.length > 2048){
-			 m.edit( {embed : { description : result.text.substring(0, 2048) }});
+			 m.edit( {embed : { description : result.text.substring(0, 2048), fields[{name: 'confidence', value: result.confidence.toString()}] }});
 		 } else {
-		 m.edit( {embed : {description: result.text }});
+		 m.edit( {embed : {description: result.text, fields[{name: 'confidence', value: result.confidence.toString()}]}});
 		 }
 		 })
 		}	
