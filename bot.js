@@ -7,7 +7,7 @@ var pics = require('./pics.js');
 var quiz = require('./quiz.js');
 var textboxes = require('./textboxes.js');
 var Tesseract = require('tesseract.js')
-var markov = require('./markov.js');
+var gamesphube = require('./gamesphube.js');
 //const tf = require('tensorflow2');
 //const graph = tf.graph();
 //const session = tf.session();
@@ -352,8 +352,17 @@ client.on('message', async message => {
 		var beaboMessage = message.content.substring(2);
 		
 		if (beaboMessage.toLowerCase().startsWith("gametitle")){
-		markov(message);
+		gamesphube.gametitle(message);
 		}
+		
+		if (beaboMessage.toLowerCase().startsWith("genrefusion")){
+		gamesphube.genrefusion(message);
+		}
+		
+		if (beaboMessage.toLowerCase().startsWith("gamefusion")){
+		gamesphube.gamefusion(message);
+		}
+		
 		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
