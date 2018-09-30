@@ -349,23 +349,21 @@ client.on('message', async message => {
 			}).then().catch(console.error);
 		});
 	}
-
-	if (message.content.toLowerCase().startsWith('b!')) {
 	
-		var beaboMessage = message.content.substring(2);
-		
-		if (beaboMessage.toLowerCase().startsWith("gametitle")){
+if (message.content.toLowerCase().includes("b!gametitle")){
 		gamesphube.gametitle(message);
 		}
 		
-		if (beaboMessage.toLowerCase().startsWith("genrefusion")){
+		if (message.content.toLowerCase().includes("b!genrefusion")){
 		gamesphube.genrefusion(message);
 		}
 		
-		if (beaboMessage.toLowerCase().startsWith("gamefusion")){
+		if (message.content.toLowerCase().includes("b!gamefusion")){
 		gamesphube.gamefusion(message);
 		}
 		
+	if (message.content.toLowerCase().startsWith('b!')) {
+		var beaboMessage = message.content.substring(2);
 		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
