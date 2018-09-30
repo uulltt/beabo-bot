@@ -44,7 +44,7 @@ client.on('ready', () => {
 	}*/
 	var guilds = client.guilds.array();
 	for(var i = 0; i < guilds.length; i++){
-	client.guilds.array()[i].me.setNickname('Bea-boo');
+	client.guilds.array()[i].me.setNickname('Bea-boo').then().catch(console.error);
 	}
 });
 
