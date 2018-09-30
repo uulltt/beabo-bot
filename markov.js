@@ -5,7 +5,7 @@ var request = require('request').defaults({
 		encoding: null
 	});
 request.get('https://www.giantbomb.com/api/games/?api_key='+process.env.GIANTBOMB+'&limit=100&format=json', function(err, res, body){
-var json = JSON.parse(body);
+var json = JSON.parse(body.toString());
 console.log(json)
 var titles = json.results.map(function(item){
 	return item.name;
