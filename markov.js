@@ -37,7 +37,7 @@ function sample(items) {
 
 
 
-module.exports = (message, count) => {
+module.exports = (message, n) => {
 	gb.getGames(
 	{ 
 		limit: 100,
