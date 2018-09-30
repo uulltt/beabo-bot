@@ -49,6 +49,7 @@ module.exports = (message, n) => {
 titles = json.results.map(function(item){
 	return item.name;
 });
+console.log(titles);
 for (var i = 0; i < titles.length; i++) {
     var title = titles[i].split(' ');
     if (title.length > lookback) {
@@ -62,6 +63,7 @@ for (var i = 0; i < titles.length; i++) {
         }
     }
 }
+console.log(title_map);
 	
 	for (var word in title_map) {
     var following = title_map[word];
@@ -101,6 +103,6 @@ var stuff = sentences.join("\n");
 if (stuff.length > 2000){
 	stuff = stuff.substring(0, 2000);
 }
-    message.channel.send();
+    message.channel.send(stuff);
 });
 }
