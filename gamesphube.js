@@ -51,7 +51,6 @@ module.exports.genrefusion = function(message) {
 		Genre2 = Math.floor(Math.random() * genres.length);
 		}
 		message.channel.send('**' + genres[Genre1] + '** + **' + genres[Genre2] + '**');
-		});	
 	
 }
 
