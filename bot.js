@@ -352,7 +352,7 @@ client.on('message', async message => {
 		var beaboMessage = message.content.substring(2);
 		
 		if (beaboMessage.toLowerCase().startsWith("gametitle")){
-		if (beaboMessage.toLowerCase().match(/gametitle [0-9]+/gm){
+		if (beaboMessage.toLowerCase().match(/gametitle [0-9]+/gm)){
 		var count = parseInt(beaboMessage.toLowerCase().match(/[0-9]+/gm)[0]);
 		message.channel.send(markov(count));
 		} else {
