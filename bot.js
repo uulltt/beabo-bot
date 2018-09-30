@@ -364,29 +364,7 @@ if (message.content.toLowerCase().includes("b!gametitle")){
 		
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
-		if (beaboMessage.toLowerCase().startsWith("loss") && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
-		var google = 'https://www.google.com/searchbyimage';
 
-var options = {
-  url: google,
-  qs: { image_url: message.attachments.array()[0].url },
-  headers: { 'user-agent': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11' }
-};
-
-var r = request.get(options, function (err, res, body) {
-	console.log(body.toString());
-	request.get(r.uri.href, function (err2, res2, body2) {
-	console.log(body2.toString());
-if (body2.toString().includes("loss meme")){
-	  message.channel.send("Bii! (This is loss)");
-  } else {
-	  message.channel.send("Beabo. (This is not loss)");
-	  
-  }
-	});
-});
-		
-		}
 		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
