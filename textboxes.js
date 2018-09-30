@@ -113,8 +113,16 @@ module.exports = (message, beaboMessage) => {
 			});
 		}
 		
-		if (new RegExp(/b!goosebumps/gm).test(message.content.toLowerCase().substring(0, 12)) && message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
-		request.get(message.attachments.array()[0].url, function(err, res, body){
+		if (message.content.toLowerCase().startsWith('b!goosebumps')){
+		message.channel.fetchMessages({limit: 10}).then( (messages) => {
+			var url = "";
+		if (message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
+			url = message.attachments.array()[0].url
+		} else {
+		url = messages.filter(m => m.attachments.array().length > 0 && m.attachments.array()[0].width > 0).first().attachments.array()[0].url
+		}
+		if (url.length > 0){
+		request.get(url, function(err, res, body){
 		var img = new Image;
 		img.src = body;
 		
@@ -155,7 +163,8 @@ module.exports = (message, beaboMessage) => {
 		});
 		});
 		}
-
+		}).catch(console.error);
+		}
 		if (new RegExp(/eb(n|m|s|b|p|N|M|S|B|P)\W/gm).test(beaboMessage.substring(0, 4))) {
 			const flavors = ['plain', 'mint', 'strawberry', 'banana', 'peanut'];
 			const flavorstring = 'nmsbp'
