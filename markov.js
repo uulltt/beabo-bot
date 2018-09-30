@@ -1,4 +1,4 @@
-var title_map = {};
+
 var company_map = {}
 var lookback = 2;
 var GiantBomb = require('giant-bomb');
@@ -38,10 +38,11 @@ function sample(items) {
 
 
 module.exports = (message, n) => {
+	var title_map = {};
 	gb.getGames(
 	{ 
 		limit: 100,
-		offset: 0,
+		offset: Math.floor(Math.random() * 62000),
 		fields: ['name', 'platforms']
 	}, 
 	function(error, reponse, json){
