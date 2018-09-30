@@ -38,7 +38,6 @@ function sample(items) {
 module.exports.genrefusion = (message) => {
 gb.getGenres({}, 
 	function(error, reponse, json){
-		if(!error  && reponse.statusCode == 200){
 		var Genre1 = Math.floor(Math.random() * json.results.length);
 		var Genre2 = Math.floor(Math.random() * json.results.length);
 		while(Genre2 == Genre1){
@@ -46,7 +45,6 @@ gb.getGenres({},
 		}
 		message.channel.send('**' + json.results[Genre1].name + '** + **' + json.results[Genre2].name + '**');
 		}
-	}
 );	
 	
 }
@@ -59,14 +57,12 @@ gb.getGames(
 		fields: ['name', 'platforms']
 	}, 
 	function(error, reponse, json){
-		if(!error  && reponse.statusCode == 200){
 		var Game1 = Math.floor(Math.random() * json.results.length);
 		var Game2 = Math.floor(Math.random() * json.results.length);
 		while(Game2 == Game1){
 		Game2 = Math.floor(Math.random() * json.results.length);
 		}
 		message.channel.send('**' + json.results[Game1].name + '** + **' + json.results[Game2].name + '**');
-		}
 	}
 );	
 	
