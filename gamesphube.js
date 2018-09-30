@@ -68,7 +68,7 @@ gb.getGames(
 	
 }
 
-module.exports.gametitle = (message) => {
+module.exports = (message) => {
 	var title_map = {};
 	gb.getGames(
 	{ 
@@ -77,6 +77,7 @@ module.exports.gametitle = (message) => {
 		fields: ['name', 'platforms']
 	}, 
 	function(error, reponse, json){
+	console.log(json);
 titles = json.results.map(function(item){
 	return item.name;
 });
