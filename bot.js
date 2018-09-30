@@ -7,7 +7,7 @@ var pics = require('./pics.js');
 var quiz = require('./quiz.js');
 var textboxes = require('./textboxes.js');
 var Tesseract = require('tesseract.js')
-
+var markov = require('./markov.js');
 //const tf = require('tensorflow2');
 //const graph = tf.graph();
 //const session = tf.session();
@@ -350,10 +350,15 @@ client.on('message', async message => {
 	if (message.content.toLowerCase().startsWith('b!')) {
 	
 		var beaboMessage = message.content.substring(2);
-		if (beaboMessage.toLowerCase() == "test"){
-	message.channel.send("?en Hola");
-	
-	}
+		
+		if (beaboMessage.toLowerCase().startsWith("gametitle")){
+		if (beaboMessage.toLowerCase().match(/gametitle [0-9]+/gm){
+		var count = parseInt(beaboMessage.toLowerCase().match(/[0-9]+/gm)[0]);
+		message.channel.send(markov(count));
+		} else {
+		message.channel.send(markov(1));
+		}
+		}
 		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
 		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
