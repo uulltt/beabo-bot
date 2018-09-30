@@ -380,6 +380,7 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 		message.channel.send('https://images.google.com/searchbyimage?image_url=' + url + '\nhttp://saucenao.com/search.php?url=' + url);
 		}
 }).catch(console.error);
+}
 		if ((beaboMessage.toLowerCase().startsWith("transcribe"))){
 		message.channel.fetchMessages({limit: 10}).then( (messages) => {
 		var url = "";
