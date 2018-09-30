@@ -2,7 +2,7 @@ var title_map = {};
 var company_map = {}
 lookback = 2;
 var GiantBomb = require('giant-bomb');
- 
+var titles = [];
 //Get API key at http://giantbomb.com/api
 var gb = new GiantBomb(process.env.GIANTBOMB, 'Beabo - Discord bot that uses markov chains to generate video game titles');
 
@@ -13,10 +13,9 @@ var gb = new GiantBomb(process.env.GIANTBOMB, 'Beabo - Discord bot that uses mar
 		fields: ['name', 'platforms']
 	}, 
 	function(error, reponse, json){
-var titles = json.results.map(function(item){
+titles = json.results.map(function(item){
 	return item.name;
 });
-console.log(titles);
 for (var i = 0; i < titles.length; i++) {
     var title = titles[i].split(' ');
     if (title.length > lookback) {
