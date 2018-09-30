@@ -369,8 +369,8 @@ if (message.content.toLowerCase().includes("b!gametitle")){
 
 var options = {
   url: google,
-  qs: { image_url: message.attachments.array()[0].url }
-  //wut
+  qs: { image_url: message.attachments.array()[0].url },
+  headers: { 'user-agent': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11' }
 };
 
 var r = request.get(options, function (err, res, body) {
