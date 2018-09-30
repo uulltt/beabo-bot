@@ -111,12 +111,12 @@ console.log(title_map);
 
     while(sentences.length < 1) {
         var sentence = [];
-        var next_word = sample(markov_map['']);
+        var next_word = sample(title_map['']);
 
         while(next_word !== '') {
             sentence.push(next_word);
             var tail = sentence.slice(-lookback).join(' ');
-            next_word = sample(markov_map[tail]);
+            next_word = sample(title_map[tail]);
         }
 
         sentence = sentence.join(' ');
