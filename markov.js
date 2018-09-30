@@ -23,6 +23,7 @@ for (var i = 0; i < titles.length; i++) {
             title_map[last_phrase] = map;
         }
     }
+}
 	
 	for (var word in title_map) {
     var following = title_map[word];
@@ -32,7 +33,7 @@ for (var i = 0; i < titles.length; i++) {
         following[key] /= total;
     }
 }
-}
+});
 
 function sum_values(obj) {
     var total = 0;
@@ -92,4 +93,6 @@ function generate(n) {
     return sentences.join("\n");
 }
 
-modules.exports = generate
+modules.exports = (count) => {
+	generate(count);
+}
