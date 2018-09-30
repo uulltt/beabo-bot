@@ -42,10 +42,10 @@ client.on('ready', () => {
 	console.log(err);
 	});
 	}*/
-	/*var guilds = client.guilds.array();
+	var guilds = client.guilds.array();
 	for(var i = 0; i < guilds.length; i++){
 	client.guilds.array()[i].me.setNickname('BeaBoo').then().catch(console.error);
-	}*/
+	}
 });
 
 client.on('guildCreate', (guild) => {
@@ -147,6 +147,7 @@ const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', 
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumblr.com', 'http://www.monster-lands.com'];
 client.on('message', async message => {
+	if (!message.channel.hasOwnProperty('guild') || message.channel.memberPermissions(message.channel.guild.me).has(["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS", "ATTACH_FILES"])){
 	if ((message.content.toLowerCase().includes('@y\'all') || message.content.toLowerCase().includes('@yall')) && !(new RegExp(/`[^`]*@y('?)all[^`]*`/gm)).test(message.content.toLowerCase())) {
 		if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
 			message.channel.send(message.member.voiceChannel.members.array().map(function (item) {
@@ -401,19 +402,19 @@ if (message.content.toLowerCase().includes("b!gametitle")){
 		 })
 		}	
 		} 
-		});
-		}else {
-		message.channel.send('beabo? (error. image must be png or jp(e)g)');
-		}
-		});
-		}
 		}).catch(console.error);
+		}else {
+		message.channel.send('beabo? (error. image must be png or jp(e)g)').then().catch(console.error);
+		}
+		});
+		}
+		})
 		}
 		if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
 			var fields = beaboMessage.split(' ');
 			herokupg.query("UPDATE permissions SET " + fields[1] + " = " + fields[2] + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {
 				if (!err)
-					message.react('✅');
+					message.react('✅').then().catch(console.error);
 				else
 					console.log(err);
 			});
@@ -435,6 +436,7 @@ if (message.content.toLowerCase().includes("b!gametitle")){
 			helpMessage(message);
 		}
 
+	}
 	}
 });
 
