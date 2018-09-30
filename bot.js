@@ -371,7 +371,7 @@ if (message.content.toLowerCase().includes("b!gametitle")){
 		if (message.attachments.array().length > 0){
 			url = message.attachments.array()[0].url
 		} else {
-		url = messages.filter(m => m.attachments.array().length > 0 && m.attachments.array()[0].width > 0).last().attachments.array()[0].url
+		url = messages.filter(m => m.attachments.array().length > 0 && m.attachments.array()[0].width > 0).first().attachments.array()[0].url
 		}
 		if (url.length > 0){
 		request.get(url, function(err, res, body){
