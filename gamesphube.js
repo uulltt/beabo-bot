@@ -77,11 +77,11 @@ module.exports.gametitle = (message) => {
 		fields: ['name', 'platforms']
 	}, 
 	function(error, reponse, json){
-	console.log(json);
+	//console.log(json);
 titles = json.results.map(function(item){
 	return item.name;
 });
-console.log(titles);
+//console.log(titles);
 for (var i = 0; i < titles.length; i++) {
     var title = titles[i].split(' ');
     if (title.length > lookback) {
@@ -95,7 +95,7 @@ for (var i = 0; i < titles.length; i++) {
         }
     }
 }
-console.log(title_map);
+//console.log(title_map);
 	
 	for (var word in title_map) {
     var following = title_map[word];
