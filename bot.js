@@ -114,6 +114,9 @@ b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attac
 					name: "Game Idea Commands",
 					value: "b!gametitle - generates a random game title based on GiantBomb's game database\nb!gamefusion - chooses two games based on GiantBomb's game database\nb!genrefusion - chooses two genres based on GiantBomb's genre database"
 				}, {
+					name: "Misc. Commands",
+					value: "b!revimg - does a reverse image search on the last image posted"
+				}, {
 					name: 'Local Time Commands',
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
 				}, {
@@ -365,7 +368,18 @@ if (message.content.toLowerCase().includes("b!gametitle")){
 		
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
-
+if (beaboMessage.toLowerCase().startsWith("revimg")){
+		message.channel.fetchMessages({limit: 10}).then( (messages) => {
+		var url = "";
+		if (message.attachments.array().length > 0){
+			url = message.attachments.array()[0].url
+		} else {
+		url = messages.filter(m => m.attachments.array().length > 0 && m.attachments.array()[0].width > 0).first().attachments.array()[0].url
+		}
+		if (url.length > 0){
+		message.channel.send('https://images.google.com/searchbyimage?image_url=' + url + '\nhttp://saucenao.com/search.php?url=' + url);
+		}
+}).catch(console.error);
 		if ((beaboMessage.toLowerCase().startsWith("transcribe"))){
 		message.channel.fetchMessages({limit: 10}).then( (messages) => {
 		var url = "";
