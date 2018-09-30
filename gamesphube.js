@@ -89,7 +89,7 @@ titles = json.results.map(function(item){
 //console.log(titles);
 for (var i = 0; i < titles.length; i++) {
     var title = titles[i].split(' ');
-	lookback = Math.ceil(Math.random() * 2);
+	//lookback = Math.ceil(Math.random() * 2);
     if (title.length > lookback) {
         for (var j = 0; j < title.length+1; j++) {
             var last_phrase = title.slice(Math.max(0, j-lookback), j).join(' ');
@@ -101,7 +101,7 @@ for (var i = 0; i < titles.length; i++) {
         }
     }
 }
-//console.log(title_map);
+console.log(title_map);
 	
 	for (var word in title_map) {
     var following = title_map[word];
@@ -118,7 +118,7 @@ for (var i = 0; i < titles.length; i++) {
     while(sentences.length < 1) {
         var sentence = [];
         var next_word = sample(title_map['']);
-		lookback = Math.ceil(Math.random() * 2);
+		//lookback = Math.ceil(Math.random() * 2);
         while(next_word !== '') {
             sentence.push(next_word);
             var tail = sentence.slice(-lookback).join(' ');
