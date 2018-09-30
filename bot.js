@@ -366,15 +366,14 @@ if (message.content.toLowerCase().includes("b!gametitle")){
 		var beaboMessage = message.content.substring(2);
 
 		if ((beaboMessage.toLowerCase().startsWith("transcribe"))){
+		message.channel.fetchMessages({limit: 10}).then( (messages) => {
 		var url = "";
 		if (message.attachments.array().length > 0){
 			url = message.attachments.array()[0].url
 		} else {
-		message.channel.fetchMessages()
-		.then(messages => url = messages.filter(m => m.attachments.array().length > 0 && m.attachments.array()[0].width > 0).last().attachments.array()[0].url)
-  .catch(console.error);
-		
+		url = messages.filter(m => m.attachments.array().length > 0 && m.attachments.array()[0].width > 0).last().attachments.array()[0].url
 		}
+		if (url.length > 0){
 		request.get(url, function(err, res, body){
 		if (url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
 		message.channel.send("(one moment please)").then( m => {
@@ -407,6 +406,8 @@ if (message.content.toLowerCase().includes("b!gametitle")){
 		message.channel.send('beabo? (error. image must be png or jp(e)g)');
 		}
 		});
+		}
+		}).catch(console.error);
 		}
 		if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
 			var fields = beaboMessage.split(' ');
