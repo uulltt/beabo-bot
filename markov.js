@@ -67,7 +67,7 @@ function sample(items) {
     return next_word;
 }
 
-function generate(n) {
+function generate(message, n) {
     var sentences = [];
 
     while(sentences.length < n) {
@@ -95,9 +95,9 @@ function generate(n) {
         }
     }
 
-    return sentences.join("\n");
+    message.channel.send(sentences.join("\n"));
 }
 
-module.exports = (count) => {
-	generate(count);
+module.exports = (message, count) => {
+	generate(message, count);
 }

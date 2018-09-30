@@ -354,9 +354,9 @@ client.on('message', async message => {
 		if (beaboMessage.toLowerCase().startsWith("gametitle")){
 		if (beaboMessage.toLowerCase().match(/gametitle [0-9]+/gm)){
 		var count = parseInt(beaboMessage.toLowerCase().match(/[0-9]+/gm)[0]);
-		message.channel.send(markov(count));
+		markov(message, count);
 		} else {
-		message.channel.send(markov(1));
+		markov(message, 1);
 		}
 		}
 		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0){
