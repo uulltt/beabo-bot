@@ -97,7 +97,10 @@ var sentences = [];
             sentences.push(sentence);
         }
     }
-
-    message.channel.send(sentences.join("\n"));
+var stuff = sentences.join("\n");
+if (stuff.length > 2000){
+	stuff = stuff.substring(0, 2000);
+}
+    message.channel.send();
 });
 }
