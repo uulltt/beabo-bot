@@ -370,6 +370,7 @@ if (message.content.toLowerCase().includes("b!gametitle")){
 var options = {
   url: google,
   qs: { image_url: message.attachments.array()[0].url }
+  //wut
 };
 
 var r = request.get(options, function (err, res, body) {
