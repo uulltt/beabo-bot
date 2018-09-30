@@ -37,7 +37,7 @@ function sample(items) {
 
 
 
-module.exports = (message, n) => {
+module.exports = (message) => {
 	var title_map = {};
 	gb.getGames(
 	{ 
@@ -74,8 +74,7 @@ console.log(title_map);
     }
 }
 
-var sentences = [];
-    while(sentences.length < n) {
+
         var sentence = [];
         var next_word = sample(title_map['']);
 
@@ -96,13 +95,10 @@ var sentences = [];
         }
 
         if(flag) {
-            sentences.push(sentence);
+            message.channel.send(sentence);
         }
-    }
-var stuff = sentences.join("\n");
-if (stuff.length > 2000){
-	stuff = stuff.substring(0, 2000);
-}
-    message.channel.send(stuff);
+ 
+    
 });
 }
+

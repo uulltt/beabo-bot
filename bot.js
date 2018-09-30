@@ -352,12 +352,7 @@ client.on('message', async message => {
 		var beaboMessage = message.content.substring(2);
 		
 		if (beaboMessage.toLowerCase().startsWith("gametitle")){
-		if (beaboMessage.toLowerCase().match(/gametitle [0-9]/gm)){
-		var count = Math.min(parseInt(beaboMessage.toLowerCase().match(/[0-9]+/gm)[0]), 40);
-		markov(message, count);
-		} else {
-		markov(message, 1);
-		}
+		markov(message);
 		}
 		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0){
 		request.get(message.attachments.array()[0].url, function(err, res, body){
