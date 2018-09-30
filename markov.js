@@ -5,7 +5,8 @@ var request = require('request').defaults({
 		encoding: null
 	});
 request.get('https://www.giantbomb.com/api/games/?api_key='+process.env.GIANTBOMB+'&limit=100&format=json', function(err, res, body){
-var json = JSON.parse(body.toString());
+console.log(body.toString());
+/*var json = JSON.parse(body.toString());
 console.log(json)
 var titles = json.results.map(function(item){
 	return item.name;
@@ -32,7 +33,7 @@ for (var i = 0; i < titles.length; i++) {
     for (var key in following) {
         following[key] /= total;
     }
-}
+}*/
 });
 
 function sum_values(obj) {
