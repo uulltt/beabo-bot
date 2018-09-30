@@ -365,12 +365,21 @@ if (message.content.toLowerCase().includes("b!gametitle")){
 	if (message.content.toLowerCase().startsWith('b!')) {
 		var beaboMessage = message.content.substring(2);
 
-		if ((beaboMessage.toLowerCase().startsWith("transcribe")) && message.attachments.array().length > 0){
-		request.get(message.attachments.array()[0].url, function(err, res, body){
-		if (message.attachments.array()[0].url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
+		if ((beaboMessage.toLowerCase().startsWith("transcribe"))){
+		var url = "";
+		if (message.attachments.array().length > 0){
+			url = message.attachments.array()[0].url
+		} else {
+		message.channel.fetchMessages()
+		.then(messages => url = messages.filter(m => m.attachments.array().length > 0 && m.attachments.array()[0].width > 0).last().attachments.array()[0].url)
+  .catch(console.error);
+		
+		}
+		request.get(url, function(err, res, body){
+		if (url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
 		message.channel.send("(one moment please)").then( m => {
 		
-		if (message.attachments.array()[0].url.toLowerCase().match(/\/loss((_comic)?)\.((png)|(jp(e?)g))/gm) || message.attachments.array()[0].url.includes('cad-20080602')){
+		if (url.toLowerCase().match(/\/loss((_comic)?)\.((png)|(jp(e?)g))/gm) || url.includes('cad-20080602')){
 		m.edit('```\n|\t||\n\n||\t|_\n```');
 		} else {
 		if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gm)){
@@ -398,7 +407,6 @@ if (message.content.toLowerCase().includes("b!gametitle")){
 		message.channel.send('beabo? (error. image must be png or jp(e)g)');
 		}
 		});
-		
 		}
 		if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
 			var fields = beaboMessage.split(' ');
