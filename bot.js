@@ -373,13 +373,15 @@ var options = {
   headers: { 'user-agent': 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11' }
 };
 
-request(options, function (err, res, body) {
-if (body.toString().includes("loss meme")){
+var r = request(options, function (err, res, body) {
+	request.get(r.uri.href, function (err2, res2, body2) {
+if (body2.toString().includes("loss meme")){
 	  message.channel.send("Bii! (This is loss)");
   } else {
 	  message.channel.send("Beabo. (This is not loss)");
 	  
   }
+	});
 });
 		
 		}
