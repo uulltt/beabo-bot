@@ -44,7 +44,7 @@ client.on('ready', () => {
 	}*/
 	var guilds = client.guilds.array();
 	for(var i = 0; i < guilds.length; i++){
-	client.guilds.array()[i].me.setNickname('Bea-boo').then().catch(console.error);
+	client.guilds.array()[i].me.setNickname('BeaBoo').then().catch(console.error);
 	}
 });
 
@@ -184,7 +184,7 @@ client.on('message', async message => {
 
 	}
 	
-	if ((message.cleanContent.toLowerCase().startsWith("h")) && message.cleanContent.toLowerCase().match(/h((i((ya)?))|(ello))(( there)?)(,?) (@?)beabo/gm)) {
+	if ((message.cleanContent.toLowerCase().startsWith("h")) && message.cleanContent.toLowerCase().match(/h((i((ya)?))|(e[lnw][lw]o))(( there)?)(,?) (@?)beabo/gm)) {
 		if (Math.random() <= 0.7) {
 		message.react('👋');
 		}
