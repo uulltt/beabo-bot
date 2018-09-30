@@ -115,7 +115,7 @@ console.log(title_map);
 
   var sentences = [];
 
-    while(sentences.length < 1) {
+    
         var sentence = [];
         var next_word = sample(title_map['']);
 		//lookback = Math.ceil(Math.random() * 2);
@@ -134,13 +134,8 @@ console.log(title_map);
                 break;
             }
         }
-
-        if(flag) {
-            sentences.push(sentence);
-        }
-    }
-
-            message.channel.send(sentences.join("\n"));
+if (sentence.length > 0)
+message.channel.send(sentence);
  
     
 });
