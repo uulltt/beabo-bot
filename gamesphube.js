@@ -35,7 +35,7 @@ function sample(items) {
     return next_word;
 }
 
-module.exports.genrefusion = (message) => {
+module.exports.genrefusion = function(message) {
 gb.getGenres({}, 
 	function(error, reponse, json){
 		var Genre1 = Math.floor(Math.random() * json.results.length);
@@ -49,7 +49,7 @@ gb.getGenres({},
 	
 }
 
-module.exports.gamefusion = (message) => {
+module.exports.gamefusion =  function(message) {
 gb.getGames(
 	{ 
 		limit: 100,
@@ -68,7 +68,7 @@ gb.getGames(
 	
 }
 
-module.exports = (message) => {
+module.exports.gametitle = (message) => {
 	var title_map = {};
 	gb.getGames(
 	{ 
@@ -107,13 +107,16 @@ console.log(title_map);
 }
 
 
+  var sentences = [];
+
+    while(sentences.length < 1) {
         var sentence = [];
-        var next_word = sample(title_map['']);
+        var next_word = sample(markov_map['']);
 
         while(next_word !== '') {
             sentence.push(next_word);
             var tail = sentence.slice(-lookback).join(' ');
-            next_word = sample(title_map[tail]);
+            next_word = sample(markov_map[tail]);
         }
 
         sentence = sentence.join(' ');
@@ -127,8 +130,11 @@ console.log(title_map);
         }
 
         if(flag) {
-            message.channel.send(sentence);
+            sentences.push(sentence);
         }
+    }
+
+            message.channel.send(sentences.join("\n"));
  
     
 });

@@ -352,7 +352,7 @@ client.on('message', async message => {
 		var beaboMessage = message.content.substring(2);
 		
 		if (beaboMessage.toLowerCase().startsWith("gametitle")){
-		gamesphube(message);
+		gamesphube.gametitle(message);
 		}
 		
 		if (beaboMessage.toLowerCase().startsWith("genrefusion")){
