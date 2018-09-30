@@ -93,6 +93,6 @@ function generate(n) {
     return sentences.join("\n");
 }
 
-modules.exports = (count) => {
+module.exports = (count) => {
 	generate(count);
 }
