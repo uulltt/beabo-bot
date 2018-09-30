@@ -3,9 +3,17 @@ var company_map = {}
 var lookback = 2;
 var GiantBomb = require('giant-bomb');
 var titles = [];
+var genres = [];
+
+
 //Get API key at http://giantbomb.com/api
 var gb = new GiantBomb(process.env.GIANTBOMB, 'Beabo - Discord bot that uses markov chains to generate video game titles');
-
+gb.getGenres({}, 
+	function(error, reponse, json){
+	genres = json.results.map(function(item) {
+		return item.name;
+	});
+	});
 	
 
 function sum_values(obj) {
@@ -36,16 +44,14 @@ function sample(items) {
 }
 
 module.exports.genrefusion = function(message) {
-gb.getGenres({}, 
-	function(error, reponse, json){
-		var Genre1 = Math.floor(Math.random() * json.results.length);
-		var Genre2 = Math.floor(Math.random() * json.results.length);
+
+		var Genre1 = Math.floor(Math.random() * genres.length);
+		var Genre2 = Math.floor(Math.random() * genres.length);
 		while(Genre2 == Genre1){
-		Genre2 = Math.floor(Math.random() * json.results.length);
+		Genre2 = Math.floor(Math.random() * genres.length);
 		}
-		message.channel.send('**' + json.results[Genre1].name + '** + **' + json.results[Genre2].name + '**');
-		}
-);	
+		message.channel.send('**' + genres[Genre1] + '** + **' + genres[Genre2] + '**');
+		});	
 	
 }
 
