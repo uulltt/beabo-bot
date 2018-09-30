@@ -108,8 +108,11 @@ b!supreme - supreme logo generator
 b!sunny - generates an always sunny title card. also works with b!iasip
 b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attached image. first typed line is the title, every line after is the tagline.`
 				}, {
-					name: "Transcription commands",
+					name: "Transcription Commands",
 					value: "b!transcribe (w/ image attachment) - transcribes text from that image into english plaintext\nb!transcribe-(eng/spa/fra/por/jpn/kor/chi_sim/chi_tra) - transcribes text from image attachment into given language parameter"
+				}, {
+					name: "Game Idea Commands",
+					value: "b!gametitle - generates a random game title based on GiantBomb's game database\nb!gamefusion - chooses two games based on GiantBomb's game database\nb!genrefusion - chooses two genres based on GiantBomb's genre database"
 				}, {
 					name: 'Local Time Commands',
 					value: 'b!time cityname - gets local time of that city\nb!settime cityname - sets the local time for you based on the given city name\nb!gettime @user - fetches the local time for that user based on the city they set for themself\n'
