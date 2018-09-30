@@ -1,11 +1,43 @@
 var title_map = {};
 var company_map = {}
-lookback = 2;
+var lookback = 2;
 var GiantBomb = require('giant-bomb');
 var titles = [];
 //Get API key at http://giantbomb.com/api
 var gb = new GiantBomb(process.env.GIANTBOMB, 'Beabo - Discord bot that uses markov chains to generate video game titles');
 
+	
+
+function sum_values(obj) {
+    var total = 0;
+
+    for (var property in obj) {
+        total += obj[property];
+    }
+    return total;
+}
+
+
+
+function sample(items) {
+    var next_word;
+    var t = 0;
+
+    for (var k in items) {
+        v = items[k];
+        t += v;
+
+        if (t !== 0 && Math.random() < v/t) {
+            next_word = k;
+        }
+    }
+
+    return next_word;
+}
+
+
+
+module.exports = (message, count) => {
 	gb.getGames(
 	{ 
 		limit: 100,
@@ -38,38 +70,8 @@ for (var i = 0; i < titles.length; i++) {
         following[key] /= total;
     }
 }
-});
 
-function sum_values(obj) {
-    var total = 0;
-
-    for (var property in obj) {
-        total += obj[property];
-    }
-    return total;
-}
-
-
-
-function sample(items) {
-    var next_word;
-    var t = 0;
-
-    for (var k in items) {
-        v = items[k];
-        t += v;
-
-        if (t !== 0 && Math.random() < v/t) {
-            next_word = k;
-        }
-    }
-
-    return next_word;
-}
-
-function generate(message, n) {
-    var sentences = [];
-
+var sentences = [];
     while(sentences.length < n) {
         var sentence = [];
         var next_word = sample(title_map['']);
@@ -96,8 +98,5 @@ function generate(message, n) {
     }
 
     message.channel.send(sentences.join("\n"));
-}
-
-module.exports = (message, count) => {
-	generate(message, count);
+});
 }
