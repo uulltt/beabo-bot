@@ -148,9 +148,14 @@ for(var j = 0; j < 100 && sentences.length < 1; j++){
 				tail = tail.match(/ ((of)|(for)|([Tt]he)|(in)|([aA]((n(d?))?)))$/gm)[0].substring(1);
 			}
             next_word = sample(title_map[tail]);
+			
 			console.log(next_word);
+			if (next_word == undefined){
+			next_word = '';
+			} else {
 			for(var k = 0; k < 100 && sentence.indexOf(next_word) != -1 && !next_word.match(/((of)|(for)|([Tt]he)|(in)|([aA]((n(d?))?)))$/gm); k++){
 				next_word = sample(title_map[tail]);
+			}
 			}
         }
 
