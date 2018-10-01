@@ -73,7 +73,7 @@ gb.getGames(
 	
 }
 
-module.exports.gametitle = (message) => {
+function gametitle (message) {
 	var title_map = {};
 	gb.getGames(
 	{ 
@@ -130,7 +130,7 @@ for(var j = 0; j < 100 && sentences.length < 1; j++){
 				tail = tail.match(/ ((of)|(the)|(a((n(d?))?)))$/gm)[0].substring(1);
 			}
             next_word = sample(title_map[tail]);
-			while(sentence.indexOf(next_word) != -1 && !next_word.match(/((of)|(the)|(a((n(d?))?)))$/gm)){
+			for(var k = 0; k < 100 && sentence.indexOf(next_word) != -1 && !next_word.match(/((of)|(the)|(a((n(d?))?)))$/gm); k++){
 				next_word = sample(title_map[tail]);
 			}
         }
@@ -149,10 +149,15 @@ for(var j = 0; j < 100 && sentences.length < 1; j++){
 	}
 		
 	}
-if (sentences.length > 0)
+if (sentences.length > 0){
 message.channel.send(sentences[0]);
+} else {
+	gametitle(message);
+}
  
     
 });
 }
+
+module.exports.gametitle = gametitle;
 
