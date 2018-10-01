@@ -104,9 +104,9 @@ for (var i = 0; i < titles.length; i++) {
             title_map[last_phrase] = map;
         }
     } else {
-	title = title.filter(function(item)){
+	title = title.filter(function(item){
 	return !item.match(/[0-9]/gm) && !item.match(/[tT]he$/gm)
-	}
+	});
 	if (title.length == 1){
 	var next_phrase = title[0];
 	var last_phrases = ['of', 'The', 'the', 'a', 'A', 'an', 'An', 'And', 'and', 'for'];
