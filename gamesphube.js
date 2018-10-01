@@ -114,7 +114,7 @@ console.log(title_map);
 
 
   var sentences = [];
-
+for(var i = 0; i < 100 && sentences.length < 1; i++){
     
         var sentence = [];
         var next_word = sample(title_map['']);
@@ -134,8 +134,13 @@ console.log(title_map);
                 break;
             }
         }
-if (sentence.length > 0)
-message.channel.send(sentence);
+	if (flag){
+	sentences.push(sentence)
+	}
+		
+	}
+if (sentences.length > 0)
+message.channel.send(sentences[0]);
  
     
 });
