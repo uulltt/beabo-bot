@@ -92,7 +92,11 @@ for (var i = 0; i < titles.length; i++) {
 	//lookback = Math.ceil(Math.random() * 2);
     if (title.length > lookback) {
         for (var j = 0; j < title.length+1; j++) {
+		
             var last_phrase = title.slice(Math.max(0, j-lookback), j).join(' ');
+			if (last_phrase.match(/ ((of)|(the)|(a((n(d?))?)))$/gm)){
+				last_phrase = last_phrase.match(/ ((of)|(the)|(a((n(d?))?)))$/gm)[0].substring(1);
+			}
             var next_phrase = title.slice(j,j+1).join(' ');
             var map = title_map[last_phrase] || {};
             var count = map[next_phrase] || 0;
@@ -122,7 +126,13 @@ for(var j = 0; j < 100 && sentences.length < 1; j++){
         while(next_word !== '') {
             sentence.push(next_word);
             var tail = sentence.slice(-lookback).join(' ');
+			if (tail.match(/ ((of)|(the)|(a((n(d?))?)))$/gm)){
+				tail = tail.match(/ ((of)|(the)|(a((n(d?))?)))$/gm)[0].substring(1);
+			}
             next_word = sample(title_map[tail]);
+			while(sentence.indexOf(next_word) != -1 && !next_word.match(/((of)|(the)|(a((n(d?))?)))$/gm)){
+				next_word = sample(title_map[tail]);
+			}
         }
 
         sentence = sentence.join(' ');
