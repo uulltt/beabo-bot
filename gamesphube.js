@@ -107,8 +107,8 @@ for (var i = 0; i < titles.length; i++) {
 	title = title.filter(function(item){
 	return !item.match(/[0-9]/gm) && !item.match(/[tT]he$/gm) && !item.toLowerCase().match(/((ii)|(iii))$/gm);
 	});
-	if (title.length == 1){
-	var next_phrase = title[0];
+	for (var k = 0; k < title.length; k++){
+	var next_phrase = title[k];
 	var last_phrases = ['of', 'The', 'the', 'a', 'A', 'an', 'An', 'And', 'and', 'for', '\'n'];
 	for (var j = 0; j < last_phrases.length; j++){
 		if (next_phrase.charAt(0) == 'A' || next_phrase.charAt(0) == 'E' || next_phrase.charAt(0) == 'I' || next_phrase.charAt(0) == 'O' || next_phrase.charAt(0) == 'U'){
