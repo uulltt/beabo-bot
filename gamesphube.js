@@ -105,7 +105,7 @@ for (var i = 0; i < titles.length; i++) {
         }
     } else {
 	if (title.length == 1){
-	var next_phrase = title;
+	var next_phrase = title[0];
 	var last_phrases = ['of', 'The', 'the', 'a', 'A', 'an', 'An', 'And', 'and'];
 	for (var j = 0; j < last_phrases.length; j++){
 		if (next_phrase.charAt(0) == 'A' || next_phrase.charAt(0) == 'E' || next_phrase.charAt(0) == 'I' || next_phrase.charAt(0) == 'O' || next_phrase.charAt(0) == 'U'){
