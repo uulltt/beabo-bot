@@ -115,7 +115,7 @@ console.log(title_map);
 
   var sentences = [];
 for(var i = 0; i < 100 && sentences.length < 1; i++){
-    
+    console.log(i);
         var sentence = [];
         var next_word = sample(title_map['']);
 		//lookback = Math.ceil(Math.random() * 2);
