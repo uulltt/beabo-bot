@@ -124,7 +124,7 @@ for (var i = 0; i < titles.length; i++) {
             title_map[last_phrases[j]] = map;
 	}
 	if (k == 1){
-		  var map = title_map[title[0]] || {};
+			var map = title_map[title[0]] || {};
             var count = map[next_phrase] || 0;
             map[next_phrase] = count + 1;
             title_map[title[0]] = map;

@@ -164,10 +164,15 @@ client.on('message', async message => {
 		messageNum++;
 		if (messageNum >= messageCount) {
 			if (Math.random() <= 0.33) {
+			if (message.channel.hasOwnProperty('guild')){
+				herokupg.query("SELECT shutup FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
+						if (!res.rows[0].shutup) {
 				message.channel.send(beeb()).then().catch(console.error);
 				if (messageCount < 200)
 					messageCount += 10;
-
+						}
+				});
+			}
 			} else {
 				if (messageCount > 100)
 					messageCount -= 10;
