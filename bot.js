@@ -171,6 +171,7 @@ Sample output:
 
 
 function calculate(input){
+	try{
 	if (input.match(/[^0-9\(\)\.+\-\*\/]/gm)){
 	return "Beabooooo (Error. Please do not use letters yet.)";
 	}
@@ -217,6 +218,9 @@ function calculate(input){
   }
   
   return solution.toString();
+	} catch (err){
+		return err.message;
+	}
 }
 
 console.log(calculate(expression, variables_));
