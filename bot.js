@@ -206,17 +206,17 @@ input = input.replace(/[Pp][Ii]/gm, Math.PI.toString());
 	var tan = input.match(/tan[0-9]+((\.([0-9]+))?)/gm);
 	if (cos != null){
 	for(var j = 0; j < cos.length; j++){
-		input = input.replace(cos[i], Math.acos(parseFloat(cos[i].substring(3))));
+		input = input.replace(cos[i], Math.cos(parseFloat(cos[i].substring(3))));
 	}
 	} 
 	 if (sin != null){
 	for(var j = 0; j < sin.length; j++){
-		input = input.replace(sin[i], Math.asin(parseFloat(sin[i].substring(3))));
+		input = input.replace(sin[i], Math.sin(parseFloat(sin[i].substring(3))));
 	}
 	} 
 	 if (tan != null){
 	for(var j = 0; j < tan.length; j++){
-		input = input.replace(tan[i], Math.atan(parseFloat(tan[i].substring(3))));
+		input = input.replace(tan[i], Math.tan(parseFloat(tan[i].substring(3))));
 	}
 	} 
   input = input.replace(/\+-/gm, '-');
