@@ -156,6 +156,7 @@ const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumbl
 function calculate(input){
 	try{
 input = input.replace(/[Pp][Ii]/gm, Math.PI.toString());
+input = input.replace(/ /gm, "");
   var parenthesis = input.match(/\([^\(\)]+\)/gm);
   
   while (parenthesis != null){
