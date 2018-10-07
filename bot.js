@@ -205,6 +205,7 @@ input = input.replace(/[Pp][Ii]/gm, Math.PI.toString());
 	var sin = input.match(/sin[0-9]+((\.([0-9]+))?)/gm);
 	var tan = input.match(/tan[0-9]+((\.([0-9]+))?)/gm);
 	if (cos != null){
+	console.log(cos);
 	for(var j = 0; j < cos.length; j++){
 		input = input.replace(cos[i], Math.cos(parseFloat(cos[i].substring(3))));
 	}
