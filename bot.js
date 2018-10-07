@@ -155,17 +155,70 @@ const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumbl
 
 function calculate(input){
 	try{
-	if (input.match(/[^0-9\(\)\.+\-\*\/ ]/gm)){
-	return "Beabooooo (Error. Please do not use letters yet.)";
-	}
+input = input.replace(/[Pp][Ii]/gm, Math.PI.toString());
   var parenthesis = input.match(/\([^\(\)]+\)/gm);
+  
   while (parenthesis != null){
    for(var i = 0; i < parenthesis.length; i++){
     input = input.replace(parenthesis[i], calculate(parenthesis[i].substring(1, parenthesis[i].length - 1)).toString());
-     
+	
    }
     var parenthesis = input.match(/\([^\(\)]+\)/gm);
   }
+	var abs = input.match(/abs[0-9]+((\.([0-9]+))?)/gm);
+	var acos = input.match(/acos[0-9]+((\.([0-9]+))?)/gm);
+	var asin = input.match(/asin[0-9]+((\.([0-9]+))?)/gm);
+	var atan = input.match(/atan[0-9]+((\.([0-9]+))?)/gm);
+	var log = input.match(/log[0-9]+((\.([0-9]+))?)/gm);
+	var sqrt = input.match(/sqrt[0-9]+((\.([0-9]+))?)/gm);
+	if (abs != null){
+	for(var j = 0; j < abs.length; j++){
+		input = input.replace(abs[i], Math.abs(parseFloat(abs[i].substring(3))));
+	}
+	}
+    if (acos != null){
+	for(var j = 0; j < acos.length; j++){
+		input = input.replace(acos[i], Math.acos(parseFloat(acos[i].substring(3))));
+	}
+	} 
+	 if (asin != null){
+	for(var j = 0; j < asin.length; j++){
+		input = input.replace(asin[i], Math.asin(parseFloat(asin[i].substring(3))));
+	}
+	} 
+	 if (atan != null){
+	for(var j = 0; j < atan.length; j++){
+		input = input.replace(atan[i], Math.atan(parseFloat(atan[i].substring(3))));
+	}
+	} 
+	 if (log != null){
+	for(var j = 0; j < log.length; j++){
+		input = input.replace(log[i], Math.log(parseFloat(log[i].substring(3))));
+	}
+	}
+	if (sqrt != null){
+	for(var j = 0; j < sqrt.length; j++){
+		input = input.replace(sqrt[i], Math.sqrt(parseFloat(sqrt[i].substring(3))));
+	}
+	}
+	var cos = input.match(/cos[0-9]+((\.([0-9]+))?)/gm);
+	var sin = input.match(/sin[0-9]+((\.([0-9]+))?)/gm);
+	var tan = input.match(/tan[0-9]+((\.([0-9]+))?)/gm);
+	if (cos != null){
+	for(var j = 0; j < cos.length; j++){
+		input = input.replace(acos[i], Math.acos(parseFloat(cos[i].substring(3))));
+	}
+	} 
+	 if (sin != null){
+	for(var j = 0; j < sin.length; j++){
+		input = input.replace(asin[i], Math.asin(parseFloat(sin[i].substring(3))));
+	}
+	} 
+	 if (tan != null){
+	for(var j = 0; j < tan.length; j++){
+		input = input.replace(atan[i], Math.atan(parseFloat(tan[i].substring(3))));
+	}
+	} 
   input = input.replace(/\+-/gm, '-');
   input = input.replace(/--/gm, '+');
  var operands = input.match(/[0-9]+((\.([0-9]+))?)/gm);
