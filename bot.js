@@ -157,6 +157,12 @@ function calculate(input){
 	try{
 input = input.replace(/[Pp][Ii]/gm, Math.PI.toString());
 input = input.replace(/ /gm, "");
+var mult = input.match(/[0-9]+((\.([0-9]+))?)\(/gm);
+if (mult != null){
+for(var i = 0; i < mult.length; i++){
+input = input.replace(mult[i], mult[i].match(/[0-9]+((\.([0-9]+))?)/gm)[0] + "*(");
+}
+}
   var parenthesis = input.match(/\([^\(\)]+\)/gm);
   
   while (parenthesis != null){
