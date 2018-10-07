@@ -161,7 +161,7 @@ function calculate(input){
   var parenthesis = input.match(/\([^\(\)]+\)/gm);
   while (parenthesis != null){
    for(var i = 0; i < parenthesis.length; i++){
-    input = input.replace(parenthesis[i], calculate(parenthesis[i].substring(1, parenthesis[i].length - 1), variables).toString());
+    input = input.replace(parenthesis[i], calculate(parenthesis[i].substring(1, parenthesis[i].length - 1)).toString());
      
    }
     var parenthesis = input.match(/\([^\(\)]+\)/gm);
