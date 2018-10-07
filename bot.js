@@ -219,7 +219,14 @@ input = input.replace(/[Pp][Ii]/gm, Math.PI.toString());
 	for(var i = 0; i < tan.length; i++){
 		input = input.replace(tan[i], Math.tan(parseFloat(tan[i].substring(3))));
 	}
-	} 
+	}
+var pow = input.match(/[0-9]+((\.([0-9]+))?)\^(-?[0-9]+)((\.([0-9]+))?)/gm);
+if (pow != null){
+	for(var i = 0; i < pow.length; i++){
+	var pows = pow[i].split("^");
+		input = input.replace(pow[i], Math.pow(parseFloat(pows[0]), parseFloat(pows[1])));
+	}
+}
   input = input.replace(/\+-/gm, '-');
   input = input.replace(/--/gm, '+');
  var operands = input.match(/[0-9]+((\.([0-9]+))?)/gm);
