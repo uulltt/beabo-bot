@@ -232,7 +232,11 @@ if (pow != null){
 	for(var i = 0; i < pow.length; i++){
 	var pows = pow[i].split("^");
 		input = input.replace(pow[i], Math.pow(parseFloat(pows[0]), parseFloat(pows[1])));
+		console.log(input);
 		pow = input.match(/[0-9]+((\.([0-9]+))?)\^(-?[0-9]+)((\.([0-9]+))?)/gm);
+		if (pow == null){
+		break;
+		}
 		i = -1;
 	}
 }
