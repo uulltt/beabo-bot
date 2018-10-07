@@ -171,6 +171,9 @@ Sample output:
 
 
 function calculate(input){
+	if (input.match(/[^0-9\(\)\.+\-\*\/]/gm)){
+	return "Beabooooo (Error. Please do not use letters yet.)";
+	}
   var parenthesis = input.match(/\([^\(\)]+\)/gm);
   while (parenthesis != null){
    for(var i = 0; i < parenthesis.length; i++){
