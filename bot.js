@@ -169,6 +169,7 @@ function calculate(input){
   input = input.replace(/\+-/gm, '-');
   input = input.replace(/--/gm, '+');
  var operands = input.match(/[0-9\.]+/gm);
+ console.log(operands);
  if (operands == null){
  return "Beabooooo (Error. Please include operands.)";
  }
@@ -183,6 +184,7 @@ function calculate(input){
   if (input.charAt(0) == '-'){
     operators = ((operators.join("")).substring(1)).split("");
   }
+  console.log(operators);
   for(var i = 0; i < operators.length; i++){
    switch(operators[i]){
     case '+':
