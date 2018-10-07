@@ -168,7 +168,7 @@ function calculate(input){
   }
   input = input.replace(/\+-/gm, '-');
   input = input.replace(/--/gm, '+');
- var operands = input.match(/[0-9]+((\.([0-9]+))?)/gm);
+ var operands = input.match(/[0-9\.]+/gm);
  if (operands == null){
  return "Beabooooo (Error. Please include operands.)";
  }
@@ -185,10 +185,10 @@ function calculate(input){
   }
   for(var i = 0; i < operators.length; i++){
    switch(operators[i]){
-     case '+':
+    case '+':
        solution += parseFloat(operands[i+1]);
     break;
-       case '-':
+    case '-':
        solution -= parseFloat(operands[i+1]);
     break;
 	case '*':
