@@ -150,23 +150,6 @@ const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', 
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumblr.com', 'http://www.monster-lands.com'];
 
-/*
-We want to allow students to use variables when entering expressions in the calculator. In addition to the formula string, we’ll add a new input to our function that holds variables and their values: 
-  {"e": 8, "y": 7, "pressure": 5}
-and our string inputs now have a format like 
-      "(e+3)-(pressure+temperature)+2".
-  
-Evaluate the formula result as fully as possible using the input variables. It is possible that not all variables have known values, in which case you should preserve them in the output.
-
-Sample input:
-    variables = {"e": 8, "y": 7, "pressure": 5}
-    expression = "(e+3)-(pressure+temperature)+2"
-
-Sample output:
-    "8-temperature"
-
-*/
-
 
 
 
@@ -223,7 +206,6 @@ function calculate(input){
 	}
 }
 
-console.log(calculate(expression, variables_));
 
 client.on('message', async message => {
 	if (!message.channel.hasOwnProperty('guild') || message.channel.memberPermissions(message.channel.guild.me).has(["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS", "ATTACH_FILES"])){
