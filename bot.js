@@ -155,7 +155,7 @@ const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumbl
 
 function calculate(input){
 	try{
-	if (input.match(/[^0-9\(\)\.+\-\*\/]/gm)){
+	if (input.match(/[^0-9\(\)\.+\-\*\/ ]/gm)){
 	return "Beabooooo (Error. Please do not use letters yet.)";
 	}
   var parenthesis = input.match(/\([^\(\)]+\)/gm);
