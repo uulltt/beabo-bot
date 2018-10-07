@@ -165,60 +165,58 @@ input = input.replace(/[Pp][Ii]/gm, Math.PI.toString());
    }
     var parenthesis = input.match(/\([^\(\)]+\)/gm);
   }
-	var abs = input.match(/abs([0-9]+)((\.([0-9]+))?)/gm);
-	var acos = input.match(/acos([0-9]+)((\.([0-9]+))?)/gm);
-	var asin = input.match(/asin([0-9]+)((\.([0-9]+))?)/gm);
-	var atan = input.match(/atan([0-9]+)((\.([0-9]+))?)/gm);
-	var log = input.match(/log([0-9]+)((\.([0-9]+))?)/gm);
-	var sqrt = input.match(/sqrt([0-9]+)((\.([0-9]+))?)/gm);
+	var abs = input.match(/abs(-?[0-9]+)((\.([0-9]+))?)/gm);
+	var acos = input.match(/acos(-?[0-9]+)((\.([0-9]+))?)/gm);
+	var asin = input.match(/asin(-?[0-9]+)((\.([0-9]+))?)/gm);
+	var atan = input.match(/atan(-?[0-9]+)((\.([0-9]+))?)/gm);
+	var log = input.match(/log(-?[0-9]+)((\.([0-9]+))?)/gm);
+	var sqrt = input.match(/sqrt(-?[0-9]+)((\.([0-9]+))?)/gm);
 	if (abs != null){
-	for(var j = 0; j < abs.length; j++){
+	for(var i = 0; i < abs.length; i++){
 		input = input.replace(abs[i], Math.abs(parseFloat(abs[i].substring(3))));
 	}
 	}
     if (acos != null){
-	for(var j = 0; j < acos.length; j++){
+	for(var i = 0; i < acos.length; i++){
 		input = input.replace(acos[i], Math.acos(parseFloat(acos[i].substring(3))));
 	}
 	} 
 	 if (asin != null){
-	for(var j = 0; j < asin.length; j++){
+	for(var i = 0; i < asin.length; i++){
 		input = input.replace(asin[i], Math.asin(parseFloat(asin[i].substring(3))));
 	}
 	} 
 	 if (atan != null){
-	for(var j = 0; j < atan.length; j++){
+	for(var i = 0; i < atan.length; i++){
 		input = input.replace(atan[i], Math.atan(parseFloat(atan[i].substring(3))));
 	}
 	} 
 	 if (log != null){
-	for(var j = 0; j < log.length; j++){
+	for(var i = 0; i < log.length; i++){
 		input = input.replace(log[i], Math.log(parseFloat(log[i].substring(3))));
 	}
 	}
 	if (sqrt != null){
-	for(var j = 0; j < sqrt.length; j++){
+	for(var i = 0; i < sqrt.length; i++){
 		input = input.replace(sqrt[i], Math.sqrt(parseFloat(sqrt[i].substring(3))));
 	}
 	}
-	var cos = input.match(/cos([0-9]+)((\.([0-9]+))?)/gm);
-	var sin = input.match(/sin([0-9]+)((\.([0-9]+))?)/gm);
-	var tan = input.match(/tan([0-9]+)((\.([0-9]+))?)/gm);
+	var cos = input.match(/cos(-?[0-9]+)((\.([0-9]+))?)/gm);
+	var sin = input.match(/sin(-?[0-9]+)((\.([0-9]+))?)/gm);
+	var tan = input.match(/tan(-?[0-9]+)((\.([0-9]+))?)/gm);
 	if (cos != null){
 	console.log(cos);
-	for(var j = 0; j < cos.length; j++){
-	console.log(cos[i]);
-	console.log(cos[i].substring(3));
+	for(var i = 0; i < cos.length; i++){
 		input = input.replace(cos[i], Math.cos(parseFloat(cos[i].substring(3))));
 	}
 	} 
 	 if (sin != null){
-	for(var j = 0; j < sin.length; j++){
+	for(var i = 0; i < sin.length; i++){
 		input = input.replace(sin[i], Math.sin(parseFloat(sin[i].substring(3))));
 	}
 	} 
 	 if (tan != null){
-	for(var j = 0; j < tan.length; j++){
+	for(var i = 0; i < tan.length; i++){
 		input = input.replace(tan[i], Math.tan(parseFloat(tan[i].substring(3))));
 	}
 	} 
