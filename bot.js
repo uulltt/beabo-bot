@@ -185,6 +185,9 @@ function calculate(input){
   input = input.replace(/\+-/gm, '-');
   input = input.replace(/--/gm, '+');
  var operands = input.match(/[0-9\.]+/gm);
+ if (operands == null){
+ return "Beabooooo (Error. Please include operands.)";
+ }
   var solution = parseInt(operands[0]);
    if (input.charAt(0) == '-'){
    solution *= -1;
