@@ -163,6 +163,12 @@ for(var i = 0; i < mult.length; i++){
 input = input.replace(mult[i], mult[i].match(/[0-9]+((\.([0-9]+))?)/gm)[0] + "*(");
 }
 }
+mult = input.match(/\)[0-9]+((\.([0-9]+))?)/gm);
+if (mult != null){
+for(var i = 0; i < mult.length; i++){
+input = input.replace(mult[i], ")*" + mult[i].substring(2));
+}
+}
   var parenthesis = input.match(/\([^\(\)]+\)/gm);
   
   while (parenthesis != null){
@@ -240,8 +246,6 @@ if (pow != null){
 		i = -1;
 	}
 }
-  input = input.replace(/\+-/gm, '-');
-  input = input.replace(/--/gm, '+');
  var operands = input.match(/[0-9]+((\.([0-9]+))?)/gm);
  if (operands == null){
  return "Beabooooo (Error. Please include operands.)";
@@ -253,11 +257,12 @@ if (pow != null){
   if (operands.length == 1){
     return solution;
   }
- var operators = input.match(/[+\-\/\*]/gm);
+ var operators = input.match(/[+\-\/\*]+/gm);
+ var i = 0;
   if (input.charAt(0) == '-'){
-    operators = ((operators.join("")).substring(1)).split("");
+    i = 1;
   }
-  for(var i = 0; i < operators.length; i++){
+  for(; i < operators.length; i++){
    switch(operators[i]){
     case '+':
        solution += parseFloat(operands[i+1]);
@@ -270,6 +275,18 @@ if (pow != null){
     break;
 	case '/':
        solution /= parseFloat(operands[i+1]);
+    break;
+	 case '+-':
+       solution += -parseFloat(operands[i+1]);
+    break;
+    case '--':
+       solution -= -parseFloat(operands[i+1]);
+    break;
+	case '*-':
+       solution *= -parseFloat(operands[i+1]);
+    break;
+	case '/-':
+       solution /= -parseFloat(operands[i+1]);
     break;
    }
   }
