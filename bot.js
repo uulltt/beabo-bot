@@ -233,13 +233,13 @@ input = input.replace(mult[i], ")*" + mult[i].substring(2));
 		input = input.replace(tan[i], Math.tan(parseFloat(tan[i].substring(3))));
 	}
 	}
-var pow = input.match(/-?[0-9]+((\.([0-9]+))?)\^(-?[0-9]+)((\.([0-9]+))?)/gm);
+var pow = input.match(/(^-)?[0-9]+((\.([0-9]+))?)\^(-?[0-9]+)((\.([0-9]+))?)/gm);
 if (pow != null){
 	for(var i = 0; i < pow.length; i++){
 	var pows = pow[i].split("^");
 		input = input.replace(pow[i], Math.pow(parseFloat(pows[0]), parseFloat(pows[1])));
 		console.log(input);
-		pow = input.match(/-?[0-9]+((\.([0-9]+))?)\^(-?[0-9]+)((\.([0-9]+))?)/gm);
+		pow = input.match(/(^-)?[0-9]+((\.([0-9]+))?)\^(-?[0-9]+)((\.([0-9]+))?)/gm);
 		if (pow == null){
 		break;
 		}
