@@ -15,7 +15,7 @@ gb.getGenres({},
 	genres = json.results.map(function(item) {
 		return item.name;
 	});
-	var moregenres = ['4X', 'Scorched Earth', 'Battle Royale', 'Horror', 'Metroidvania', 'Visual Novel', 'Mecha', 'Pong', 'Stealth', 'Roguelike', 'Tower Defense', 'Survival', 'Dating Sim', 'Dungeon Crawler'];
+	var moregenres = ['4X', 'Scorched Earth', 'Battle Royale', 'Horror', 'Metroidvania', 'Visual Novel', 'Pong', 'Stealth', 'Roguelike', 'Tower Defense', 'Survival', 'Dating Sim', 'Dungeon Crawler'];
 	Array.prototype.push.apply(genres, moregenres);
 	console.log(genres);
 	});
@@ -50,12 +50,13 @@ function sample(items) {
 
 module.exports.genrefusion = function(message) {
 
-		var Genre1 = Math.floor(Math.random() * genres.length);
-		var Genre2 = Math.floor(Math.random() * genres.length);
-		while(Genre2 == Genre1 || dontCombine.indexOf({a: genre1, b: genre2}) != -1 || dontCombine.indexOf({a: genre2, b: genre1}) != -1){
-		Genre2 = Math.floor(Math.random() * genres.length);
+		var genre1 = Math.floor(Math.random() * genres.length);
+		var genre2 = Math.floor(Math.random() * genres.length);
+		while(genre2 == genre1 || dontCombine.indexOf({a: genre1, b: genre2}) != -1 || dontCombine.indexOf({a: genre2, b: genre1}) != -1){
+		genre1 = Math.floor(Math.random() * genres.length);
+		genre2 = Math.floor(Math.random() * genres.length);
 		}
-		message.channel.send('**' + genres[Genre1] + '** + **' + genres[Genre2] + '**');
+		message.channel.send('**' + genres[genre1] + '** + **' + genres[genre2] + '**');
 	
 }
 
