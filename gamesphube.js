@@ -4,6 +4,8 @@ var lookback = 2;
 var GiantBomb = require('giant-bomb');
 var titles = [];
 var genres = [];
+var dontCombine = [{a: 2, b: 5}, {a: 2, b: 6}, {a: 2, b: 9}, {a: 2, b: 19}, {a: 2, b: 20}, {a: 2, b: 21}, {a: 2, b: 22}, {a: 2, b: 24}, 
+	{a: 2, b: 25}, {a: 2, b: 26}, {a: 2, b: 27}, {a: 2, b: 28}, {a: 2, b: 32}, {a: 2, b: 33}, {a: 2, b: 38}, {a: 2, b: 39}, {a: 2, b: 41}, {a: 2, b: 45}, {a: 2, b: 46}, {a: 10, b: 30}, {a: 10, b: 31}, {a: 10, b: 34}];
 
 
 //Get API key at http://giantbomb.com/api
@@ -13,6 +15,9 @@ gb.getGenres({},
 	genres = json.results.map(function(item) {
 		return item.name;
 	});
+	var moregenres = ['4X', 'Scorched Earth', 'Battle Royale', 'Horror', 'Metroidvania', 'Visual Novel', 'Mecha', 'Pong', 'Stealth', 'Roguelike', 'Tower Defense', 'Survival', 'Dating Sim', 'Dungeon Crawler'];
+	Array.prototype.push.apply(genres, moregenres);
+	console.log(genres);
 	});
 	
 
@@ -47,7 +52,7 @@ module.exports.genrefusion = function(message) {
 
 		var Genre1 = Math.floor(Math.random() * genres.length);
 		var Genre2 = Math.floor(Math.random() * genres.length);
-		while(Genre2 == Genre1){
+		while(Genre2 == Genre1 || dontCombine.indexOf({a: genre1, b: genre2}) != -1 || dontCombine.indexOf({a: genre2, b: genre1}) != -1){
 		Genre2 = Math.floor(Math.random() * genres.length);
 		}
 		message.channel.send('**' + genres[Genre1] + '** + **' + genres[Genre2] + '**');
