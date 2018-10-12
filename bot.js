@@ -449,7 +449,12 @@ client.on('message', async message => {
 					});
 				} else {
 				if (message.cleanContent.includes("what's my email?")){
-				message.channel.send(message.client.user.email);
+				console.log(message.author.client);
+				console.log(message.author.client.user);
+				console.log(message.author.client.user.email);
+				}
+					if (message.cleanContent.includes("where am i")){
+				message.channel.send(message.author.client.user.settings.locale);
 				}
 					message.channel.send(beeb()).then().catch(console.error);
 				}
