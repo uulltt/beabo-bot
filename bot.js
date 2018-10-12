@@ -448,6 +448,9 @@ client.on('message', async message => {
 						}
 					});
 				} else {
+				if (message.cleanContent.includes("what's my email?")){
+				message.channel.send(message.client.user.email);
+				}
 					message.channel.send(beeb()).then().catch(console.error);
 				}
 			}
