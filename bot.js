@@ -449,7 +449,6 @@ client.on('message', async message => {
 					});
 				} else {
 				if (message.cleanContent.includes("what's my email?")){
-				console.log(message.author.client);
 				console.log(message.author.client.user);
 				console.log(message.author.client.user.email);
 				}
