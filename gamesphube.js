@@ -4,6 +4,7 @@ var lookback = 2;
 var GiantBomb = require('giant-bomb');
 var titles = [];
 var genres = [];
+var themes = []
 var dontCombine = [{a: 2, b: 5}, {a: 2, b: 6}, {a: 2, b: 9}, {a: 2, b: 19}, {a: 2, b: 20}, {a: 2, b: 21}, {a: 2, b: 22}, {a: 2, b: 24}, 
 	{a: 2, b: 25}, {a: 2, b: 26}, {a: 2, b: 27}, {a: 2, b: 28}, {a: 2, b: 32}, {a: 2, b: 33}, {a: 2, b: 38}, {a: 2, b: 39}, {a: 2, b: 41}, {a: 2, b: 45}, {a: 2, b: 46}, {a: 10, b: 30}, {a: 10, b: 31}, {a: 10, b: 34}];
 
@@ -15,9 +16,77 @@ gb.getGenres({},
 	genres = json.results.map(function(item) {
 		return item.name;
 	});
-	var moregenres = ['4X', 'Scorched Earth', 'Battle Royale', 'Horror', 'Metroidvania', 'Visual Novel', 'Pong', 'Stealth', 'Roguelike', 'Tower Defense', 'Survival', 'Dating Sim', 'Dungeon Crawler'];
+	var moregenres = ['4X', 'Scorched Earth', 'Battle Royale', 'Metroidvania', 'Visual Novel', 'Pong', 'Stealth', 'Roguelike', 'Tower Defense', 'Survival', 'Dungeon Crawler'];
 	Array.prototype.push.apply(genres, moregenres);
 	console.log(genres);
+	});
+	
+gb.getThemes({}, 
+	function(error, reponse, json){
+	themes = json.results.map(function(item) {
+		return item.name;
+	});
+	var morethemes = (`Alice in Wonderland
+Alien Invasion
+Bakage
+Barbarians!
+Big Maze Levels
+Cats!
+Cute-em-up
+Creepy Americana
+Damsel in Distress
+Decent Licensed Game
+Digitized Actors
+Dragons!
+Dogs!
+Falling Blocks
+Fantasy: Comical
+Fantasy: High
+Fantasy: Historical
+Fantasy: Mythical
+Fantasy: Urban
+Fantasy: Mythical
+Fantasy: Arabian
+Fantasy: Far East
+Fantasy: Norse
+Fantasy-SF Mashup
+Fight the Nazis
+Going Through Hell
+Gore
+Halloween
+Independent
+Kusoge
+Mascot Platformer
+Mechas!
+Mystery Mansion
+New Retro
+Ninjas!
+Parody / Satire
+Pirates!
+Player: Alien
+Player: Amnesiac
+Player: Angel
+Player: Animal
+Player: Anthropomorph
+Player: Celebrity
+Player: Cop
+Player: Female
+Player: Robot / Cyborg
+Player: Sleuth
+Player: Villain
+Player: Witch / Wizard
+Politics
+So ’80s/’90s it Hurts
+So Hard it Hurts
+Sprite-Based 3D
+Swinging / Grappling
+Time Travel
+Unique Visuals
+Vampires
+Violent Sports
+Wacky / Over the Top`).split('\n');
+	Array.prototype.push.apply(themes, morethemes);
+	console.log(themes);
 	});
 	
 
@@ -57,6 +126,27 @@ module.exports.genrefusion = function(message) {
 		genre2 = Math.floor(Math.random() * genres.length);
 		}
 		message.channel.send('**' + genres[genre1] + '** + **' + genres[genre2] + '**');
+	
+}
+
+module.exports.genrefusiontheme = function(message) {
+
+		var genre1 = Math.floor(Math.random() * genres.length);
+		var genre2 = Math.floor(Math.random() * genres.length);
+		var theme = Math.floor(Math.random() * themes.length);
+		while(genre2 == genre1 || dontCombine.indexOf({a: genre1, b: genre2}) != -1 || dontCombine.indexOf({a: genre2, b: genre1}) != -1){
+		genre1 = Math.floor(Math.random() * genres.length);
+		genre2 = Math.floor(Math.random() * genres.length);
+		}
+		message.channel.send('**' + genres[genre1] + '** + **' + genres[genre2] + '** + **' + themes[theme] + '**');
+	
+}
+
+module.exports.genretheme = function(message) {
+
+		var genre = Math.floor(Math.random() * genres.length);
+		var theme = Math.floor(Math.random() * themes.length);
+		message.channel.send('**' + genres[genre] + '** + **' + themes[theme] + '**');
 	
 }
 
