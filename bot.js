@@ -117,7 +117,7 @@ b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attac
 					b!gamefusion - chooses two games based on GiantBomb's game database
 					b!genrefusion - chooses two genres based on GiantBomb's genre database
 					b!genretheme - chooses a random genre and theme based on GiantBomb's database, as well as themes from HardcoreGaming101
-					b!genrefusiontheme - combination of the above two commands"
+					b!genrefusiontheme - combination of the above two commands`
 				}, {
 					name: "Misc. Commands",
 					value: "b!revimg - does a reverse image search on the last image posted"

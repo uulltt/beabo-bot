@@ -54,7 +54,6 @@ Fight the Nazis
 Going Through Hell
 Gore
 Halloween
-Independent
 Kusoge
 Mascot Platformer
 Mechas!
