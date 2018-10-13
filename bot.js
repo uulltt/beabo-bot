@@ -288,7 +288,7 @@ client.on('message', async message => {
 			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t((('?)s)|( is)) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a) ((should i (get|buy|play|dl|download))|(is (yo)?ur fav((e|orite)?)))(\?)?/gm)) {
 			message.channel.send(favegames[3]);//(Math.floor(Math.random() * ((message.content.toLowerCase().includes("steam") || message.content.toLowerCase().includes("buy")) ? 7 : 8)))] + '/');
 			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t ((are)|r) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)s(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)s ((should i (get|buy|play|dl|download))|((r|(are)) (yo)?ur fav((e|orite)?))|(do (yo)?u li([ek]{2})))(\?)?/gm)) {
-				var games = favegames[0] + '/\n' + favegames[2] + '/\n' + favegames[3] + '/\n' + favegames[5] + '/\n'
+				var games = favegames[0] + '/\n' + favegames[1] + '/\n' + favegames[2] + '/\n' + favegames[3] + '/\n'
 					if (!message.content.toLowerCase().includes("steam") && !message.content.toLowerCase().includes("buy")) {
 						games += favegames[7] + '/'
 					}
