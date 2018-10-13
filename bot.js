@@ -151,7 +151,7 @@ b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attac
 var messageNum = 0;
 var messageCount = 150;
 const steamlink = 'https://store.steampowered.com/app/';
-const steamgames = ['514340', '514340', '514340', '658150', '658150', '522490', '598640'];
+const steamgames = ['514340', '514340', '658150', '522490', '598640', '598640', '598640'];
 const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumblr.com', 'http://www.monster-lands.com'];
 
