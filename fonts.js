@@ -137,7 +137,7 @@ function bubble(message) {
 }
 
 module.exports = (message) => {
-	if (new RegExp(/[Bb]![Ff]ont /gm).test(message.cleanContent.substring(0, 7)) && !(new RegExp(/[Bb]![Ff]ont (((mk|wh)2)|(mvc))\W/gm).test(message.cleanContent.substring(0, 11))) && !(new RegExp(/[Bb]![Ff]ont (ecco|puyo|doom|ddpt)\W/gm).test(message.cleanContent.substring(0, 12))) && !(new RegExp(/[Bb]![Ff]ont (mario64)\W/gm).test(message.cleanContent.substring(0, 15))) && !(new RegExp(/[Bb]![Ff]ont (crash|wario|ddpt[0-2])\W/gm).test(message.cleanContent.substring(0, 13))) && !(new RegExp(/[Bb]![Ff]ont (ms|rr)\W/gm).test(message.cleanContent.substring(0, 10)))) {
+	if (new RegExp(/[Bb]![Ff]ont /gm).test(message.cleanContent.substring(0, 7)) && !(new RegExp(/[Bb]![Ff]ont (((mk|wh)2)|(mvc))\W/gm).test(message.cleanContent.toLowerCase().substring(0, 11))) && !(new RegExp(/[Bb]![Ff]ont (ecco|puyo|doom|ddpt)\W/gm).test(message.cleanContent.toLowerCase().substring(0, 12))) && !(new RegExp(/[Bb]![Ff]ont (mario64)\W/gm).test(message.cleanContent.toLowerCase().substring(0, 15))) && !(new RegExp(/[Bb]![Ff]ont (crash|wario|ddpt[0-2])\W/gm).test(message.cleanContent.toLowerCase().substring(0, 13))) && !(new RegExp(/[Bb]![Ff]ont (ms|rr)\W/gm).test(message.cleanContent.toLowerCase().substring(0, 10)))) {
 		font(message.cleanContent, message);
 		/*for (var i = 0; i < Math.min(urls.length, 5); i++) {
 			if (urls[i].length > 0)

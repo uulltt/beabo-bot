@@ -17,7 +17,7 @@ const rrString = '0123456789' + alphabet + ' ?!,.;:$()+-\"\'';
 const mvcString = alphabet + '0123456789!?.-_&❤ ';
 
 module.exports = (message) => {
-	if (new RegExp(/[Bb]![Ff]ont crash\W/gm).test(message.cleanContent.substring(0, 13)) && message.cleanContent.length > 13) {
+	if (new RegExp(/[Bb]![Ff]ont crash\W/gm).test(message.cleanContent.toLowerCase().substring(0, 13)) && message.cleanContent.length > 13) {
 		var text = message.cleanContent.substring(13).toLowerCase().replace(/[^a-z0-9\.!\:\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -48,7 +48,7 @@ module.exports = (message) => {
 			}
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont wario\W/gm).test(message.cleanContent.substring(0, 13)) && message.cleanContent.length > 13) {
+	if (new RegExp(/[Bb]![Ff]ont wario\W/gm).test(message.cleanContent.toLowerCase().substring(0, 13)) && message.cleanContent.length > 13) {
 		var text = message.cleanContent.substring(13).replace(/[^A-Za-z0-9\.!\n\?'",\+\-= %&;:\(\)⭐✏]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -81,7 +81,7 @@ module.exports = (message) => {
 			}
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont mario64\W/gm).test(message.cleanContent.substring(0, 15)) && message.cleanContent.length > 15) {
+	if (new RegExp(/[Bb]![Ff]ont mario64\W/gm).test(message.cleanContent.toLowerCase().substring(0, 15)) && message.cleanContent.length > 15) {
 		var text = message.cleanContent.substring(15).toLowerCase().replace(/[^a-z0-9\.!\n\?'",: %&⭐]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -113,7 +113,7 @@ module.exports = (message) => {
 		}
 	}
 	
-	if (new RegExp(/[Bb]!pkmn\W/gm).test(message.cleanContent.substring(0, 7)) && message.cleanContent.length > 7) {
+	if (new RegExp(/[Bb]!pkmn\W/gm).test(message.cleanContent.toLowerCase().substring(0, 7)) && message.cleanContent.length > 7) {
 		var text = message.cleanContent.substring(7).replace(/[^A-Za-z0-9\.!\:\n\?',\- ;:\/\(\)\[\]]/gm, '') + ' ';
 		var texts = text.match(/.{1,18}\W/gm);
 		var textImages = [];
@@ -155,7 +155,7 @@ ctx.drawImage(img, 32, 32);
 	
 	
 	
-	if (new RegExp(/[Bb]!sb\W/gm).test(message.cleanContent.substring(0, 5)) && message.cleanContent.length > 5) {
+	if (new RegExp(/[Bb]!sb\W/gm).test(message.cleanContent.toLowerCase().substring(0, 5)) && message.cleanContent.length > 5) {
 		var text = message.cleanContent.substring(5).toUpperCase() + ' ';
 		var texts = text.match(/.{1,20}\W/gm);
 		var textImages = [];
@@ -201,7 +201,7 @@ ctx.drawImage(img, 32, 23*2);
 			
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont ms\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10) {
+	if (new RegExp(/[Bb]![Ff]ont ms\W/gm).test(message.cleanContent.toLowerCase().substring(0, 10)) && message.cleanContent.length > 10) {
 		var text = message.cleanContent.substring(10).toLowerCase().replace(/[^a-z0-9\?!\n\. ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -234,7 +234,7 @@ ctx.drawImage(img, 32, 23*2);
 			
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont rr\W/gm).test(message.cleanContent.substring(0, 10)) && message.cleanContent.length > 10) {
+	if (new RegExp(/[Bb]![Ff]ont rr\W/gm).test(message.cleanContent.toLowerCase().substring(0, 10)) && message.cleanContent.length > 10) {
 		var text = message.cleanContent.substring(10).toLowerCase().replace(/[^a-z0-9\.!\n\?'",\+\- ;:\(\)\$ ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -267,7 +267,7 @@ ctx.drawImage(img, 32, 23*2);
 			
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont mk2\W/gm).test(message.cleanContent.substring(0, 11)) && message.cleanContent.length > 11) {
+	if (new RegExp(/[Bb]![Ff]ont mk2\W/gm).test(message.cleanContent.toLowerCase().substring(0, 11)) && message.cleanContent.length > 11) {
 		var text = message.cleanContent.substring(11).toLowerCase().replace(/[^a-z0-9\-\.,'!\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -298,7 +298,7 @@ ctx.drawImage(img, 32, 23*2);
 			}
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont mvc\W/gm).test(message.cleanContent.substring(0, 11)) && message.cleanContent.length > 11) {
+	if (new RegExp(/[Bb]![Ff]ont mvc\W/gm).test(message.cleanContent.toLowerCase().substring(0, 11)) && message.cleanContent.length > 11) {
 		var text = message.cleanContent.substring(11).toLowerCase().replace(/[^a-z0-9\-\.\?\n❤!&_ ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -329,7 +329,7 @@ ctx.drawImage(img, 32, 23*2);
 			}
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont wh2\W/gm).test(message.cleanContent.substring(0, 11)) && message.cleanContent.length > 11) {
+	if (new RegExp(/[Bb]![Ff]ont wh2\W/gm).test(message.cleanContent.toLowerCase().substring(0, 11)) && message.cleanContent.length > 11) {
 		var text = message.cleanContent.substring(11) + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -367,7 +367,7 @@ ctx.drawImage(img, 32, 23*2);
 			}
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont ddpt\W/gm).test(message.cleanContent.substring(0, 12)) && message.cleanContent.length > 12) {
+	if (new RegExp(/[Bb]![Ff]ont ddpt\W/gm).test(message.cleanContent.toLowerCase().substring(0, 12)) && message.cleanContent.length > 12) {
 		var text = message.cleanContent.substring(12).toUpperCase() + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -405,7 +405,7 @@ ctx.drawImage(img, 32, 23*2);
 			}
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont ddpt[0-2]\W/gm).test(message.cleanContent.substring(0, 13)) && message.cleanContent.length > 13) {
+	if (new RegExp(/[Bb]![Ff]ont ddpt[0-2]\W/gm).test(message.cleanContent.toLowerCase().substring(0, 13)) && message.cleanContent.length > 13) {
 		var text = message.cleanContent.substring(13).toUpperCase() + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -445,7 +445,7 @@ ctx.drawImage(img, 32, 23*2);
 			}
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont puyo\W/gm).test(message.cleanContent.substring(0, 12)) && message.cleanContent.length > 12) {
+	if (new RegExp(/[Bb]![Ff]ont puyo\W/gm).test(message.cleanContent.toLowerCase().substring(0, 12)) && message.cleanContent.length > 12) {
 		var text = message.cleanContent.substring(12).toLowerCase().replace(/[^a-z0-9\.\n ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -476,7 +476,7 @@ ctx.drawImage(img, 32, 23*2);
 			}
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont ecco\W/gm).test(message.cleanContent.substring(0, 12)) && message.cleanContent.length > 12) {
+	if (new RegExp(/[Bb]![Ff]ont ecco\W/gm).test(message.cleanContent.toLowerCase().substring(0, 12)) && message.cleanContent.length > 12) {
 		var text = message.cleanContent.substring(12).toLowerCase().replace(/[^a-z\.\n,:\?!' ]/gm, '') + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
@@ -507,7 +507,7 @@ ctx.drawImage(img, 32, 23*2);
 			}
 		}
 	}
-	if (new RegExp(/[Bb]![Ff]ont doom\W/gm).test(message.cleanContent.substring(0, 12)) && message.cleanContent.length > 12) {
+	if (new RegExp(/[Bb]![Ff]ont doom\W/gm).test(message.cleanContent.toLowerCase().substring(0, 12)) && message.cleanContent.length > 12) {
 		var text = message.cleanContent.substring(12).toUpperCase() + ' ';
 		var texts = text.match(/.{1,24}\W/gm);
 		var textImages = [];
