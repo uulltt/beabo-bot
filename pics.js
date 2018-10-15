@@ -93,7 +93,7 @@ var request = require('request').defaults({
 					message.channel.send(json.posts[0].video_url);
 				}
 if (json.posts[0].type === 'photo' || (json.posts[0].type === 'text' && message.content.toLowerCase().includes("b!pics"))){
-					for (var j = 1; j < Math.min(json.posts[0].trail.length, 5); j++) {
+					for (var j = 0; j < Math.min(json.posts[0].trail.length, 5); j++) {
 						var img = json.posts[0].trail[j].content_raw.split(' src=\"').filter(function(item){
 							return item.startsWith('http');
 						}).map(function(item){
