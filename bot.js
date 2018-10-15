@@ -320,7 +320,11 @@ client.on('message', async message => {
 	fonts(message);
 	pics(message, message.content, herokupg);
 	quiz(message, message.content.toLowerCase());
+	herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
+						if (res.rows[0].voice) {
 	music(client, message, message.content, herokupg);
+						}
+	});
 	if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
 		var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
 		console.log(thread);
