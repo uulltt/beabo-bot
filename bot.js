@@ -418,6 +418,7 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 
 if (message.attachments.array().length > 0 && message.attachments.array()[0].url.includes('.svg')){
 		request.get(message.attachments.array()[0].url, function (err, res, body) {
+		console.log("heck");
 			svg2png(body)
     .then(buffer => message.channel.send({
 				files: [{
