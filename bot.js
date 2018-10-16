@@ -424,7 +424,7 @@ if (message.attachments.array().length > 0 && message.attachments.array()[0].url
 						attachment: buffer,
 						name: message.attachments.array()[0].filename.match(/.+\./gm)[0] + 'png'
 					}
-				]).then().catch(console.error))
+	]}).then().catch(console.error))
     .catch(e => console.error(e));
 			
 		});
