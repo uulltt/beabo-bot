@@ -376,7 +376,20 @@ client.on('message', async message => {
 			}).then().catch(console.error);
 		});
 	}
-	
+	if (message.attachments.array().length > 0 && message.attachments.array()[0].url.includes('.svg')){
+		request.get(message.attachments.array()[0].url, function (err, res, body) {
+		console.log("heck");
+			svg2png(body)
+    .then(buffer => message.channel.send({
+				files: [{
+						attachment: buffer,
+						name: message.attachments.array()[0].filename.match(/.+\./gm)[0] + 'png'
+					}
+	]}).then().catch(console.error))
+    .catch(e => console.error(e));
+			
+		});
+}
 if (message.content.toLowerCase().includes("b!gametitle")){
 		gamesphube.gametitle(message);
 		}
@@ -416,20 +429,7 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 }).catch(console.error);
 }
 
-if (message.attachments.array().length > 0 && message.attachments.array()[0].url.includes('.svg')){
-		request.get(message.attachments.array()[0].url, function (err, res, body) {
-		console.log("heck");
-			svg2png(body)
-    .then(buffer => message.channel.send({
-				files: [{
-						attachment: buffer,
-						name: message.attachments.array()[0].filename.match(/.+\./gm)[0] + 'png'
-					}
-	]}).then().catch(console.error))
-    .catch(e => console.error(e));
-			
-		});
-}
+
 		if ((beaboMessage.toLowerCase().startsWith("transcribe"))){
 		message.channel.fetchMessages({limit: 10}).then( (messages) => {
 		var url = "";
