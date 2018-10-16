@@ -9,6 +9,7 @@ var textboxes = require('./textboxes.js');
 var Tesseract = require('tesseract.js')
 var gamesphube = require('./gamesphube.js');
 var calculate = require('./calculate.js');
+const svg2png = require("svg2png");
 //const tf = require('tensorflow2');
 //const graph = tf.graph();
 //const session = tf.session();
@@ -413,6 +414,20 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 		message.channel.send('https://images.google.com/searchbyimage?image_url=' + url + '\nhttp://saucenao.com/search.php?url=' + url);
 		}
 }).catch(console.error);
+}
+
+if (message.attachments.array().length > 0 && message.attachments.array()[0].url.includes('.svg')){
+		request.get(message.attachments.array()[0].url, function (err, res, body) {
+			svg2png(body)
+    .then(buffer => message.channel.send({
+				files: [{
+						attachment: buffer,
+						name: message.attachments.array()[0].filename.match(/.+\./gm)[0] + 'png'
+					}
+				]).then().catch(console.error))
+    .catch(e => console.error(e));
+			
+		});
 }
 		if ((beaboMessage.toLowerCase().startsWith("transcribe"))){
 		message.channel.fetchMessages({limit: 10}).then( (messages) => {
