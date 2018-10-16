@@ -75,9 +75,10 @@ function play(connection, message) {
 
 			module.exports = function (client, message, content, herokupg) {
 				if (content.toLowerCase().startsWith('b!play') && message.member.voiceChannel) {
+				message.channel.fetchMessages({limit: 10}).then( (messages) => {
 					var song = {
-					link: message.embeds[0].url,
-					title: message.embeds[0].title
+					link: messages.filter(m => m.embeds.length > 0).first().embeds[0].url,
+					title: messages.filter(m => m.embeds.length > 0).first().embeds[0].title
 					}
 					console.log(song);
 					if (!servers[message.guild.id]) {
@@ -93,6 +94,7 @@ function play(connection, message) {
 					play(connection, message);
 					});
 					}
+				});
 				}
 				if (content.toLowerCase().startsWith('b!skip') && message.member.voiceChannel){
 				var server = servers[message.guild.id];
