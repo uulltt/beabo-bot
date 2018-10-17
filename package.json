@@ -18,6 +18,7 @@
     "lodash": "^4.17.4",
 	"midi-player-js": "2.0.4",
 	"midi-writer-js": "1.5.2",
+	"node-bandcamp": "0.0.6",
     "node-google-timezone": "0.1.1",
     "node-opus": "0.3.0",
     "path": "0.12.7",

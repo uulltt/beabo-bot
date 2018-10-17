@@ -331,8 +331,8 @@ module.exports = (message, content, herokupg) => {
 		if (content.includes('://') && content.match(/\/post\/[0-9]+/gm)) {
 			tumblrsong(message, content);
 		}
-		if (message.embeds[0].url.includes('soundcloud.com/')) {
-			soundcloud.getSongDlById(content.substring(message.embeds[0].url.indexOf('soundcloud.com/') + 15).match(/[0-9]+/gm)[0]).then(function (song) {
+		if (content.includes('soundcloud.com/')) {
+			soundcloud.getSongDlById(content.substring(content.indexOf('soundcloud.com/') + 15).match(/[0-9]+/gm)[0]).then(function (song) {
 				message.channel.send(song.http_mp3_128_url);
 			});
 		}

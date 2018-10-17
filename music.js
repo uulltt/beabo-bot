@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const ytdl = require('ytdl-core');
 const soundcloud = require('soundcloud-dl');
 var Tumblr = require('tumblrwks');
+var bandcamp = require('node-bandcamp');
 var servers = {};
 const request = require('request').defaults({
 		encoding: null
@@ -38,6 +39,19 @@ function play(connection, message) {
 				connection.disconnect();
 			}
 		});
+			});
+		} 
+else if (link.toLowerCase().includes('bandcamp.com/track')) {
+			
+				server.dispatcher = connection.playStream(bandcamp.getTrack(link));
+				server.dispatcher.setVolume(0.3); // half the volume
+				server.queue.shift();
+		server.dispatcher.on('end', function () {
+			if (server.queue[0]) {
+				play(connection, message);
+			} else {
+				connection.disconnect();
+			}
 			});
 		} else if (link.match(/\/post\/[0-9]+/gm)) {
 		var content = message.content;
