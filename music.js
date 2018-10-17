@@ -43,7 +43,7 @@ function play(connection, message) {
 		} 
 else if (link.toLowerCase().includes('bandcamp.com/track')) {
 			bandcamp.getTrack(link).then(function(stream) {
-				server.dispatcher = connection.playStream(bandcamp.getTrack(stream));
+				server.dispatcher = connection.playStream(stream);
 				server.dispatcher.setVolume(0.3); // half the volume
 				server.queue.shift();
 		server.dispatcher.on('end', function () {
