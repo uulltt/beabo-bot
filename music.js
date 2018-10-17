@@ -42,8 +42,8 @@ function play(connection, message) {
 			});
 		} 
 else if (link.toLowerCase().includes('bandcamp.com/track')) {
-			
-				server.dispatcher = connection.playStream(bandcamp.getTrack(link));
+			bandcamp.getTrack(link).then(function(stream) {
+				server.dispatcher = connection.playStream(bandcamp.getTrack(stream));
 				server.dispatcher.setVolume(0.3); // half the volume
 				server.queue.shift();
 		server.dispatcher.on('end', function () {
@@ -52,6 +52,9 @@ else if (link.toLowerCase().includes('bandcamp.com/track')) {
 			} else {
 				connection.disconnect();
 			}
+			});
+			}).catch(function(err) {
+  // handle error
 			});
 		} else if (link.match(/\/post\/[0-9]+/gm)) {
 		var content = message.content;

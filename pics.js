@@ -332,7 +332,7 @@ module.exports = (message, content, herokupg) => {
 			tumblrsong(message, content);
 		}
 		if (message.embeds[0].url.includes('soundcloud.com/')) {
-			soundcloud.getSongDlByUrl(content.substring(content.indexOf('https://soundcloud.com/'))).then(function (song) {
+			soundcloud.getSongDlByURL(content.substring(content.indexOf('https://soundcloud.com/'))).then(function (song) {
 				message.channel.send(song.http_mp3_128_url);
 			});
 		}

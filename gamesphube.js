@@ -18,7 +18,6 @@ gb.getGenres({},
 	});
 	var moregenres = ['4X', 'Scorched Earth', 'Battle Royale', 'Metroidvania', 'Visual Novel', 'Pong', 'Stealth', 'Roguelike', 'Tower Defense', 'Survival', 'Dungeon Crawler'];
 	Array.prototype.push.apply(genres, moregenres);
-	console.log(genres);
 	});
 	
 gb.getThemes({}, 
@@ -85,7 +84,6 @@ Vampires
 Violent Sports
 Wacky / Over the Top`).split('\n');
 	Array.prototype.push.apply(themes, morethemes);
-	console.log(themes);
 	});
 	
 
