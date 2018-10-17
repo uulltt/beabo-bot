@@ -119,7 +119,12 @@ module.exports = (message, beaboMessage) => {
 		if (message.attachments.array().length > 0 && message.attachments.array()[0].width > 0){
 			url = message.attachments.array()[0].url
 		} else {
-		url = messages.filter(m => m.attachments.array().length > 0 && m.attachments.array()[0].width > 0).first().attachments.array()[0].url
+		var m = messages.filter(m => (m.attachments.array().length > 0 && m.attachments.array()[0].width > 0) || (m.embeds.length > 0 && m.embeds.image)).first();
+		if (m.attachments.array().length > 0){
+			url = m.attachments.array()[0].url;
+		} else {
+			url = m.embeds[0].image.url;
+		}
 		}
 		if (url.length > 0){
 		request.get(url, function(err, res, body){
