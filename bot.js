@@ -378,7 +378,16 @@ client.on('message', async message => {
 	}
 	if (message.attachments.array().length > 0 && message.attachments.array()[0].url.includes('.svg')){
 		request.get(message.attachments.array()[0].url, function (err, res, body) {
-		console.log("heck");
+		if (message.cleanContent.match(/[0-9]+,[0-9]+/gm)){
+			svg2png(body, {width: parseInt(message.cleanContent.split(',')[0]), height: parseInt(message.cleanContent.split(',')[1])})
+    .then(buffer => message.channel.send({
+				files: [{
+						attachment: buffer,
+						name: message.attachments.array()[0].filename.match(/.+\./gm)[0] + 'png'
+					}
+	]}).then().catch(console.error))
+    .catch(e => console.error(e));
+		} else {
 			svg2png(body)
     .then(buffer => message.channel.send({
 				files: [{
@@ -387,8 +396,9 @@ client.on('message', async message => {
 					}
 	]}).then().catch(console.error))
     .catch(e => console.error(e));
-			
+		}
 		});
+		
 }
 if (message.content.toLowerCase().includes("b!gametitle")){
 		gamesphube.gametitle(message);
