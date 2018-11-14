@@ -44,10 +44,10 @@ client.on('ready', () => {
 	console.log(err);
 	});
 	}*/
-	var guilds = client.guilds.array();
+	/*var guilds = client.guilds.array();
 	for(var i = 0; i < guilds.length; i++){
 	client.guilds.array()[i].me.setNickname('Beabo').then().catch(console.error);
-	}
+	}*/
 });
 
 client.on('guildCreate', (guild) => {
