@@ -510,7 +510,7 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 			});
 		}
 		timestuff(message, beaboMessage, herokupg);
-		textboxes(message, beaboMessage);
+		textboxes(message, beaboMessage, herokupg);
 		if (beaboMessage.substring(0, 8) === 'commands' || beaboMessage.substring(0, 4) === 'help') {
 			helpMessage(message);
 		}

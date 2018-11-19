@@ -26,7 +26,7 @@ var request = require('request').defaults({
 		encoding: null
 	});
 
-module.exports = (message, beaboMessage) => {
+module.exports = (message, beaboMessage, herokupg) => {
 	if (beaboMessage.toLowerCase().startsWith("jeopardy ")) {
 			var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim().toUpperCase() + '\u200B';
 			var textCanvas = new Canvas.createCanvas(1280, 720);
