@@ -27,9 +27,9 @@ const herokupg = new Client({
 	});
 
 client.on('ready', () => {
-	console.log('Beabo!');
+	//console.log('Beabo!');
 	herokupg.connect();
-	client.user.setUsername("🅱");
+	client.user.setUsername("Beep-0");
 	client.user.setActivity('type b!help for commands', {
 		type: 'WATCHING'
 	});
