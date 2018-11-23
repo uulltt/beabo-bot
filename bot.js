@@ -83,7 +83,7 @@ function beeb() {
 
 function helpMessage(message) {
 	message.author.createDM().then(chnl => {
-						    chnl.send('http://ultdev.tumblr.com/beabo', {
+						    chnl.send({
 		embed: {
 			fields: [{
 					name: 'Album Embedding (b!pics followed by)',
@@ -321,11 +321,13 @@ client.on('message', async message => {
 	fonts(message);
 	pics(message, message.content, herokupg);
 	quiz(message, message.content.toLowerCase());
+	if (message.channel.hasOwnProperty('guild')){
 	herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
 						if (res.rows[0].voice) {
 	music(client, message, message.content, herokupg);
 						}
 	});
+	}
 	if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
 		var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
 		console.log(thread);
