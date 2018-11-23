@@ -173,7 +173,7 @@ client.on('message', async message => {
 				}).toString())
 		}
 	}
-	if (message.author.id !== client.user.id) {
+	/*if (message.author.id !== client.user.id) {
 		messageNum++;
 		if (messageNum >= messageCount) {
 			if (Math.random() <= 0.33) {
@@ -193,9 +193,9 @@ client.on('message', async message => {
 			}
 			messageNum = 0;
 		}
-	}
+	}*/
 
-	if ((message.cleanContent.toLowerCase().startsWith("thank") || message.cleanContent.toLowerCase().startsWith("thn")) && message.cleanContent.toLowerCase().match(/th(a?)(n?)(x|(k(( (((yo)?)u|(ya(h?))))|s)))(,?) (@?)beabo/gm)) {
+	/*if ((message.cleanContent.toLowerCase().startsWith("thank") || message.cleanContent.toLowerCase().startsWith("thn")) && message.cleanContent.toLowerCase().match(/th(a?)(n?)(x|(k(( (((yo)?)u|(ya(h?))))|s)))(,?) (@?)beabo/gm)) {
 		if (Math.random() <= 0.6) {
 		if (Math.random() <= 0.5){
 			message.channel.send('Beabo bii! :+1:');
@@ -213,11 +213,11 @@ client.on('message', async message => {
 
 	}
 	
-	if (message.content === "b!counter" && message.author.id == process.env.BOT_ADMIN) {
+	/*if (message.content === "b!counter" && message.author.id == process.env.BOT_ADMIN) {
 		message.channel.send(messageNum.toString());
 
-	}
-	if (message.content.includes('@everyone')) {
+	}*/
+	/*if (message.content.includes('@everyone')) {
 		var chance = Math.floor(Math.random() * 100);
 		if (chance === 0) {
 			message.channel.send('***BEEEEEEEEEEEE!!!***', {
@@ -240,7 +240,7 @@ client.on('message', async message => {
 				]
 			}).then().catch(console.error);
 		}
-	}
+	}*/
 
 	if (message.content.toLowerCase() === "right about now" || message.content.toLowerCase() === "check it out now") {
 		message.channel.send('\"the funk soul brother\"').then().catch(console.error);
@@ -251,7 +251,7 @@ client.on('message', async message => {
 	if (message.content.toLowerCase() === "check it out now, the funk soul brother") {
 		message.channel.send('\"right about now, the funk soul brother\"').then().catch(console.error);
 	}
-	if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && (!message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]/gm) || (message.cleanContent.toLowerCase().match(/:[cdfghjklmnpqrstuvwxyz0-9]/gm) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]./gm)))) {
+	/*if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && (!message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]/gm) || (message.cleanContent.toLowerCase().match(/:[cdfghjklmnpqrstuvwxyz0-9]/gm) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]./gm)))) {
 
 		message.channel.send("Biii!!!!! biiiiiii!! :revolving_hearts:");
 	} else {
@@ -299,7 +299,7 @@ client.on('message', async message => {
 			} else {
 
 				if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel && message.guild.voiceConnection == null) {
-					herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
+					/*herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
 						if (res.rows[0].voice) {
 							const connection = await message.member.voiceChannel.join();
 							const dispatcher = connection.playFile('./beabo_' + (Math.floor(Math.random() * (7))) + '.mp3');
@@ -316,7 +316,7 @@ client.on('message', async message => {
 				}
 			}
 		}
-	}
+	}*/
 
 	fonts(message);
 	pics(message, message.content, herokupg);
@@ -498,9 +498,9 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 					console.log(err);
 			});
 		}
-		if (beaboMessage.startsWith('day')) {
+		/*if (beaboMessage.startsWith('day')) {
 			message.channel.send('biiiii! 🎉 🎂');
-		}
+		}*/
 		if (beaboMessage.startsWith('pg ') && message.author.id === process.env.BOT_ADMIN) {
 			herokupg.query(beaboMessage.substring(3), (err, res) => {
 				if (!err)
