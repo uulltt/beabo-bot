@@ -29,7 +29,7 @@ const herokupg = new Client({
 client.on('ready', () => {
 	//console.log('Beabo!');
 	herokupg.connect();
-	client.user.setUsername("Beep-0");
+	client.user.setUsername("Baby Zolar");
 	client.user.setActivity('type b!help for commands', {
 		type: 'WATCHING'
 	});
@@ -59,7 +59,7 @@ client.on('guildCreate', (guild) => {
 	});
 });
 
-var lines = [" beabo", " bee", " bii", " be", " beeb", " bibi"];
+var lines = [" blue-yah", " blue", " blu", " bluu", " yah", " yah"];
 
 var servers = {};
 
@@ -173,7 +173,7 @@ client.on('message', async message => {
 				}).toString())
 		}
 	}
-	/*if (message.author.id !== client.user.id) {
+	if (message.author.id !== client.user.id) {
 		messageNum++;
 		if (messageNum >= messageCount) {
 			if (Math.random() <= 0.33) {
@@ -193,12 +193,12 @@ client.on('message', async message => {
 			}
 			messageNum = 0;
 		}
-	}*/
+	}
 
 	/*if ((message.cleanContent.toLowerCase().startsWith("thank") || message.cleanContent.toLowerCase().startsWith("thn")) && message.cleanContent.toLowerCase().match(/th(a?)(n?)(x|(k(( (((yo)?)u|(ya(h?))))|s)))(,?) (@?)beabo/gm)) {
 		if (Math.random() <= 0.6) {
 		if (Math.random() <= 0.5){
-			message.channel.send('Beabo bii! :+1:');
+			message.channel.send('Blue-yah! :+1:');
 		} else {
 		message.react('👍');
 		}
