@@ -123,7 +123,7 @@ module.exports.genrefusion = function(message) {
 		genre1 = Math.floor(Math.random() * genres.length);
 		genre2 = Math.floor(Math.random() * genres.length);
 		}
-		message.channel.send('**' + genres[genre1] + '** + **' + genres[genre2] + '**');*/
+		message.channel.send('**' + genres[genre1] + '** + **' + genres[genre2] + '**');
 	
 }
 
