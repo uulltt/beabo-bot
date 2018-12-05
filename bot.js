@@ -254,10 +254,10 @@ client.on('message', async message => {
 	/*if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && (!message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]/gm) || (message.cleanContent.toLowerCase().match(/:[cdfghjklmnpqrstuvwxyz0-9]/gm) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]./gm)))) {
 
 		message.channel.send("Biii!!!!! biiiiiii!! :revolving_hearts:");
-	} else {
+	} else {*/
 		if (message.isMentioned(client.user) && !message.cleanContent.toLowerCase().includes('🖕') && !(message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) && !(message.cleanContent.toLowerCase().match(/((f(u|(ri))([ck]{1,2}))|(hate)) (yo)?u/gm) || message.cleanContent.toLowerCase().match(/(yo)?u su([ck]{1,2})/gm))) {
 
-			if (!message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
+			/*if (!message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
 				if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
 					herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
 						if (res.rows[0].voice) {
@@ -283,10 +283,10 @@ client.on('message', async message => {
 						var hearts = '♥💕💞';
 						message.react('💕');
 						}
-				}
-			} else if (message.content.toLowerCase().includes("help")) {
+			}*/
+			if (message.content.toLowerCase().includes("help")) {
 				helpMessage(message);
-			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t((('?)s)|( is)) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a) ((should i (get|buy|play|dl|download))|(is (yo)?ur fav((e|orite)?)))(\?)?/gm)) {
+			} /*else if (message.content.toLowerCase().match(/w(h?)(a|u)t((('?)s)|( is)) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a) ((should i (get|buy|play|dl|download))|(is (yo)?ur fav((e|orite)?)))(\?)?/gm)) {
 			message.channel.send(favegames[3]);//(Math.floor(Math.random() * ((message.content.toLowerCase().includes("steam") || message.content.toLowerCase().includes("buy")) ? 7 : 8)))] + '/');
 			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t ((are)|r) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)s(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)s ((should i (get|buy|play|dl|download))|((r|(are)) (yo)?ur fav((e|orite)?))|(do (yo)?u li([ek]{2})))(\?)?/gm)) {
 				var games = favegames[0] + '/\n' + favegames[1] + '/\n' + favegames[2] + '/\n' + favegames[3] + '/\n'
@@ -296,7 +296,7 @@ client.on('message', async message => {
 					message.channel.send(games);
 			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t((('?)s)|( is)) (yo)?ur fav((e|orite)?) ((web(( |(\-))?))?)(comic)(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t ((web(( |\-)?))?)(comic) is (yo)?ur fav((e|orite)?)(\?)?/gm)) {
 				message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
-			} else {
+			}*/ else {
 
 				if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel && message.guild.voiceConnection == null) {
 					/*herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
@@ -311,12 +311,13 @@ client.on('message', async message => {
 							message.channel.send(beeb()).then().catch(console.error);
 						}
 					});
-				} else {
+					} else {*/
 					message.channel.send(beeb()).then().catch(console.error);
-				}
+				//}
 			}
 		}
-	}*/
+}
+	
 
 	fonts(message);
 	pics(message, message.content, herokupg);
