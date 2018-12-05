@@ -29,7 +29,7 @@ const herokupg = new Client({
 client.on('ready', () => {
 	//console.log('Beabo!');
 	herokupg.connect();
-	client.user.setUsername("Baby Zolar");
+	client.user.setUsername("bbZolar");
 	client.user.setActivity('type b!help for commands', {
 		type: 'WATCHING'
 	});
