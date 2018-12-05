@@ -13,6 +13,7 @@ var dontCombine = [{a: 2, b: 5}, {a: 2, b: 6}, {a: 2, b: 9}, {a: 2, b: 19}, {a: 
 var gb = new GiantBomb(process.env.GIANTBOMB, 'Beabo - Discord bot that uses markov chains to generate video game titles');
 gb.getGenres({}, 
 	function(error, reponse, json){
+	console.log(json);
 	genres = json.results.map(function(item) {
 		return item.name;
 	});
@@ -122,7 +123,7 @@ module.exports.genrefusion = function(message) {
 		genre1 = Math.floor(Math.random() * genres.length);
 		genre2 = Math.floor(Math.random() * genres.length);
 		}
-		message.channel.send('**' + genres[genre1] + '** + **' + genres[genre2] + '**');
+		message.channel.send('**' + genres[genre1] + '** + **' + genres[genre2] + '**');*/
 	
 }
 
