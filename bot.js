@@ -29,7 +29,7 @@ const herokupg = new Client({
 client.on('ready', () => {
 	//console.log('Beabo!');
 	herokupg.connect();
-	client.user.setUsername("bbZolar");
+	client.user.setUsername("beep-0");
 	client.user.setActivity('type b!help for commands', {
 		type: 'WATCHING'
 	});
@@ -59,7 +59,7 @@ client.on('guildCreate', (guild) => {
 	});
 });
 
-var lines = [" blue-yah", " blue", " blu", " bluu", " yah", " yah"];
+var lines = [" beep", " beepidy", " boop", " bop"];
 
 var servers = {};
 
