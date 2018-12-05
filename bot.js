@@ -298,7 +298,7 @@ client.on('message', async message => {
 				message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
 			}*/ else {
 
-				if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel && message.guild.voiceConnection == null) {
+				//if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel && message.guild.voiceConnection == null) {
 					/*herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
 						if (res.rows[0].voice) {
 							const connection = await message.member.voiceChannel.join();
@@ -316,7 +316,6 @@ client.on('message', async message => {
 				//}
 			}
 		}
-}
 	
 
 	fonts(message);
