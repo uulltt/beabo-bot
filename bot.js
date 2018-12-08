@@ -59,7 +59,7 @@ client.on('guildCreate', (guild) => {
 	});
 });
 
-var lines = [" beep", " beeb", " bleep", " wup", " wrrp", " whuuup", " wheep", "eep", " badeep", " beeee", " whrrr"];
+var lines = [" beep", " beeb", " bwee", " bleep", " wup", " wrrp", " whuuup", " wheep", " badeep", " beeee", " whrrr"];
 
 var servers = {};
 
@@ -195,10 +195,10 @@ client.on('message', async message => {
 		}
 	}
 
-	/*if ((message.cleanContent.toLowerCase().startsWith("thank") || message.cleanContent.toLowerCase().startsWith("thn")) && message.cleanContent.toLowerCase().match(/th(a?)(n?)(x|(k(( (((yo)?)u|(ya(h?))))|s)))(,?) (@?)beabo/gm)) {
+	if ((message.cleanContent.toLowerCase().startsWith("thank") || message.cleanContent.toLowerCase().startsWith("thn")) && message.cleanContent.toLowerCase().match(/th(a?)(n?)(x|(k(( (((yo)?)u|(ya(h?))))|s)))(,?) (@?)bb/gm)) {
 		if (Math.random() <= 0.6) {
 		if (Math.random() <= 0.5){
-			message.channel.send('Blue-yah! :+1:');
+			message.channel.send('Bwee beep! :+1:');
 		} else {
 		message.react('👍');
 		}
@@ -206,7 +206,7 @@ client.on('message', async message => {
 
 	}
 	
-	if ((message.cleanContent.toLowerCase().startsWith("h")) && message.cleanContent.toLowerCase().match(/h((i((ya)?))|(e[lnw][lw]o))(( there)?)(,?) (@?)beabo/gm)) {
+	if ((message.cleanContent.toLowerCase().startsWith("h")) && message.cleanContent.toLowerCase().match(/h((i((ya)?))|(e[lnw][lw]o))(( there)?)(,?) (@?)bb/gm)) {
 		if (Math.random() <= 0.7) {
 		message.react('👋');
 		}
@@ -257,8 +257,8 @@ client.on('message', async message => {
 	} else {*/
 		if (message.isMentioned(client.user) && !message.cleanContent.toLowerCase().includes('🖕') && !(message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) && !(message.cleanContent.toLowerCase().match(/((f(u|(ri))([ck]{1,2}))|(hate)) (yo)?u/gm) || message.cleanContent.toLowerCase().match(/(yo)?u su([ck]{1,2})/gm))) {
 
-			/*if (!message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
-				if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
+			if (!message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
+				/*(if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
 					herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
 						if (res.rows[0].voice) {
 							const connection = await message.member.voiceChannel.join();
@@ -276,15 +276,15 @@ client.on('message', async message => {
 						}
 						}
 					});
-				} else {
+				} else {*/
 					if (Math.random() < 0.5){
-							message.channel.send("bee bee biiiii! :heart:");
+							message.channel.send("Bwee bleep wheeeeep! :heart:");
 						} else {
 						var hearts = '♥💕💞';
 						message.react('💕');
 						}
-			}*/
-			if (message.content.toLowerCase().includes("help")) {
+			}
+			else if (message.content.toLowerCase().includes("help")) {
 				helpMessage(message);
 			} /*else if (message.content.toLowerCase().match(/w(h?)(a|u)t((('?)s)|( is)) (yo)?ur fav((e|orite)?) (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a)(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t (steam|pc|computer|video|vid(y|j)a)?( )?((ga([me]{2}))|vid(y|j)a) ((should i (get|buy|play|dl|download))|(is (yo)?ur fav((e|orite)?)))(\?)?/gm)) {
 			message.channel.send(favegames[3]);//(Math.floor(Math.random() * ((message.content.toLowerCase().includes("steam") || message.content.toLowerCase().includes("buy")) ? 7 : 8)))] + '/');
