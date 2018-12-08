@@ -258,11 +258,11 @@ client.on('message', async message => {
 		if (message.isMentioned(client.user) && !message.cleanContent.toLowerCase().includes('🖕') && !(message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) && !(message.cleanContent.toLowerCase().match(/((f(u|(ri))([ck]{1,2}))|(hate)) (yo)?u/gm) || message.cleanContent.toLowerCase().match(/(yo)?u su([ck]{1,2})/gm))) {
 
 			if (!message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
-				/*(if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
+				(if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
 					herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
 						if (res.rows[0].voice) {
 							const connection = await message.member.voiceChannel.join();
-							const dispatcher = connection.playFile('./beabo_' + (Math.floor(Math.random() * (7))) + '.mp3');
+							const dispatcher = connection.playFile('./bb-00-' + (Math.floor(Math.random() * (11))) + '.mp3');
 							dispatcher.setVolume(0.3); // half the volume
 							dispatcher.on('end', () => {
 								message.guild.voiceConnection.channel.leave();
@@ -298,11 +298,11 @@ client.on('message', async message => {
 				message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
 			}*/ else {
 
-				//if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel && message.guild.voiceConnection == null) {
-					/*herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
+				if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel && message.guild.voiceConnection == null) {
+					herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
 						if (res.rows[0].voice) {
 							const connection = await message.member.voiceChannel.join();
-							const dispatcher = connection.playFile('./beabo_' + (Math.floor(Math.random() * (7))) + '.mp3');
+							const dispatcher = connection.playFile('./bb-00-' + (Math.floor(Math.random() * (11))) + '.mp3');
 							dispatcher.setVolume(0.3); // half the volume
 							dispatcher.on('end', () => {
 								message.guild.voiceConnection.channel.leave();
@@ -311,9 +311,9 @@ client.on('message', async message => {
 							message.channel.send(beeb()).then().catch(console.error);
 						}
 					});
-					} else {*/
+					} else {
 					message.channel.send(beeb()).then().catch(console.error);
-				//}
+				}
 			}
 		}
 	
