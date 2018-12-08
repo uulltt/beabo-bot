@@ -29,7 +29,7 @@ const herokupg = new Client({
 client.on('ready', () => {
 	//console.log('Beabo!');
 	herokupg.connect();
-	client.user.setUsername("beep-0");
+	client.user.setUsername("BB-00");
 	client.user.setActivity('type b!help for commands', {
 		type: 'WATCHING'
 	});
@@ -59,7 +59,7 @@ client.on('guildCreate', (guild) => {
 	});
 });
 
-var lines = [" beep", " beepidy", " boop", " bop"];
+var lines = [" beep", " beeb", " bleep", " wup", " wrrp", " whuuup", " wheep", "eep", " badeep", " beeee", " whrrr"];
 
 var servers = {};
 
@@ -75,7 +75,7 @@ function beeb() {
 	}
 	var hasEmote = Math.floor(Math.random() * 6);
 	if (hasEmote === 0) {
-		return sentence + "! ^^";
+		return sentence + "! ^^^";
 	}
 	return sentence + "!";
 
