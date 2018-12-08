@@ -269,7 +269,7 @@ client.on('message', async message => {
 							});
 						} else {
 						if (Math.random() < 0.5){
-							message.channel.send("bee bee biiiii! :heart:");
+							message.channel.send("Bwee bleep wheeeeep! :heart:");
 						} else {
 						var hearts = '♥💕💞';
 						message.react('💕');
