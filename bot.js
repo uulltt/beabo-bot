@@ -258,7 +258,7 @@ client.on('message', async message => {
 		if (message.isMentioned(client.user) && !message.cleanContent.toLowerCase().includes('🖕') && !(message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) && !(message.cleanContent.toLowerCase().match(/((f(u|(ri))([ck]{1,2}))|(hate)) (yo)?u/gm) || message.cleanContent.toLowerCase().match(/(yo)?u su([ck]{1,2})/gm))) {
 
 			if (!message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
-				(if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
+				if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
 					herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
 						if (res.rows[0].voice) {
 							const connection = await message.member.voiceChannel.join();
@@ -276,13 +276,14 @@ client.on('message', async message => {
 						}
 						}
 					});
-				} else {*/
+				} else {
 					if (Math.random() < 0.5){
 							message.channel.send("Bwee bleep wheeeeep! :heart:");
 						} else {
 						var hearts = '♥💕💞';
 						message.react('💕');
 						}
+			}
 			}
 			else if (message.content.toLowerCase().includes("help")) {
 				helpMessage(message);
@@ -296,7 +297,7 @@ client.on('message', async message => {
 					message.channel.send(games);
 			} else if (message.content.toLowerCase().match(/w(h?)(a|u)t((('?)s)|( is)) (yo)?ur fav((e|orite)?) ((web(( |(\-))?))?)(comic)(\?)?/gm) || message.content.toLowerCase().match(/w(h?)(a|u)t ((web(( |\-)?))?)(comic) is (yo)?ur fav((e|orite)?)(\?)?/gm)) {
 				message.channel.send(webcomics[(Math.floor(Math.random() * (3)))] + '/');
-			}*/ else {
+			}*/else {
 
 				if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel && message.guild.voiceConnection == null) {
 					herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
