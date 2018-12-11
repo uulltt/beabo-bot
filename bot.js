@@ -59,7 +59,7 @@ client.on('guildCreate', (guild) => {
 	});
 });
 
-var lines = [" beep", " beeb", " bwee", " bleep", " wup", " wrrp", " whuuup", " wheep", " badeep", " beeee", " whrrr"];
+var lines = [" beep", " beeb", " bwee", " bleep", " wup", " wrrp", " whuuup", " wheep", " badeep", " beeee", " whrrr", " badee", "boop"];
 
 var servers = {};
 
