@@ -10,7 +10,7 @@ var dontCombine = [{a: 2, b: 5}, {a: 2, b: 6}, {a: 2, b: 9}, {a: 2, b: 19}, {a: 
 
 
 //Get API key at http://giantbomb.com/api
-var gb = new GiantBomb(process.env.GIANTBOMB, 'Beabo - Discord bot that uses markov chains to generate video game titles');
+var gb = new GiantBomb(process.env.GIANTBOMB, 'BB-00 - Discord bot that uses markov chains to generate video game titles');
 gb.getGenres({}, 
 	function(error, reponse, json){
 	//console.log(json);
