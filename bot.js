@@ -102,7 +102,8 @@ function helpMessage(message) {
 b!pkmn - creates a pokemon styled text box.
 b!sb - creates a Skeleton Boomerang text box.
 b!ut - creates an Undertale text box.
-					` + '`b!ut_[character name]` - creates an Undertale text box with that character (i.e. b!utsans [Hey guys it\'s me Sans Undertale])\n`b!ut_[character name]_[expression]` - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)'
+					` + '`b!ut_[character name]` - creates an Undertale text box with that character (i.e. b!utsans [Hey guys it\'s me Sans Undertale])\n`b!ut_[character name]_[expression]` - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)'+
+					'\nfind more info at https://www.demirramon.com/en/help/undertale_text_box_generator_dev'
 				}, {
 					name: 'More Text Box Commands',
 					value: `b!jeopardy - makes a Jeopardy answer screen with user input 
