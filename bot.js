@@ -528,6 +528,7 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 		var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function(item){
 		return item.includes(search);
 		});
+		images.sort();
 		
 		for(var i = 0; i < images.length; i++){
 		message.channel.send(images[i].replace(/"/gm,'')); 
@@ -537,6 +538,7 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 		var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function(item){
 		return item.includes(search);
 		});
+		images.sort();
 		
 		for(var i = 0; i < images.length; i++){
 		message.channel.send(images[i].replace(/"/gm,'')); 
