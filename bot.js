@@ -519,7 +519,10 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 			helpMessage(message);
 		}
 		
-		if (beaboMessage.startsWith('dsan ') && beaboMessage.length > 5 && message.author.id === process.env.BOT_ADMIN){
+		if (beaboMessage.startsWith('dsan ')){
+		console.log('dsan');	
+		if (beaboMessage.length > 5 && message.author.id === process.env.BOT_ADMIN){
+		console.log('DSAN');
 		var search = beaboMessage.split(' ')[1];
 		request.get('https://dsancomics.com/comics/sketches-2/2017-2/', function (err, res, body) {
 		var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm);
@@ -536,6 +539,7 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 		}				
 		});
 		
+		}
 		}
 
 	}
