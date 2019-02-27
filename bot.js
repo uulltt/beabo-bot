@@ -518,6 +518,25 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 		if (beaboMessage.substring(0, 8) === 'commands' || beaboMessage.substring(0, 4) === 'help') {
 			helpMessage(message);
 		}
+		
+		if (beaboMessage.startsWith('dsan ') && beaboMessage.length > 5 && message.author.id === process.env.BOT_ADMIN){
+		var search = beaboMessage.split(' ')[1];
+		request.get('https://dsancomics.com/comics/sketches-2/2017-2/', function (err, res, body) {
+		var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm);
+		
+		for(var i = 0; i < images.length; i++){
+		message.channel.send(images[i].replace(/"/gm,'')); 
+		}			
+		});
+		request.get('https://dsancomics.com/2018-2/', function (err, res, body) {
+		var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm);
+		
+		for(var i = 0; i < images.length; i++){
+		message.channel.send(images[i].replace(/"/gm,'')); 
+		}				
+		});
+		
+		}
 
 	}
 	}
