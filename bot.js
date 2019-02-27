@@ -526,7 +526,7 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 		var search = beaboMessage.split(' ')[1];
 		request.get('https://dsancomics.com/comics/sketches-2/2017-2/', function (err, res, body) {
 		var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function(item){
-		return item.includes(search);
+		return item.includes(search) && !item.includes('400x516');
 		});
 		images.sort();
 		
@@ -536,7 +536,7 @@ if (beaboMessage.toLowerCase().startsWith("revimg")){
 		});
 		request.get('https://dsancomics.com/2018-2/', function (err, res, body) {
 		var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function(item){
-		return item.includes(search);
+		return item.includes(search) && !item.includes('400x516');
 		});
 		images.sort();
 		
