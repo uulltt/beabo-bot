@@ -103,7 +103,7 @@ module.exports = (message, beaboMessage, herokupg) => {
 			ctx.fillStyle = "#F7971D"
 			roundRect(ctx, 700, 80, 520, 320, 35, true);
 			ctx.fillStyle = "black";
-			ctx.font = "bold 200px sans-serif";
+			ctx.font = "bold 9vw sans-serif";
 			ctx.textAlign = "center";
 			ctx.textBaseline = "middle";
 			ctx.fillText('hub', 960, 240);
