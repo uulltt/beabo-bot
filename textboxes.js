@@ -101,11 +101,11 @@ module.exports = (message, beaboMessage, herokupg) => {
 			ctx.rect(0, 0, 1280, 720);
 			ctx.fill();
 			ctx.fillStyle = "#F7971D"
-			roundRect(ctx, 100, 5, 100, 100, 20, true);
+			roundRect(ctx, 700, 80, 520, 320, 20, true);
 		message.channel.send({
 				files: [{
 						attachment: textCanvas.toBuffer(),
-						name: 'supreme.png'
+						name: 'hub.png'
 					}
 				]
 			});
