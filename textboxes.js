@@ -25,6 +25,10 @@ Canvas.registerFont('./fonts/Korinna Bold.ttf', {
 Canvas.registerFont('./fonts/arial.ttf', {
 	family: 'Arial'
 });
+Canvas.registerFont('./fonts/arialbd.tff', {
+	family: 'Arial',
+	weight: 'bold'
+})
 var request = require('request').defaults({
 		encoding: null
 	});
@@ -116,7 +120,7 @@ module.exports = (message, beaboMessage, herokupg) => {
 			ctx.textBaseline = "middle";
 			ctx.fillText('hub', textCanvas.width - 320, 240);
 			ctx.fillStyle = "white";
-			ctx.font = "Arial";
+			ctx.font = "bold Arial";
 			ctx.textAlign = "right";
 			ctx.fillText(word, textCanvas.width - 610, 240);
 		message.channel.send({
