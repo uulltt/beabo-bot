@@ -101,11 +101,15 @@ module.exports = (message, beaboMessage, herokupg) => {
 			ctx.rect(0, 0, 1280, 450);
 			ctx.fill();
 			ctx.fillStyle = "#F7971D"
-			roundRect(ctx, 700, 80, 520, 320, 50, true);
+			roundRect(ctx, 700, 80, 520, 320, 35, true);
 			ctx.fillStyle = "black";
+			ctx.font = "60px Arial";
 			ctx.textAlign = "left";
 			ctx.textBaseline = "middle";
 			ctx.fillText('hub', 700, 80);
+			ctx.fillStyle = "white";
+			ctx.textAlign = "right";
+			ctx.fillText(word, 700, 80);
 		message.channel.send({
 				files: [{
 						attachment: textCanvas.toBuffer(),
