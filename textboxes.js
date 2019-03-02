@@ -95,6 +95,7 @@ module.exports = (message, beaboMessage, herokupg) => {
 		
 		if (beaboMessage.toLowerCase().startsWith('hub ')){
 		var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim();
+		word = word.charAt(0).toString().toUpperCase() + word.substring(1);
 		var textCanvas = new Canvas.createCanvas(1280, 450);
 		
 			var ctx = textCanvas.getContext("2d");
