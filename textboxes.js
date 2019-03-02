@@ -99,7 +99,7 @@ module.exports = (message, beaboMessage, herokupg) => {
 		
 			var ctx = textCanvas.getContext("2d");
 			ctx.font = "700 240px Verdana";
-			textCanvas.width = 1280 + Math.min((ctx.measureText(word).width - 670), 0);
+			textCanvas.width = 1280 + Math.max((ctx.measureText(word).width - 670), 0);
 			ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = "black";
 			ctx.rect(0, 0, 1280, 450);
