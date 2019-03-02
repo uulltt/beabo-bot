@@ -96,20 +96,24 @@ module.exports = (message, beaboMessage, herokupg) => {
 		if (beaboMessage.toLowerCase().startsWith('hub ')){
 		var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim();
 		var textCanvas = new Canvas.createCanvas(1280, 450);
+		
 			var ctx = textCanvas.getContext("2d");
+			ctx.font = "700 240px Verdana";
+			textCanvas.width = 1280 + Math.min((ctx.measureText(word).width - 670), 0);
+			ctx = textCanvas.getContext("2d");
 			ctx.fillStyle = "black";
 			ctx.rect(0, 0, 1280, 450);
 			ctx.fill();
 			ctx.fillStyle = "#F7971D"
-			roundRect(ctx, 700, 80, 520, 320, 35, true);
+			roundRect(ctx, (textCanvas.width - 580), 80, 520, 320, 35, true);
 			ctx.fillStyle = "black";
-			ctx.font = "700 240px Verdana";
+			
 			ctx.textAlign = "center";
 			ctx.textBaseline = "middle";
-			ctx.fillText('hub', 960, 240);
+			ctx.fillText('hub', textCanvas.width - 320, 240);
 			ctx.fillStyle = "white";
 			ctx.textAlign = "right";
-			ctx.fillText(word, 670, 240);
+			ctx.fillText(word, textCanvas.width - 610, 240);
 		message.channel.send({
 				files: [{
 						attachment: textCanvas.toBuffer(),
