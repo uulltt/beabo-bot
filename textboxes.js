@@ -22,6 +22,9 @@ Canvas.registerFont('./fonts/Textile.ttf', {
 Canvas.registerFont('./fonts/Korinna Bold.ttf', {
 	family: 'Jeopardy'
 });
+Canvas.registerFont('./fonts/arial.ttf', {
+	family: 'Arial'
+});
 var request = require('request').defaults({
 		encoding: null
 	});
@@ -113,6 +116,7 @@ module.exports = (message, beaboMessage, herokupg) => {
 			ctx.textBaseline = "middle";
 			ctx.fillText('hub', textCanvas.width - 320, 240);
 			ctx.fillStyle = "white";
+			ctx.font = "Arial";
 			ctx.textAlign = "right";
 			ctx.fillText(word, textCanvas.width - 610, 240);
 		message.channel.send({
