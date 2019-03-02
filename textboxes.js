@@ -104,9 +104,9 @@ module.exports = (message, beaboMessage, herokupg) => {
 			roundRect(ctx, 700, 80, 520, 320, 35, true);
 			ctx.fillStyle = "black";
 			ctx.font = "180px Arial";
-			ctx.textAlign = "left";
+			ctx.textAlign = "center";
 			ctx.textBaseline = "middle";
-			ctx.fillText('hub', 960, 80);
+			ctx.fillText('hub', 960, 200);
 			ctx.fillStyle = "white";
 			ctx.textAlign = "right";
 			ctx.fillText(word, 700, 80);
