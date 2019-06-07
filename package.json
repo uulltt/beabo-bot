@@ -28,7 +28,7 @@
     "rt-scraper": "1.0.5",
 	"soundcloud-dl": "1.0.3",
 	"svg2png": "4.1.1",
-	"tesseract.js": "1.0.10",
+	"tesseract.js": ">=1.0.19",
     "tumblrwks": "0.3.0",
     "twitter": "1.7.1",
 	"ytdl-core": "0.25.2"
