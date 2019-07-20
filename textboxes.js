@@ -141,10 +141,10 @@ module.exports = (message, beaboMessage, herokupg) => {
 			ctx.font = "700 240px Impact";
 			textCanvas.width = 1280 + Math.max((ctx.measureText(word).width - 640), 0);
 			ctx = textCanvas.getContext("2d");
-			ctx.fillStyle = "red";
+			ctx.fillStyle = "black";
 			ctx.rect(0, 0, textCanvas.width, 450);
 			ctx.fill();
-			ctx.fillStyle = "black";
+			ctx.fillStyle = "red";
 			
 			ctx.textAlign = "center";
 			ctx.textBaseline = "middle";
