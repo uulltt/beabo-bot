@@ -25,6 +25,10 @@ Canvas.registerFont('./fonts/Korinna Bold.ttf', {
 Canvas.registerFont('./fonts/arial.ttf', {
 	family: 'Arial'
 });
+
+Canvas.registerFont('./fonts/impact.ttf', {
+	family: 'Impact'
+});
 var request = require('request').defaults({
 		encoding: null
 	});
@@ -123,6 +127,36 @@ module.exports = (message, beaboMessage, herokupg) => {
 				files: [{
 						attachment: textCanvas.toBuffer(),
 						name: 'hub.png'
+					}
+				]
+			});
+		}
+		
+		if (beaboMessage.toLowerCase().startsWith('stop ')){
+		var word = message.cleanContent.substring(message.cleanContent.indexOf(" ")).trim();
+		word = word.charAt(0).toString().toUpperCase() + word.substring(1);
+		var textCanvas = new Canvas.createCanvas(1280, 450);
+		
+			var ctx = textCanvas.getContext("2d");
+			ctx.font = "700 240px Impact";
+			textCanvas.width = 1280 + Math.max((ctx.measureText(word).width - 640), 0);
+			ctx = textCanvas.getContext("2d");
+			ctx.fillStyle = "red";
+			ctx.rect(0, 0, textCanvas.width, 450);
+			ctx.fill();
+			ctx.fillStyle = "black";
+			
+			ctx.textAlign = "center";
+			ctx.textBaseline = "middle";
+			ctx.fillText('Stop', textCanvas.width - 320, 240);
+			ctx.fillStyle = "white";
+			ctx.font = "Impact";
+			ctx.textAlign = "right";
+			ctx.fillText(word, textCanvas.width - 610, 240);
+		message.channel.send({
+				files: [{
+						attachment: textCanvas.toBuffer(),
+						name: 'gamestop.png'
 					}
 				]
 			});
