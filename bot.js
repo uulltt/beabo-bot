@@ -7,24 +7,23 @@ var pics = require('./pics.js');
 var quiz = require('./quiz.js');
 var textboxes = require('./textboxes.js');
 var Tesseract = require('tesseract.js')
-var gamesphube = require('./gamesphube.js');
 var calculate = require('./calculate.js');
 const svg2png = require("svg2png");
 //const tf = require('tensorflow2');
 //const graph = tf.graph();
 //const session = tf.session();
 var request = require('request').defaults({
-		encoding: null
-	});
+	encoding: null
+});
 var timestuff = require('./timestuff.js');
 const {
 	Client
 } = require('pg');
 
 const herokupg = new Client({
-		connectionString: process.env.DATABASE_URL,
-		ssl: true,
-	});
+	connectionString: process.env.DATABASE_URL,
+	ssl: true,
+});
 
 client.on('ready', () => {
 	//console.log('Beabo!');
@@ -83,9 +82,9 @@ function beeb() {
 
 function helpMessage(message) {
 	message.author.createDM().then(chnl => {
-						    chnl.send({
-		embed: {
-			fields: [{
+		chnl.send({
+			embed: {
+				fields: [{
 					name: 'Album Embedding (b!pics followed by)',
 					value: 'twitter, imgur, or tumblr album - posts the rest of the images from that album\na link to a youtube vid - gets the thumbnail of that youtube vid\na jpg image on the web - gets the EXIf data of that image\nmention a user - get user\'s avatar image\ngelbooru/e621/e926/vinebooru/grognard/vidyart/etc. link - posts linked image from that booru'
 				}, {
@@ -94,7 +93,7 @@ function helpMessage(message) {
 				}, {
 					name: 'Funny Fonts',
 					value: 'b!font [game name] [message] (without brackets) - allows you to have beabo pop out a funny message using the font of your favorite game.\n(Game list here: https://nfggames.com/games/fontmaker/ the text after the "y-" in the image url is what you input for [game name])\n'
-					 + 'Custom Fonts: font!crash, font!ms (metal slug), font!mario64, font!wario (warioware), font!puyo (Puyo Puyo), font!mk2 (mortal kombat 2), font!doom, font!ecco, font!wh2 (world heroes 2), font!ddpt (dodonpachi tall font), font!rr (road rash font), font!mvc (marvel vs capcom 1)'
+						+ 'Custom Fonts: font!crash, font!ms (metal slug), font!mario64, font!wario (warioware), font!puyo (Puyo Puyo), font!mk2 (mortal kombat 2), font!doom, font!ecco, font!wh2 (world heroes 2), font!ddpt (dodonpachi tall font), font!rr (road rash font), font!mvc (marvel vs capcom 1)'
 				}, {
 					name: 'VG Text Box Commands (type the command followed by your message.)',
 					value: `b!eb - creates EarthBound-style text box. Also available in all 5 flavors; Normal, mint, strawberry, banana, and peanut.
@@ -102,8 +101,8 @@ function helpMessage(message) {
 b!pkmn - creates a pokemon styled text box.
 b!sb - creates a Skeleton Boomerang text box.
 b!ut - creates an Undertale text box.
-					` + '`b!ut_[character name]` - creates an Undertale text box with that character (i.e. b!utsans [Hey guys it\'s me Sans Undertale])\n`b!ut_[character name]_[expression]` - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)'+
-					'\nfind more info at https://www.demirramon.com/en/help/undertale_text_box_generator_dev'
+					` + '`b!ut_[character name]` - creates an Undertale text box with that character (i.e. b!utsans [Hey guys it\'s me Sans Undertale])\n`b!ut_[character name]_[expression]` - same as above but uses a specific expression for that character (i.e. b!utundyne_funny)' +
+						'\nfind more info at https://www.demirramon.com/en/help/undertale_text_box_generator_dev'
 				}, {
 					name: 'More Text Box Commands',
 					value: `b!jeopardy - makes a Jeopardy answer screen with user input 
@@ -114,13 +113,6 @@ b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attac
 					name: "Transcription Commands",
 					value: "b!transcribe (w/ image attachment) - transcribes text from that image into english plaintext\nb!transcribe-(eng/spa/fra/por/jpn/kor/chi_sim/chi_tra) - transcribes text from image attachment into given language parameter"
 				}, {
-					name: "Game Idea Commands",
-					value: `b!gametitle - generates a random game title based on GiantBomb's game database
-					b!gamefusion - chooses two games based on GiantBomb's game database
-					b!genrefusion - chooses two genres based on GiantBomb's genre database
-					b!genretheme - chooses a random genre and theme based on GiantBomb's database, as well as themes from HardcoreGaming101
-					b!genrefusiontheme - combination of the above two commands`
-				}, {
 					name: "Misc. Commands",
 					value: "b!revimg - does a reverse image search on the last image posted"
 				}, {
@@ -129,7 +121,7 @@ b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attac
 				}, {
 					name: 'Admin Commands (b!set followed by)',
 					value: 'voice true/false - turns audio stuff on or off\npicsglobal true/false - automatically does pics command for any posted twitter/imgur/tumblr link if true\ngreeting true/false - does a server greeting for new members'
-					
+
 					/*}, {
 					name: 'Google Maps Commands',
 					value: 'b!dir \"origin\" \"destination\" - prints directions from origin to destination\nb!places \"search query\" - finds places of a type near a location (e.g. \"arcades in miami\")\n'
@@ -145,16 +137,16 @@ b!goosebumps (w/ image attachment) - generates a goosebumps cover with the attac
 					'\nb!rhyme word - find words that rhyme with a given word\nb!numpad command - turns fighting game numpad notation into emoji\n\nb!hex# - gets color for that specific hex'
 					 */
 				}
-			]
-		}
-	});
+				]
+			}
+		});
 	});
 }
 var messageNum = 0;
 var messageCount = 150;
 const steamlink = 'https://store.steampowered.com/app/';
 const steamgames = ['514340', '658150', '522490', '598640', '598640', '598640', '598640', '598640'];
-const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], steamlink + steamgames[7],  'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
+const favegames = [steamlink + steamgames[0], steamlink + steamgames[1], steamlink + steamgames[2], steamlink + steamgames[3], steamlink + steamgames[4], steamlink + steamgames[5], steamlink + steamgames[6], steamlink + steamgames[7], 'https://dustinbragg.itch.io/yo-noid-was-ahead-of-its-time']
 const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumblr.com', 'http://www.monster-lands.com'];
 
 
@@ -164,98 +156,98 @@ const webcomics = ['http://dreamrise-comic.com', 'http://endlesshallscomic.tumbl
 
 
 client.on('message', async message => {
-	if (!message.channel.hasOwnProperty('guild') || message.channel.memberPermissions(message.channel.guild.me).has(["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS", "ATTACH_FILES"])){
-	if ((message.content.toLowerCase().includes('@y\'all') || message.content.toLowerCase().includes('@yall')) && !(new RegExp(/`[^`]*@y('?)all[^`]*`/gm)).test(message.content.toLowerCase())) {
-		if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
-			message.channel.send(message.member.voiceChannel.members.array().map(function (item) {
+	if (!message.channel.hasOwnProperty('guild') || message.channel.memberPermissions(message.channel.guild.me).has(["SEND_MESSAGES", "EMBED_LINKS", "VIEW_CHANNEL", "ADD_REACTIONS", "ATTACH_FILES"])) {
+		if ((message.content.toLowerCase().includes('@y\'all') || message.content.toLowerCase().includes('@yall')) && !(new RegExp(/`[^`]*@y('?)all[^`]*`/gm)).test(message.content.toLowerCase())) {
+			if (message.channel.hasOwnProperty('guild') && message.member.voiceChannel) {
+				message.channel.send(message.member.voiceChannel.members.array().map(function (item) {
 					return '<@' + item.id + '>';
 				}).filter(function (item, pos, self) {
 					return self.indexOf(item) == pos;
 				}).toString())
+			}
 		}
-	}
-	if (message.author.id !== client.user.id) {
-		messageNum++;
-		if (messageNum >= messageCount) {
-			if (Math.random() <= 0.33) {
-			if (message.channel.hasOwnProperty('guild')){
-				herokupg.query("SELECT shutup FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
-						if (!res.rows[0].shutup) {
-				message.channel.send(beeb()).then().catch(console.error);
-				if (messageCount < 200)
-					messageCount += 10;
+		if (message.author.id !== client.user.id) {
+			messageNum++;
+			if (messageNum >= messageCount) {
+				if (Math.random() <= 0.33) {
+					if (message.channel.hasOwnProperty('guild')) {
+						herokupg.query("SELECT shutup FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
+							if (!res.rows[0].shutup) {
+								message.channel.send(beeb()).then().catch(console.error);
+								if (messageCount < 200)
+									messageCount += 10;
+							}
+						});
+					}
+				} else {
+					if (messageCount > 100)
+						messageCount -= 10;
+
+				}
+				messageNum = 0;
+			}
+		}
+
+		if ((message.cleanContent.toLowerCase().startsWith("thank") || message.cleanContent.toLowerCase().startsWith("thn")) && message.cleanContent.toLowerCase().match(/th(a?)(n?)(x|(k(( (((yo)?)u|(ya(h?))))|s)))(,?) (@?)bb/gm)) {
+			if (Math.random() <= 0.6) {
+				if (Math.random() <= 0.5) {
+					message.channel.send('Bwee beep! :+1:');
+				} else {
+					message.react('👍');
+				}
+			}
+
+		}
+
+		if ((message.cleanContent.toLowerCase().startsWith("h")) && message.cleanContent.toLowerCase().match(/h((i((ya)?))|(e[lnw][lw]o))(( there)?)(,?) (@?)bb/gm)) {
+			if (Math.random() <= 0.7) {
+				message.react('👋');
+			}
+
+		}
+
+		/*if (message.content === "b!counter" && message.author.id == process.env.BOT_ADMIN) {
+			message.channel.send(messageNum.toString());
+	
+		}*/
+		/*if (message.content.includes('@everyone')) {
+			var chance = Math.floor(Math.random() * 100);
+			if (chance === 0) {
+				message.channel.send('***BEEEEEEEEEEEE!!!***', {
+					files: [{
+							attachment: './everyone.png',
+							name: 'everyone.png'
 						}
-				});
+					]
+				}).then().catch(console.error);
 			}
-			} else {
-				if (messageCount > 100)
-					messageCount -= 10;
-
+		}
+		if (message.content.toLowerCase().includes('despacito 2')) {
+			var chance = Math.floor(Math.random() * 20);
+			if (chance === 0) {
+				message.channel.send({
+					files: [{
+							attachment: './despabeabo2.png',
+							name: 'despabeabo2.png'
+						}
+					]
+				}).then().catch(console.error);
 			}
-			messageNum = 0;
-		}
-	}
+		}*/
 
-	if ((message.cleanContent.toLowerCase().startsWith("thank") || message.cleanContent.toLowerCase().startsWith("thn")) && message.cleanContent.toLowerCase().match(/th(a?)(n?)(x|(k(( (((yo)?)u|(ya(h?))))|s)))(,?) (@?)bb/gm)) {
-		if (Math.random() <= 0.6) {
-		if (Math.random() <= 0.5){
-			message.channel.send('Bwee beep! :+1:');
-		} else {
-		message.react('👍');
+		if (message.content.toLowerCase() === "right about now" || message.content.toLowerCase() === "check it out now") {
+			message.channel.send('\"the funk soul brother\"').then().catch(console.error);
 		}
+		if (message.content.toLowerCase() === "right about now, the funk soul brother") {
+			message.channel.send('\"check it out now, the funk soul brother\"').then().catch(console.error);
 		}
-
-	}
+		if (message.content.toLowerCase() === "check it out now, the funk soul brother") {
+			message.channel.send('\"right about now, the funk soul brother\"').then().catch(console.error);
+		}
+		/*if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && (!message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]/gm) || (message.cleanContent.toLowerCase().match(/:[cdfghjklmnpqrstuvwxyz0-9]/gm) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]./gm)))) {
 	
-	if ((message.cleanContent.toLowerCase().startsWith("h")) && message.cleanContent.toLowerCase().match(/h((i((ya)?))|(e[lnw][lw]o))(( there)?)(,?) (@?)bb/gm)) {
-		if (Math.random() <= 0.7) {
-		message.react('👋');
-		}
-
-	}
-	
-	/*if (message.content === "b!counter" && message.author.id == process.env.BOT_ADMIN) {
-		message.channel.send(messageNum.toString());
-
-	}*/
-	/*if (message.content.includes('@everyone')) {
-		var chance = Math.floor(Math.random() * 100);
-		if (chance === 0) {
-			message.channel.send('***BEEEEEEEEEEEE!!!***', {
-				files: [{
-						attachment: './everyone.png',
-						name: 'everyone.png'
-					}
-				]
-			}).then().catch(console.error);
-		}
-	}
-	if (message.content.toLowerCase().includes('despacito 2')) {
-		var chance = Math.floor(Math.random() * 20);
-		if (chance === 0) {
-			message.channel.send({
-				files: [{
-						attachment: './despabeabo2.png',
-						name: 'despabeabo2.png'
-					}
-				]
-			}).then().catch(console.error);
-		}
-	}*/
-
-	if (message.content.toLowerCase() === "right about now" || message.content.toLowerCase() === "check it out now") {
-		message.channel.send('\"the funk soul brother\"').then().catch(console.error);
-	}
-	if (message.content.toLowerCase() === "right about now, the funk soul brother") {
-		message.channel.send('\"check it out now, the funk soul brother\"').then().catch(console.error);
-	}
-	if (message.content.toLowerCase() === "check it out now, the funk soul brother") {
-		message.channel.send('\"right about now, the funk soul brother\"').then().catch(console.error);
-	}
-	/*if (message.author.id !== client.user.id && (message.cleanContent.toLowerCase().match(/(bii)|(beeb)/gm)) && (!message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]/gm) || (message.cleanContent.toLowerCase().match(/:[cdfghjklmnpqrstuvwxyz0-9]/gm) && !message.cleanContent.toLowerCase().match(/[cdfghjklmnpqrstuvwxyz0-9]./gm)))) {
-
-		message.channel.send("Biii!!!!! biiiiiii!! :revolving_hearts:");
-	} else {*/
+			message.channel.send("Biii!!!!! biiiiiii!! :revolving_hearts:");
+		} else {*/
 		if (message.isMentioned(client.user) && !message.cleanContent.toLowerCase().includes('🖕') && !(message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) && !(message.cleanContent.toLowerCase().match(/((f(u|(ri))([ck]{1,2}))|(hate)) (yo)?u/gm) || message.cleanContent.toLowerCase().match(/(yo)?u su([ck]{1,2})/gm))) {
 
 			if (!message.cleanContent.toLowerCase().match(/(not (cu|valid))|(do( ?)n(('|o)?)t l(o|u)v)/gm) && (message.cleanContent.toLowerCase().match(/((l(o|u)v(e?))|(<3)) (((yo)?)u|(ya(h?)))/gm) || message.cleanContent.toLowerCase().match(/c(u+)te/gm) || message.cleanContent.toLowerCase().includes("best") || message.cleanContent.toLowerCase().includes("valid"))) {
@@ -269,22 +261,22 @@ client.on('message', async message => {
 								message.guild.voiceConnection.channel.leave();
 							});
 						} else {
-						if (Math.random() < 0.5){
-							message.channel.send("Bwee bleep wheeeeep! :heart:");
-						} else {
-						var hearts = '♥💕💞';
-						message.react('💕');
-						}
+							if (Math.random() < 0.5) {
+								message.channel.send("Bwee bleep wheeeeep! :heart:");
+							} else {
+								var hearts = '♥💕💞';
+								message.react('💕');
+							}
 						}
 					});
 				} else {
-					if (Math.random() < 0.5){
-							message.channel.send("Bwee bleep wheeeeep! :heart:");
-						} else {
+					if (Math.random() < 0.5) {
+						message.channel.send("Bwee bleep wheeeeep! :heart:");
+					} else {
 						var hearts = '♥💕💞';
 						message.react('💕');
-						}
-			}
+					}
+				}
 			}
 			else if (message.content.toLowerCase().includes("help")) {
 				helpMessage(message);
@@ -313,253 +305,239 @@ client.on('message', async message => {
 							message.channel.send(beeb()).then().catch(console.error);
 						}
 					});
-					} else {
+				} else {
 					message.channel.send(beeb()).then().catch(console.error);
 				}
 			}
 		}
-	
 
-	fonts(message);
-	pics(message, message.content, herokupg);
-	quiz(message, message.content.toLowerCase());
-	if (message.channel.hasOwnProperty('guild')){
-	herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
-						if (res.rows[0].voice) {
-	music(client, message, message.content, herokupg);
-						}
-	});
-	}
-	if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
-		var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
-		console.log(thread);
-		var post = thread.match(/[0-9][0-9]+/gm)[0];
-		if (thread.includes('#p')) {
-			post = thread.substring(thread.indexOf('#p') + 2).match(/[0-9]+/gm)[0];
-			thread = thread.substring(0, thread.indexOf('#p'));
 
+		fonts(message);
+		pics(message, message.content, herokupg);
+		quiz(message, message.content.toLowerCase());
+		if (message.channel.hasOwnProperty('guild')) {
+			herokupg.query("SELECT voice FROM permissions WHERE guild_id = \'" + message.guild.id.toString() + "\';", async function (err, res) {
+				if (res.rows[0].voice) {
+					music(client, message, message.content, herokupg);
+				}
+			});
 		}
-		thread = thread.match(/n\.org\/[3a-z]+\/thread\/[0-9]+/gm)[0];
-		console.log(thread);
-		var board = thread.substring(thread.indexOf('org/') + 4);
-		board = board.substring(0, board.indexOf('/'));
+		if (message.content.match(/boards\.4chan\.org\/[3a-z]+\/thread\/[0-9]+/gm)) {
+			var thread = message.content.substring(message.content.indexOf('.4cha') + 5);
+			console.log(thread);
+			var post = thread.match(/[0-9][0-9]+/gm)[0];
+			if (thread.includes('#p')) {
+				post = thread.substring(thread.indexOf('#p') + 2).match(/[0-9]+/gm)[0];
+				thread = thread.substring(0, thread.indexOf('#p'));
 
-		request.get(encodeURI('https://a.4cd' + thread + '.json'), function (err, res, body) {
-			var posts = JSON.parse(body.toString());
-			var jsonpost = posts.posts.filter(function (item) {
+			}
+			thread = thread.match(/n\.org\/[3a-z]+\/thread\/[0-9]+/gm)[0];
+			console.log(thread);
+			var board = thread.substring(thread.indexOf('org/') + 4);
+			board = board.substring(0, board.indexOf('/'));
+
+			request.get(encodeURI('https://a.4cd' + thread + '.json'), function (err, res, body) {
+				var posts = JSON.parse(body.toString());
+				var jsonpost = posts.posts.filter(function (item) {
 					return item.no.toString() === post;
 				})[0];
-			var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/&lt;/gm, '<').replace(/&#039;/gm, '\'').replace(/&quot;/gm, '\"').replace(/<a href=".+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
+				var text = jsonpost.com.replace(/<br>/gm, '\n').replace(/&gt;/gm, '>').replace(/&lt;/gm, '<').replace(/&#039;/gm, '\'').replace(/&quot;/gm, '\"').replace(/<a href=".+" class="quotelink">/gm, '').replace(/<\/a>/gm, '').replace(/<wbr>/gm, '').replace(/<span class="quote">/gm, '').replace(/<\/span>/gm, '');
 
-			const embed = new Discord.RichEmbed().setTitle(jsonpost.sub).setFooter(jsonpost.now).setDescription(text).setURL('https://boards.4cha' + thread).setAuthor(jsonpost.name);
-			if (jsonpost.hasOwnProperty('ext')) {
-				var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
-				if (jsonpost.ext.toLowerCase().charAt(1) === 'w') {
-					message.channel.send(embed).then(message.channel.send(fileUrl));
+				const embed = new Discord.RichEmbed().setTitle(jsonpost.sub).setFooter(jsonpost.now).setDescription(text).setURL('https://boards.4cha' + thread).setAuthor(jsonpost.name);
+				if (jsonpost.hasOwnProperty('ext')) {
+					var fileUrl = 'https://is2.4chan.org/' + board + '/' + jsonpost.tim + jsonpost.ext;
+					if (jsonpost.ext.toLowerCase().charAt(1) === 'w') {
+						message.channel.send(embed).then(message.channel.send(fileUrl));
 
+					} else {
+						embed.setImage(fileUrl);
+						message.channel.send(embed);
+					}
 				} else {
-					embed.setImage(fileUrl);
 					message.channel.send(embed);
 				}
-			} else {
-				message.channel.send(embed);
-			}
 
-		});
-	}
+			});
+		}
 
-	if (message.content.includes('vocaroo.com/i/')) {
-		var vocId = message.content.substring(content.indexOf('/i/') + 3).match(/[A-Za-z0-9]+/gm)[0];
-		request.get('https://vocaroo.com/media_command.php?media=' + vocId + '&command=download_mp3', function (err, res, body) {
-			message.channel.send({
-				files: [{
+		if (message.content.includes('vocaroo.com/i/')) {
+			var vocId = message.content.substring(content.indexOf('/i/') + 3).match(/[A-Za-z0-9]+/gm)[0];
+			request.get('https://vocaroo.com/media_command.php?media=' + vocId + '&command=download_mp3', function (err, res, body) {
+				message.channel.send({
+					files: [{
 						attachment: body,
 						name: vocId + '.mp3'
 					}
-				]
-			}).then().catch(console.error);
-		});
-	}
-	if (message.attachments.array().length > 0 && message.attachments.array()[0].url.includes('.svg')){
-		request.get(message.attachments.array()[0].url, function (err, res, body) {
-		if (message.cleanContent.match(/[0-9]+,[0-9]+/gm)){
-			svg2png(body, {width: parseInt(message.cleanContent.split(',')[0]), height: parseInt(message.cleanContent.split(',')[1])})
-    .then(buffer => message.channel.send({
-				files: [{
-						attachment: buffer,
-						name: message.attachments.array()[0].filename.match(/.+\./gm)[0] + 'png'
-					}
-	]}).then().catch(console.error))
-    .catch(e => console.error(e));
-		} else {
-			svg2png(body)
-    .then(buffer => message.channel.send({
-				files: [{
-						attachment: buffer,
-						name: message.attachments.array()[0].filename.match(/.+\./gm)[0] + 'png'
-					}
-	]}).then().catch(console.error))
-    .catch(e => console.error(e));
+					]
+				}).then().catch(console.error);
+			});
 		}
-		});
-		
-}
-if (message.content.toLowerCase().includes("b!gametitle")){
-		gamesphube.gametitle(message);
+		if (message.attachments.array().length > 0 && message.attachments.array()[0].url.includes('.svg')) {
+			request.get(message.attachments.array()[0].url, function (err, res, body) {
+				if (message.cleanContent.match(/[0-9]+,[0-9]+/gm)) {
+					svg2png(body, { width: parseInt(message.cleanContent.split(',')[0]), height: parseInt(message.cleanContent.split(',')[1]) })
+						.then(buffer => message.channel.send({
+							files: [{
+								attachment: buffer,
+								name: message.attachments.array()[0].filename.match(/.+\./gm)[0] + 'png'
+							}
+							]
+						}).then().catch(console.error))
+						.catch(e => console.error(e));
+				} else {
+					svg2png(body)
+						.then(buffer => message.channel.send({
+							files: [{
+								attachment: buffer,
+								name: message.attachments.array()[0].filename.match(/.+\./gm)[0] + 'png'
+							}
+							]
+						}).then().catch(console.error))
+						.catch(e => console.error(e));
+				}
+			});
+
 		}
-		
-		if (message.content.toLowerCase().includes("b!genrefusion")){
-			if (message.content.toLowerCase().includes("b!genrefusiontheme")){
-			gamesphube.genrefusiontheme(message);
-			} else {
-		gamesphube.genrefusion(message);
+
+
+		if (message.content.toLowerCase().startsWith('b!')) {
+			var beaboMessage = message.content.substring(2);
+			if (beaboMessage.toLowerCase().startsWith("calc")) {
+				message.channel.send(calculate(beaboMessage.toLowerCase().substring(4).trim()));
 			}
-		}
-		
-		if (message.content.toLowerCase().includes("b!genretheme")){
-		gamesphube.genretheme(message);
-		}
-		
-		if (message.content.toLowerCase().includes("b!gamefusion")){
-		gamesphube.gamefusion(message);
-		}
-		
-	if (message.content.toLowerCase().startsWith('b!')) {
-		var beaboMessage = message.content.substring(2);
-if (beaboMessage.toLowerCase().startsWith("calc")){
-	message.channel.send(calculate(beaboMessage.toLowerCase().substring(4).trim()));
-}
-if (beaboMessage.toLowerCase().startsWith("revimg")){
-		message.channel.fetchMessages({limit: 10}).then( (messages) => {
-		var url = "";
-		if (message.attachments.array().length > 0){
-			url = message.attachments.array()[0].url
-		} else {
-		url = messages.filter(m => m.attachments.array().length > 0 && m.attachments.array()[0].width > 0).first().attachments.array()[0].url
-		}
-		if (url.length > 0){
-		message.channel.send('https://images.google.com/searchbyimage?image_url=' + url + '\nhttp://saucenao.com/search.php?url=' + url);
-		}
-}).catch(console.error);
-}
+			if (beaboMessage.toLowerCase().startsWith("revimg")) {
+				message.channel.fetchMessages({ limit: 10 }).then((messages) => {
+					var url = "";
+					if (message.attachments.array().length > 0) {
+						url = message.attachments.array()[0].url
+					} else {
+						url = messages.filter(m => m.attachments.array().length > 0 && m.attachments.array()[0].width > 0).first().attachments.array()[0].url
+					}
+					if (url.length > 0) {
+						message.channel.send('https://images.google.com/searchbyimage?image_url=' + url + '\nhttp://saucenao.com/search.php?url=' + url);
+					}
+				}).catch(console.error);
+			}
 
 
-		if ((beaboMessage.toLowerCase().startsWith("transcribe"))){
-		message.channel.fetchMessages({limit: 10}).then( (messages) => {
-		var url = "";
-		if (message.attachments.array().length > 0){
-			url = message.attachments.array()[0].url
-		} else {
-		var m = messages.filter(m => (m.attachments.array().length > 0 && m.attachments.array()[0].width > 0) || (m.embeds.length > 0 && m.embeds.image)).first();
-		if (m.attachments.array().length > 0){
-			url = m.attachments.array()[0].url;
-		} else {
-			url = m.embeds[0].image.url;
-		}
-		}
-		if (url.length > 0){
-		request.get(url, function(err, res, body){
-		if (url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)){
-		message.channel.send("(one moment please)").then( m => {
-		
-		if (url.toLowerCase().match(/\/loss((_comic)?)\.((png)|(jp(e?)g))/gm) || url.includes('cad-20080602')){
-		m.edit('```\n|\t||\n\n||\t|_\n```');
-		} else {
-		if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gm)){
-		Tesseract.recognize(body, {lang: beaboMessage.toLowerCase().match(/-[a-z_]+/gm)[0].substring(1)})
-         .progress(function  (p) { console.log(JSON.stringify(p))})
-         .then(function (result) { if (result.text.length > 2048){
-			 m.edit( {embed : { description : result.text.substring(0, 2048), fields: [{name: 'confidence', value: result.confidence.toString()}] }});
-		 } else {
-		 m.edit( {embed : {description: result.text, fields: [{name: 'confidence', value: result.confidence.toString()}] }});
-		 }
-		 })
-		} else {
-			Tesseract.recognize(body)
-         .progress(function  (p) { console.log(JSON.stringify(p))})
-         .then(function (result) { if (result.text.length > 2048){
-			 m.edit( {embed : { description : result.text.substring(0, 2048), fields: [{name: 'confidence', value: result.confidence.toString()}] }});
-		 } else {
-		 m.edit( {embed : {description: result.text, fields: [{name: 'confidence', value: result.confidence.toString()}]}});
-		 }
-		 })
-		}	
-		} 
-		}).catch(console.error);
-		}else {
-		message.channel.send('beabo? (error. image must be png or jp(e)g)').then().catch(console.error);
-		}
-		});
-		}
-		})
-		}
-		if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
-			var fields = beaboMessage.split(' ');
-			herokupg.query("UPDATE permissions SET " + fields[1] + " = " + fields[2] + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {
-				if (!err)
-					message.react('✅').then().catch(console.error);
-				else
-					console.log(err);
-			});
-		}
-		/*if (beaboMessage.startsWith('day')) {
-			message.channel.send('biiiii! 🎉 🎂');
-		}*/
-		if (beaboMessage.startsWith('pg ') && message.author.id === process.env.BOT_ADMIN) {
-			herokupg.query(beaboMessage.substring(3), (err, res) => {
-				if (!err)
-					console.log(res);
-				else
-					console.log(err);
-			});
-		}
-		timestuff(message, beaboMessage, herokupg);
-		textboxes(message, beaboMessage, herokupg);
-		if (beaboMessage.substring(0, 8) === 'commands' || beaboMessage.substring(0, 4) === 'help') {
-			helpMessage(message);
-		}
-		
-		if (beaboMessage.startsWith('dsan ')){
-		console.log('dsan');	
-		if (beaboMessage.length > 5 && message.author.id === process.env.BOT_ADMIN){
-		console.log('DSAN');
-		var search = beaboMessage.split(' ')[1];
-		request.get('https://dsancomics.com/comics/sketches-2/2017-2/', function (err, res, body) {
-		var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function(item){
-		return item.includes(search) && !item.includes('400x516');
-		});
-		images.sort();
-		
-		for(var i = 0; i < images.length; i++){
-		message.channel.send(images[i].replace(/"/gm,'')); 
-		}			
-		});
-		request.get('https://dsancomics.com/2018-2/', function (err, res, body) {
-		var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function(item){
-		return item.includes(search) && !item.includes('400x516');
-		});
-		images.sort();
-		
-		for(var i = 0; i < images.length; i++){
-		message.channel.send(images[i].replace(/"/gm,'')); 
-		}				
-		});
-		
-		request.get('https://dsancomics.com/comics/sketches-2/sketches-2016/', function (err, res, body) {
-		var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function(item){
-		return item.includes(search) && !item.includes('400x516');
-		});
-		images.sort();
-		
-		for(var i = 0; i < images.length; i++){
-		message.channel.send(images[i].replace(/"/gm,'')); 
-		}				
-		});
-		
-		}
-		}
+			if ((beaboMessage.toLowerCase().startsWith("transcribe"))) {
+				message.channel.fetchMessages({ limit: 10 }).then((messages) => {
+					var url = "";
+					if (message.attachments.array().length > 0) {
+						url = message.attachments.array()[0].url
+					} else {
+						var m = messages.filter(m => (m.attachments.array().length > 0 && m.attachments.array()[0].width > 0) || (m.embeds.length > 0 && m.embeds.image)).first();
+						if (m.attachments.array().length > 0) {
+							url = m.attachments.array()[0].url;
+						} else {
+							url = m.embeds[0].image.url;
+						}
+					}
+					if (url.length > 0) {
+						request.get(url, function (err, res, body) {
+							if (url.toLowerCase().match(/\.((png)|(jp(e?)g))/gm)) {
+								message.channel.send("(one moment please)").then(m => {
 
-	}
+									if (url.toLowerCase().match(/\/loss((_comic)?)\.((png)|(jp(e?)g))/gm) || url.includes('cad-20080602')) {
+										m.edit('```\n|\t||\n\n||\t|_\n```');
+									} else {
+										if (beaboMessage.toLowerCase().match(/transcribe-[a-z_]+/gm)) {
+											Tesseract.recognize(body, { lang: beaboMessage.toLowerCase().match(/-[a-z_]+/gm)[0].substring(1) })
+												.progress(function (p) { console.log(JSON.stringify(p)) })
+												.then(function (result) {
+													if (result.text.length > 2048) {
+														m.edit({ embed: { description: result.text.substring(0, 2048), fields: [{ name: 'confidence', value: result.confidence.toString() }] } });
+													} else {
+														m.edit({ embed: { description: result.text, fields: [{ name: 'confidence', value: result.confidence.toString() }] } });
+													}
+												})
+										} else {
+											Tesseract.recognize(body)
+												.progress(function (p) { console.log(JSON.stringify(p)) })
+												.then(function (result) {
+													if (result.text.length > 2048) {
+														m.edit({ embed: { description: result.text.substring(0, 2048), fields: [{ name: 'confidence', value: result.confidence.toString() }] } });
+													} else {
+														m.edit({ embed: { description: result.text, fields: [{ name: 'confidence', value: result.confidence.toString() }] } });
+													}
+												})
+										}
+									}
+								}).catch(console.error);
+							} else {
+								message.channel.send('beabo? (error. image must be png or jp(e)g)').then().catch(console.error);
+							}
+						});
+					}
+				})
+			}
+			if (message.channel.hasOwnProperty('guild') && (new RegExp(/set ([a-z]+) ((true)|(false))/gm)).test(beaboMessage) && message.member.hasPermission("ADMINISTRATOR")) {
+				var fields = beaboMessage.split(' ');
+				herokupg.query("UPDATE permissions SET " + fields[1] + " = " + fields[2] + " WHERE guild_id = \'" + message.guild.id.toString() + "\';", (err, res) => {
+					if (!err)
+						message.react('✅').then().catch(console.error);
+					else
+						console.log(err);
+				});
+			}
+			/*if (beaboMessage.startsWith('day')) {
+				message.channel.send('biiiii! 🎉 🎂');
+			}*/
+			if (beaboMessage.startsWith('pg ') && message.author.id === process.env.BOT_ADMIN) {
+				herokupg.query(beaboMessage.substring(3), (err, res) => {
+					if (!err)
+						console.log(res);
+					else
+						console.log(err);
+				});
+			}
+			timestuff(message, beaboMessage, herokupg);
+			textboxes(message, beaboMessage, herokupg);
+			if (beaboMessage.substring(0, 8) === 'commands' || beaboMessage.substring(0, 4) === 'help') {
+				helpMessage(message);
+			}
+
+			if (beaboMessage.startsWith('dsan ')) {
+				console.log('dsan');
+				if (beaboMessage.length > 5 && message.author.id === process.env.BOT_ADMIN) {
+					console.log('DSAN');
+					var search = beaboMessage.split(' ')[1];
+					request.get('https://dsancomics.com/comics/sketches-2/2017-2/', function (err, res, body) {
+						var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function (item) {
+							return item.includes(search) && !item.includes('400x516');
+						});
+						images.sort();
+
+						for (var i = 0; i < images.length; i++) {
+							message.channel.send(images[i].replace(/"/gm, ''));
+						}
+					});
+					request.get('https://dsancomics.com/2018-2/', function (err, res, body) {
+						var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function (item) {
+							return item.includes(search) && !item.includes('400x516');
+						});
+						images.sort();
+
+						for (var i = 0; i < images.length; i++) {
+							message.channel.send(images[i].replace(/"/gm, ''));
+						}
+					});
+
+					request.get('https://dsancomics.com/comics/sketches-2/sketches-2016/', function (err, res, body) {
+						var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function (item) {
+							return item.includes(search) && !item.includes('400x516');
+						});
+						images.sort();
+
+						for (var i = 0; i < images.length; i++) {
+							message.channel.send(images[i].replace(/"/gm, ''));
+						}
+					});
+
+				}
+			}
+
+		}
 	}
 });
 
