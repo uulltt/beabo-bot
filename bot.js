@@ -497,46 +497,7 @@ client.on('message', async message => {
 				helpMessage(message);
 			}
 
-			if (beaboMessage.startsWith('dsan ')) {
-				console.log('dsan');
-				if (beaboMessage.length > 5 && message.author.id === process.env.BOT_ADMIN) {
-					console.log('DSAN');
-					var search = beaboMessage.split(' ')[1];
-					request.get('https://dsancomics.com/comics/sketches-2/2017-2/', function (err, res, body) {
-						var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function (item) {
-							return item.includes(search) && !item.includes('400x516');
-						});
-						images.sort();
-
-						for (var i = 0; i < images.length; i++) {
-							message.channel.send(images[i].replace(/"/gm, ''));
-						}
-					});
-					request.get('https://dsancomics.com/2018-2/', function (err, res, body) {
-						var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function (item) {
-							return item.includes(search) && !item.includes('400x516');
-						});
-						images.sort();
-
-						for (var i = 0; i < images.length; i++) {
-							message.channel.send(images[i].replace(/"/gm, ''));
-						}
-					});
-
-					request.get('https://dsancomics.com/comics/sketches-2/sketches-2016/', function (err, res, body) {
-						var images = body.toString().match(/"https\:\/\/dsancomics\.com\/wp-content\/uploads\/201[0-9]\/[0-9]+\/[0-9A-Za-z\-_]+\.jpg"/gm).filter(function (item) {
-							return item.includes(search) && !item.includes('400x516');
-						});
-						images.sort();
-
-						for (var i = 0; i < images.length; i++) {
-							message.channel.send(images[i].replace(/"/gm, ''));
-						}
-					});
-
-				}
-			}
-
+			
 		}
 	}
 });
