@@ -9,7 +9,6 @@
   "dependencies": {
     "async": "^2.0.0",
     "canvas": "2.6.1",
-    "concat-image": "1.0.0",
     "discord.js": "v11.4.2",
     "exif": "0.6.0",
     "ffmpeg-binaries": "^4.0.0",
