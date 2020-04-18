@@ -331,13 +331,13 @@ module.exports = (message, content, herokupg) => {
 		if (content.includes('://') && content.match(/\/post\/[0-9]+/gm)) {
 			tumblrsong(message, content);
 		}
-		if (message.embeds[0].url.includes('soundcloud.com/')) {
+		if (content.toLowerCase().includes('https://soundcloud.com/')) {
 			soundcloud.getSongDlByURL(content.substring(content.indexOf('https://soundcloud.com/'))).then(function (song) {
 				message.channel.send(song.http_mp3_128_url);
 			});
 		}
-		if (message.embeds[0].url.includes('twitter.com/') && message.embeds[0].url.includes('/status/')) {
-			var tweetId = message.embeds[0].url.substring(message.embeds[0].url.indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
+		if (content.toLowerCase().includes('twitter.com/') && content.toLowerCase().includes('/status/')) {
+			var tweetId = content.toLowerCase().substring(content.toLowerCase().indexOf('/status/') + 8).match(/[0-9]+/gm)[0];
 			tweeter.get('statuses/show/' + tweetId, {
 				tweet_mode: 'extended'
 			}, function (error, tweet, response) {
