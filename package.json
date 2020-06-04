@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "async": "^2.0.0",
-    "canvas": ""2.0.0-alpha.12"",
+    "canvas": "2.0.0-alpha.12",
     "discord.js": "v11.4.2",
     "exif": "0.6.0",
     "ffmpeg-binaries": "^4.0.0",
