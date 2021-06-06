@@ -25,6 +25,8 @@ const herokupg = new Client({
 	ssl: true,
 });
 
+//test
+
 client.on('ready', () => {
 	//console.log('Beabo!');
 	herokupg.connect();
